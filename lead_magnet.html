@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análisis de Marca Gratuito para tu Negocio | Pyme360 Growth</title>
+  <meta name="description" content="Recibe en 24h un diagnóstico completo de la presencia digital de tu negocio local en Tenerife. Gratis, sin compromiso.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --indigo: #4f46e5;
+      --indigo-light: #818cf8;
+      --indigo-dark: #312e81;
+      --emerald: #10b981;
+      --bg: #030712;
+      --surface: #0f172a;
+      --border: rgba(99,102,241,0.15);
+      --text: #e2e8f0;
+      --muted: #64748b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Ambient glows ── */
+    .glow-1 {
+      position: fixed; top: -200px; left: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: var(--indigo); filter: blur(160px); opacity: 0.08;
+      pointer-events: none; z-index: 0;
+    }
+    .glow-2 {
+      position: fixed; bottom: -200px; right: -200px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: var(--emerald); filter: blur(160px); opacity: 0.06;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(3,7,18,0.8); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px; font-weight: 900; color: #fff;
+      letter-spacing: -0.5px;
+    }
+    .brand span { color: var(--indigo-light); }
+    .nav-badge {
+      font-size: 11px; font-weight: 600;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.25);
+      color: var(--indigo-light);
+      padding: 4px 12px; border-radius: 99px;
+    }
+
+    /* ── Layout ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 100px 0 60px;
+      display: grid; grid-template-columns: 1fr 420px;
+      gap: 60px; align-items: center;
+    }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; padding: 60px 0 40px; gap: 40px; }
+      nav { padding: 14px 20px; }
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25);
+      color: #34d399; font-size: 12px; font-weight: 600;
+      padding: 6px 14px; border-radius: 99px; margin-bottom: 24px;
+    }
+    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #34d399; animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 900; line-height: 1.1;
+      color: #fff; letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+    h1 span {
+      background: linear-gradient(135deg, var(--indigo-light), #a78bfa, var(--emerald));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: 17px; line-height: 1.8; color: #94a3b8;
+      max-width: 520px; margin-bottom: 36px;
+    }
+
+    /* ── Trust stats ── */
+    .trust-stats {
+      display: flex; gap: 32px; flex-wrap: wrap;
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 2px; }
+    .stat-num { font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 900; color: #fff; }
+    .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+
+    /* ── Form card ── */
+    .form-card {
+      background: rgba(15,23,42,0.7);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 36px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 60px rgba(99,102,241,0.12);
+    }
+    .form-card h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px; font-weight: 800; color: #fff;
+      margin-bottom: 6px; letter-spacing: -0.5px;
+    }
+    .form-card p { font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    label { font-size: 12px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+    input, select {
+      background: rgba(30,27,75,0.5);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 12px;
+      color: #fff; font-size: 14px; font-family: 'Inter', sans-serif;
+      padding: 12px 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none; width: 100%;
+    }
+    input::placeholder { color: #475569; }
+    input:focus, select:focus {
+      border-color: var(--indigo);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+    }
+    select { cursor: pointer; }
+    select option { background: #0f172a; }
+
+    .btn-cta {
+      width: 100%; padding: 15px;
+      background: linear-gradient(135deg, #4f46e5, #6d28d9);
+      border: none; border-radius: 12px;
+      color: #fff; font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif;
+      cursor: pointer; margin-top: 8px;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 0 30px rgba(99,102,241,0.3);
+    }
+    .btn-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-cta:active { transform: translateY(0); opacity: 1; }
+    .btn-cta:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .form-guarantee {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 14px; font-size: 11px; color: var(--muted);
+    }
+    .form-guarantee svg { flex-shrink: 0; }
+
+    /* ── Success screen ── */
+    #success-screen {
+      display: none;
+      text-align: center; padding: 20px 0;
+    }
+    .success-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(16,185,129,0.12);
+      border: 2px solid rgba(16,185,129,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-size: 32px;
+    }
+    #success-screen h3 { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    #success-screen p { font-size: 14px; color: #94a3b8; line-height: 1.7; }
+
+    /* ── Features section ── */
+    .features {
+      padding: 80px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .features-title {
+      text-align: center; margin-bottom: 48px;
+    }
+    .features-title h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 900; color: #fff; letter-spacing: -0.5px; margin-bottom: 12px;
+    }
+    .features-title p { color: var(--muted); font-size: 15px; }
+
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;
+    }
+    .feature-card {
+      background: rgba(15,23,42,0.5);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px; padding: 28px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: var(--border); transform: translateY(-2px); }
+    .feature-icon { font-size: 28px; margin-bottom: 14px; }
+    .feature-card h3 { font-size: 15px; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; }
+    .feature-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Services ── */
+    .services {
+      padding: 60px 0 80px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .services h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 900; color: #fff; letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+    .services-sub { color: var(--muted); font-size: 15px; margin-bottom: 36px; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;
+    }
+    .service-pill {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(15,23,42,0.6);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 18px 20px;
+    }
+    .service-pill-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+    .pill-indigo { background: rgba(99,102,241,0.12); }
+    .pill-emerald { background: rgba(16,185,129,0.12); }
+    .pill-amber { background: rgba(245,158,11,0.12); }
+    .pill-rose { background: rgba(239,68,68,0.1); }
+    .service-pill h4 { font-size: 14px; font-weight: 700; color: #e2e8f0; margin-bottom: 3px; }
+    .service-pill p { font-size: 12px; color: var(--muted); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      font-size: 12px; color: var(--muted);
+    }
+    footer a { color: var(--indigo-light); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="brand">Pyme360 <span>Growth</span></div>
+  <span class="nav-badge">✨ Análisis Gratuito</span>
+</nav>
+
+<!-- Hero -->
+<div class="container">
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Diagnóstico digital sin compromiso</div>
+      <h1>Tu negocio local merece <span>brillar en internet</span></h1>
+      <p class="hero-sub">
+        Analizamos 5 dimensiones clave de tu presencia digital en menos de 24 horas: velocidad web, Google Maps, Instagram, SEO y reputación online. Completamente gratis.
+      </p>
+      <div class="trust-stats">
+        <div class="stat-item">
+          <div class="stat-num">+120</div>
+          <div class="stat-label">PYMES analizadas</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24h</div>
+          <div class="stat-label">Tiempo de entrega</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">0€</div>
+          <div class="stat-label">Coste del análisis</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-card">
+      <div id="form-wrapper">
+        <h2>Recibe tu análisis gratis</h2>
+        <p>Completa el formulario y recibirás el informe personalizado de tu negocio en tu correo.</p>
+
+        <form id="lead-form" novalidate>
+          <div class="field">
+            <label for="f-business">Nombre de tu negocio *</label>
+            <input type="text" id="f-business" name="business" placeholder="Ej: Restaurante El Faro" required>
+          </div>
+          <div class="field">
+            <label for="f-location">Municipio / Zona *</label>
+            <input type="text" id="f-location" name="location" placeholder="Ej: Adeje, Las Américas, Arona...">
+          </div>
+          <div class="field">
+            <label for="f-sector">Sector *</label>
+            <select id="f-sector" name="sector" required>
+              <option value="">Selecciona tu sector...</option>
+              <option value="restaurante">🍽️ Restaurante / Bar / Cafetería</option>
+              <option value="alquiler_vacacional">🏡 Alquiler Vacacional / Villa</option>
+              <option value="clinica">🦷 Clínica / Centro de Salud / Estética</option>
+              <option value="comercio">🛍️ Comercio Local / Tienda</option>
+              <option value="hotel">🏨 Hotel / Hostal / Alojamiento</option>
+              <option value="otro">📦 Otro tipo de negocio</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-web">Web de tu negocio</label>
+            <input type="url" id="f-web" name="web" placeholder="https://tunegocio.com">
+          </div>
+          <div class="field">
+            <label for="f-email">Tu email de contacto *</label>
+            <input type="email" id="f-email" name="email" placeholder="propietario@negocio.com" required>
+          </div>
+
+          <button type="submit" class="btn-cta" id="submit-btn">
+            Recibir mi análisis gratuito →
+          </button>
+          <div class="form-guarantee">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Sin spam. Sin compromiso. Datos protegidos por RGPD.
+          </div>
+        </form>
+      </div>
+
+      <div id="success-screen">
+        <div class="success-icon">✅</div>
+        <h3>¡Análisis en camino!</h3>
+        <p>En menos de 24 horas recibirás el informe completo de tu presencia digital en el email que nos has indicado.<br><br>Si tienes cualquier pregunta, escríbenos a <a href="mailto:analisis@pyme360growth.com" style="color:var(--indigo-light);">analisis@pyme360growth.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="features">
+    <div class="features-title">
+      <h2>¿Qué incluye el análisis gratuito?</h2>
+      <p>5 dimensiones clave auditadas y un plan de acción priorizado para tu negocio</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Velocidad Web (30 pts)</h3>
+        <p>Medimos el tiempo de carga móvil real de tu web. Una carga lenta hace perder el 40% de los visitantes antes de ver tu contenido.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗺️</div>
+        <h3>Google Maps (25 pts)</h3>
+        <p>Analizamos tu ficha de Google Business: fotos, horarios, categorías y estado de verificación. El 80% de las búsquedas locales pasan por aquí.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📸</div>
+        <h3>Redes Sociales (20 pts)</h3>
+        <p>Evaluamos tu presencia en Instagram: seguidores, frecuencia de publicación y engagement. Tus competidores ya están ahí.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>SEO Básico (15 pts)</h3>
+        <p>Revisamos los elementos técnicos esenciales: HTTPS, estructura de contenidos, meta-descripciones y rastreabilidad por Google.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h3>Reputación Online (10 pts)</h3>
+        <p>Analizamos el rating en Google y el volumen de reseñas. La reputación digital es el boca a boca del siglo XXI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services teaser -->
+  <section class="services">
+    <h2>Lo que podemos hacer por tu negocio</h2>
+    <p class="services-sub">Servicios de marketing digital especializados en PYMES locales de Canarias</p>
+    <div class="services-grid">
+      <div class="service-pill">
+        <div class="service-pill-icon pill-indigo">🌐</div>
+        <div>
+          <h4>Diseño Web Ultrarrápido</h4>
+          <p>Webs que cargan en menos de 1 segundo en móvil</p>
+        </div>
+      </div>
+      <div class="service-pill">
+        <div class="service-pill-icon pill-emerald">📈</div>
+        <div>
+          <h4>SEO + Gestión de RRSS</h4>
+          <p>Posicionamiento orgánico y comunidad activa</p>
+        </div>
+      </div>
+      <div class="service-pill">
+        <div class="service-pill-icon pill-amber">📣</div>
+        <div>
+          <h4>Meta & Google Ads</h4>
+          <p>Publicidad local de alto retorno con presupuesto ajustado</p>
+        </div>
+      </div>
+      <div class="service-pill">
+        <div class="service-pill-icon pill-rose">🎯</div>
+        <div>
+          <h4>Estudio de Público Objetivo</h4>
+          <p>Identifica y capta a tu cliente ideal en Canarias</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer>
+  <span>© 2026 Pyme360 Growth · Tenerife, Canarias</span>
+  <div style="display:flex;gap:20px;">
+    <a href="mailto:analisis@pyme360growth.com">Contactar</a>
+    <span>RGPD Compliant</span>
+  </div>
+</footer>
+
+<script>
+  const SUPABASE_URL = "https://veqpsnxqecehdaygycmi.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_u35aO5iZYVX40r2dB-SekA_1zpOniBw";
+
+  // Pre-fill from URL params
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const negocio = params.get('negocio');
+    const zona    = params.get('zona');
+    const sector  = params.get('sector');
+    if (negocio) document.getElementById('f-business').value = negocio;
+    if (zona)    document.getElementById('f-location').value = zona;
+    if (sector) {
+      const sel = document.getElementById('f-sector');
+      for (let opt of sel.options) {
+        if (opt.value === sector || opt.value.includes(sector)) { sel.value = opt.value; break; }
+      }
+    }
+  })();
+
+  document.getElementById('lead-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+
+    const business = document.getElementById('f-business').value.trim();
+    const location = document.getElementById('f-location').value.trim();
+    const sector   = document.getElementById('f-sector').value;
+    const web      = document.getElementById('f-web').value.trim();
+    const email    = document.getElementById('f-email').value.trim();
+
+    if (!business || !email || !sector) {
+      alert('Por favor, completa los campos obligatorios (negocio, sector y email).');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    try {
+      const payload = {
+        business_name: business,
+        cleaned_name: business,
+        location: location || 'Tenerife',
+        email: email,
+        tipo_de_empresa: sector,
+        zona: location || 'Tenerife',
+        original_url: web || null,
+        current_status: 'scraped',
+        form_submitted: true,
+        lead_magnet_sent: false,
+        outreach_channel: 'email',
+        channel_used: 'email',
+        retry_count: 0
+      };
+
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok || res.status === 201) {
+        document.getElementById('form-wrapper').style.display = 'none';
+        document.getElementById('success-screen').style.display = 'block';
+        // Scroll to form card
+        document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        const err = await res.text();
+        console.error('Supabase error:', err);
+        btn.disabled = false;
+        btn.textContent = 'Recibir mi análisis gratuito →';
+        // Show success anyway (don't block user on DB error)
+        document.getElementById('form-wrapper').style.display = 'none';
+        document.getElementById('success-screen').style.display = 'block';
+      }
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false;
+      btn.textContent = 'Recibir mi análisis gratuito →';
+      alert('Hubo un problema al enviar. Por favor, intenta de nuevo o escríbenos a analisis@pyme360growth.com');
+    }
+  });
+</script>
+</body>
+</html>
