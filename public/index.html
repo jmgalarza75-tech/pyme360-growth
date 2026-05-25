@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/pyme360-public.css?v=20260525-3">
+  <link rel="stylesheet" href="assets/pyme360-public.css?v=20260525-4">
 </head>
 <body>
   <header class="site-header">
@@ -162,16 +162,45 @@
         <p>Te contactaremos para preparar una revision clara de tu presencia digital y las acciones que mas sentido tienen para tu pyme.</p>
       </div>
 
-      <form class="lead-form">
-        <label>Nombre<input name="name" required autocomplete="name"></label>
-        <label>Email<input name="email" type="email" required autocomplete="email"></label>
-        <label>Telefono<input name="phone" required autocomplete="tel"></label>
-        <label>Nombre del negocio<input name="business" required></label>
-        <label>Sector<input name="sector" required></label>
-        <label>Ciudad o zona<input name="location" required></label>
-        <label class="form-wide">Principal problema actual<textarea name="problem" rows="4" required></textarea></label>
+      <form class="lead-form lead-form-premium">
+        <label>
+          <span>Tu nombre</span>
+          <span class="field-control"><span class="field-icon" aria-hidden="true">01</span><input name="name" required autocomplete="name" placeholder="Maria Garcia"></span>
+        </label>
+        <label>
+          <span>Tu email</span>
+          <span class="field-control"><span class="field-icon" aria-hidden="true">02</span><input name="email" type="email" required autocomplete="email" placeholder="tu@email.com"></span>
+        </label>
+        <label>
+          <span>Telefono</span>
+          <span class="field-control"><span class="field-icon" aria-hidden="true">03</span><input name="phone" required autocomplete="tel" placeholder="+34 600 000 000"></span>
+        </label>
+        <label>
+          <span>Nombre del negocio</span>
+          <span class="field-control"><span class="field-icon" aria-hidden="true">04</span><input name="business" required placeholder="Restaurante La Terraza"></span>
+        </label>
+        <label>
+          <span>Sector</span>
+          <span class="field-control"><span class="field-icon" aria-hidden="true">05</span><select name="sector" required>
+            <option value="">Selecciona tu sector</option>
+            <option value="Restaurante">Restaurante o cafeteria</option>
+            <option value="Clinica">Clinica o salud</option>
+            <option value="Alojamiento">Alojamiento o turismo local</option>
+            <option value="Comercio">Comercio local</option>
+            <option value="Servicios profesionales">Servicios profesionales</option>
+            <option value="Otro">Otro</option>
+          </select></span>
+        </label>
+        <label>
+          <span>Ciudad o zona</span>
+          <span class="field-control"><span class="field-icon" aria-hidden="true">06</span><input name="location" required placeholder="Tenerife"></span>
+        </label>
+        <label class="form-wide">
+          <span>Principal problema actual</span>
+          <textarea name="problem" rows="4" required placeholder="Cuentanos que esta frenando ahora mismo las reservas, contactos o ventas."></textarea>
+        </label>
         <button class="button button-primary form-wide" type="submit">Quiero mi diagnostico gratuito</button>
-        <p class="form-note form-wide">Te contactaremos solo para preparar tu diagnostico. Sin spam.</p>
+        <p class="form-note form-wide">Sin spam. Sin compromiso. Respuesta clara para preparar tu diagnostico.</p>
       </form>
     </section>
   </main>
@@ -181,6 +210,6 @@
     <span>Marketing claro para pymes que quieren crecer con sistema.</span>
   </footer>
 
-  <script src="assets/pyme360-public.js?v=20260525-3"></script>
+  <script src="assets/pyme360-public.js?v=20260525-4"></script>
 </body>
 </html>
