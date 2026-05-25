@@ -255,6 +255,14 @@
     }
     footer a { color: var(--indigo-light); text-decoration: none; }
   </style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYME360G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PYME360G');
+  </script>
 </head>
 <body>
 
@@ -494,6 +502,14 @@
       });
 
       if (res.ok || res.status === 201) {
+        if (typeof gtag === 'function') {
+          gtag('event', 'lead_magnet_submission', {
+            'event_category': 'Engagement',
+            'event_label': sector,
+            'business_name': business,
+            'location': location
+          });
+        }
         document.getElementById('form-wrapper').style.display = 'none';
         document.getElementById('success-screen').style.display = 'block';
         // Scroll to form card
@@ -501,6 +517,12 @@
       } else {
         const err = await res.text();
         console.error('Supabase error:', err);
+        if (typeof gtag === 'function') {
+          gtag('event', 'lead_magnet_submission_fallback', {
+            'event_category': 'Engagement',
+            'event_label': sector
+          });
+        }
         btn.disabled = false;
         btn.textContent = 'Recibir mi análisis gratuito →';
         // Show success anyway (don't block user on DB error)

@@ -19,6 +19,14 @@
         .pulse-ring::before { content:''; position:absolute; inset:-6px; border-radius:50%; border:2px solid rgba(99,102,241,0.3); animation: pulse-ring 2s ease-out infinite; }
         @keyframes pulse-ring { 0%{transform:scale(1);opacity:0.8} 100%{transform:scale(1.4);opacity:0} }
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYME360G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PYME360G');
+    </script>
 </head>
 <body class="text-slate-100 min-h-screen antialiased">
 
@@ -206,6 +214,14 @@
                 await sendNotification({ nombre, email, negocio, servicio, presupuesto, mensaje });
 
                 // 3. Mostrar éxito
+                if (typeof gtag === 'function') {
+                    gtag('event', 'propuesta_submission', {
+                        'event_category': 'Conversion',
+                        'event_label': servicio,
+                        'budget': presupuesto,
+                        'business_name': negocio
+                    });
+                }
                 document.getElementById("form-card").classList.add("hidden");
                 const sc = document.getElementById("success-card");
                 sc.classList.remove("hidden");
@@ -222,6 +238,7 @@
 
         async function updateSupabase(email, negocio) {
             // Intentar actualizar lead existente por email
+            // Prefer: return=representation devuelve las filas actualizadas (array vacío = sin match)
             const patchByEmail = await fetch(
                 `${SUPABASE_URL}/rest/v1/leads?email=eq.${encodeURIComponent(email)}`,
                 {
@@ -230,15 +247,18 @@
                         "apikey": SUPABASE_KEY,
                         "Authorization": `Bearer ${SUPABASE_KEY}`,
                         "Content-Type": "application/json",
-                        "Prefer": "return=minimal"
+                        "Prefer": "return=representation"
                     },
                     body: JSON.stringify({ form_submitted: true })
                 }
             );
 
-            // Si no hay lead por email, insertar nuevo
-            if (patchByEmail.ok) return;
+            if (patchByEmail.ok) {
+                const updated = await patchByEmail.json();
+                if (updated && updated.length > 0) return; // Lead existente actualizado
+            }
 
+            // No hay lead con ese email → insertar nuevo
             await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
                 method: "POST",
                 headers: {
@@ -251,7 +271,7 @@
                     business_name: negocio,
                     cleaned_name: negocio,
                     email: email,
-                    current_status: "propuesta_solicitada",
+                    current_status: "scraped",
                     form_submitted: true,
                     lead_magnet_sent: true,
                     outreach_channel: "propuesta_directa"
