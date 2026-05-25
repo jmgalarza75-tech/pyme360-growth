@@ -1,5 +1,30 @@
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
+const testimonials = [
+  {
+    id: 32,
+    author: "Home4Escape",
+    sector: "Hospitality y alquiler vacacional",
+    quote: "Pyme360 nos ayudo a ordenar la captacion y convertir la presencia digital en una herramienta comercial, no solo en una web bonita."
+  },
+  {
+    id: 47,
+    author: "Nomads Jungle",
+    sector: "Experiencias y comunidad viajera",
+    quote: "Por fin entendimos que acciones priorizar. El diagnostico aterrizo el marketing en decisiones concretas para crecer."
+  },
+  {
+    id: 12,
+    author: "Cafeteria Brisa",
+    sector: "Caso tipo de pyme local",
+    quote: "Necesitabamos mas clientes locales sin perdernos en tecnicismos. El sistema nos dio foco, seguimiento y una ruta clara."
+  }
+];
+
+function rotateTestimonials(items) {
+  if (items.length < 2) return items;
+  return [...items.slice(1), items[0]];
+}
 
 if (navToggle && siteNav) {
   navToggle.addEventListener("click", () => {
@@ -13,6 +38,54 @@ if (navToggle && siteNav) {
       navToggle.setAttribute("aria-expanded", "false");
     }
   });
+}
+
+const testimonialStage = document.querySelector(".testimonial-stage");
+const shuffleButton = document.querySelector(".testimonial-shuffle");
+let currentTestimonials = testimonials;
+
+function renderTestimonials() {
+  if (!testimonialStage) return;
+
+  const positions = ["front", "middle", "back"];
+
+  testimonialStage.innerHTML = currentTestimonials.map((testimonial, index) => {
+    const position = positions[index];
+    return `
+      <article class="testimonial-card is-${position}" data-position="${position}">
+        <img src="https://i.pravatar.cc/128?img=${testimonial.id}" alt="Avatar de ${testimonial.author}">
+        <blockquote>${testimonial.quote}</blockquote>
+        <div><strong>${testimonial.author}</strong><span>${testimonial.sector}</span></div>
+      </article>
+    `;
+  }).join("");
+}
+
+function shuffleTestimonials() {
+  currentTestimonials = rotateTestimonials(currentTestimonials);
+  renderTestimonials();
+}
+
+if (testimonialStage) {
+  renderTestimonials();
+
+  let dragStartX = 0;
+
+  testimonialStage.addEventListener("pointerdown", (event) => {
+    if (!event.target.closest(".is-front")) return;
+    dragStartX = event.clientX;
+  });
+
+  testimonialStage.addEventListener("pointerup", (event) => {
+    if (dragStartX - event.clientX > 90) {
+      shuffleTestimonials();
+    }
+    dragStartX = 0;
+  });
+}
+
+if (shuffleButton) {
+  shuffleButton.addEventListener("click", shuffleTestimonials);
 }
 
 const leadForm = document.querySelector(".lead-form");
@@ -65,6 +138,8 @@ async function pyme360SubmitLead(payload) {
 }
 
 if (typeof window !== "undefined") {
+  window.pyme360Testimonials = testimonials;
+  window.pyme360RotateTestimonials = rotateTestimonials;
   window.pyme360BuildLeadPayload = pyme360BuildLeadPayload;
   window.pyme360SubmitLead = pyme360SubmitLead;
 }
