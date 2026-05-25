@@ -2,19 +2,22 @@ const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 const testimonials = [
   {
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=256&h=256&q=80",
+    logo: "H4",
+    logoClass: "testimonial-logo-home",
     author: "Home4Escape",
     sector: "Hospitality y alquiler vacacional",
     quote: "Pyme360 nos ayudo a ordenar la captacion y convertir la presencia digital en una herramienta comercial, no solo en una web bonita."
   },
   {
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&h=256&q=80",
+    logo: "NJ",
+    logoClass: "testimonial-logo-nomads",
     author: "Nomads Jungle",
     sector: "Experiencias y comunidad viajera",
     quote: "Por fin entendimos que acciones priorizar. El diagnostico aterrizo el marketing en decisiones concretas para crecer."
   },
   {
-    image: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=256&h=256&q=80",
+    logo: "CB",
+    logoClass: "testimonial-logo-brisa",
     author: "Cafeteria Brisa",
     sector: "Caso tipo de pyme local",
     quote: "Necesitabamos mas clientes locales sin perdernos en tecnicismos. El sistema nos dio foco, seguimiento y una ruta clara."
@@ -53,7 +56,7 @@ function renderTestimonials() {
     const position = positions[index];
     return `
       <article class="testimonial-card is-${position}" data-position="${position}">
-        <img src="${testimonial.image}" alt="Retrato de ${testimonial.author}">
+        <span class="testimonial-logo ${testimonial.logoClass}" aria-label="Logo de ${testimonial.author}">${testimonial.logo}</span>
         <blockquote>${testimonial.quote}</blockquote>
         <div><strong>${testimonial.author}</strong><span>${testimonial.sector}</span></div>
       </article>

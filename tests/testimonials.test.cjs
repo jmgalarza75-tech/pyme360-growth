@@ -37,7 +37,10 @@ const rotated = sandbox.window.pyme360RotateTestimonials([
 
 assert.equal(JSON.stringify(rotated.map((testimonial) => testimonial.author)), JSON.stringify(["B", "C", "A"]));
 assert.equal(styles.includes("background: #0f172a;"), true);
+assert.equal(styles.includes(".testimonial-logo"), true);
 assert.equal(styles.includes("filter: blur(7px);"), true);
 assert.equal(styles.includes("min-height: 620px;"), true);
+assert.equal(script.includes("pravatar"), false);
+assert.equal(script.includes("images.unsplash.com"), false);
 
 console.log("testimonial tests passed");
