@@ -31,6 +31,8 @@ for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /Redes Premium/);
   assert.match(html, /Publicidad online/);
   assert.match(html, /Branding y diseno/);
+  assert.match(html, /Servicios extra para completar tu sistema/);
+  assert.doesNotMatch(html, /\banade\b|\bAnade\b/);
   assert.doesNotMatch(html, /&euro;|\u00c3|\u00e2|\u20ac|dashboard\.html|buscador\.html|pipeline\.html|newsletter\.html|\.env/);
 }
 
