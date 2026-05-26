@@ -6,6 +6,10 @@ const problemCards = typeof document.querySelectorAll === "function"
   : [];
 const problemPrev = document.querySelector(".problem-prev");
 const problemNext = document.querySelector(".problem-next");
+const processNodes = typeof document.querySelectorAll === "function"
+  ? Array.from(document.querySelectorAll("[data-process-node]"))
+  : [];
+const processDetail = document.querySelector("[data-process-detail]");
 const testimonials = [
   {
     logo: "H4",
@@ -227,6 +231,44 @@ if (problemCards.length) {
       updateProblemGallery(activeProblemIndex);
     }
   }, { passive: true });
+}
+
+function updateProcessOrbit(activeNode) {
+  if (!activeNode || !processDetail) return;
+
+  const related = (activeNode.dataset.related || "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  processNodes.forEach((node) => {
+    const isActive = node === activeNode;
+    const isRelated = related.includes(node.dataset.nodeId || "");
+    node.classList.toggle("is-active", isActive);
+    node.classList.toggle("is-related", !isActive && isRelated);
+    node.setAttribute("aria-expanded", String(isActive));
+  });
+
+  const title = processDetail.querySelector("[data-process-title]");
+  const status = processDetail.querySelector("[data-process-status]");
+  const content = processDetail.querySelector("[data-process-content]");
+  const energy = processDetail.querySelector("[data-process-energy]");
+  const bar = processDetail.querySelector("[data-process-bar]");
+  const energyValue = activeNode.dataset.energy || "78";
+
+  if (title) title.textContent = activeNode.dataset.title || "";
+  if (status) status.textContent = activeNode.dataset.status || "";
+  if (content) content.textContent = activeNode.dataset.content || "";
+  if (energy) energy.textContent = `${energyValue}%`;
+  if (bar) bar.style.setProperty("--energy", `${energyValue}%`);
+}
+
+if (processNodes.length) {
+  processNodes.forEach((node) => {
+    node.addEventListener("click", () => updateProcessOrbit(node));
+  });
+
+  updateProcessOrbit(processNodes.find((node) => node.classList.contains("is-active")) || processNodes[0]);
 }
 
 if (navToggle && siteNav) {

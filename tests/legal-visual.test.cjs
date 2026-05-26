@@ -28,7 +28,7 @@ for (const [file, title] of legalPages) {
     assert.match(html, /Calle Tinfugaya I 7/);
     assert.match(html, /<a href="index\.html#top">Inicio<\/a>/);
     assert.match(html, /<a href="precios\.html">Precios<\/a>/);
-    assert.match(html, /<link rel="stylesheet" href="assets\/pyme360-public\.css\?v=20260525-11">/);
+    assert.match(html, /<link rel="stylesheet" href="assets\/pyme360-public\.css\?v=20260526-1">/);
     assert.doesNotMatch(html, /dashboard\.html|buscador\.html|pipeline\.html|newsletter\.html|\.env/);
   }
 }

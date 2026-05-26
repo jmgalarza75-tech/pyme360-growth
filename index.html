@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/pyme360-public.css?v=20260525-11">
+  <link rel="stylesheet" href="assets/pyme360-public.css?v=20260526-1">
 </head>
 <body>
   <header class="site-header">
@@ -157,18 +157,47 @@
       </div>
     </section>
 
-    <section id="proceso" class="process section">
-      <div class="section-heading">
+    <section id="proceso" class="process process-orbit section">
+      <div class="process-copy">
         <p class="eyebrow">Como funciona</p>
-        <h2>De diagnostico a sistema de crecimiento</h2>
+        <h2>Un sistema que convierte diagn&oacute;stico en acci&oacute;n</h2>
+        <p>No trabajamos por ocurrencias. Detectamos d&oacute;nde se pierden oportunidades, priorizamos lo que puede mover ventas y ejecutamos mejoras cada mes.</p>
       </div>
-      <ol class="timeline">
-        <li><strong>Diagnosticamos</strong><span>Analizamos tu presencia digital y punto de partida.</span></li>
-        <li><strong>Detectamos oportunidades</strong><span>Encontramos que impide que lleguen mas clientes.</span></li>
-        <li><strong>Priorizamos</strong><span>Ordenamos acciones por impacto comercial.</span></li>
-        <li><strong>Ejecutamos</strong><span>Activamos mejoras concretas cada mes.</span></li>
-        <li><strong>Medimos</strong><span>Revisamos resultados y ajustamos el sistema.</span></li>
-      </ol>
+
+      <div class="process-orbit-stage" data-process-orbit aria-label="Sistema de crecimiento Pyme360">
+        <div class="process-orbit-ring" aria-hidden="true"></div>
+        <div class="process-orbit-core" aria-hidden="true">
+          <span>Pyme360</span>
+          <strong>Growth System</strong>
+        </div>
+
+        <button class="process-orbit-node is-active" type="button" style="--orbit-index: 0;" data-process-node data-node-id="diagnostico" data-title="Diagn&oacute;stico" data-status="Punto de partida" data-energy="78" data-related="fugas,prioridad" data-content="Analizamos tu web, Google, mensajes, seguimiento y puntos de fricci&oacute;n." aria-expanded="true">
+          <span>01</span><strong>Diagn&oacute;stico</strong>
+        </button>
+        <button class="process-orbit-node" type="button" style="--orbit-index: 1;" data-process-node data-node-id="fugas" data-title="Fugas" data-status="Oportunidades perdidas" data-energy="84" data-related="diagnostico,prioridad" data-content="Localizamos d&oacute;nde se pierden llamadas, reservas y contactos antes de convertirse en clientes." aria-expanded="false">
+          <span>02</span><strong>Fugas</strong>
+        </button>
+        <button class="process-orbit-node" type="button" style="--orbit-index: 2;" data-process-node data-node-id="prioridad" data-title="Prioridad" data-status="Foco comercial" data-energy="91" data-related="fugas,ejecucion" data-content="Ordenamos acciones por impacto comercial, no por moda ni por tareas decorativas." aria-expanded="false">
+          <span>03</span><strong>Prioridad</strong>
+        </button>
+        <button class="process-orbit-node" type="button" style="--orbit-index: 3;" data-process-node data-node-id="ejecucion" data-title="Ejecuci&oacute;n" data-status="Mejora mensual" data-energy="88" data-related="prioridad,medicion" data-content="Activamos mejoras concretas cada mes en captaci&oacute;n, conversi&oacute;n, contenido y seguimiento." aria-expanded="false">
+          <span>04</span><strong>Ejecuci&oacute;n</strong>
+        </button>
+        <button class="process-orbit-node" type="button" style="--orbit-index: 4;" data-process-node data-node-id="medicion" data-title="Medici&oacute;n" data-status="Sistema vivo" data-energy="82" data-related="ejecucion,diagnostico" data-content="Revisamos resultados, aprendemos de los datos y ajustamos el sistema para seguir creciendo." aria-expanded="false">
+          <span>05</span><strong>Medici&oacute;n</strong>
+        </button>
+
+        <article class="process-orbit-detail" data-process-detail>
+          <span data-process-status>Punto de partida</span>
+          <h3 data-process-title>Diagn&oacute;stico</h3>
+          <p data-process-content>Analizamos tu web, Google, mensajes, seguimiento y puntos de fricci&oacute;n.</p>
+          <div class="process-orbit-meter">
+            <small>Impacto comercial</small>
+            <strong data-process-energy>78%</strong>
+            <i data-process-bar style="--energy: 78%;"></i>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section class="authority section">
@@ -287,7 +316,7 @@
     </nav>
   </footer>
 
-  <script src="assets/pyme360-public.js?v=20260525-11"></script>
+  <script src="assets/pyme360-public.js?v=20260526-1"></script>
 </body>
 </html>
 
