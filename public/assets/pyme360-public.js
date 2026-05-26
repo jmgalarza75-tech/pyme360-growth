@@ -197,12 +197,12 @@ initHeroShader();
 function updateProblemGallery(activeIndex) {
   if (!problemCards.length) return;
 
-  const positions = ["is-active", "is-right", "is-back", "is-left"];
+  const positions = ["is-active", "is-right", "is-back", "is-left", "is-hidden"];
 
   problemCards.forEach((card, index) => {
     card.classList.remove(...positions);
     const positionIndex = (index - activeIndex + problemCards.length) % problemCards.length;
-    card.classList.add(positions[positionIndex]);
+    card.classList.add(positions[positionIndex] || "is-hidden");
   });
 }
 

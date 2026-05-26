@@ -11,11 +11,15 @@ for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /<section class="problem section" aria-labelledby="problem-title">/);
   assert.match(html, /<div class="problem-gallery-shell">/);
   assert.match(html, /<div class="problem-gallery" aria-label="Galeria circular de problemas digitales">/);
+  assert.match(html, /Fugas comunes en pymes locales/);
+  assert.match(html, /Donde se te estan escapando clientes/);
+  assert.match(html, /Tu ficha de Google no te trae suficientes llamadas/);
+  assert.match(html, /Los mensajes estan repartidos por todos lados/);
   assert.match(html, /class="problem-nav problem-prev"/);
   assert.match(html, /class="problem-nav problem-next"/);
-  assert.equal((html.match(/class="problem-card/g) || []).length, 4);
-  assert.equal((html.match(/data-problem-card/g) || []).length, 4);
-  assert.equal((html.match(/<img src="https:\/\/images\.unsplash\.com/g) || []).length, 4);
+  assert.equal((html.match(/class="problem-card/g) || []).length, 10);
+  assert.equal((html.match(/data-problem-card/g) || []).length, 10);
+  assert.equal((html.match(/<img src="https:\/\/images\.unsplash\.com/g) || []).length, 10);
   assert.equal(html.includes("problem-grid"), false);
 }
 
@@ -25,6 +29,7 @@ for (const css of [styles, publicStyles]) {
   assert.match(css, /\.problem-card\.is-active/);
   assert.match(css, /\.problem-card\.is-left/);
   assert.match(css, /\.problem-card\.is-right/);
+  assert.match(css, /\.problem-card\.is-hidden/);
   assert.match(css, /\.problem-nav:hover/);
   assert.match(css, /@media \(max-width: 620px\)[\s\S]*\.problem-gallery\s*{[\s\S]*grid-template-columns: 1fr;/);
 }
