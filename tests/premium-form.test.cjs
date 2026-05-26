@@ -11,9 +11,10 @@ for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /<form class="lead-form lead-form-premium"/);
   assert.match(html, /<span class="field-icon" aria-hidden="true">/);
   assert.match(html, /<select name="sector" required>/);
+  assert.match(html, /<span class="select-arrow" aria-hidden="true">/);
   assert.match(html, /Sin spam\. Sin compromiso\. Respuesta clara/);
-  assert.match(html, /pyme360-public\.css\?v=20260525-4/);
-  assert.match(html, /pyme360-public\.js\?v=20260525-4/);
+  assert.match(html, /pyme360-public\.css\?v=20260525-6/);
+  assert.match(html, /pyme360-public\.js\?v=20260525-6/);
 }
 
 for (const css of [styles, publicStyles]) {
@@ -21,6 +22,8 @@ for (const css of [styles, publicStyles]) {
   assert.match(css, /\.field-control\s*{/);
   assert.match(css, /\.field-icon\s*{/);
   assert.match(css, /\.lead-form-premium select/);
+  assert.match(css, /appearance: none;/);
+  assert.match(css, /\.select-arrow\s*{/);
   assert.match(css, /\.lead-form-premium \.button-primary\s*{/);
 }
 

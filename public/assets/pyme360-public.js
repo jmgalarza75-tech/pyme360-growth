@@ -1,6 +1,11 @@
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 const heroShaderCanvas = document.querySelector(".hero-shader");
+const problemCards = typeof document.querySelectorAll === "function"
+  ? Array.from(document.querySelectorAll("[data-problem-card]"))
+  : [];
+const problemPrev = document.querySelector(".problem-prev");
+const problemNext = document.querySelector(".problem-next");
 const testimonials = [
   {
     logo: "H4",
@@ -184,6 +189,45 @@ function initHeroShader() {
 }
 
 initHeroShader();
+
+function updateProblemGallery(activeIndex) {
+  if (!problemCards.length) return;
+
+  const positions = ["is-active", "is-right", "is-back", "is-left"];
+
+  problemCards.forEach((card, index) => {
+    card.classList.remove(...positions);
+    const positionIndex = (index - activeIndex + problemCards.length) % problemCards.length;
+    card.classList.add(positions[positionIndex]);
+  });
+}
+
+if (problemCards.length) {
+  let activeProblemIndex = 0;
+
+  const showProblem = (direction) => {
+    activeProblemIndex = (activeProblemIndex + direction + problemCards.length) % problemCards.length;
+    updateProblemGallery(activeProblemIndex);
+  };
+
+  if (problemPrev) {
+    problemPrev.addEventListener("click", () => showProblem(-1));
+  }
+
+  if (problemNext) {
+    problemNext.addEventListener("click", () => showProblem(1));
+  }
+
+  window.addEventListener("scroll", () => {
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollableHeight <= 0) return;
+    const nextIndex = Math.round((window.scrollY / scrollableHeight) * (problemCards.length - 1));
+    if (nextIndex !== activeProblemIndex) {
+      activeProblemIndex = nextIndex;
+      updateProblemGallery(activeProblemIndex);
+    }
+  }, { passive: true });
+}
 
 if (navToggle && siteNav) {
   navToggle.addEventListener("click", () => {

@@ -8,13 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/pyme360-public.css?v=20260525-4">
+  <link rel="stylesheet" href="assets/pyme360-public.css?v=20260525-6">
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Pyme360 inicio">
-      <span class="brand-mark">P360</span>
-      <span>Pyme360</span>
+      <img class="brand-logo" src="assets/pyme360-logo.svg" alt="Pyme360">
     </a>
 
     <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
@@ -49,7 +48,11 @@
           <strong>72/100</strong>
         </div>
         <div class="score-ring">
-          <span>+31%</span>
+          <span class="score-value" aria-label="Oportunidad estimada 31%, al pasar por encima sube a 60% y 90%">
+            <span class="score-default">31%</span>
+            <span class="score-mid">60%</span>
+            <span class="score-high">90%</span>
+          </span>
           <small>oportunidad estimada</small>
         </div>
         <div class="diagnostic-list">
@@ -60,16 +63,54 @@
       </div>
     </section>
 
-    <section class="problem section">
-      <div class="section-heading">
+    <section class="problem section" aria-labelledby="problem-title">
+      <div class="problem-copy">
         <p class="eyebrow">El problema real</p>
-        <h2>Tu pyme no necesita hacer mas marketing. Necesita dejar de perder oportunidades.</h2>
+        <h2 id="problem-title">Galeria de fugas digitales</h2>
+        <p>Scroll o flechas para ver donde se escapan llamadas, reservas y contactos antes de convertirse en clientes.</p>
       </div>
-      <div class="problem-grid">
-        <article><strong>Web que no convierte</strong><span>Recibes visitas, pero pocas llamadas, reservas o solicitudes.</span></article>
-        <article><strong>Google local desaprovechado</strong><span>Tu negocio existe, pero no aparece con fuerza cuando el cliente busca.</span></article>
-        <article><strong>Redes sin direccion comercial</strong><span>Publicar por publicar no crea un sistema de captacion.</span></article>
-        <article><strong>Leads sin seguimiento</strong><span>Preguntan, se enfrian y terminan comprando a otro.</span></article>
+
+      <div class="problem-gallery-shell">
+        <button class="problem-nav problem-prev" type="button" aria-label="Ver problema anterior">‹</button>
+        <div class="problem-gallery" aria-label="Galeria circular de problemas digitales">
+        <article class="problem-card is-active" data-problem-card>
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Negocio revisando una web que no convierte">
+          <div>
+            <span>01</span>
+            <strong>Web que no convierte</strong>
+            <em>-37% conversion</em>
+            <p>Visitas sin llamadas, reservas ni solicitudes claras.</p>
+          </div>
+        </article>
+        <article class="problem-card is-right" data-problem-card>
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80" alt="Cliente buscando un negocio local desde el movil">
+          <div>
+            <span>02</span>
+            <strong>Google local desaprovechado</strong>
+            <em>-48% visibilidad local</em>
+            <p>Apareces tarde cuando el cliente ya esta comparando opciones.</p>
+          </div>
+        </article>
+        <article class="problem-card is-back" data-problem-card>
+          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=900&q=80" alt="Equipo preparando contenido digital sin foco comercial">
+          <div>
+            <span>03</span>
+            <strong>Redes sin direccion comercial</strong>
+            <em>Contenido sin ruta</em>
+            <p>Publicar por publicar no crea un sistema de captacion.</p>
+          </div>
+        </article>
+        <article class="problem-card is-left" data-problem-card>
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80" alt="Seguimiento de contactos y oportunidades comerciales">
+          <div>
+            <span>04</span>
+            <strong>Leads sin seguimiento</strong>
+            <em>Contactos frios</em>
+            <p>Preguntan, se enfrian y terminan comprando a otro.</p>
+          </div>
+        </article>
+        </div>
+        <button class="problem-nav problem-next" type="button" aria-label="Ver problema siguiente">›</button>
       </div>
     </section>
 
@@ -189,7 +230,7 @@
             <option value="Comercio">Comercio local</option>
             <option value="Servicios profesionales">Servicios profesionales</option>
             <option value="Otro">Otro</option>
-          </select></span>
+          </select><span class="select-arrow" aria-hidden="true">v</span></span>
         </label>
         <label>
           <span>Ciudad o zona</span>
@@ -210,6 +251,6 @@
     <span>Marketing claro para pymes que quieren crecer con sistema.</span>
   </footer>
 
-  <script src="assets/pyme360-public.js?v=20260525-4"></script>
+  <script src="assets/pyme360-public.js?v=20260525-6"></script>
 </body>
 </html>
