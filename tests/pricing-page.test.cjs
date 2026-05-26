@@ -11,19 +11,19 @@ const publicStyles = fs.readFileSync(path.join(__dirname, "..", "public", "asset
 
 for (const html of [indexHtml, publicIndexHtml]) {
   assert.match(html, /<a href="precios\.html">Precios<\/a>/);
-  assert.match(html, /pyme360-public\.css\?v=20260525-7/);
-  assert.match(html, /pyme360-public\.js\?v=20260525-7/);
+  assert.match(html, /pyme360-public\.css\?v=20260525-8/);
+  assert.match(html, /pyme360-public\.js\?v=20260525-8/);
 }
 
 for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /<body class="pricing-page">/);
   assert.match(html, /aria-current="page">Precios<\/a>/);
   assert.match(html, /Presencia/);
-  assert.match(html, /desde 149 â‚¬\/mes/);
+  assert.match(html, /desde 149 &euro;\/mes/);
   assert.match(html, /Crecimiento/);
-  assert.match(html, /desde 249 â‚¬\/mes/);
+  assert.match(html, /desde 249 &euro;\/mes/);
   assert.match(html, /Maquina Comercial/);
-  assert.match(html, /desde 399 â‚¬\/mes/);
+  assert.match(html, /desde 399 &euro;\/mes/);
   assert.match(html, /Personalizado/);
   assert.match(html, /Gestion de ayudas y subvenciones/);
   assert.match(html, /Redes Base/);
