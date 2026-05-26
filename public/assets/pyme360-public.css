@@ -571,9 +571,30 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
 
 .system { background: var(--dark-soft); }
 
+.system .section-heading {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.system .module-grid {
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  width: min(100%, 1120px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .module-grid article {
   border-color: var(--line);
   background: rgba(255, 255, 255, 0.04);
+}
+
+.system .module-grid article {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  min-height: 240px;
+  text-align: center;
 }
 
 .module-grid span {
