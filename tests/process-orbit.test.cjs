@@ -28,6 +28,8 @@ for (const css of [styles, publicStyles]) {
   assert.match(css, /\.process-orbit-stage/);
   assert.match(css, /\.process-orbit-node/);
   assert.match(css, /\.process-orbit-detail/);
+  assert.match(css, /\.process-orbit-core\s*{[\s\S]*left: 50%;[\s\S]*top: 50%;/);
+  assert.match(css, /transform: translate\(92px, -142px\);/);
   assert.match(css, /@keyframes processOrbitSpin/);
   assert.match(css, /@media \(max-width: 760px\)/);
 }
