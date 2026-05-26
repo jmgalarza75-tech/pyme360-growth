@@ -8,7 +8,7 @@ const logo = fs.readFileSync(path.join(__dirname, "..", "assets", "pyme360-logo.
 const publicLogo = fs.readFileSync(path.join(__dirname, "..", "public", "assets", "pyme360-logo.svg"), "utf8");
 
 for (const html of [rootHtml, publicHtml]) {
-  assert.match(html, /<img class="brand-logo" src="assets\/pyme360-logo\.svg" alt="Pyme360">/);
+  assert.match(html, /<img class="brand-logo" src="assets\/pyme360-logo\.svg" alt="Pyme360" width="270" height="74">/);
   assert.equal(html.includes('<span class="brand-mark">P360</span>'), false);
 }
 

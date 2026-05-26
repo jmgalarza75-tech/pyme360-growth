@@ -15,7 +15,7 @@ for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /class="problem-nav problem-next"/);
   assert.equal((html.match(/class="problem-card/g) || []).length, 4);
   assert.equal((html.match(/data-problem-card/g) || []).length, 4);
-  assert.equal((html.match(/images\.unsplash\.com/g) || []).length, 4);
+  assert.equal((html.match(/<img src="https:\/\/images\.unsplash\.com/g) || []).length, 4);
   assert.equal(html.includes("problem-grid"), false);
 }
 

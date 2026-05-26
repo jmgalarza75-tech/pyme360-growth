@@ -11,35 +11,38 @@ const publicStyles = fs.readFileSync(path.join(__dirname, "..", "public", "asset
 
 for (const html of [indexHtml, publicIndexHtml]) {
   assert.match(html, /<a href="precios\.html">Precios<\/a>/);
-  assert.match(html, /pyme360-public\.css\?v=20260525-8/);
-  assert.match(html, /pyme360-public\.js\?v=20260525-8/);
+  assert.match(html, /pyme360-public\.css\?v=20260525-11/);
+  assert.match(html, /pyme360-public\.js\?v=20260525-11/);
 }
 
 for (const html of [rootHtml, publicHtml]) {
-  assert.match(html, /<body class="pricing-page">/);
-  assert.match(html, /aria-current="page">Precios<\/a>/);
-  assert.match(html, /Presencia/);
-  assert.match(html, /desde 149 &euro;\/mes/);
-  assert.match(html, /Crecimiento/);
-  assert.match(html, /desde 249 &euro;\/mes/);
-  assert.match(html, /Maquina Comercial/);
-  assert.match(html, /desde 399 &euro;\/mes/);
-  assert.match(html, /Personalizado/);
+  assert.match(html, /<main id="top" class="modern-pricing">/);
+  assert.match(html, /<div class="pricing-orbit" aria-hidden="true"><\/div>/);
+  assert.match(html, /class="modern-pricing-grid"/);
+  assert.match(html, /class="modern-price-card is-popular"/);
+  assert.match(html, /Mas elegido/);
+  assert.match(html, /149<\/span><small>euros\/mes/);
+  assert.match(html, /249<\/span><small>euros\/mes/);
+  assert.match(html, /399<\/span><small>euros\/mes/);
+  assert.match(html, /A medida/);
   assert.match(html, /Gestion de ayudas y subvenciones/);
   assert.match(html, /Redes Base/);
   assert.match(html, /Redes Pro/);
   assert.match(html, /Redes Premium/);
   assert.match(html, /Publicidad online/);
   assert.match(html, /Branding y diseno/);
-  assert.doesNotMatch(html, /dashboard\.html|buscador\.html|pipeline\.html|newsletter\.html|\.env/);
+  assert.doesNotMatch(html, /&euro;|\u00c3|\u00e2|\u20ac|dashboard\.html|buscador\.html|pipeline\.html|newsletter\.html|\.env/);
 }
 
 for (const css of [styles, publicStyles]) {
-  assert.match(css, /\.pricing-hero/);
-  assert.match(css, /\.pricing-grid/);
+  assert.match(css, /\.modern-pricing-hero/);
+  assert.match(css, /\.pricing-orbit/);
+  assert.match(css, /\.modern-price-card/);
+  assert.match(css, /\.modern-price-card\.is-popular/);
+  assert.match(css, /\.pricing-button::before/);
+  assert.match(css, /@keyframes pricingOrbit/);
   assert.match(css, /\.addon-grid/);
   assert.match(css, /\.service-strip/);
-  assert.match(css, /\.pricing-cta/);
 }
 
 console.log("pricing page tests passed");
