@@ -45,12 +45,14 @@ assert.equal(JSON.stringify(payload), JSON.stringify({
     contact_name: "Maria Garcia",
     problem: "No llegan reservas desde la web"
   },
-  current_status: "scraped",
+  current_status: "permission_granted",
   form_submitted: true,
-  lead_magnet_sent: false,
+  lead_magnet_sent: true,
   outreach_channel: "web_publica",
   channel_used: "email",
   retry_count: 0
 }));
 
 console.log("form-submit tests passed");
+
+assert.equal(typeof sandbox.window.pyme360PrefillLeadFormFromUrl, "function");

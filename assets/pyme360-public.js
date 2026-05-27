@@ -356,9 +356,9 @@ function pyme360BuildLeadPayload(values) {
       contact_name: values.name.trim(),
       problem: values.problem.trim()
     },
-    current_status: "scraped",
+    current_status: "permission_granted",
     form_submitted: true,
-    lead_magnet_sent: false,
+    lead_magnet_sent: true,
     outreach_channel: "web_publica",
     channel_used: "email",
     retry_count: 0
@@ -382,14 +382,37 @@ async function pyme360SubmitLead(payload) {
   }
 }
 
+function pyme360PrefillLeadFormFromUrl(form) {
+  const params = new URLSearchParams(window.location.search);
+  const values = {
+    business: params.get("business") || params.get("negocio"),
+    location: params.get("location") || params.get("zona"),
+    sector: params.get("sector"),
+    name: params.get("name"),
+    email: params.get("email"),
+    phone: params.get("phone"),
+    problem: params.get("problem")
+  };
+
+  Object.entries(values).forEach(([name, value]) => {
+    if (!value) return;
+    const field = form.elements.namedItem(name);
+    if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement) {
+      field.value = value;
+    }
+  });
+}
 if (typeof window !== "undefined") {
   window.pyme360Testimonials = testimonials;
   window.pyme360RotateTestimonials = rotateTestimonials;
   window.pyme360BuildLeadPayload = pyme360BuildLeadPayload;
   window.pyme360SubmitLead = pyme360SubmitLead;
+  window.pyme360PrefillLeadFormFromUrl = pyme360PrefillLeadFormFromUrl;
 }
 
 if (leadForm) {
+  pyme360PrefillLeadFormFromUrl(leadForm);
+
   leadForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
