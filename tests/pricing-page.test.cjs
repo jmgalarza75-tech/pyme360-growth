@@ -11,8 +11,8 @@ const publicStyles = fs.readFileSync(path.join(__dirname, "..", "public", "asset
 
 for (const html of [indexHtml, publicIndexHtml]) {
   assert.match(html, /<a href="precios\.html">Precios<\/a>/);
-  assert.match(html, /pyme360-public\.css\?v=20260526-2/);
-  assert.match(html, /pyme360-public\.js\?v=20260526-2/);
+  assert.match(html, /pyme360-public\.css\?v=20260527-1/);
+  assert.match(html, /pyme360-public\.js\?v=20260527-1/);
 }
 
 for (const html of [rootHtml, publicHtml]) {

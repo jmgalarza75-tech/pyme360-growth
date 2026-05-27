@@ -46,7 +46,7 @@ assert.equal(JSON.stringify(payload), JSON.stringify({
     problem: "No llegan reservas desde la web"
   },
   current_status: "permission_granted",
-  form_submitted: true,
+  form_submitted: false,
   lead_magnet_sent: true,
   outreach_channel: "web_publica",
   channel_used: "email",

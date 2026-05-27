@@ -357,7 +357,7 @@ function pyme360BuildLeadPayload(values) {
       problem: values.problem.trim()
     },
     current_status: "permission_granted",
-    form_submitted: true,
+    form_submitted: false,
     lead_magnet_sent: true,
     outreach_channel: "web_publica",
     channel_used: "email",
