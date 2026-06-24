@@ -8,7 +8,7 @@ const publicHtml = fs.readFileSync(path.join(__dirname, "..", "public", "index.h
 for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /href="assets\/pyme360-public\.css\?v=\d{8}-\d+"/);
   assert.match(html, /src="assets\/pyme360-public\.js\?v=\d{8}-\d+"/);
-  assert.match(html, /src="assets\/pyme360-public\.js\?v=20260624-1"/);
+  assert.match(html, /src="assets\/pyme360-public\.js\?v=20260624-3"/);
 }
 
 console.log("asset cache tests passed");

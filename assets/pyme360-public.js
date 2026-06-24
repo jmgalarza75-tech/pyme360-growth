@@ -9,14 +9,17 @@ const problemNext = document.querySelector(".problem-next");
 const processNodes = typeof document.querySelectorAll === "function"
   ? Array.from(document.querySelectorAll("[data-process-node]"))
   : [];
+const processOrbitStage = document.querySelector("[data-process-orbit]");
 const processDetail = document.querySelector("[data-process-detail]");
+const PROCESS_ORBIT_ROTATION_MS = 3500;
+let processOrbitTimer = null;
 const testimonials = [
   {
     logo: "H4",
     logoClass: "testimonial-logo-home",
     author: "Home4Escape",
     sector: "Hospitality y alquiler vacacional",
-    quote: "Pyme360 nos ayudo a ordenar la captacion y convertir la presencia digital en una herramienta comercial, no solo en una web bonita."
+    quote: "Pyme360 nos ayudó a ordenar la captación y convertir la presencia digital en una herramienta comercial, no solo en una web bonita."
   },
   {
     logo: "NJ",
@@ -28,7 +31,7 @@ const testimonials = [
   {
     logo: "CB",
     logoClass: "testimonial-logo-brisa",
-    author: "Cafeteria Brisa",
+    author: "Cafetería Brisa",
     sector: "Caso tipo de pyme local",
     quote: "Necesitábamos más clientes locales sin perdernos en tecnicismos. El sistema nos dio foco, seguimiento y una ruta clara."
   }
@@ -263,12 +266,48 @@ function updateProcessOrbit(activeNode) {
   if (bar) bar.style.setProperty("--energy", `${energyValue}%`);
 }
 
+function getActiveProcessIndex() {
+  const activeIndex = processNodes.findIndex((node) => node.classList.contains("is-active"));
+  return activeIndex >= 0 ? activeIndex : 0;
+}
+
+function showNextProcessOrbitNode() {
+  if (!processNodes.length) return;
+  const nextIndex = (getActiveProcessIndex() + 1) % processNodes.length;
+  updateProcessOrbit(processNodes[nextIndex]);
+}
+
+function stopProcessOrbitRotation() {
+  if (!processOrbitTimer) return;
+  window.clearInterval(processOrbitTimer);
+  processOrbitTimer = null;
+}
+
+function startProcessOrbitRotation() {
+  if (!processNodes.length || processOrbitTimer) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  processOrbitTimer = window.setInterval(showNextProcessOrbitNode, PROCESS_ORBIT_ROTATION_MS);
+}
+
 if (processNodes.length) {
   processNodes.forEach((node) => {
-    node.addEventListener("click", () => updateProcessOrbit(node));
+    node.addEventListener("click", () => {
+      stopProcessOrbitRotation();
+      updateProcessOrbit(node);
+      startProcessOrbitRotation();
+    });
   });
 
   updateProcessOrbit(processNodes.find((node) => node.classList.contains("is-active")) || processNodes[0]);
+
+  if (processOrbitStage) {
+    processOrbitStage.addEventListener("mouseenter", stopProcessOrbitRotation);
+    processOrbitStage.addEventListener("mouseleave", startProcessOrbitRotation);
+    processOrbitStage.addEventListener("focusin", stopProcessOrbitRotation);
+    processOrbitStage.addEventListener("focusout", startProcessOrbitRotation);
+  }
+
+  startProcessOrbitRotation();
 }
 
 if (navToggle && siteNav) {

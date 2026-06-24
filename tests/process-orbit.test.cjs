@@ -38,6 +38,18 @@ for (const js of [script, publicScript]) {
   assert.match(js, /\[data-process-node\]/);
   assert.match(js, /\[data-process-detail\]/);
   assert.match(js, /function updateProcessOrbit/);
+  assert.match(js, /const PROCESS_ORBIT_ROTATION_MS = 3500;/);
+  assert.match(js, /function getActiveProcessIndex/);
+  assert.match(js, /function showNextProcessOrbitNode/);
+  assert.match(js, /function startProcessOrbitRotation/);
+  assert.match(js, /function stopProcessOrbitRotation/);
+  assert.match(js, /prefers-reduced-motion: reduce/);
+  assert.match(js, /setInterval\(showNextProcessOrbitNode, PROCESS_ORBIT_ROTATION_MS\)/);
+  assert.match(js, /addEventListener\("mouseenter", stopProcessOrbitRotation\)/);
+  assert.match(js, /addEventListener\("mouseleave", startProcessOrbitRotation\)/);
+  assert.match(js, /addEventListener\("focusin", stopProcessOrbitRotation\)/);
+  assert.match(js, /addEventListener\("focusout", startProcessOrbitRotation\)/);
+  assert.match(js, /stopProcessOrbitRotation\(\);\s*updateProcessOrbit\(node\);\s*startProcessOrbitRotation\(\);/);
   assert.doesNotMatch(js, /from "react"|lucide-react|useState|useEffect/);
 }
 

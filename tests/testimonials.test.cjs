@@ -28,9 +28,12 @@ assert.equal(Array.isArray(sandbox.window.pyme360Testimonials), true);
 assert.equal(sandbox.window.pyme360Testimonials.length, 3);
 assert.equal(
   JSON.stringify(sandbox.window.pyme360Testimonials.map((testimonial) => testimonial.author)),
-  JSON.stringify(["Home4Escape", "Nomads Jungle", "Cafeteria Brisa"])
+  JSON.stringify(["Home4Escape", "Nomads Jungle", "Cafetería Brisa"])
 );
 assert.equal(typeof sandbox.window.pyme360RotateTestimonials, "function");
+assert.equal(sandbox.window.pyme360Testimonials[0].quote.includes("ayudó"), true);
+assert.equal(sandbox.window.pyme360Testimonials[0].quote.includes("captación"), true);
+assert.equal(sandbox.window.pyme360Testimonials[0].quote.includes("presencia digital"), true);
 
 const rotated = sandbox.window.pyme360RotateTestimonials([
   { author: "A" },
@@ -41,14 +44,26 @@ const rotated = sandbox.window.pyme360RotateTestimonials([
 assert.equal(JSON.stringify(rotated.map((testimonial) => testimonial.author)), JSON.stringify(["B", "C", "A"]));
 assert.equal(styles.includes("background: #0f172a;"), true);
 assert.equal(styles.includes(".testimonial-logo"), true);
-assert.equal(styles.includes("filter: blur(7px);"), true);
-assert.equal(styles.includes("min-height: 620px;"), true);
+assert.equal(styles.includes(".testimonial-card::before"), true);
+assert.equal(styles.includes("mix-blend-mode: screen;"), true);
+assert.equal(styles.includes(".testimonial-card.is-front:hover"), true);
+assert.equal(styles.includes("filter: blur(3px);"), true);
+assert.equal(styles.includes("min-height: 560px;"), true);
+assert.match(styles, /@media \(max-width: 620px\)[\s\S]*\.testimonial-card\.is-front\s*{\s*transform: none;/);
+assert.match(styles, /@media \(max-width: 620px\)[\s\S]*\.testimonial-card\.is-middle,\s*\.testimonial-card\.is-back\s*{[\s\S]*display: none;/);
 assert.equal(script.includes("pravatar"), false);
 assert.equal(script.includes("images.unsplash.com"), false);
+assert.equal(script.includes("Cafetería Brisa"), true);
+assert.equal(script.includes("ayudó"), true);
+assert.equal(script.includes("captación"), true);
 assert.equal(publicHtml.includes("testimonial-stage"), true);
+assert.equal(publicHtml.includes("ayudó"), true);
+assert.equal(publicHtml.includes("Cafetería Brisa"), true);
 assert.equal(publicStyles.includes(".testimonial-card"), true);
 assert.equal(publicStyles.includes(".testimonial-logo"), true);
+assert.equal(publicStyles.includes(".testimonial-card::before"), true);
 assert.equal(publicScript.includes("pyme360Testimonials"), true);
+assert.equal(publicScript.includes("Cafetería Brisa"), true);
 assert.equal(publicScript.includes("pravatar"), false);
 assert.equal(publicScript.includes("images.unsplash.com"), false);
 
