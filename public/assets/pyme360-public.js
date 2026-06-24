@@ -34,6 +34,20 @@ const testimonials = [
     author: "Cafetería Brisa",
     sector: "Caso tipo de pyme local",
     quote: "Necesitábamos más clientes locales sin perdernos en tecnicismos. El sistema nos dio foco, seguimiento y una ruta clara."
+  },
+  {
+    logo: "HM",
+    logoClass: "testimonial-logo-rural",
+    author: "Hotel Rural El Mirador",
+    sector: "Alojamiento rural y escapadas",
+    quote: "Pasamos de depender de la temporada alta a trabajar campañas para temporada baja, reservas directas y mensajes mucho más claros."
+  },
+  {
+    logo: "IN",
+    logoClass: "testimonial-logo-tours",
+    author: "Isla Norte Tours",
+    sector: "Servicios turísticos y experiencias",
+    quote: "Pyme360 ordenó las solicitudes de excursiones, el seguimiento por WhatsApp y las acciones que de verdad traían reservas."
   }
 ];
 
@@ -331,7 +345,7 @@ let currentTestimonials = testimonials;
 function renderTestimonials() {
   if (!testimonialStage) return;
 
-  const positions = ["front", "middle", "back"];
+  const positions = ["front", "middle", "back", "far", "tail"];
 
   testimonialStage.innerHTML = currentTestimonials.map((testimonial, index) => {
     const position = positions[index];
@@ -345,7 +359,36 @@ function renderTestimonials() {
   }).join("");
 }
 
+function isMobileTestimonialsLayout() {
+  return Boolean(window.matchMedia && window.matchMedia("(max-width: 620px)").matches);
+}
+
+function scrollToNextTestimonial() {
+  if (!testimonialStage) return;
+
+  const cards = Array.from(testimonialStage.querySelectorAll(".testimonial-card"));
+  if (!cards.length) return;
+
+  const currentIndex = cards.reduce((nearestIndex, card, index) => {
+    const nearestCard = cards[nearestIndex];
+    return Math.abs(card.offsetLeft - testimonialStage.scrollLeft) < Math.abs(nearestCard.offsetLeft - testimonialStage.scrollLeft)
+      ? index
+      : nearestIndex;
+  }, 0);
+  const nextCard = cards[(currentIndex + 1) % cards.length];
+
+  testimonialStage.scrollTo({
+    left: nextCard.offsetLeft,
+    behavior: "smooth"
+  });
+}
+
 function shuffleTestimonials() {
+  if (isMobileTestimonialsLayout()) {
+    scrollToNextTestimonial();
+    return;
+  }
+
   currentTestimonials = rotateTestimonials(currentTestimonials);
   renderTestimonials();
 }
@@ -356,11 +399,13 @@ if (testimonialStage) {
   let dragStartX = 0;
 
   testimonialStage.addEventListener("pointerdown", (event) => {
+    if (isMobileTestimonialsLayout()) return;
     if (!event.target.closest(".is-front")) return;
     dragStartX = event.clientX;
   });
 
   testimonialStage.addEventListener("pointerup", (event) => {
+    if (isMobileTestimonialsLayout()) return;
     if (dragStartX - event.clientX > 90) {
       shuffleTestimonials();
     }
