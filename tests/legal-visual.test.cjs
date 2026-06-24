@@ -28,7 +28,7 @@ for (const [file, title] of legalPages) {
     assert.match(html, /Calle Tinfugaya I 7/);
     assert.match(html, /<a href="index\.html#top">Inicio<\/a>/);
     assert.match(html, /<a href="precios\.html">Precios<\/a>/);
-    assert.match(html, /<link rel="stylesheet" href="assets\/pyme360-public\.css\?v=20260526-1">/);
+    assert.match(html, /<link rel="stylesheet" href="assets\/pyme360-public\.css\?v=20260624-2">/);
     assert.doesNotMatch(html, /dashboard\.html|buscador\.html|pipeline\.html|newsletter\.html|\.env/);
   }
 }
@@ -47,6 +47,7 @@ for (const styles of [css, publicCss]) {
   assert.match(styles, /\.brand-logo\s*{[\s\S]*width: clamp\(154px, 14vw, 220px\);/);
   assert.match(styles, /\.modern-price-card h2\s*{[\s\S]*overflow-wrap: normal;/);
   assert.match(styles, /\.legal-page/);
+  assert.match(styles, /\.footer-mark/);
   assert.match(styles, /\.footer-links/);
 }
 
