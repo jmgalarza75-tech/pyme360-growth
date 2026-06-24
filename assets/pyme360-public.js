@@ -23,14 +23,14 @@ const testimonials = [
     logoClass: "testimonial-logo-nomads",
     author: "Nomads Jungle",
     sector: "Experiencias y comunidad viajera",
-    quote: "Por fin entendimos que acciones priorizar. El diagnostico aterrizo el marketing en decisiones concretas para crecer."
+    quote: "Por fin entendimos qué acciones priorizar. El diagnóstico aterrizó el marketing en decisiones concretas para crecer."
   },
   {
     logo: "CB",
     logoClass: "testimonial-logo-brisa",
     author: "Cafeteria Brisa",
     sector: "Caso tipo de pyme local",
-    quote: "Necesitabamos mas clientes locales sin perdernos en tecnicismos. El sistema nos dio foco, seguimiento y una ruta clara."
+    quote: "Necesitábamos más clientes locales sin perdernos en tecnicismos. El sistema nos dio foco, seguimiento y una ruta clara."
   }
 ];
 
@@ -447,19 +447,19 @@ if (leadForm) {
 
       leadForm.insertAdjacentHTML(
         "beforeend",
-        '<p class="form-success form-wide" role="status">Gracias. Hemos recibido tu solicitud de diagnostico y te contactaremos para preparar la revision.</p>'
+        '<p class="form-success form-wide" role="status">Gracias. Hemos recibido tu solicitud de diagnóstico y te contactaremos para preparar la revisión.</p>'
       );
     } catch (error) {
       console.error(error);
 
       if (submitButton) {
-        submitButton.textContent = "Quiero mi diagnostico gratuito";
+        submitButton.textContent = "Quiero mi diagnóstico gratuito";
         submitButton.removeAttribute("disabled");
       }
 
       leadForm.insertAdjacentHTML(
         "beforeend",
-        '<p class="form-error form-wide" role="alert">No hemos podido enviar la solicitud. Escribenos a hola@home4escape.com y revisamos tu diagnostico.</p>'
+        '<p class="form-error form-wide" role="alert">No hemos podido enviar la solicitud. Escríbenos a hola@home4escape.com y revisamos tu diagnóstico.</p>'
       );
     }
   });
