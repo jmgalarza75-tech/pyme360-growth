@@ -28,11 +28,19 @@
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Pyme360",
+    "name": "Pyme360 Growth",
     "url": "https://pyme360.online/",
-    "description": "Diagnóstico gratuito y sistema mensual de marketing digital para pymes locales: mejora tu web, Google, captación y seguimiento para conseguir más llamadas, reservas y ventas.",
+    "logo": "https://pyme360.online/assets/pyme360-logo.svg",
+    "description": "Diagnóstico gratuito y sistema mensual de marketing digital para pymes locales en Tenerife y Canarias: mejora tu web, Google, captación y seguimiento para conseguir más llamadas, reservas y ventas.",
     "areaServed": "ES",
-    "serviceType": "Marketing digital para pymes"
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tenerife",
+      "addressRegion": "Canarias",
+      "addressCountry": "ES"
+    },
+    "serviceType": ["Marketing digital para pymes", "SEO Local", "Diseño Web", "Publicidad Online"],
+    "priceRange": "€€"
   }
   </script>
   <link rel="icon" type="image/svg+xml" href="assets/pyme360-favicon.svg">
@@ -201,16 +209,18 @@
     </section>
 
     <section id="sistema" class="system section">
+
+    <section id="sistema" class="system section">
       <div class="section-heading">
         <p class="eyebrow">El producto</p>
         <h2>Pyme360 Growth System</h2>
         <p>Un sistema mensual para diagnosticar, priorizar, ejecutar y medir el crecimiento digital de tu pyme.</p>
       </div>
       <div class="module-grid">
-        <article><span>01</span><strong>Diagnóstico digital</strong><p>Detectamos fugas de conversión, visibilidad y seguimiento.</p></article>
-        <article><span>02</span><strong>Plan de acción</strong><p>Priorizamos lo que puede mover ventas antes que lo decorativo.</p></article>
-        <article><span>03</span><strong>Ejecución mensual</strong><p>Mejoramos web, SEO local, campañas, contenido y captación.</p></article>
-        <article><span>04</span><strong>Optimización</strong><p>Medimos avances y ajustamos cada mes con foco comercial.</p></article>
+        <article><span>01</span><strong>Paso 1: Auditoría y Score</strong><p>Diagnóstico en el Día 1. Detectamos fugas de conversión y priorizamos el plan.</p></article>
+        <article><span>02</span><strong>Paso 2: Sprint 30</strong><p>Ejecutamos acciones de alto impacto para conseguir mejoras visibles en 30 días.</p></article>
+        <article><span>03</span><strong>Paso 3: Growth OS</strong><p>Sistema recurrente: mejoras continuas, campañas y estrategias cada mes.</p></article>
+        <article><span>04</span><strong>Informe Growth</strong><p>Medimos avances, analizamos resultados y ajustamos el sistema para seguir creciendo.</p></article>
       </div>
     </section>
 
@@ -361,6 +371,25 @@
           <span>Ciudad o zona</span>
           <span class="field-control"><span class="field-icon" aria-hidden="true">06</span><input name="location" required placeholder="Tenerife"></span>
         </label>
+        <label>
+          <span>¿Qué objetivo tienes?</span>
+          <span class="field-control"><span class="field-icon" aria-hidden="true">07</span><select name="objetivo" required>
+            <option value="">Selecciona tu objetivo principal</option>
+            <option value="sprint_30">Aplicar el Sprint 30 (Mejoras en 30 días)</option>
+            <option value="menos_booking">Depender menos de intermediarios</option>
+            <option value="growth_os">Entrar al programa Growth OS</option>
+            <option value="otro">Necesito que analicen mi caso</option>
+          </select><span class="select-arrow" aria-hidden="true">v</span></span>
+        </label>
+        <label>
+          <span>Presupuesto de inversión</span>
+          <span class="field-control"><span class="field-icon" aria-hidden="true">08</span><select name="presupuesto" required>
+            <option value="">Selecciona tu presupuesto</option>
+            <option value="menos_150">Ajustado (menos de 150€/mes)</option>
+            <option value="150_300">Medio (entre 150€ y 300€/mes)</option>
+            <option value="mas_300">Crecimiento agresivo (más de 300€/mes)</option>
+          </select><span class="select-arrow" aria-hidden="true">v</span></span>
+        </label>
         <label class="form-wide">
           <span>Principal problema actual</span>
           <textarea name="problem" rows="4" required placeholder="Cuéntanos qué está frenando ahora mismo las reservas, contactos o ventas."></textarea>
@@ -376,7 +405,7 @@
       <span>Pyme360</span>
       <span>Marketing claro para pymes que quieren crecer con sistema.</span>
     </div>
-    <img class="footer-mark" src="assets/pyme360-shield-mark.png" alt="" width="96" height="105" loading="lazy" decoding="async" aria-hidden="true">
+    <img class="footer-mark" src="assets/pyme360-shield-mark.png" alt="Pyme360 Escudo de Confianza" width="96" height="105" loading="lazy" decoding="async" aria-hidden="true">
     <nav class="footer-links" aria-label="Enlaces legales">
       <a href="aviso-legal.html">Aviso legal</a>
       <a href="privacidad.html">Privacidad</a>

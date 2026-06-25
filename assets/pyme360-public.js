@@ -438,7 +438,9 @@ function pyme360BuildLeadPayload(values) {
     critical_errors: {
       source: "web_publica",
       contact_name: values.name.trim(),
-      problem: values.problem.trim()
+      problem: values.problem.trim(),
+      objetivo: values.objetivo || "",
+      presupuesto: values.presupuesto || ""
     },
     current_status: "permission_granted",
     form_submitted: false,
@@ -486,6 +488,7 @@ function pyme360PrefillLeadFormFromUrl(form) {
     }
   });
 }
+
 if (typeof window !== "undefined") {
   window.pyme360Testimonials = testimonials;
   window.pyme360RotateTestimonials = rotateTestimonials;
@@ -519,7 +522,9 @@ if (leadForm) {
       business: formData.get("business") || "",
       sector: formData.get("sector") || "",
       location: formData.get("location") || "",
-      problem: formData.get("problem") || ""
+      problem: formData.get("problem") || "",
+      objetivo: formData.get("objetivo") || "",
+      presupuesto: formData.get("presupuesto") || ""
     });
 
     try {

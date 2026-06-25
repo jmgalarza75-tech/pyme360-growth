@@ -25,13 +25,14 @@ const payload = sandbox.window.pyme360BuildLeadPayload({
   name: "Maria Garcia",
   email: "maria@example.com",
   phone: "+34 600 000 000",
+
   business: "Restaurante La Terraza",
   sector: "Restaurante",
   location: "Tenerife",
   problem: "No llegan reservas desde la web"
 });
 
-assert.equal(JSON.stringify(payload), JSON.stringify({
+const expectedPayload = {
   business_name: "Restaurante La Terraza",
   cleaned_name: "Restaurante La Terraza",
   email: "maria@example.com",
@@ -43,7 +44,9 @@ assert.equal(JSON.stringify(payload), JSON.stringify({
   critical_errors: {
     source: "web_publica",
     contact_name: "Maria Garcia",
-    problem: "No llegan reservas desde la web"
+    problem: "No llegan reservas desde la web",
+    objetivo: "",
+    presupuesto: ""
   },
   current_status: "permission_granted",
   form_submitted: false,
@@ -51,7 +54,9 @@ assert.equal(JSON.stringify(payload), JSON.stringify({
   outreach_channel: "web_publica",
   channel_used: "email",
   retry_count: 0
-}));
+};
+
+assert.equal(JSON.stringify(payload), JSON.stringify(expectedPayload));
 
 console.log("form-submit tests passed");
 
