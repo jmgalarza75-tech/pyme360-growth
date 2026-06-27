@@ -533,7 +533,7 @@ if (leadForm) {
 
       leadForm.insertAdjacentHTML(
         "beforeend",
-        '<p class="form-error form-wide" role="alert">No hemos podido enviar la solicitud. Escríbenos a hola@home4escape.com y revisamos tu diagnóstico.</p>'
+        '<p class="form-error form-wide" role="alert">No hemos podido enviar la solicitud. Escríbenos a info@pyme360.online y revisamos tu diagnóstico.</p>'
       );
     }
   });
