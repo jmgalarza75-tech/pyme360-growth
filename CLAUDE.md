@@ -131,7 +131,7 @@ Cuando se cambie `assets/pyme360-public.css` o `assets/pyme360-public.js`, subir
 - copias equivalentes dentro de `public/`
 - tests de caché y páginas: `tests/asset-cache.test.cjs`, `tests/pricing-page.test.cjs`, `tests/legal-visual.test.cjs`
 
-La versión usada tras el último cambio de testimonios es `20260624-4`.
+La versión activa tras la migración del formulario es `20260627-1`.
 
 ## Notas de Desarrollo
 
@@ -187,16 +187,12 @@ Antes de subir cambios públicos, es útil revisar que no se han enlazado archiv
 rg -n "dashboard\.html|buscador\.html|pipeline\.html|newsletter\.html|\.env|pravatar" index.html assets tests public
 ```
 
-## Precaución Importante
-
-El JavaScript público contiene una clave publicable de Supabase. Trátala como configuración pública de cliente, no como un secreto. Los permisos sensibles de la base de datos deben protegerse en Supabase mediante Row Level Security y políticas de API adecuadas.
-
 ## Sesión 2026-06-25: Sincronización y Tests (Project Memory)
 - **Tareas realizadas:**
   - Resolución de fallos en la batería de tests locales (
 ode tests/...).
   - Corrección de priceRange en JSON-LD de precios.html (reemplazo del símbolo de euro prohibido por $$).
-  - Corrección de error de sintaxis en el archivo principal ssets/pyme360-public.js.
+  - Corrección de error de sintaxis en el archivo principal  ssets/pyme360-public.js.
   - Actualización del test orm-submit.test.cjs para reflejar la inclusión de los campos objetivo y presupuesto en el payload.
   - Sincronización de los archivos modificados a la carpeta estática public/.
   - Subida (commit y push) de los cambios a GitHub en la rama main.
@@ -204,3 +200,29 @@ ode tests/...).
   - *Error:* Duplicidad de líneas al hacer multi-reemplazo en el test. *Solución:* Limpieza manual del sobrante y validación.
 - **Estado final:** Todos los tests pasando, archivos en public/ sincronizados, rama main actualizada.
 
+## Sesión 2026-06-27: Migración del Formulario de Supabase a PHP + MySQL en Hostinger
+
+- **Tareas realizadas:**
+  - Diagnóstico del fallo del formulario: el proyecto gratuito de Supabase estaba pausado por inactividad (el dominio `veqpsnxqecehdaygycmi.supabase.co` no resolvía DNS).
+  - Evaluación comparativa de alternativas: Supabase, Web3Forms, PHP+SMTP, PHP+MySQL+Email. Elegida la opción PHP+MySQL+Email en Hostinger por ser la más robusta y sin dependencias externas.
+  - Creación de `procesar-lead.php`: endpoint PHP con PDO (prepared statements), validación de campos y doble email de aviso (`info@pyme360.online` + `jmgalarza75@gmail.com`).
+  - Creación de `schema.sql`: sentencia `CREATE TABLE leads` lista para ejecutar en phpMyAdmin.
+  - Creación de `config.example.php`: plantilla pública sin credenciales reales, para Git.
+  - Modificación de `assets/pyme360-public.js`: eliminadas constantes de Supabase, reemplazadas por `LEAD_ENDPOINT = '/procesar-lead.php'`. Payload simplificado a estructura plana.
+  - Corrección del mensaje de error del formulario: cambiado `hola@home4escape.com` por `info@pyme360.online`.
+  - Bump de versión del JS a `20260627-1` en `index.html`, `precios.html` y `public/index.html` para romper caché.
+  - Actualización de `tests/form-submit.test.cjs` y `tests/asset-cache.test.cjs` para reflejar el nuevo payload y versión.
+  - Sincronización a `public/assets/pyme360-public.js`.
+  - Configuración manual en Hostinger vía navegador:
+    - BD MySQL creada: `u807029315_pyme360lead` / usuario: `u807029315_infpyme360lead` / pass: `Nomads2014*`
+    - Tabla `leads` creada vía phpMyAdmin ejecutando `schema.sql`.
+    - `config.php` creado directamente en `public_html/` desde el Administrador de Archivos de Hostinger.
+  - Configuración del buzón `info@pyme360.online` en Android (IMAP/SMTP: `imap.hostinger.com` / `smtp.hostinger.com`, puerto 993/465, SSL).
+  - 3 commits y push a `main`.
+
+- **Errores y Soluciones:**
+  - *Error:* El test `form-submit.test.cjs` quedó con el encabezado duplicado tras un reemplazo fallido. *Solución:* Sobreescritura completa del archivo con `write_to_file`.
+  - *Error:* `asset-cache.test.cjs` seguía validando la versión `20260624-4` tras el bump. *Solución:* Actualización de la versión esperada en el test.
+  - *Error:* El comando `&&` no funciona en PowerShell. *Solución:* Usar `;` como separador de comandos encadenados en PowerShell.
+
+- **Estado final:** Todos los tests pasan. Formulario operativo en producción con backend PHP propio. Supabase eliminado como dependencia. Base de datos `u807029315_pyme360lead` activa en Hostinger.
