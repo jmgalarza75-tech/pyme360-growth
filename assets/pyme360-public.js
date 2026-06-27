@@ -418,8 +418,7 @@ if (shuffleButton) {
 }
 
 const leadForm = document.querySelector(".lead-form");
-const SUPABASE_URL = "https://veqpsnxqecehdaygycmi.supabase.co";
-const SUPABASE_KEY = "sb_publishable_u35aO5iZYVX40r2dB-SekA_1zpOniBw";
+const LEAD_ENDPOINT = "/procesar-lead.php";
 
 function pyme360BuildLeadPayload(values) {
   const business = values.business.trim();
@@ -427,38 +426,23 @@ function pyme360BuildLeadPayload(values) {
   const phone = values.phone.trim();
 
   return {
-    business_name: business,
-    cleaned_name: business,
+    name: values.name.trim(),
     email: values.email.trim(),
-    mobile_phone: phone,
-    phone_number: phone,
-    tipo_de_empresa: values.sector.trim(),
+    phone,
+    business_name: business,
+    sector: values.sector.trim(),
     location,
-    zona: location,
-    critical_errors: {
-      source: "web_publica",
-      contact_name: values.name.trim(),
-      problem: values.problem.trim(),
-      objetivo: values.objetivo || "",
-      presupuesto: values.presupuesto || ""
-    },
-    current_status: "permission_granted",
-    form_submitted: false,
-    lead_magnet_sent: true,
-    outreach_channel: "web_publica",
-    channel_used: "email",
-    retry_count: 0
+    objetivo: values.objetivo || "",
+    presupuesto: values.presupuesto || "",
+    problem: values.problem.trim()
   };
 }
 
 async function pyme360SubmitLead(payload) {
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+  const response = await fetch(LEAD_ENDPOINT, {
     method: "POST",
     headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-      "Content-Type": "application/json",
-      Prefer: "return=minimal"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(payload)
   });
@@ -495,6 +479,7 @@ if (typeof window !== "undefined") {
   window.pyme360BuildLeadPayload = pyme360BuildLeadPayload;
   window.pyme360SubmitLead = pyme360SubmitLead;
   window.pyme360PrefillLeadFormFromUrl = pyme360PrefillLeadFormFromUrl;
+  window.LEAD_ENDPOINT = LEAD_ENDPOINT;
 }
 
 if (leadForm) {

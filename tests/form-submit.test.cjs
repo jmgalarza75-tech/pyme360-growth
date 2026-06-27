@@ -25,7 +25,6 @@ const payload = sandbox.window.pyme360BuildLeadPayload({
   name: "Maria Garcia",
   email: "maria@example.com",
   phone: "+34 600 000 000",
-
   business: "Restaurante La Terraza",
   sector: "Restaurante",
   location: "Tenerife",
@@ -33,27 +32,15 @@ const payload = sandbox.window.pyme360BuildLeadPayload({
 });
 
 const expectedPayload = {
-  business_name: "Restaurante La Terraza",
-  cleaned_name: "Restaurante La Terraza",
+  name: "Maria Garcia",
   email: "maria@example.com",
-  mobile_phone: "+34 600 000 000",
-  phone_number: "+34 600 000 000",
-  tipo_de_empresa: "Restaurante",
+  phone: "+34 600 000 000",
+  business_name: "Restaurante La Terraza",
+  sector: "Restaurante",
   location: "Tenerife",
-  zona: "Tenerife",
-  critical_errors: {
-    source: "web_publica",
-    contact_name: "Maria Garcia",
-    problem: "No llegan reservas desde la web",
-    objetivo: "",
-    presupuesto: ""
-  },
-  current_status: "permission_granted",
-  form_submitted: false,
-  lead_magnet_sent: true,
-  outreach_channel: "web_publica",
-  channel_used: "email",
-  retry_count: 0
+  objetivo: "",
+  presupuesto: "",
+  problem: "No llegan reservas desde la web"
 };
 
 assert.equal(JSON.stringify(payload), JSON.stringify(expectedPayload));

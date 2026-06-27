@@ -99,16 +99,20 @@ El pie de página incluye la marca tipo escudo centrada y enlaces legales a:
 
 El formulario de diagnóstico de `index.html` se gestiona desde `assets/pyme360-public.js`.
 
-El formulario construye un lead y lo envía a Supabase:
+El formulario construye un lead y lo envía al backend PHP propio en Hostinger:
 
-- API base: `https://veqpsnxqecehdaygycmi.supabase.co`
-- Endpoint de tabla: `/rest/v1/leads`
+- Endpoint: `/procesar-lead.php`
+- El script guarda el lead en MySQL y envía un email de aviso a `info@pyme360.online`
 - Valor de origen: `web_publica`
+
+**Credenciales de base de datos y SMTP:** Se almacenan exclusivamente en `config.php` en el servidor de Hostinger. Este archivo NUNCA debe subirse a GitHub. Ver plantilla en `config.example.php`.
 
 Cuando se editen campos del formulario, hay que actualizar:
 
 - El marcado del formulario en `index.html`
 - El constructor del payload en `assets/pyme360-public.js`
+- El script `procesar-lead.php` (columnas en la INSERT y campos del email de aviso)
+- El schema `schema.sql` (si se añaden columnas a la tabla)
 - La copia equivalente dentro de `public/`
 - Los tests relacionados, especialmente `tests/form-submit.test.cjs`
 
@@ -172,9 +176,9 @@ No subas a Hostinger archivos privados de operación, credenciales, paneles inte
 Ejemplos de archivos que deben quedarse fuera de la web pública:
 
 - `.env`
+- `config.php` (credenciales de BD y SMTP — solo en Hostinger vía Administrador de Archivos)
 - paneles internos
 - scripts locales de automatización
-- credenciales de API
 - herramientas privadas de CRM o mailing
 
 Antes de subir cambios públicos, es útil revisar que no se han enlazado archivos internos:
@@ -186,3 +190,17 @@ rg -n "dashboard\.html|buscador\.html|pipeline\.html|newsletter\.html|\.env|prav
 ## Precaución Importante
 
 El JavaScript público contiene una clave publicable de Supabase. Trátala como configuración pública de cliente, no como un secreto. Los permisos sensibles de la base de datos deben protegerse en Supabase mediante Row Level Security y políticas de API adecuadas.
+
+## Sesión 2026-06-25: Sincronización y Tests (Project Memory)
+- **Tareas realizadas:**
+  - Resolución de fallos en la batería de tests locales (
+ode tests/...).
+  - Corrección de priceRange en JSON-LD de precios.html (reemplazo del símbolo de euro prohibido por $$).
+  - Corrección de error de sintaxis en el archivo principal ssets/pyme360-public.js.
+  - Actualización del test orm-submit.test.cjs para reflejar la inclusión de los campos objetivo y presupuesto en el payload.
+  - Sincronización de los archivos modificados a la carpeta estática public/.
+  - Subida (commit y push) de los cambios a GitHub en la rama main.
+- **Errores y Soluciones:**
+  - *Error:* Duplicidad de líneas al hacer multi-reemplazo en el test. *Solución:* Limpieza manual del sobrante y validación.
+- **Estado final:** Todos los tests pasando, archivos en public/ sincronizados, rama main actualizada.
+
