@@ -5,30 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Análisis de Marca Gratuito para tu Negocio | Pyme360 Growth</title>
   <meta name="description" content="Recibe en 24h un diagnóstico completo de la presencia digital de tu negocio local en Tenerife. Gratis, sin compromiso.">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Pyme360 Growth">
-  <meta property="og:title" content="Análisis de Marca Gratuito para tu Negocio | Pyme360 Growth">
-  <meta property="og:description" content="Recibe en 24h un diagnóstico completo de la presencia digital de tu negocio local en Tenerife. Gratis, sin compromiso.">
-  <meta property="og:url" content="https://pyme360.online/lead_magnet.html">
-  <meta property="og:image" content="https://pyme360.online/assets/pyme360-og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Análisis de Marca Gratuito para tu Negocio | Pyme360 Growth">
-  <meta name="twitter:description" content="Recibe en 24h un diagnóstico completo de la presencia digital de tu negocio local en Tenerife. Gratis, sin compromiso.">
-  <meta name="twitter:image" content="https://pyme360.online/assets/pyme360-og-image.png">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Análisis de Marca Gratuito para tu Negocio",
-    "description": "Recibe en 24h un diagnóstico completo de la presencia digital de tu negocio local en Tenerife. Gratis, sin compromiso.",
-    "url": "https://pyme360.online/lead_magnet.html",
-    "publisher": {
-      "@type": "ProfessionalService",
-      "name": "Pyme360 Growth",
-      "url": "https://pyme360.online/"
-    }
-  }
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -453,9 +429,6 @@
 </footer>
 
 <script>
-  const SUPABASE_URL = "https://veqpsnxqecehdaygycmi.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_u35aO5iZYVX40r2dB-SekA_1zpOniBw";
-
   // Pre-fill from URL params
   (function() {
     const params = new URLSearchParams(window.location.search);
@@ -492,28 +465,19 @@
 
     try {
       const payload = {
-        business_name: business,
-        cleaned_name: business,
+        fuente: 'lead_magnet',
+        nombre: '', // The user doesn't provide name in this form, maybe business name acts as both?
+        negocio: business,
         location: location || 'Tenerife',
+        sector: sector,
         email: email,
-        tipo_de_empresa: sector,
-        zona: location || 'Tenerife',
-        original_url: web || null,
-        current_status: 'scraped',
-        form_submitted: true,
-        lead_magnet_sent: false,
-        outreach_channel: 'email',
-        channel_used: 'email',
-        retry_count: 0
+        web: web || ''
       };
 
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+      const res = await fetch(`https://pyme360.online/api/inbound-lead.php`, {
         method: 'POST',
         headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': `Bearer ${SUPABASE_KEY}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
       });
