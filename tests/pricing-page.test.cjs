@@ -11,8 +11,8 @@ const publicStyles = fs.readFileSync(path.join(__dirname, "..", "public", "asset
 
 for (const html of [indexHtml, publicIndexHtml]) {
   assert.match(html, /<a href="precios\.html">Precios<\/a>/);
-  assert.match(html, /pyme360-public\.css\?v=20260624-4/);
-  assert.match(html, /pyme360-public\.js\?v=20260624-4/);
+  assert.match(html, /pyme360-public\.css\?v=20260713-3/);
+  assert.match(html, /pyme360-public\.js\?v=20260713-3/);
 }
 
 for (const html of [rootHtml, publicHtml]) {
@@ -20,7 +20,7 @@ for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /<div class="pricing-orbit" aria-hidden="true"><\/div>/);
   assert.match(html, /class="modern-pricing-grid"/);
   assert.match(html, /class="modern-price-card is-popular"/);
-  assert.match(html, /Mas elegido/);
+  assert.match(html, /El Recomendado/);
   assert.match(html, /149<\/span><small>euros\/mes/);
   assert.match(html, /249<\/span><small>euros\/mes/);
   assert.match(html, /399<\/span><small>euros\/mes/);

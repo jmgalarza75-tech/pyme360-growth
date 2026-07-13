@@ -485,6 +485,21 @@ if (typeof window !== "undefined") {
 if (leadForm) {
   pyme360PrefillLeadFormFromUrl(leadForm);
 
+  const privacyCheckbox = leadForm.querySelector('input[name="privacy"]');
+  const submitButton = leadForm.querySelector("button[type='submit']");
+
+  if (privacyCheckbox && submitButton) {
+    submitButton.disabled = !privacyCheckbox.checked;
+    submitButton.style.opacity = privacyCheckbox.checked ? "1" : "0.5";
+    submitButton.style.cursor = privacyCheckbox.checked ? "pointer" : "not-allowed";
+
+    privacyCheckbox.addEventListener("change", () => {
+      submitButton.disabled = !privacyCheckbox.checked;
+      submitButton.style.opacity = privacyCheckbox.checked ? "1" : "0.5";
+      submitButton.style.cursor = privacyCheckbox.checked ? "pointer" : "not-allowed";
+    });
+  }
+
   leadForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 

@@ -131,7 +131,7 @@ Cuando se cambie `assets/pyme360-public.css` o `assets/pyme360-public.js`, subir
 - copias equivalentes dentro de `public/`
 - tests de caché y páginas: `tests/asset-cache.test.cjs`, `tests/pricing-page.test.cjs`, `tests/legal-visual.test.cjs`
 
-La versión activa tras la migración del formulario es `20260627-1`.
+La versión activa tras la migración del formulario es `20260713-3`.
 
 ## Notas de Desarrollo
 
@@ -210,7 +210,7 @@ ode tests/...).
   - Creación de `config.example.php`: plantilla pública sin credenciales reales, para Git.
   - Modificación de `assets/pyme360-public.js`: eliminadas constantes de Supabase, reemplazadas por `LEAD_ENDPOINT = '/procesar-lead.php'`. Payload simplificado a estructura plana.
   - Corrección del mensaje de error del formulario: cambiado `hola@home4escape.com` por `info@pyme360.online`.
-  - Bump de versión del JS a `20260627-1` en `index.html`, `precios.html` y `public/index.html` para romper caché.
+  - Bump de versión del JS a `20260713-3` en `index.html`, `precios.html` y `public/index.html` para romper caché.
   - Actualización de `tests/form-submit.test.cjs` y `tests/asset-cache.test.cjs` para reflejar el nuevo payload y versión.
   - Sincronización a `public/assets/pyme360-public.js`.
   - Configuración manual en Hostinger vía navegador:
@@ -222,7 +222,7 @@ ode tests/...).
 
 - **Errores y Soluciones:**
   - *Error:* El test `form-submit.test.cjs` quedó con el encabezado duplicado tras un reemplazo fallido. *Solución:* Sobreescritura completa del archivo con `write_to_file`.
-  - *Error:* `asset-cache.test.cjs` seguía validando la versión `20260624-4` tras el bump. *Solución:* Actualización de la versión esperada en el test.
+  - *Error:* `asset-cache.test.cjs` seguía validando la versión `20260713-3` tras el bump. *Solución:* Actualización de la versión esperada en el test.
   - *Error:* El comando `&&` no funciona en PowerShell. *Solución:* Usar `;` como separador de comandos encadenados en PowerShell.
 
 - **Estado final:** Todos los tests pasan. Formulario operativo en producción con backend PHP propio. Supabase eliminado como dependencia. Base de datos `u807029315_pyme360lead` activa en Hostinger.
