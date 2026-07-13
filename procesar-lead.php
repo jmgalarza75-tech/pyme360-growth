@@ -135,6 +135,62 @@ if (!$mail_sent) {
     error_log('[Pyme360] mail() failed for lead: ' . $email);
 }
 
-// 3. Respuesta exitosa -----------------------------------------------
+// 3. Enviar email de confirmación al lead (HTML con publicidad) --------
+$subject_lead = "Hemos recibido tu solicitud de diagnóstico - Pyme360";
+
+$body_lead = "
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; color: #333333; line-height: 1.6; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; }
+    .header { background-color: #0f172a; color: #ffffff; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+    .header h2 { margin: 0; color: #ffffff; }
+    .content { padding: 20px; }
+    .ad-box { background-color: #f8fafc; border-left: 4px solid #818cf8; padding: 20px; margin-top: 30px; border-radius: 0 8px 8px 0; }
+    .ad-box h3 { margin-top: 0; color: #0f172a; font-size: 18px; }
+    .ad-box ul { padding-left: 20px; }
+    .footer { text-align: center; margin-top: 30px; font-size: 12px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <div class='container'>
+    <div class='header'>
+      <h2>¡Solicitud recibida con éxito!</h2>
+    </div>
+    <div class='content'>
+      <p>Hola <strong>{$name}</strong>,</p>
+      <p>Hemos registrado correctamente tu solicitud de diagnóstico para <strong>{$business_name}</strong>.</p>
+      <p>Nuestro equipo revisará los detalles que nos has enviado y nos pondremos en contacto contigo lo antes posible en el número <strong>{$phone}</strong> o respondiendo a este correo para darte los siguientes pasos.</p>
+      
+      <div class='ad-box'>
+        <h3>¿Qué hacemos exactamente en Pyme360 Growth?</h3>
+        <p>Aprovechamos mientras esperas para contarte cómo ayudamos a negocios locales a dejar de perder oportunidades en internet. No hacemos \"ruido\", construimos <strong>sistemas de crecimiento reales</strong>:</p>
+        <ul>
+          <li><strong>Webs orientadas a la conversión:</strong> Tu escaparate digital optimizado para recibir llamadas y reservas directas, no solo visitas vacías.</li>
+          <li><strong>Dominio en Google Local:</strong> Posicionamos tu ficha para que te encuentren a ti cuando busquen tus servicios en tu zona.</li>
+          <li><strong>Sistemas de Seguimiento CRM:</strong> Automatizamos el contacto por WhatsApp y Email para que ningún cliente potencial se enfríe y las ventas se cierren.</li>
+        </ul>
+        <p>Prepárate para transformar la manera en la que captas clientes. ¡Hablamos pronto!</p>
+      </div>
+    </div>
+    <div class='footer'>
+      <p>&copy; " . date('Y') . " Pyme360. Todos los derechos reservados.</p>
+      <p><a href='https://pyme360.online' style='color: #818cf8; text-decoration: none;'>pyme360.online</a></p>
+    </div>
+  </div>
+</body>
+</html>
+";
+
+$headers_lead  = "From: Pyme360 <" . SMTP_FROM . ">\r\n";
+$headers_lead .= "Reply-To: " . SMTP_FROM . "\r\n";
+$headers_lead .= "MIME-Version: 1.0\r\n";
+$headers_lead .= "Content-Type: text/html; charset=UTF-8\r\n";
+$headers_lead .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+
+mail($email, $subject_lead, $body_lead, $headers_lead);
+
+// 4. Respuesta exitosa -----------------------------------------------
 http_response_code(201);
 echo json_encode(['ok' => true]);
