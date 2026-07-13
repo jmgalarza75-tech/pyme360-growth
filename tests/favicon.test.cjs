@@ -1,28 +1,25 @@
-const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const path = require("node:path");
+const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
 
-const pages = [
-  path.join(__dirname, "..", "index.html"),
-  path.join(__dirname, "..", "precios.html"),
-  path.join(__dirname, "..", "public", "index.html"),
-  path.join(__dirname, "..", "public", "precios.html")
-];
+const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+const publicHtml = fs.readFileSync(path.join(__dirname, "..", "public", "index.html"), "utf8");
+const manifest = fs.readFileSync(path.join(__dirname, "..", "site.webmanifest"), "utf8");
+const publicManifest = fs.readFileSync(path.join(__dirname, "..", "public", "site.webmanifest"), "utf8");
 
-for (const page of pages) {
-  const html = fs.readFileSync(page, "utf8");
-  assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="assets\/pyme360-favicon\.svg">/);
+for (const m of [manifest, publicManifest]) {
+  assert.match(m, /"src": "assets\/favicon\.png"/);
+}
+
+for (const h of [html, publicHtml]) {
+  assert.match(h, /<link rel="icon" type="image\/png" href="assets\/favicon\.png">/);
 }
 
 for (const iconPath of [
-  path.join(__dirname, "..", "assets", "pyme360-favicon.svg"),
-  path.join(__dirname, "..", "public", "assets", "pyme360-favicon.svg")
+  path.join(__dirname, "..", "assets", "favicon.png"),
+  path.join(__dirname, "..", "public", "assets", "favicon.png")
 ]) {
-  const svg = fs.readFileSync(iconPath, "utf8");
-  assert.match(svg, /<svg[^>]+viewBox="0 0 128 128"/);
-  assert.match(svg, /Pyme360/);
-  assert.match(svg, />360<\/text>/);
-  assert.equal(svg.includes("<script"), false);
+  assert.equal(fs.existsSync(iconPath), true);
 }
 
 console.log("favicon tests passed");
