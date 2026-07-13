@@ -146,7 +146,9 @@ Muchas gracias por ponerte en contacto con nosotros.
 
 Hemos recibido correctamente tu solicitud relacionada con {$business_name}.
 
-En un plazo máximo de 48 horas laborables nos pondremos en contacto contigo desde el teléfono +34 686 18 42 91 para conocer mejor tu negocio y valorar cómo podemos ayudarte.
+En un plazo máximo de 48 horas laborables nos pondremos en contacto contigo y te enviaremos un breve formulario para conocer mejor tu negocio, además de un análisis de tu posicionamiento online actual.
+
+Con esa información, y si estás interesado, prepararemos tu diagnóstico y valoraremos exactamente cómo podemos ayudarte, sin ningún compromiso.
 
 Antes de llamarte revisaremos tu página web y tu presencia digital para aprovechar al máximo la conversación.
 
@@ -242,8 +244,11 @@ $body_lead_html = '<!DOCTYPE html>
                     </p>
 
                     <p style="margin:0; font-size:15px; line-height:1.65; color:#315447;">
-                      En un plazo máximo de <strong>48 horas laborables</strong> nos pondremos en contacto contigo desde el teléfono
-                      <strong>+34 686 18 42 91</strong> para conocer mejor tu negocio y valorar cómo podemos ayudarte.
+                      En un plazo máximo de <strong>48 horas laborables</strong> nos pondremos en contacto contigo y te enviaremos un breve formulario para conocer mejor tu negocio, además de un análisis de tu posicionamiento online actual.
+                    </p>
+                    
+                    <p style="margin:12px 0 0 0; font-size:15px; line-height:1.65; color:#315447;">
+                      Con esa información, y si estás interesado, prepararemos tu diagnóstico y valoraremos exactamente cómo podemos ayudarte, sin ningún compromiso.
                     </p>
                   </td>
                 </tr>
