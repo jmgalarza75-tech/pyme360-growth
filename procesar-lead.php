@@ -138,7 +138,7 @@ if (!$mail_sent) {
 // 3. Enviar email de confirmación al lead (Multipart HTML + Texto) --------
 $subject_lead = "Hemos recibido tu solicitud | Pyme360 Growth";
 $anio = date('Y');
-$newsletter_url = "https://pyme360.online"; // <-- Sustituye esto por la URL real de FARO o AlojaMente
+$newsletter_url = "https://open.substack.com/pub/alojamente/p/newsletter-extraordinaria-airbnb?r=5sdrqo&utm_campaign=post&utm_medium=web"; // <-- AlojaMente
 
 $body_lead_text = "Hola {$name},
 
@@ -146,7 +146,7 @@ Muchas gracias por ponerte en contacto con nosotros.
 
 Hemos recibido correctamente tu solicitud relacionada con {$business_name}.
 
-En un plazo máximo de 48 horas laborables nos pondremos en contacto contigo en el teléfono {$phone} para conocer mejor tu negocio y valorar cómo podemos ayudarte.
+En un plazo máximo de 48 horas laborables nos pondremos en contacto contigo desde el teléfono +34 686 18 42 91 para conocer mejor tu negocio y valorar cómo podemos ayudarte.
 
 Antes de llamarte revisaremos tu página web y tu presencia digital para aprovechar al máximo la conversación.
 
@@ -242,8 +242,8 @@ $body_lead_html = '<!DOCTYPE html>
                     </p>
 
                     <p style="margin:0; font-size:15px; line-height:1.65; color:#315447;">
-                      En un plazo máximo de <strong>48 horas laborables</strong> nos pondremos en contacto contigo en el teléfono
-                      <strong>' . $phone . '</strong> para conocer mejor tu negocio y valorar cómo podemos ayudarte.
+                      En un plazo máximo de <strong>48 horas laborables</strong> nos pondremos en contacto contigo desde el teléfono
+                      <strong>+34 686 18 42 91</strong> para conocer mejor tu negocio y valorar cómo podemos ayudarte.
                     </p>
                   </td>
                 </tr>
