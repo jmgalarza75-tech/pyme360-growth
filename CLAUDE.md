@@ -226,3 +226,20 @@ ode tests/...).
   - *Error:* El comando `&&` no funciona en PowerShell. *Solución:* Usar `;` como separador de comandos encadenados en PowerShell.
 
 - **Estado final:** Todos los tests pasan. Formulario operativo en producción con backend PHP propio. Supabase eliminado como dependencia. Base de datos `u807029315_pyme360lead` activa en Hostinger.
+
+## Sesión 2026-07-13: Refinamiento de Formulario y Corrección de Despliegue en Hostinger
+
+- **Tareas realizadas:**
+  - Resolución de problemas visuales en el formulario (alineación de texto y diseño del checkbox de privacidad).
+  - Corrección de error 500 iterativo (`Server configuration missing`) en el entorno de producción.
+  - Implementación de `.gitignore` para prevenir que la sincronización automática de Hostinger elimine `config.php`.
+  - Inyección de un correo de confirmación dinámico en formato `multipart/alternative` (HTML y Texto) desde `procesar-lead.php` con publicidad y enlaces.
+  - Ajuste de los desplegables de "Objetivo" y "Sector" (`index.html` y `lead_magnet.html`) orientados a dolor/beneficio y priorizando al sector turístico.
+  - Múltiples actualizaciones, commits y despliegues sincronizando a producción.
+
+- **Errores y Soluciones:**
+  - *Error:* Checkbox de privacidad se renderizaba como un bloque blanco gigante debido a los estilos de los inputs generales. *Solución:* Aplicar explícitamente `appearance: auto` y anular anchos forzados en CSS.
+  - *Error:* El endpoint devolvía 500 tras cada push de código a `main`. *Causa descubierta:* Al estar configurado el autodeploy, Hostinger borraba el archivo local `config.php` por no existir en GitHub. *Solución Definitiva:* Creación y subida de `.gitignore` trackeando `config.php` para bloquear su sobreescritura remota.
+  - *Error Potencial:* Fallo en `mail()` de PHP por caracteres UTF-8 en el encabezado `From:`. *Solución:* Usar `base64_encode()` en la cadena con caracteres especiales (`Teo · Pyme360 Growth`).
+
+- **Estado final:** Formulario totalmente operativo y rediseñado, con respuesta automática por correo implementada. La configuración del servidor protegida contra sobreescrituras git.
