@@ -475,7 +475,7 @@ $body_lead_html = '<!DOCTYPE html>
 
 $boundary = md5(uniqid(time()));
 
-$headers_lead  = "From: Teo · Pyme360 Growth <" . SMTP_FROM . ">\r\n";
+$headers_lead  = "From: =?UTF-8?B?" . base64_encode("Teo · Pyme360 Growth") . "?= <" . SMTP_FROM . ">\r\n";
 $headers_lead .= "Reply-To: " . SMTP_FROM . "\r\n";
 $headers_lead .= "MIME-Version: 1.0\r\n";
 $headers_lead .= "Content-Type: multipart/alternative; boundary=\"$boundary\"\r\n";
