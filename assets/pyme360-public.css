@@ -1287,31 +1287,40 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
 .lead-form-premium input,
 .lead-form-premium select {
   padding: 14px 16px;
+  text-align: left;
 }
 
 .lead-form-premium .checkbox-label {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
+  text-align: left;
 }
 
-.lead-form-premium .checkbox-label input {
-  width: 20px;
-  height: 20px;
-  min-height: auto;
+.lead-form-premium .checkbox-label input[type="checkbox"] {
+  appearance: auto;
+  -webkit-appearance: checkbox;
+  width: 20px !important;
+  height: 20px !important;
+  min-height: 20px !important;
   margin: 0;
+  padding: 0;
   flex-shrink: 0;
   cursor: pointer;
+  background: initial;
+  border: initial;
+  border-radius: initial;
 }
 
 .lead-form-premium .checkbox-label span {
-  text-transform: none;
+  text-transform: none !important;
   font-size: 13px;
   color: #94a3b8;
   font-weight: 400;
   letter-spacing: normal;
   line-height: 1.4;
+  text-align: left;
 }
 
 .lead-form-premium .checkbox-label span a {
