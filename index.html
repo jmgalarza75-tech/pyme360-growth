@@ -341,23 +341,23 @@
       <form class="lead-form lead-form-premium">
         <label>
           <span>Tu nombre</span>
-          <span class="field-control"><span class="field-icon" aria-hidden="true">01</span><input name="name" required autocomplete="name" placeholder="Maria Garcia"></span>
+          <span class="field-control"><input name="name" required autocomplete="name" placeholder="Maria Garcia"></span>
         </label>
         <label>
           <span>Tu email</span>
-          <span class="field-control"><span class="field-icon" aria-hidden="true">02</span><input name="email" type="email" required autocomplete="email" placeholder="tu@email.com"></span>
+          <span class="field-control"><input name="email" type="email" required autocomplete="email" placeholder="tu@email.com"></span>
         </label>
         <label>
           <span>Teléfono</span>
-          <span class="field-control"><span class="field-icon" aria-hidden="true">03</span><input name="phone" required autocomplete="tel" placeholder="+34 600 000 000"></span>
+          <span class="field-control"><input name="phone" required autocomplete="tel" placeholder="+34 600 000 000"></span>
         </label>
         <label>
           <span>Nombre del negocio</span>
-          <span class="field-control"><span class="field-icon" aria-hidden="true">04</span><input name="business" required placeholder="Restaurante La Terraza"></span>
+          <span class="field-control"><input name="business" required placeholder="Restaurante La Terraza"></span>
         </label>
         <label>
           <span>Sector</span>
-          <span class="field-control"><span class="field-icon" aria-hidden="true">05</span><select name="sector" required>
+          <span class="field-control"><select name="sector" required>
             <option value="">Selecciona tu sector</option>
             <option value="Restaurante">Restaurante o cafetería</option>
             <option value="Clinica">Clinica o salud</option>
@@ -369,11 +369,11 @@
         </label>
         <label>
           <span>Ciudad o zona</span>
-          <span class="field-control"><span class="field-icon" aria-hidden="true">06</span><input name="location" required placeholder="Tenerife"></span>
+          <span class="field-control"><input name="location" required placeholder="Tenerife"></span>
         </label>
         <label>
           <span>¿Qué objetivo tienes?</span>
-          <span class="field-control"><span class="field-icon" aria-hidden="true">07</span><select name="objetivo">
+          <span class="field-control"><select name="objetivo">
             <option value=""></option>
             <option value="sprint_30">Aplicar el Sprint 30 (Mejoras en 30 días)</option>
             <option value="menos_booking">Depender menos de intermediarios</option>
@@ -383,7 +383,7 @@
         </label>
         <label>
           <span>Presupuesto de inversión</span>
-          <span class="field-control"><span class="field-icon" aria-hidden="true">08</span><select name="presupuesto">
+          <span class="field-control"><select name="presupuesto">
             <option value=""></option>
             <option value="menos_150">Ajustado (menos de 150€/mes)</option>
             <option value="150_300">Medio (entre 150€ y 300€/mes)</option>
@@ -393,6 +393,10 @@
         <label class="form-wide">
           <span>Principal problema actual</span>
           <textarea name="problem" rows="4" required placeholder="Cuéntanos qué está frenando ahora mismo las reservas, contactos o ventas."></textarea>
+        </label>
+        <label class="form-wide checkbox-label">
+          <input type="checkbox" name="privacy" required>
+          <span>He leído y acepto la <a href="privacidad.html" target="_blank">política de privacidad</a>.</span>
         </label>
         <button class="button button-primary form-wide" type="submit">Quiero mi diagnóstico gratuito</button>
         <p class="form-note form-wide">Sin spam. Sin compromiso. Respuesta clara para preparar tu diagnóstico.</p>
