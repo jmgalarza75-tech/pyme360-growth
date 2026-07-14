@@ -1,0 +1,20 @@
+# Pyme360 · protección del endpoint de baja
+# Sube este .htaccess junto a unsubscribe.php a la raíz pública de pyme360.online.
+
+# 1) Bloquear acceso público al registro de bajas (datos personales)
+<Files "bajas.csv">
+  Require all denied
+</Files>
+
+# 1b) Bloquear acceso público al almacén de eventos de Resend
+<Files "eventos.jsonl">
+  Require all denied
+</Files>
+
+# 2) (Opcional pero recomendado) URLs limpias: /unsubscribe -> unsubscribe.php
+#    Permite poner PUBLIC_BASE_URL="https://pyme360.online" en el .env del server,
+#    ya que unsubscribeUrl() genera .../unsubscribe?email=...
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^unsubscribe/?$ unsubscribe.php [L,QSA]
+</IfModule>
