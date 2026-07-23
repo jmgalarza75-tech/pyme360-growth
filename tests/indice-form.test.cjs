@@ -8,14 +8,16 @@ const ruralHtml = fs.readFileSync(path.join(__dirname, "..", "public", "alojamie
 const legacyPath = path.join(__dirname, "..", "public", "indice-pyme360.html");
 const script = fs.readFileSync(path.join(__dirname, "..", "public", "assets", "indice-pyme360.js"), "utf8");
 
-assert.match(html, /Índice Pyme360® para alojamientos rurales/);
+assert.match(html, /Te ayudamos a conseguir más reservas directas/, "hero should explain the outcome in plain owner language");
+assert.match(html, /Miramos tu web, Google y canales como Booking/, "hero should say plainly what Pyme360 reviews");
 assert.match(html, /hotel-hero-panel/, "landing should include hotel-specific framed visual hero");
 assert.match(html, /hotel-signal-strip/, "landing should include hotel-specific signal cards");
 assert.match(html, /Casa tradicional canaria de La Orotava/, "landing should use rural Canarian hotel imagery, not generic resort imagery");
 assert.match(html, /\.\.\/assets\/indice\/hotel-rural-canario\.jpg/, "landing should load the local rural Canarian hotel image asset");
 assert.match(html, /rel="canonical" href="https:\/\/pyme360\.online\/indice-pyme360\/"/, "clean landing should declare canonical clean URL");
 assert.match(ruralHtml, /rel="canonical" href="https:\/\/pyme360\.online\/alojamientos-rurales\/"/, "rural landing should declare commercial SEO canonical URL");
-assert.match(ruralHtml, /<title>Revisión digital para alojamientos rurales \| Pyme360 Growth<\/title>/, "rural landing should use segment-specific SEO title");
+assert.match(ruralHtml, /<title>Más reservas directas para casas rurales \| Pyme360 Growth<\/title>/, "rural landing should use plain segment-specific SEO title");
+assert.match(ruralHtml, /Quiero que miren mi alojamiento/, "primary CTA should be understandable for a rural accommodation owner");
 assert.match(html, /src="\.\.\/assets\/indice-pyme360\.js\?v=\d{8}-\d+"/, "clean landing should version its JS asset with nested path");
 assert.match(html, /href="\.\.\/assets\/pyme360-public\.css\?v=\d{8}-\d+"/, "clean landing should load shared CSS with nested path");
 assert.match(html, /href="\.\.\/index\.html"/, "clean landing should link back to home from nested route");
