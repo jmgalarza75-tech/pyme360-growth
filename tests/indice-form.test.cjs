@@ -22,7 +22,8 @@ assert.match(html, /href="\.\.\/index\.html"/, "clean landing should link back t
 assert.equal(fs.existsSync(legacyPath), false, "legacy .html landing should not exist because it was never uploaded");
 assert.match(html, /name="newsletter" type="checkbox" value="yes"/, "newsletter must be an independent checkbox");
 assert.match(html, /name="privacy" type="checkbox"/, "privacy acceptance is required separately from newsletter");
-assert.match(html, /name="web"/);
+assert.match(html, /name="web" type="text" inputmode="url" autocomplete="url"/, "web field should accept plain domains without browser URL validation error");
+assert.doesNotMatch(html, /name="web" type="url"/, "web field must not force protocol via native browser validation");
 assert.match(html, /name="units"/);
 
 const sandbox = {
@@ -73,6 +74,17 @@ assert.equal(JSON.stringify(payload), JSON.stringify({
   newsletter_consent: true,
   privacy_consent: true
 }));
+
+const plainDomainPayload = sandbox.window.pyme360BuildIndiceLeadPayload({
+  name: "Teofila Rubio Perez",
+  email: "home4escape@gmail.com",
+  business: "33",
+  sector: "Casa rural",
+  location: "Santa Cruz de Tenerife",
+  web: "nomadsjungle.com",
+  privacy: "yes"
+});
+assert.equal(plainDomainPayload.website, "https://nomadsjungle.com", "plain domains should be normalized before submit");
 
 assert.doesNotMatch(script, /SUPABASE_URL|SUPABASE_KEY|rest\/v1\/leads/);
 assert.match(script, /fetch\(INDICE_LEAD_ENDPOINT/);

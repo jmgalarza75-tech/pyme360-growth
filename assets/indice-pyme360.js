@@ -18,6 +18,13 @@ if (navToggle && siteNav) {
 
 const leadForm = document.querySelector(".indice-lead-form");
 
+function pyme360NormalizeWebsite(value) {
+  const website = String(value || "").trim();
+  if (!website) return "";
+  if (/^[a-z][a-z0-9+.-]*:\/\//i.test(website)) return website;
+  return `https://${website}`;
+}
+
 function pyme360BuildIndiceLeadPayload(values) {
   const business = String(values.business || "").trim();
   const location = String(values.location || "").trim() || "Sin especificar";
@@ -29,7 +36,7 @@ function pyme360BuildIndiceLeadPayload(values) {
     business_name: business,
     sector: String(values.sector || "").trim(),
     location,
-    website: String(values.web || values.website || "").trim(),
+    website: pyme360NormalizeWebsite(values.web || values.website || ""),
     units: String(values.units || "").trim(),
     problem: String(values.problem || "").trim(),
     source: "indice_pyme360_revision_inicial",
@@ -89,6 +96,7 @@ if (typeof window !== "undefined") {
   window.INDICE_LEAD_ENDPOINT = INDICE_LEAD_ENDPOINT;
   window.pyme360BuildIndiceLeadPayload = pyme360BuildIndiceLeadPayload;
   window.pyme360SubmitIndiceLead = pyme360SubmitIndiceLead;
+  window.pyme360NormalizeWebsite = pyme360NormalizeWebsite;
 }
 
 if (leadForm) {
