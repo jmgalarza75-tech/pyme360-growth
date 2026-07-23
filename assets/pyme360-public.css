@@ -1421,6 +1421,239 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
   opacity: 0.72;
 }
 
+.indice-page .diagnosis-rural {
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  align-items: start;
+  background:
+    radial-gradient(circle at 14% 12%, rgba(231, 183, 95, 0.13), transparent 34%),
+    linear-gradient(135deg, #10291f 0%, #173629 44%, #0b1713 100%);
+}
+
+.indice-page .diagnosis-rural .diagnosis-copy h2 {
+  color: #f7f3ea;
+  font-size: clamp(38px, 4.8vw, 64px);
+  line-height: 1.02;
+}
+
+.indice-page .diagnosis-rural .diagnosis-copy p:not(.eyebrow) {
+  color: rgba(247, 243, 234, 0.78);
+}
+
+.indice-page .form-benefits {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.indice-page .form-benefits span {
+  display: flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid rgba(143, 180, 156, 0.28);
+  border-radius: 14px;
+  color: #ecf7ef;
+  background: rgba(255, 255, 255, 0.06);
+  font-weight: 800;
+}
+
+.indice-page .neuro-lead-form {
+  gap: 14px;
+  padding: clamp(22px, 3.2vw, 34px);
+  border-color: rgba(143, 180, 156, 0.42);
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(232, 244, 239, 0.86)),
+    #f6f1e7;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22);
+}
+
+.indice-page .neuro-lead-form .form-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 12px;
+  align-items: center;
+  margin-top: 4px;
+  padding: 12px 14px;
+  border: 1px solid rgba(143, 180, 156, 0.32);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.indice-page .neuro-lead-form .form-step:first-child {
+  margin-top: 0;
+}
+
+.indice-page .neuro-lead-form .form-step span {
+  grid-row: span 2;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 50%;
+  color: #10291f;
+  background: linear-gradient(145deg, #f3d99f, #8fb49c);
+  font-family: "Outfit", system-ui, sans-serif;
+  font-weight: 900;
+}
+
+.indice-page .neuro-lead-form .form-step strong {
+  color: #173629;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 20px;
+  line-height: 1.05;
+}
+
+.indice-page .neuro-lead-form .form-step small {
+  color: #5d7468;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.indice-page .neuro-lead-form label {
+  color: #173629;
+  font-weight: 900;
+}
+
+.indice-page .neuro-lead-form label small {
+  color: #6f8178;
+  font-weight: 700;
+}
+
+.indice-page .neuro-lead-form input,
+.indice-page .neuro-lead-form textarea,
+.indice-page .neuro-lead-form select {
+  min-height: 50px;
+  border-color: rgba(23, 54, 41, 0.18);
+  border-radius: 14px;
+  color: #173629;
+  background: rgba(255, 255, 255, 0.84);
+  font-weight: 700;
+}
+
+.indice-page .neuro-lead-form textarea {
+  min-height: 104px;
+  resize: vertical;
+}
+
+.indice-page .neuro-lead-form input::placeholder,
+.indice-page .neuro-lead-form textarea::placeholder {
+  color: #8a9a92;
+  font-weight: 600;
+}
+
+.indice-page .neuro-lead-form input:focus,
+.indice-page .neuro-lead-form textarea:focus,
+.indice-page .neuro-lead-form select:focus {
+  outline: 0;
+  border-color: rgba(47, 191, 113, 0.68);
+  box-shadow: 0 0 0 4px rgba(47, 191, 113, 0.16);
+  background: #fff;
+}
+
+.indice-page .neuro-lead-form .checkbox-label {
+  display: flex;
+  grid-template-columns: none;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(23, 54, 41, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.indice-page .neuro-lead-form .checkbox-label input[type="checkbox"] {
+  width: 19px;
+  min-width: 19px;
+  height: 19px;
+  min-height: 19px;
+  margin-top: 2px;
+  accent-color: #2fbf71;
+}
+
+.indice-page .neuro-lead-form .checkbox-label span {
+  color: #3f5d50;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.indice-page .neuro-lead-form .button-primary {
+  min-height: 58px;
+  border-radius: 16px;
+}
+
+.indice-page .neuro-lead-form .form-note {
+  color: #557064;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .indice-page .diagnosis-rural {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .indice-page .diagnosis-rural {
+    display: block;
+    overflow-x: hidden;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .indice-page .diagnosis-rural .diagnosis-copy,
+  .indice-page .neuro-lead-form {
+    width: calc(100vw - 64px) !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 64px) !important;
+    box-sizing: border-box !important;
+    justify-self: start !important;
+  }
+
+  .indice-page .neuro-lead-form input,
+  .indice-page .neuro-lead-form textarea,
+  .indice-page .neuro-lead-form select,
+  .indice-page .neuro-lead-form .form-step,
+  .indice-page .neuro-lead-form .checkbox-label {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .indice-page .diagnosis-rural .diagnosis-copy h2 {
+    max-width: 100%;
+    font-size: clamp(32px, 9vw, 42px);
+    overflow-wrap: anywhere;
+  }
+
+  .indice-page .form-benefits span {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .indice-page .neuro-lead-form {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .indice-page .neuro-lead-form label,
+  .indice-page .neuro-lead-form .form-step,
+  .indice-page .neuro-lead-form .checkbox-label {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .indice-page .neuro-lead-form .form-step {
+    grid-template-columns: 1fr;
+  }
+
+  .indice-page .neuro-lead-form .form-step span {
+    grid-row: auto;
+  }
+}
+
 .site-footer {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -2273,5 +2506,1535 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
   .modern-price-card,
   .pricing-button::before {
     transition: none;
+  }
+}
+
+/* Landing Índice Pyme360: ajustes aislados para la ruta /indice-pyme360/ */
+.indice-page {
+  --rural-cream: #f6f1e7;
+  --rural-mint: #dbeade;
+  --rural-sage: #8fb49c;
+  --rural-sky: #e8f4ef;
+  --rural-wood: #b87848;
+  --rural-forest: #10291f;
+}
+
+.indice-page .hero {
+  min-height: auto;
+  padding-top: clamp(76px, 7vw, 104px);
+  padding-bottom: clamp(46px, 6vw, 76px);
+  background:
+    radial-gradient(circle at 82% 12%, rgba(143, 180, 156, 0.28), transparent 32%),
+    radial-gradient(circle at 12% 0%, rgba(231, 183, 95, 0.16), transparent 30%),
+    linear-gradient(135deg, #f7f3ea 0%, #e8f4ef 48%, #dbeade 100%);
+  color: var(--rural-forest);
+}
+
+.indice-page .hero .hero-copy h1 {
+  max-width: 640px;
+  color: var(--rural-forest);
+  font-size: clamp(44px, 4.8vw, 62px);
+  line-height: 1.02;
+}
+
+.indice-page .hero .eyebrow {
+  color: #8b5d15;
+}
+
+.indice-page .hero .hero-lede {
+  max-width: 560px;
+  color: #385448;
+}
+
+.indice-page .hero .button-secondary {
+  color: #173629;
+  border-color: rgba(23, 54, 41, 0.28);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.indice-page .hero .button-secondary:hover {
+  color: #07110f;
+  border-color: rgba(47, 191, 113, 0.45);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.indice-page .hero-trust-note {
+  max-width: 420px;
+  margin: 12px 0 0;
+  color: #557064;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.indice-page .hero-panel {
+  align-self: center;
+}
+
+.indice-page .hero::before {
+  background:
+    linear-gradient(90deg, rgba(246, 241, 231, 0.92), rgba(232, 244, 239, 0.68)),
+    radial-gradient(circle at 76% 22%, rgba(143, 180, 156, 0.22), transparent 40%);
+}
+
+.indice-page .hero::after {
+  content: "";
+  position: absolute;
+  right: -12%;
+  top: 10%;
+  z-index: 1;
+  width: min(520px, 42vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 120, 72, 0.16), transparent 68%);
+  filter: blur(4px);
+}
+
+.indice-page .hotel-hero-panel {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-color: rgba(143, 180, 156, 0.52);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(232, 244, 239, 0.58)),
+    rgba(246, 241, 231, 0.68);
+  box-shadow: 0 24px 68px rgba(16, 41, 31, 0.16);
+}
+
+.indice-page .hotel-shot {
+  position: relative;
+  min-height: 250px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(247, 243, 234, 0.18);
+  border-radius: 16px;
+  background: #111;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+}
+
+.indice-page .hotel-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  object-fit: cover;
+  filter: saturate(1.02) contrast(1.06);
+  transform: scale(1.02);
+}
+
+.indice-page .hotel-shot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7, 19, 16, 0.08), rgba(7, 19, 16, 0.78)),
+    radial-gradient(circle at 20% 16%, rgba(231, 183, 95, 0.24), transparent 36%);
+}
+
+.indice-page .hotel-shot figcaption {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  z-index: 1;
+  padding: 9px 11px;
+  border: 1px solid rgba(247, 243, 234, 0.22);
+  border-radius: 999px;
+  color: #f7f3ea;
+  background: rgba(7, 19, 16, 0.72);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.indice-page .hotel-metric-grid,
+.indice-page .hotel-signal-strip {
+  display: grid;
+  gap: 12px;
+}
+
+.indice-page .hotel-metric-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.indice-page .hotel-metric-grid div,
+.indice-page .hotel-signal-strip article {
+  border: 1px solid rgba(143, 180, 156, 0.34);
+  border-radius: 14px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(232, 244, 239, 0.46)),
+    rgba(255, 255, 255, 0.46);
+}
+
+.indice-page .hotel-metric-grid div {
+  padding: 12px 14px;
+}
+
+.indice-page .hotel-metric-grid span,
+.indice-page .hotel-signal-strip span,
+.indice-page .floating-audit-card span {
+  display: block;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.indice-page .hotel-metric-grid strong {
+  display: block;
+  margin-top: 7px;
+  color: #173629;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.05;
+}
+
+.indice-page .floating-audit-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid rgba(47, 191, 113, 0.34);
+  border-radius: 18px;
+  background: rgba(7, 19, 16, 0.88);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.26), 0 0 34px rgba(47, 191, 113, 0.09);
+}
+
+.indice-page .floating-audit-card strong {
+  display: block;
+  margin-top: 6px;
+  color: #fff;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 34px;
+  line-height: 0.95;
+}
+
+.indice-page .floating-audit-card p {
+  margin: 9px 0 0;
+  color: rgba(247, 243, 234, 0.74);
+  line-height: 1.5;
+}
+
+.indice-page .hotel-signal-strip {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 22px var(--page-gutter) 46px;
+  background:
+    linear-gradient(180deg, #e8f4ef 0%, #dbeade 100%);
+}
+
+.indice-page .hotel-signal-strip article {
+  min-height: 180px;
+  padding: 22px;
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+
+.indice-page .hotel-signal-strip article:hover {
+  transform: translateY(-6px);
+  border-color: rgba(184, 120, 72, 0.42);
+  background:
+    radial-gradient(circle at 24% 0%, rgba(184, 120, 72, 0.12), transparent 38%),
+    #ffffff;
+}
+
+.indice-page .hotel-signal-strip article {
+  color: #173629;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(232, 244, 239, 0.78)),
+    #f6f1e7;
+  border-color: rgba(143, 180, 156, 0.42);
+}
+
+.indice-page .hotel-signal-strip span {
+  color: #b87848;
+}
+
+.indice-page .hotel-signal-strip strong {
+  display: block;
+  margin-top: 18px;
+  color: #173629;
+  font-size: 20px;
+  line-height: 1.15;
+}
+
+.indice-page .hotel-signal-strip p {
+  margin: 12px 0 0;
+  color: #4f665b;
+  line-height: 1.55;
+}
+
+.indice-page .problem {
+  min-height: auto;
+  padding-top: clamp(70px, 7vw, 96px);
+  padding-bottom: clamp(76px, 8vw, 110px);
+}
+
+.indice-page .problem::after {
+  opacity: 0.32;
+}
+
+.indice-page .problem-heading {
+  max-width: 980px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.indice-page .problem-heading h2 {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: clamp(32px, 4.2vw, 54px);
+  line-height: 1.04;
+}
+
+.indice-page .problem-heading p:not(.eyebrow) {
+  max-width: 670px;
+  margin: 18px auto 0;
+  color: rgba(248, 250, 252, 0.72);
+}
+
+.indice-page .leak-gallery-shell {
+  position: relative;
+  z-index: 2;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.indice-page .leak-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.indice-page .leak-card {
+  position: relative;
+  display: grid;
+  min-height: 280px;
+  overflow: hidden;
+  align-content: end;
+  padding: 24px;
+  border: 1px solid rgba(247, 243, 234, 0.16);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(6, 16, 13, 0.08), rgba(6, 16, 13, 0.92)),
+    var(--image) center/cover;
+  box-shadow: 0 26px 74px rgba(0, 0, 0, 0.28);
+}
+
+.indice-page .leak-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 12%, rgba(231, 183, 95, 0.18), transparent 36%),
+    linear-gradient(180deg, transparent 24%, rgba(7, 19, 16, 0.86));
+  pointer-events: none;
+}
+
+.indice-page .leak-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.indice-page .leak-number {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 16px;
+  place-items: center;
+  border: 1px solid rgba(231, 183, 95, 0.46);
+  border-radius: 50%;
+  color: #f3d99f;
+  background: rgba(7, 19, 16, 0.7);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.indice-page .leak-card strong {
+  display: block;
+  color: #fff;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.04;
+}
+
+.indice-page .leak-card p {
+  margin: 12px 0 0;
+  color: rgba(248, 250, 252, 0.78);
+  line-height: 1.55;
+}
+
+.indice-page .gallery-button {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .indice-page .leak-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.indice-page .process {
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 86% 18%, rgba(47, 191, 113, 0.12), transparent 30%),
+    var(--cream);
+}
+
+.indice-page .process .section-heading {
+  max-width: 920px;
+  margin-bottom: 34px;
+}
+
+.indice-page .process .section-heading h2 {
+  max-width: 760px;
+  font-size: clamp(34px, 4.6vw, 58px);
+  line-height: 1.02;
+}
+
+.indice-page .process .process-orbit {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.75fr);
+  gap: clamp(22px, 4vw, 54px);
+  align-items: stretch;
+  min-height: auto;
+  overflow: visible;
+  color: var(--ink);
+  border: 1px solid rgba(21, 33, 29, 0.12);
+  border-radius: 24px;
+  padding: clamp(22px, 4vw, 42px);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.42)),
+    rgba(255, 255, 255, 0.62);
+  box-shadow: 0 28px 80px rgba(21, 33, 29, 0.10);
+}
+
+.indice-page .process .process-orbit::before {
+  content: "";
+  position: absolute;
+  left: clamp(34px, 4vw, 54px);
+  right: 42%;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(47, 191, 113, 0.18), rgba(231, 183, 95, 0.76), rgba(47, 191, 113, 0.18));
+  transform: translateY(-50%);
+}
+
+.indice-page .process .orbit-ring {
+  display: none;
+}
+
+.indice-page .process .orbit-node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  align-items: center;
+  min-height: 82px;
+  padding: 16px;
+  border: 1px solid rgba(21, 33, 29, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 18px 42px rgba(21, 33, 29, 0.08);
+}
+
+.indice-page .process .orbit-node span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 50%;
+  color: #07110f;
+  background: linear-gradient(145deg, #f3d99f, #2fbf71);
+  font-weight: 900;
+}
+
+.indice-page .process .orbit-node strong {
+  color: #15211d;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.indice-page .process .orbit-node-one,
+.indice-page .process .orbit-node-two,
+.indice-page .process .orbit-node-three,
+.indice-page .process .orbit-node-four,
+.indice-page .process .orbit-node-five {
+  position: relative;
+  left: auto;
+  top: auto;
+  grid-column: 1;
+  transform: none;
+}
+
+.indice-page .process .process-card {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1 / span 5;
+  z-index: 2;
+  display: grid;
+  align-content: center;
+  min-height: 100%;
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid rgba(7, 17, 15, 0.16);
+  border-radius: 24px;
+  color: #f7f3ea;
+  background:
+    radial-gradient(circle at 82% 0%, rgba(47, 191, 113, 0.22), transparent 32%),
+    linear-gradient(145deg, #07110f, #12201c);
+  box-shadow: 0 30px 78px rgba(7, 17, 15, 0.24);
+}
+
+.indice-page .process .process-badge {
+  display: inline-grid;
+  width: 86px;
+  height: 86px;
+  margin-bottom: 24px;
+  place-items: center;
+  border: 1px solid rgba(231, 183, 95, 0.34);
+  border-radius: 50%;
+  color: #07110f;
+  background: linear-gradient(145deg, #f7f3ea, #e7b75f);
+  font-family: "Outfit", system-ui, sans-serif;
+  font-weight: 900;
+  line-height: 0.95;
+  text-align: center;
+}
+
+.indice-page .process .process-badge span {
+  font-size: 15px;
+}
+
+.indice-page .process .process-card small {
+  color: #f3d99f;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.indice-page .process .process-card h3 {
+  margin: 12px 0 10px;
+  color: #fff;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1;
+}
+
+.indice-page .process .process-card p {
+  color: rgba(247, 243, 234, 0.76);
+  line-height: 1.65;
+}
+
+.indice-page .process .impact-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(247, 243, 234, 0.14);
+}
+
+.indice-page .process .impact-row span {
+  color: rgba(247, 243, 234, 0.66);
+  font-weight: 800;
+}
+
+.indice-page .process .impact-row strong {
+  color: #2fbf71;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 30px;
+}
+
+.indice-page .process .impact-bar {
+  height: 8px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.indice-page .process .impact-bar span {
+  display: block;
+  width: 72%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--gold), var(--green));
+}
+
+.indice-page .roadmap-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  overflow: hidden;
+  padding: clamp(26px, 4vw, 42px);
+  border: 1px solid rgba(21, 33, 29, 0.12);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(47, 191, 113, 0.14), transparent 32%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.48));
+  box-shadow: 0 30px 90px rgba(21, 33, 29, 0.11);
+}
+
+.indice-page .roadmap-line {
+  position: absolute;
+  left: clamp(42px, 5vw, 72px);
+  right: clamp(42px, 5vw, 72px);
+  top: clamp(54px, 6vw, 70px);
+  height: 2px;
+  background: linear-gradient(90deg, rgba(47, 191, 113, 0.18), rgba(231, 183, 95, 0.9), rgba(47, 191, 113, 0.18));
+}
+
+.indice-page .roadmap-step {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: start;
+  min-height: 250px;
+  padding: 70px 20px 22px;
+  border: 1px solid rgba(21, 33, 29, 0.12);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 20px 54px rgba(21, 33, 29, 0.08);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.indice-page .roadmap-step:hover {
+  transform: translateY(-6px);
+  border-color: rgba(47, 191, 113, 0.38);
+  box-shadow: 0 28px 70px rgba(21, 33, 29, 0.13);
+}
+
+.indice-page .roadmap-dot {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 6px solid var(--cream);
+  border-radius: 50%;
+  color: #07110f;
+  background: linear-gradient(145deg, #f3d99f, #2fbf71);
+  box-shadow: 0 14px 34px rgba(47, 191, 113, 0.22);
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  transform: translateX(-50%);
+}
+
+.indice-page .roadmap-step small {
+  display: inline-flex;
+  width: max-content;
+  margin: 0 auto 12px;
+  padding: 7px 10px;
+  border: 1px solid rgba(139, 93, 21, 0.18);
+  border-radius: 999px;
+  color: #8b5d15;
+  background: rgba(231, 183, 95, 0.10);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.indice-page .roadmap-step strong {
+  display: block;
+  color: #15211d;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.02;
+  text-align: center;
+}
+
+.indice-page .roadmap-step p {
+  margin: 12px 0 0;
+  color: #526057;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.indice-page .roadmap-step.is-active {
+  border-color: rgba(47, 191, 113, 0.34);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(47, 191, 113, 0.14), transparent 42%),
+    rgba(255, 255, 255, 0.82);
+}
+
+@media (max-width: 900px) {
+  .indice-page .hero {
+    padding-top: 84px;
+  }
+}
+
+@media (max-width: 620px) {
+  .indice-page {
+    overflow-x: hidden;
+  }
+
+  .indice-page main {
+    overflow-x: hidden;
+  }
+
+  .indice-page .button {
+    max-width: 100%;
+  }
+
+  .indice-page .brand-logo {
+    width: 148px;
+  }
+
+  .indice-page .hero,
+  .indice-page .hero-copy,
+  .indice-page .hero-panel {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .indice-page .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .indice-page h1,
+  .indice-page .hero .hero-copy h1 {
+    max-width: 100%;
+    font-size: clamp(28px, 7.8vw, 33px);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .indice-page .eyebrow {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .indice-page .hero-lede {
+    max-width: 100%;
+  }
+
+  .indice-page .hero-panel {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .indice-page .hotel-metric-grid,
+  .indice-page .hotel-signal-strip,
+  .indice-page .leak-gallery,
+  .indice-page .roadmap-card {
+    grid-template-columns: 1fr;
+  }
+
+  .indice-page .problem {
+    padding-top: 58px;
+    padding-bottom: 64px;
+  }
+
+  .indice-page .problem-heading {
+    margin-bottom: 22px;
+    text-align: left;
+  }
+
+  .indice-page .problem-heading h2 {
+    font-size: clamp(31px, 8.2vw, 38px);
+    line-height: 1.04;
+  }
+
+  .indice-page .problem-heading p:not(.eyebrow) {
+    margin-top: 14px;
+  }
+
+  .indice-page .leak-card {
+    min-height: 230px;
+    padding: 20px;
+  }
+
+  .indice-page .hotel-signal-strip {
+    padding: 18px 16px 36px;
+  }
+
+  .indice-page .hotel-shot,
+  .indice-page .hotel-shot img {
+    min-height: 250px;
+  }
+
+  .indice-page .floating-audit-card {
+    margin: 0;
+    width: 100%;
+  }
+
+  .indice-page .roadmap-card {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .indice-page .roadmap-line {
+    display: none;
+  }
+
+  .indice-page .roadmap-step {
+    min-height: auto;
+    padding: 64px 18px 20px;
+  }
+
+  .indice-page .roadmap-step strong,
+  .indice-page .roadmap-step p {
+    text-align: left;
+  }
+
+  .indice-page .roadmap-step small {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .indice-page .roadmap-dot {
+    left: 20px;
+    transform: none;
+  }
+
+  .indice-page .diagnostic-list div {
+
+    gap: 4px;
+  }
+
+  .indice-page .hero-copy,
+  .indice-page .hero-lede,
+  .indice-page .hero-actions,
+  .indice-page .hotel-shot,
+  .indice-page .hotel-metric-grid,
+  .indice-page .floating-audit-card {
+    width: 100%;
+    max-width: min(100%, 330px);
+  }
+
+  .indice-page .hero-copy {
+    justify-self: start;
+  }
+
+  .indice-page .hotel-hero-panel {
+    width: 100%;
+    max-width: min(100%, 358px);
+  }
+
+  .indice-page .hero-actions .button {
+    width: 100%;
+  }
+}
+
+/* Índice Pyme360: override final formulario móvil */
+@media (max-width: 620px) {
+  .indice-page .diagnosis-rural {
+    display: block !important;
+    overflow-x: hidden !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .indice-page .diagnosis-rural .diagnosis-copy,
+  .indice-page .diagnosis-rural .form-benefits,
+  .indice-page .diagnosis-rural .neuro-lead-form {
+    width: min(300px, calc(100vw - 72px)) !important;
+    max-width: min(300px, calc(100vw - 72px)) !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .indice-page .diagnosis-rural .neuro-lead-form * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .indice-page .diagnosis-rural .neuro-lead-form {
+    grid-template-columns: 1fr !important;
+    padding: 18px !important;
+  }
+}
+
+
+/* Índice Pyme360: contraste global claro — revisión fondos y legibilidad */
+.indice-page {
+  color: #10291f;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(231, 183, 95, 0.14), transparent 30%),
+    radial-gradient(circle at 88% 12%, rgba(143, 180, 156, 0.22), transparent 34%),
+    linear-gradient(180deg, #f7f3ea 0%, #e8f4ef 48%, #f6f1e7 100%);
+}
+
+.indice-page .site-header {
+  background: rgba(16, 41, 31, 0.94);
+  border-bottom-color: rgba(246, 241, 231, 0.18);
+}
+
+.indice-page .site-nav {
+  color: rgba(247, 243, 234, 0.78);
+}
+
+.indice-page .site-nav a:not(.nav-cta):hover {
+  color: #ffffff;
+}
+
+.indice-page .eyebrow {
+  color: #9a6719;
+}
+
+.indice-page .section-heading p:not(.eyebrow),
+.indice-page .diagnosis-copy p,
+.indice-page .module-grid p,
+.indice-page .timeline span,
+.indice-page .authority-copy p,
+.indice-page .roadmap-step p {
+  color: #435c50;
+}
+
+.indice-page .problem,
+.indice-page .system,
+.indice-page .process,
+.indice-page .authority,
+.indice-page .sectors,
+.indice-page .diagnosis-rural {
+  color: #10291f;
+  background:
+    radial-gradient(circle at 86% 10%, rgba(47, 191, 113, 0.10), transparent 28%),
+    radial-gradient(circle at 12% 18%, rgba(231, 183, 95, 0.10), transparent 30%),
+    linear-gradient(180deg, #f7f3ea 0%, #e8f4ef 100%) !important;
+}
+
+.indice-page .problem::before,
+.indice-page .problem::after {
+  opacity: 0.08;
+}
+
+.indice-page .problem .eyebrow,
+.indice-page .system .eyebrow,
+.indice-page .process .eyebrow,
+.indice-page .authority .eyebrow,
+.indice-page .sectors .eyebrow,
+.indice-page .diagnosis-rural .eyebrow {
+  color: #9a6719;
+}
+
+.indice-page .problem h2,
+.indice-page .system h2,
+.indice-page .process h2,
+.indice-page .authority h2,
+.indice-page .sectors h2,
+.indice-page .diagnosis-rural .diagnosis-copy h2 {
+  color: #10291f !important;
+  text-shadow: none !important;
+}
+
+.indice-page .problem-heading p:not(.eyebrow),
+.indice-page .system .section-heading p:not(.eyebrow),
+.indice-page .process .section-heading p:not(.eyebrow),
+.indice-page .authority-copy p,
+.indice-page .diagnosis-rural .diagnosis-copy p:not(.eyebrow) {
+  color: #435c50 !important;
+}
+
+.indice-page .module-grid article,
+.indice-page .system .module-grid article,
+.indice-page .roadmap-card,
+.indice-page .roadmap-step,
+.indice-page .authority-points p,
+.indice-page .sector-list span,
+.indice-page .neuro-lead-form,
+.indice-page .hotel-signal-strip article {
+  color: #10291f;
+  border-color: rgba(16, 41, 31, 0.14) !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(245, 250, 247, 0.88)),
+    #ffffff !important;
+  box-shadow: 0 18px 46px rgba(16, 41, 31, 0.08);
+}
+
+.indice-page .module-grid strong,
+.indice-page .system .module-grid strong,
+.indice-page .roadmap-step strong,
+.indice-page .authority-points p,
+.indice-page .sector-list span {
+  color: #10291f !important;
+}
+
+.indice-page .module-grid p,
+.indice-page .system .module-grid p,
+.indice-page .roadmap-step p,
+.indice-page .hotel-signal-strip p,
+.indice-page .authority-points p {
+  color: #435c50 !important;
+}
+
+.indice-page .leak-card {
+  min-height: 260px;
+  border-color: rgba(16, 41, 31, 0.14) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(16, 41, 31, 0.76)),
+    var(--image) center/cover !important;
+  box-shadow: 0 22px 54px rgba(16, 41, 31, 0.16);
+}
+
+.indice-page .leak-card::before {
+  background:
+    linear-gradient(180deg, rgba(16, 41, 31, 0.08) 0%, rgba(16, 41, 31, 0.86) 74%),
+    radial-gradient(circle at 18% 14%, rgba(231, 183, 95, 0.20), transparent 34%) !important;
+}
+
+.indice-page .leak-card strong,
+.indice-page .leak-card p {
+  color: #ffffff !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.54);
+}
+
+.indice-page .leak-card p {
+  color: rgba(255, 255, 255, 0.90) !important;
+}
+
+.indice-page .floating-audit-card {
+  background:
+    radial-gradient(circle at 82% 0%, rgba(47, 191, 113, 0.16), transparent 30%),
+    linear-gradient(145deg, #173629, #10291f) !important;
+}
+
+.indice-page .floating-audit-card p {
+  color: rgba(247, 243, 234, 0.86) !important;
+}
+
+.indice-page .diagnosis-rural {
+  border-top: 1px solid rgba(16, 41, 31, 0.08);
+}
+
+.indice-page .form-benefits span {
+  color: #10291f;
+  border-color: rgba(16, 41, 31, 0.16);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.indice-page .site-footer {
+  color: #e8f4ef;
+  background: #10291f;
+  border-top-color: rgba(247, 243, 234, 0.14);
+}
+
+@media (max-width: 620px) {
+  .indice-page .problem,
+  .indice-page .system,
+  .indice-page .process,
+  .indice-page .authority,
+  .indice-page .sectors,
+  .indice-page .diagnosis-rural {
+    background: linear-gradient(180deg, #f7f3ea 0%, #e8f4ef 100%) !important;
+  }
+
+  .indice-page .problem-heading {
+    text-align: left;
+  }
+
+  .indice-page .leak-card {
+    min-height: 220px;
+  }
+}
+
+
+/* Índice Pyme360: corrección final de ancho móvil y lectura */
+@media (max-width: 620px) {
+  .indice-page {
+    width: 100%;
+    overflow-x: hidden !important;
+  }
+
+  .indice-page main,
+  .indice-page .section,
+  .indice-page .hero,
+  .indice-page .hotel-signal-strip,
+  .indice-page .problem,
+  .indice-page .system,
+  .indice-page .process,
+  .indice-page .authority,
+  .indice-page .sectors,
+  .indice-page .diagnosis-rural {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .indice-page .section,
+  .indice-page .hero,
+  .indice-page .problem,
+  .indice-page .system,
+  .indice-page .process,
+  .indice-page .authority,
+  .indice-page .sectors {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .indice-page .hotel-signal-strip {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .indice-page .hero-copy,
+  .indice-page .hero-lede,
+  .indice-page .hero-actions,
+  .indice-page .hero-panel,
+  .indice-page .hotel-hero-panel,
+  .indice-page .hotel-shot,
+  .indice-page .hotel-metric-grid,
+  .indice-page .floating-audit-card,
+  .indice-page .hotel-signal-strip article,
+  .indice-page .problem-heading,
+  .indice-page .section-heading,
+  .indice-page .leak-gallery-shell,
+  .indice-page .leak-gallery,
+  .indice-page .leak-card,
+  .indice-page .module-grid,
+  .indice-page .module-grid article,
+  .indice-page .roadmap-card,
+  .indice-page .roadmap-step,
+  .indice-page .authority-copy,
+  .indice-page .authority-points,
+  .indice-page .authority-points p,
+  .indice-page .sector-list,
+  .indice-page .sector-list span {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .indice-page p,
+  .indice-page h1,
+  .indice-page h2,
+  .indice-page h3,
+  .indice-page strong,
+  .indice-page span,
+  .indice-page small {
+    overflow-wrap: anywhere;
+  }
+
+  .indice-page .leak-card strong,
+  .indice-page .leak-card p,
+  .indice-page .hotel-signal-strip strong,
+  .indice-page .hotel-signal-strip p,
+  .indice-page .problem-heading p:not(.eyebrow) {
+    max-width: 100% !important;
+  }
+}
+
+
+/* Índice Pyme360: cinturón de seguridad móvil — sin desbordes laterales */
+@media (max-width: 620px) {
+  .indice-page .hero-copy,
+  .indice-page .hero-copy > *,
+  .indice-page .hero-actions,
+  .indice-page .hero-actions .button,
+  .indice-page .hero-panel,
+  .indice-page .hotel-hero-panel,
+  .indice-page .hotel-shot,
+  .indice-page .hotel-metric-grid,
+  .indice-page .hotel-metric-grid > div,
+  .indice-page .floating-audit-card,
+  .indice-page .hotel-signal-strip article,
+  .indice-page .problem-heading,
+  .indice-page .problem-heading > *,
+  .indice-page .leak-gallery-shell,
+  .indice-page .leak-gallery,
+  .indice-page .leak-card,
+  .indice-page .section-heading,
+  .indice-page .section-heading > *,
+  .indice-page .module-grid,
+  .indice-page .module-grid article,
+  .indice-page .roadmap-card,
+  .indice-page .roadmap-step,
+  .indice-page .authority-copy,
+  .indice-page .authority-points,
+  .indice-page .authority-points p,
+  .indice-page .sector-list,
+  .indice-page .sector-list span {
+    width: calc(100vw - 64px) !important;
+    max-width: calc(100vw - 64px) !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .indice-page .hero-actions,
+  .indice-page .hotel-metric-grid,
+  .indice-page .leak-gallery,
+  .indice-page .module-grid,
+  .indice-page .roadmap-card,
+  .indice-page .authority-points,
+  .indice-page .sector-list {
+    grid-template-columns: 1fr !important;
+  }
+
+  .indice-page .hero-copy,
+  .indice-page .hero-panel,
+  .indice-page .hotel-signal-strip article,
+  .indice-page .problem-heading,
+  .indice-page .section-heading,
+  .indice-page .leak-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .indice-page .hero-lede,
+  .indice-page .hero-trust-note,
+  .indice-page .problem-heading p:not(.eyebrow),
+  .indice-page .hotel-signal-strip p,
+  .indice-page .leak-card p {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+}
+
+
+/* Índice Pyme360: móvil legible fijo para 390px y similares */
+@media (max-width: 620px) {
+  html,
+  body,
+  .indice-page,
+  .indice-page main {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .indice-page .hero,
+  .indice-page .hotel-signal-strip,
+  .indice-page .problem,
+  .indice-page .system,
+  .indice-page .process,
+  .indice-page .authority,
+  .indice-page .sectors,
+  .indice-page .diagnosis-rural {
+    display: block !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .indice-page .hero-copy,
+  .indice-page .hero-copy > *,
+  .indice-page .hero-actions,
+  .indice-page .hero-actions .button,
+  .indice-page .hero-panel,
+  .indice-page .hotel-hero-panel,
+  .indice-page .hotel-shot,
+  .indice-page .hotel-metric-grid,
+  .indice-page .floating-audit-card,
+  .indice-page .hotel-signal-strip article,
+  .indice-page .problem-heading,
+  .indice-page .problem-heading > *,
+  .indice-page .leak-gallery-shell,
+  .indice-page .leak-gallery,
+  .indice-page .leak-card,
+  .indice-page .section-heading,
+  .indice-page .section-heading > *,
+  .indice-page .module-grid,
+  .indice-page .module-grid article,
+  .indice-page .roadmap-card,
+  .indice-page .roadmap-step {
+    width: 300px !important;
+    max-width: 300px !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .indice-page .hero-copy p,
+  .indice-page .hero-lede,
+  .indice-page .hero-trust-note,
+  .indice-page .hotel-signal-strip p,
+  .indice-page .problem-heading p,
+  .indice-page .leak-card p,
+  .indice-page .floating-audit-card p {
+    display: block !important;
+    width: 300px !important;
+    max-width: 300px !important;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    overflow: visible !important;
+  }
+
+  .indice-page .hotel-shot img {
+    width: 100% !important;
+  }
+
+  .indice-page .floating-audit-card strong {
+    font-size: 30px !important;
+  }
+}
+
+
+/* Índice Pyme360: lectura interna de tarjetas móviles con imagen */
+@media (max-width: 620px) {
+  .indice-page .leak-card {
+    width: 300px !important;
+    max-width: 300px !important;
+    padding: 20px !important;
+  }
+
+  .indice-page .leak-card strong,
+  .indice-page .leak-card p {
+    width: 248px !important;
+    max-width: 248px !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    overflow: visible !important;
+  }
+
+  .indice-page .leak-card strong {
+    font-size: 21px !important;
+    line-height: 1.12 !important;
+  }
+
+  .indice-page .leak-card p {
+    font-size: 16px !important;
+    line-height: 1.45 !important;
+  }
+
+  .indice-page .hotel-metric-grid > div,
+  .indice-page .floating-audit-card {
+    width: 270px !important;
+    max-width: 270px !important;
+  }
+
+  .indice-page .floating-audit-card p {
+    width: 238px !important;
+    max-width: 238px !important;
+  }
+}
+
+
+/* Índice Pyme360: formulario desktop compacto en una pantalla */
+@media (min-width: 901px) {
+  .indice-page .diagnosis-rural {
+    min-height: calc(100vh - 78px);
+    grid-template-columns: minmax(320px, 0.78fr) minmax(640px, 1.22fr) !important;
+    align-items: center !important;
+    gap: clamp(28px, 4vw, 58px) !important;
+    padding-top: clamp(22px, 3vh, 34px) !important;
+    padding-bottom: clamp(22px, 3vh, 34px) !important;
+  }
+
+  .indice-page .diagnosis-rural .diagnosis-copy h2 {
+    max-width: 440px;
+    font-size: clamp(42px, 4.1vw, 54px) !important;
+    line-height: 0.98 !important;
+  }
+
+  .indice-page .diagnosis-rural .diagnosis-copy p:not(.eyebrow) {
+    max-width: 460px;
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+  }
+
+  .indice-page .form-benefits {
+    gap: 8px !important;
+    margin-top: 20px !important;
+    max-width: 480px;
+  }
+
+  .indice-page .form-benefits span {
+    min-height: 36px !important;
+    padding: 8px 12px !important;
+    border-radius: 11px !important;
+    font-size: 13px !important;
+  }
+
+  .indice-page .neuro-lead-form {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px 10px !important;
+    padding: 16px !important;
+    border-radius: 20px !important;
+    align-self: center !important;
+  }
+
+  .indice-page .neuro-lead-form .form-step {
+    min-height: 42px !important;
+    margin-top: 0 !important;
+    padding: 7px 10px !important;
+    border-radius: 13px !important;
+    gap: 2px 9px !important;
+  }
+
+  .indice-page .neuro-lead-form .form-step span {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 12px !important;
+  }
+
+  .indice-page .neuro-lead-form .form-step strong {
+    font-size: 17px !important;
+    line-height: 1 !important;
+  }
+
+  .indice-page .neuro-lead-form .form-step small {
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+  }
+
+  .indice-page .neuro-lead-form label {
+    gap: 4px !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+  }
+
+  .indice-page .neuro-lead-form label small {
+    font-size: 10px !important;
+  }
+
+  .indice-page .neuro-lead-form input,
+  .indice-page .neuro-lead-form textarea,
+  .indice-page .neuro-lead-form select {
+    min-height: 39px !important;
+    padding: 9px 12px !important;
+    border-radius: 12px !important;
+    font-size: 12px !important;
+  }
+
+  .indice-page .neuro-lead-form textarea {
+    min-height: 62px !important;
+    max-height: 72px !important;
+  }
+
+  .indice-page .neuro-lead-form .checkbox-label {
+    min-height: 38px !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 8px 10px !important;
+    border-radius: 12px !important;
+  }
+
+  .indice-page .neuro-lead-form .checkbox-label input[type="checkbox"] {
+    width: 16px !important;
+    min-width: 16px !important;
+    height: 16px !important;
+    min-height: 16px !important;
+    margin-top: 0 !important;
+  }
+
+  .indice-page .neuro-lead-form .checkbox-label span {
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+  }
+
+  .indice-page .neuro-lead-form .button-primary {
+    min-height: 42px !important;
+    border-radius: 12px !important;
+    font-size: 14px !important;
+  }
+
+  .indice-page .neuro-lead-form .form-note {
+    margin: 0 !important;
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+  }
+}
+
+
+/* Índice Pyme360: formulario desktop ultra-compacto para entrar sin scroll */
+@media (min-width: 901px) and (max-height: 820px) {
+  .indice-page .diagnosis-rural {
+    min-height: calc(100vh - 72px) !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+    gap: 28px !important;
+  }
+
+  .indice-page .diagnosis-rural .diagnosis-copy h2 {
+    font-size: clamp(36px, 3.4vw, 46px) !important;
+    line-height: 0.98 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .indice-page .diagnosis-rural .diagnosis-copy p:not(.eyebrow) {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+  }
+
+  .indice-page .form-benefits {
+    margin-top: 16px !important;
+    gap: 6px !important;
+  }
+
+  .indice-page .form-benefits span {
+    min-height: 30px !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+  }
+
+  .indice-page .neuro-lead-form {
+    gap: 6px 9px !important;
+    padding: 12px 14px !important;
+  }
+
+  .indice-page .neuro-lead-form .form-step {
+    min-height: 30px !important;
+    padding: 5px 8px !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+  }
+
+  .indice-page .neuro-lead-form .form-step span {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 11px !important;
+  }
+
+  .indice-page .neuro-lead-form .form-step strong {
+    font-size: 15px !important;
+  }
+
+  .indice-page .neuro-lead-form .form-step small {
+    display: none !important;
+  }
+
+  .indice-page .neuro-lead-form label {
+    gap: 3px !important;
+    font-size: 11px !important;
+  }
+
+  .indice-page .neuro-lead-form label small {
+    display: none !important;
+  }
+
+  .indice-page .neuro-lead-form input,
+  .indice-page .neuro-lead-form textarea,
+  .indice-page .neuro-lead-form select {
+    min-height: 34px !important;
+    padding: 7px 10px !important;
+    font-size: 11px !important;
+  }
+
+  .indice-page .neuro-lead-form textarea {
+    min-height: 46px !important;
+    max-height: 52px !important;
+  }
+
+  .indice-page .neuro-lead-form .checkbox-label {
+    display: flex !important;
+    min-height: 30px !important;
+    padding: 6px 9px !important;
+  }
+
+  .indice-page .neuro-lead-form .checkbox-label span {
+    font-size: 11px !important;
+    line-height: 1.16 !important;
+  }
+
+  .indice-page .neuro-lead-form .button-primary {
+    min-height: 36px !important;
+    font-size: 13px !important;
+  }
+
+  .indice-page .neuro-lead-form .form-note {
+    display: none !important;
   }
 }
