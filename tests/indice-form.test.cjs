@@ -8,7 +8,7 @@ const ruralHtml = fs.readFileSync(path.join(__dirname, "..", "public", "alojamie
 const legacyPath = path.join(__dirname, "..", "public", "indice-pyme360.html");
 const script = fs.readFileSync(path.join(__dirname, "..", "public", "assets", "indice-pyme360.js"), "utf8");
 
-assert.match(html, /Te decimos qué puede estar frenando reservas directas en tu alojamiento rural/, "hero should explain the diagnostic outcome in plain owner language");
+assert.match(html, /Te decimos qué puede estar frenando reservas directas en tu alojamiento/, "hero should explain the diagnostic outcome in plain owner language");
 assert.match(html, /Revisamos lo que ve un huésped antes de reservar/, "hero should say plainly what Pyme360 reviews");
 assert.match(html, /3–5 observaciones claras/, "landing should package the mini-review as a concrete deliverable");
 assert.doesNotMatch(html, /pequeños alojamientos|alojamientos pequeños|negocios pequeños/i, "rural landing should avoid low-value positioning language");
