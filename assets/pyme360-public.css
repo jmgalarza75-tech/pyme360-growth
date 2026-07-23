@@ -4375,3 +4375,74 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
     overflow-wrap: break-word !important;
   }
 }
+
+
+/* Pyme360 rural V2: compactación móvil del hero y anclas */
+.indice-page section[id] {
+  scroll-margin-top: 96px;
+}
+
+@media (max-width: 640px) {
+  .indice-page section[id] {
+    scroll-margin-top: 112px;
+  }
+
+  .indice-page .hero {
+    padding-top: 88px;
+    padding-bottom: 48px;
+  }
+
+  .indice-page .hero h1 {
+    font-size: clamp(31px, 9vw, 42px);
+    line-height: 1.08;
+  }
+
+  .indice-page .hero-lede {
+    font-size: 17px;
+    line-height: 1.58;
+  }
+
+  .indice-page .hotel-hero-panel {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .indice-page .hotel-shot img {
+    aspect-ratio: 1.22 / 1;
+    object-fit: cover;
+  }
+
+  .indice-page .hotel-metric-grid {
+    gap: 8px;
+  }
+
+  .indice-page .hotel-metric-grid div {
+    min-height: auto;
+    padding: 14px 16px;
+  }
+
+  .indice-page .hotel-metric-grid div strong {
+    font-size: 17px;
+  }
+
+  .indice-page .floating-audit-card {
+    min-height: 0;
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .indice-page .floating-audit-card strong {
+    font-size: clamp(32px, 11vw, 43px);
+    line-height: 0.98;
+  }
+
+  .indice-page .floating-audit-card p {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .indice-page .hotel-signal-strip {
+    padding-top: 34px;
+  }
+}
