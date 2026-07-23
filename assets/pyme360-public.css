@@ -4038,3 +4038,340 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
     display: none !important;
   }
 }
+
+
+/* Pyme360 rural V2: mini-revisión, ejemplos, entregables y FAQ */
+.examples,
+.deliverables,
+.faq,
+.outbound-note {
+  background: linear-gradient(180deg, #f8f3e8 0%, #edf7ee 100%);
+}
+
+.example-grid,
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.example-grid article,
+.faq-grid article,
+.deliverable-card,
+.outbound-card {
+  border: 1px solid rgba(21, 33, 29, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 54px rgba(16, 47, 37, 0.08);
+}
+
+.example-grid article {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-height: 230px;
+  padding: 24px;
+}
+
+.example-grid article span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: #102f25;
+  background: #e6f5d9;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-weight: 900;
+}
+
+.example-grid article strong,
+.faq-grid article h3 {
+  color: #102f25;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: clamp(19px, 1.45vw, 24px);
+  line-height: 1.14;
+}
+
+.example-grid article p,
+.faq-grid article p,
+.deliverable-card p,
+.outbound-card p {
+  margin: 0;
+  color: #48645a;
+  line-height: 1.65;
+}
+
+.deliverable-card,
+.outbound-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.deliverable-card ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.deliverable-card li {
+  position: relative;
+  min-height: 86px;
+  padding: 18px 18px 18px 48px;
+  border: 1px solid rgba(21, 33, 29, 0.1);
+  border-radius: 14px;
+  color: #48645a;
+  background: #fffdf8;
+  line-height: 1.55;
+}
+
+.deliverable-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 16px;
+  top: 17px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #102f25;
+  background: #b7ff54;
+  font-weight: 900;
+}
+
+.deliverable-card strong {
+  color: #102f25;
+}
+
+.outbound-card {
+  border-color: rgba(255, 107, 53, 0.18);
+  background: linear-gradient(135deg, #fffaf1, #eff8ed);
+}
+
+.outbound-card h2 {
+  margin: 0 0 14px;
+  color: #102f25;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: clamp(30px, 3vw, 48px);
+  line-height: 1;
+}
+
+.faq-grid article {
+  padding: 22px;
+}
+
+.faq-grid article h3 {
+  margin: 0 0 10px;
+}
+
+.metric-questions div strong {
+  font-size: clamp(14px, 1.1vw, 18px);
+  line-height: 1.15;
+}
+
+.neuro-lead-form .checkbox-label a {
+  color: #102f25;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 980px) {
+  .example-grid,
+  .faq-grid,
+  .deliverable-card ul {
+    grid-template-columns: 1fr;
+  }
+
+  .example-grid article {
+    min-height: auto;
+  }
+
+  .outbound-card h2 {
+    font-size: clamp(28px, 8vw, 42px);
+  }
+}
+
+@media (min-width: 981px) {
+  .example-grid article:nth-child(4),
+  .example-grid article:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  .faq-grid article:nth-child(5),
+  .faq-grid article:nth-child(6) {
+    grid-column: span 1;
+  }
+}
+
+
+/* Pyme360 rural V2: guardarraíles contra desbordes móviles */
+.examples,
+.deliverables,
+.faq,
+.outbound-note {
+  overflow-x: hidden;
+}
+
+.example-grid,
+.faq-grid,
+.deliverable-card,
+.outbound-card,
+.deliverable-card ul,
+.deliverable-card li,
+.example-grid article,
+.faq-grid article {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.example-grid article,
+.faq-grid article,
+.deliverable-card li,
+.deliverable-card p,
+.outbound-card p {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+@media (max-width: 640px) {
+  .examples,
+  .deliverables,
+  .faq,
+  .outbound-note {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .deliverable-card,
+  .outbound-card {
+    width: 100%;
+    padding: 24px 14px;
+  }
+
+  .deliverable-card li,
+  .example-grid article,
+  .faq-grid article {
+    padding-right: 16px;
+    padding-left: 42px;
+  }
+
+  .faq-grid article {
+    padding-left: 18px;
+  }
+}
+
+
+/* Pyme360 rural V2: ancho móvil estricto */
+@media (max-width: 640px) {
+  .examples .section-heading,
+  .deliverables .section-heading,
+  .faq .section-heading,
+  .example-grid,
+  .faq-grid,
+  .deliverable-card,
+  .outbound-card {
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  .deliverable-card ul,
+  .deliverable-card li,
+  .example-grid article,
+  .faq-grid article {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .deliverable-card li,
+  .faq-grid article p,
+  .deliverable-card p {
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+
+/* Pyme360 rural V2: listas móviles de una columna sin líneas cortadas */
+@media (max-width: 640px) {
+  .indice-page .deliverable-card,
+  .indice-page .faq-grid article {
+    overflow: hidden !important;
+  }
+
+  .indice-page .deliverable-card ul {
+    display: block !important;
+  }
+
+  .indice-page .deliverable-card li {
+    display: block !important;
+    min-height: 0 !important;
+    margin-bottom: 12px !important;
+    padding: 16px 16px 16px 48px !important;
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+    text-align: left !important;
+  }
+
+  .indice-page .deliverable-card li::before {
+    left: 16px !important;
+    top: 17px !important;
+  }
+
+  .indice-page .deliverable-card li strong,
+  .indice-page .deliverable-card li,
+  .indice-page .deliverable-card p,
+  .indice-page .faq-grid article,
+  .indice-page .faq-grid article h3,
+  .indice-page .faq-grid article p {
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+    max-width: 100% !important;
+  }
+}
+
+
+.deliverable-card li span {
+  display: block;
+  margin-top: 4px;
+  color: #48645a;
+}
+
+
+/* Pyme360 rural V2: ancho de texto móvil para tarjetas */
+@media (max-width: 640px) {
+  .indice-page .module-grid article > *,
+  .indice-page .example-grid article > *,
+  .indice-page .faq-grid article > *,
+  .indice-page .deliverable-card li > * {
+    max-width: 260px !important;
+  }
+
+  .indice-page .module-grid article,
+  .indice-page .example-grid article,
+  .indice-page .faq-grid article {
+    display: block !important;
+    width: calc(100vw - 48px) !important;
+    max-width: calc(100vw - 48px) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  .indice-page .module-grid article p,
+  .indice-page .example-grid article p,
+  .indice-page .faq-grid article p,
+  .indice-page .deliverable-card li span {
+    max-width: 260px !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
+}
