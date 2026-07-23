@@ -1,0 +1,19 @@
+orden,bloque,pregunta,tipo,obligatoria,opciones,ayuda
+1,Datos básicos,Nombre del alojamiento,respuesta corta,sí,,
+2,Datos básicos,Nombre de la persona de contacto,respuesta corta,sí,,
+3,Datos básicos,Email de contacto,email,sí,,
+4,Datos básicos,Teléfono o WhatsApp,respuesta corta,no,,
+5,Datos básicos,Municipio / isla,respuesta corta,no,,
+6,Enlaces a revisar,Web oficial o enlace principal del alojamiento,URL,sí,,Puede ser vuestra web Booking Airbnb Google Maps u otro enlace principal.
+7,Enlaces a revisar,Ficha de Google Maps si la tienes a mano,URL,no,,
+8,Enlaces a revisar,Enlace a Booking Airbnb u otra OTA,párrafo corto,no,,
+9,Enlaces a revisar,Red social principal si la usáis para reservas o confianza,URL,no,,
+10,Situación actual,Dónde recibís más reservas actualmente,casillas,no,"Web directa|Booking|Airbnb|Google / llamadas|WhatsApp|Agencias o turoperadores|Repetidores|No lo tenemos claro|Otro",
+11,Situación actual,Qué canal os gustaría mejorar primero,opción múltiple,no,"Web directa|Google Maps|WhatsApp / teléfono|Booking / Airbnb|Email o formulario|Redes sociales|No lo sé; quiero que me orienten",
+12,Situación actual,Qué problema os preocupa más ahora mismo,opción múltiple,no,"Dependemos demasiado de Booking/Airbnb|La web no genera suficientes consultas|Google no transmite toda la confianza que debería|Nos cuesta explicar por qué reservar directo|Hay visitas pero pocas reservas/contactos|No sabemos qué tocar primero|Otro",
+13,Situación actual,Qué tipo de huésped o reserva os interesa potenciar,párrafo corto,no,,Ejemplos: parejas familias escapadas rurales teletrabajo senderismo larga estancia temporada baja.
+14,Preferencias,Si alguien quiere reservar o consultar qué canal preferís que use,casillas,no,"WhatsApp|Teléfono|Email|Formulario web|Motor de reservas|Booking/Airbnb|Otro",
+15,Preferencias,Hay algo que no queráis cambiar por ahora,párrafo corto,no,,Ejemplo: motor de reservas campañas precios.
+16,Preferencias,Hay algo concreto que quieras que mire,párrafo largo,no,,
+17,Consentimiento,Permiso para revisar información pública online,casilla,sí,"Acepto que Pyme360 revise la información pública online del alojamiento —web Google OTA y redes indicadas— para preparar una mini-revisión con observaciones comerciales.",
+18,Consentimiento,Privacidad,casilla,sí,"Acepto que mis datos se usen solo para responder a esta solicitud y preparar la mini-revisión.",

@@ -69,6 +69,8 @@ Evitar en primera tanda:
 - `mensajes-frio.md`: mensajes para WhatsApp, email, LinkedIn/contacto web y follow-ups.
 - `plantilla-mini-revision.md`: estructura para entregar la mini-revisión.
 - `primeros-3-observaciones-y-mensajes.md`: observaciones reales iniciales y mensajes personalizados para los tres primeros candidatos.
+- `cuestionario-mini-revision.md`: cuestionario corto/completo para cuando un lead responda “sí”.
+- `cuestionario-campos.csv`: campos estructurados para llevar el cuestionario a Google Forms, Typeform, Tally o al formulario propio.
 
 ## Nota importante
 
