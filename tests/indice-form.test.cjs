@@ -18,6 +18,8 @@ assert.match(html, /rel="canonical" href="https:\/\/pyme360\.online\/indice-pyme
 assert.match(ruralHtml, /rel="canonical" href="https:\/\/pyme360\.online\/alojamientos-rurales\/"/, "rural landing should declare commercial SEO canonical URL");
 assert.match(ruralHtml, /<title>Más reservas directas para casas rurales \| Pyme360 Growth<\/title>/, "rural landing should use plain segment-specific SEO title");
 assert.match(ruralHtml, /Quiero que miren mi alojamiento/, "primary CTA should be understandable for a rural accommodation owner");
+assert.doesNotMatch(ruralHtml, /FARO|Home4Escape|Separación clara/, "public rural landing should not expose internal brand architecture jargon");
+assert.match(ruralHtml, /sin palabras raras ni informes eternos/, "authority proof should use plain owner language");
 assert.match(html, /src="\.\.\/assets\/indice-pyme360\.js\?v=\d{8}-\d+"/, "clean landing should version its JS asset with nested path");
 assert.match(html, /href="\.\.\/assets\/pyme360-public\.css\?v=\d{8}-\d+"/, "clean landing should load shared CSS with nested path");
 assert.match(html, /href="\.\.\/index\.html"/, "clean landing should link back to home from nested route");
