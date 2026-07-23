@@ -43,8 +43,8 @@ if (!is_array($data)) {
 }
 
 // Extraer y sanear campos
-function clean(string $value): string {
-    return htmlspecialchars(trim($value), ENT_QUOTES, 'UTF-8');
+function clean($value): string {
+    return htmlspecialchars(trim((string)$value), ENT_QUOTES, 'UTF-8');
 }
 
 $name          = clean($data['name']          ?? '');
@@ -55,13 +55,28 @@ $sector        = clean($data['sector']        ?? '');
 $location      = clean($data['location']      ?? '');
 $objetivo      = clean($data['objetivo']      ?? '');
 $presupuesto   = clean($data['presupuesto']   ?? '');
+$website       = clean($data['website']       ?? $data['web'] ?? '');
+$units         = clean($data['units']         ?? '');
+$source        = clean($data['source']        ?? 'web_publica');
+$newsletter_consent = !empty($data['newsletter_consent']);
+$privacy_consent    = !empty($data['privacy_consent']);
 
 // Buscar "problem" dentro de critical_errors si viene con la estructura de Supabase
 $problem_raw = $data['problem'] ?? ($data['critical_errors']['problem'] ?? '');
 $problem     = clean($problem_raw);
 
-// Validación mínima
-if (!$name || !$email || !$phone || !$business_name) {
+if ($source === 'indice_pyme360_revision_inicial') {
+    $indice_context = [];
+    $indice_context[] = 'Origen: Índice Pyme360® - revisión inicial';
+    if ($website) $indice_context[] = 'Web: ' . $website;
+    if ($units) $indice_context[] = 'Habitaciones/unidades: ' . $units;
+    $indice_context[] = 'Newsletter: ' . ($newsletter_consent ? 'Sí' : 'No');
+    $indice_context[] = 'Privacidad: ' . ($privacy_consent ? 'Aceptada' : 'No aceptada');
+    $problem = trim($problem . "\n\n" . implode("\n", $indice_context));
+}
+
+// Validación mínima. El teléfono es opcional para la landing del Índice.
+if (!$name || !$email || !$business_name || ($source === 'indice_pyme360_revision_inicial' && !$privacy_consent)) {
     http_response_code(400);
     echo json_encode(['ok' => false, 'error' => 'Required fields missing']);
     exit;
@@ -112,7 +127,7 @@ $body  = "Nuevo diagnóstico recibido desde pyme360.online\n";
 $body .= str_repeat('-', 50) . "\n\n";
 $body .= "Nombre:       {$name}\n";
 $body .= "Email:        {$email}\n";
-$body .= "Teléfono:     {$phone}\n";
+$body .= "Teléfono:     " . ($phone ?: 'No facilitado') . "\n";
 $body .= "Negocio:      {$business_name}\n";
 $body .= "Sector:       {$sector}\n";
 $body .= "Ciudad/Zona:  {$location}\n";
@@ -139,6 +154,12 @@ if (!$mail_sent) {
 $subject_lead = "Hemos recibido tu solicitud | Pyme360 Growth";
 $anio = date('Y');
 $newsletter_url = "https://open.substack.com/pub/alojamente/p/newsletter-extraordinaria-airbnb?r=5sdrqo&utm_campaign=post&utm_medium=web"; // <-- AlojaMente
+$contact_sentence_text = $phone
+    ? "En un plazo máximo de 48 horas laborables nos pondremos en contacto contigo en el teléfono {$phone}."
+    : "En un plazo máximo de 48 horas laborables nos pondremos en contacto contigo por los datos facilitados.";
+$contact_sentence_html = $phone
+    ? 'En un plazo máximo de <strong>48 horas laborables</strong> nos pondremos en contacto contigo en el teléfono <strong>' . $phone . '</strong>.'
+    : 'En un plazo máximo de <strong>48 horas laborables</strong> nos pondremos en contacto contigo por los datos facilitados.';
 
 $body_lead_text = "Hola {$name},
 
@@ -146,9 +167,7 @@ Muchas gracias por ponerte en contacto con nosotros.
 
 Hemos recibido correctamente tu solicitud relacionada con {$business_name}.
 
-En un plazo máximo de 48 horas laborables nos pondremos en contacto contigo y te enviaremos un breve formulario para conocer mejor tu negocio, además de un análisis de tu posicionamiento online actual.
-
-Con esa información, y si estás interesado, prepararemos tu diagnóstico y valoraremos exactamente cómo podemos ayudarte, sin ningún compromiso.
+{$contact_sentence_text}
 
 Antes de llamarte revisaremos tu página web y tu presencia digital para aprovechar al máximo la conversación.
 
@@ -244,11 +263,7 @@ $body_lead_html = '<!DOCTYPE html>
                     </p>
 
                     <p style="margin:0; font-size:15px; line-height:1.65; color:#315447;">
-                      En un plazo máximo de <strong>48 horas laborables</strong> nos pondremos en contacto contigo y te enviaremos un breve formulario para conocer mejor tu negocio, además de un análisis de tu posicionamiento online actual.
-                    </p>
-                    
-                    <p style="margin:12px 0 0 0; font-size:15px; line-height:1.65; color:#315447;">
-                      Con esa información, y si estás interesado, prepararemos tu diagnóstico y valoraremos exactamente cómo podemos ayudarte, sin ningún compromiso.
+                      ' . $contact_sentence_html . '
                     </p>
                   </td>
                 </tr>

@@ -29,6 +29,8 @@ Si el despliegue desde GitHub está activado en Hostinger, hacer `push` a `main`
 Archivos públicos principales:
 
 - `index.html` - página principal
+- `alojamientos-rurales/index.html` - landing comercial/SEO para revisión digital de alojamientos rurales (`/alojamientos-rurales/`)
+- `indice-pyme360/index.html` - landing interna/técnica vinculada al Índice Pyme360® (`/indice-pyme360/`)
 - `precios.html` - página de precios
 - `aviso-legal.html` - aviso legal
 - `privacidad.html` - política de privacidad
