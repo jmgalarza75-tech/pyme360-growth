@@ -68,6 +68,7 @@ Evitar en primera tanda:
 - `prospectos-piloto.csv`: lista inicial de 20 candidatos.
 - `mensajes-frio.md`: mensajes para WhatsApp, email, LinkedIn/contacto web y follow-ups.
 - `plantilla-mini-revision.md`: estructura para entregar la mini-revisión.
+- `primeros-3-observaciones-y-mensajes.md`: observaciones reales iniciales y mensajes personalizados para los tres primeros candidatos.
 
 ## Nota importante
 
