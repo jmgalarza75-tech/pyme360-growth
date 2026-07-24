@@ -245,3 +245,85 @@ ode tests/...).
   - *Error Potencial:* Fallo en `mail()` de PHP por caracteres UTF-8 en el encabezado `From:`. *Solución:* Usar `base64_encode()` en la cadena con caracteres especiales (`Teo · Pyme360 Growth`).
 
 - **Estado final:** Formulario totalmente operativo y rediseñado, con respuesta automática por correo implementada. La configuración del servidor protegida contra sobreescrituras git.
+
+## Sesión 2026-07-23/24: Landing alojamientos rurales y piloto comercial
+
+### Disparador de continuidad
+
+Si José escribe `/pyme360`, continuar este proyecto desde `C:\Antigravity\pyme360-growth` revisando primero:
+
+- `checklist.md`
+- `outreach/rural-landing-pilot/`
+- estado de Git (`git status --short --branch`)
+
+`C:\Antigravity\especialista en marketing` es legacy/histórico y no debe usarse como web pública principal salvo petición explícita.
+
+### Landing activa
+
+Ruta comercial publicada:
+
+- `https://pyme360.online/alojamientos-rurales/`
+- archivos raíz: `alojamientos-rurales/index.html`
+- copia producción: `public/alojamientos-rurales/index.html`
+- estilos: `assets/pyme360-public.css` y `public/assets/pyme360-public.css`
+
+Posicionamiento actual:
+
+- Oferta: **mini-revisión de reservas directas**.
+- Promesa: revisar web, Google, fotos, reseñas, contacto y canales como Booking/Airbnb.
+- Entregable: **3–5 observaciones claras** y prioridad de qué tocar primero.
+- H1 aprobado por José: `Te decimos qué puede estar frenando reservas directas en tu alojamiento`.
+
+Reglas de copy aprobadas:
+
+- No usar `pequeños alojamientos`, `alojamientos pequeños` ni jerga interna.
+- No mencionar FARO/Home4Escape/arquitectura interna en la landing rural.
+- Usar nombres concretos y aspiracionales: casas rurales, hoteles rurales, apartamentos rurales, viviendas vacacionales, fincas turísticas y alojamientos independientes.
+- El mensaje debe entenderse en 5 segundos por una propietaria real.
+
+Verificaciones realizadas:
+
+- Tests JS/backend/form/cache pasados tras los cambios.
+- Formulario online probado con respuesta `201 {"ok":true}`.
+- Fix móvil específico para evitar que títulos como `OTA que se llevan margen` se salgan del cuadro.
+- Producción verificada con URL cache-busting y capturas locales/online.
+
+### Piloto comercial activo
+
+Carpeta operativa:
+
+- `outreach/rural-landing-pilot/`
+
+Archivos clave:
+
+- `README.md` — plan del piloto, métricas y proceso.
+- `prospectos-piloto.csv` — 20 candidatos iniciales desde OSM/Maps.
+- `primeros-10.md` — candidatos priorizados.
+- `primeros-3-observaciones-y-mensajes.md` — observaciones y mensajes personalizados.
+- `mensajes-frio.md` — mensajes por canal y follow-ups.
+- `plantilla-mini-revision.md` — plantilla de entrega.
+- `cuestionario-mini-revision.md` — versión corta y completa del cuestionario.
+- `cuestionario-campos.csv` — 18 campos estructurados para Tally/Google Forms/formulario propio.
+- `envio-ejecutado-2026-07-23.md` — registro de envíos realizados.
+
+Estado comercial:
+
+- Enviados 2 correos desde Outlook local / `info@pyme360.online`:
+  - Hotel Rural Senderos de Abona — `info@senderosdeabona.es`.
+  - Hotel El Tejar & Spa — `eltejarhotelvilaflor@gmail.com`.
+- Ambos verificados en `Elementos enviados`, hora aproximada `2026-07-23 23:04:41 UTC`.
+- Estados CSV: `P001` y `P002` en `contactado_d1`.
+- Casa Rural La Campiña (`P004`) queda pendiente de validar contacto correcto antes de enviar nada.
+
+Seguimiento programado:
+
+- Cron Hermes: `e3af288a709b` — `Pyme360 rural outreach follow-up check`.
+- Próxima ejecución: `2026-07-28 09:30`.
+- Objetivo: revisar Outlook en modo read-only para detectar respuestas y preparar follow-ups útiles si no hay respuesta. No envía nada automáticamente.
+
+### Siguiente paso recomendado
+
+1. Esperar respuestas de Senderos/El Tejar.
+2. Si responden “sí”, enviar la versión corta del cuestionario de 6 preguntas.
+3. Si no responden en 4–5 días, preparar follow-up útil con una observación concreta, no un “solo hago seguimiento”.
+4. Antes de ampliar a más leads, validar contacto correcto de La Campiña o elegir otros candidatos de `primeros-10.md`.
