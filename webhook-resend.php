@@ -1,67 +1,170 @@
 <?php
+declare(strict_types=1);
+
 /**
- * Pyme360 · Receptor de webhooks de Resend (en Hostinger)
- * ----------------------------------------------------------------------------
- * Resend llama a este endpoint cada vez que un correo se abre / recibe clic /
- * rebota / genera queja. Aqui NO tocamos la BD: solo guardamos cada evento en
- * eventos.jsonl (una linea JSON por evento). El server local los recoge cada
- * 2 horas (GET a este mismo archivo con ?pull=SECRETO) y actualiza la BD.
+ * Pyme360 · Receptor seguro de Resend.
  *
- * DESPLIEGUE en Hostinger (raiz publica de pyme360.online):
- *   - Sube este archivo como  webhook-resend.php
- *   - Sube el .htaccess (protege eventos.jsonl para que nadie lo lea por URL)
+ * Este endpoint no procesa el CRM. Recibe el webhook autenticado y lo guarda
+ * en un JSONL con bloqueo de fichero. El servidor local hace POST {action:pull}
+ * y, tras reconciliar cada evento, POST {action:ack,snapshot_id}.
  *
- * En Resend (cuenta pyme360) -> Webhooks -> Add:
- *   Endpoint URL: https://pyme360.online/webhook-resend.php?k=CAMBIA_ESTE_SECRETO
- *   Eventos: email.opened, email.clicked, email.bounced, email.complained, email.delivered
+ * Secretos obligatorios, siempre fuera del repositorio:
+ *   RESEND_WEBHOOK_SECRET  -> secreto de firma del webhook (Svix whsec_... o HMAC)
+ *   RESEND_PULL_SECRET     -> token de lectura/ACK en X-Pyme360-Pull-Token
  *
- * IMPORTANTE: cambia SHARED_SECRET por una cadena larga tuya y usa la MISMA en:
- *   - la URL del webhook en Resend (?k=...)
- *   - la variable RESEND_PULL_SECRET del .env del server local
+ * En hosting compartido se puede crear, solo en el servidor, un archivo
+ * pyme360-secrets.php que devuelva un array con esas dos claves. El .htaccess
+ * bloquea el acceso HTTP directo a ese archivo.
  */
 
-// ── Config ───────────────────────────────────────────────────────────────────
-$SHARED_SECRET = '04ca0df36df23e92d87e6e6dcb7ba00cdb53b20e07145f3b';
 $STORE = __DIR__ . '/eventos.jsonl';
+$SERVER_SECRETS = [];
+$SERVER_SECRET_FILE = __DIR__ . '/pyme360-secrets.php';
+if (is_file($SERVER_SECRET_FILE)) {
+    $loadedSecrets = require $SERVER_SECRET_FILE;
+    if (is_array($loadedSecrets)) $SERVER_SECRETS = $loadedSecrets;
+}
+$WEBHOOK_SECRET = trim((string)(getenv('RESEND_WEBHOOK_SECRET') ?: ($SERVER_SECRETS['RESEND_WEBHOOK_SECRET'] ?? '')));
+$PULL_SECRET = trim((string)(getenv('RESEND_PULL_SECRET') ?: ($SERVER_SECRETS['RESEND_PULL_SECRET'] ?? '')));
 
-// ── Modo PULL: el server local viene a recoger los eventos ───────────────────
-// GET ?pull=SECRETO[&clear=1]  -> devuelve el contenido de eventos.jsonl.
-// Con clear=1, ademas vacia el archivo (el server confirma que ya los proceso).
-if (isset($_GET['pull'])) {
-    if (!hash_equals($SHARED_SECRET, $_GET['pull'])) { http_response_code(403); exit('forbidden'); }
-    header('Content-Type: application/x-ndjson; charset=utf-8');
-    if (is_file($STORE)) {
-        readfile($STORE);
-        if (isset($_GET['clear']) && $_GET['clear'] === '1') {
-            // Vaciar de forma segura: truncar el archivo.
-            $fp = fopen($STORE, 'w'); if ($fp) { fclose($fp); }
-        }
-    }
+function jsonResponse(array $payload, int $status = 200): void
+{
+    http_response_code($status);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     exit;
 }
 
-// ── Modo WEBHOOK: Resend nos envia un evento (POST) ──────────────────────────
-// Verificacion ligera por secreto en la query (?k=SECRETO). Resend tambien firma
-// con Svix; aqui usamos el secreto compartido por simplicidad en Hostinger.
-$k = isset($_GET['k']) ? $_GET['k'] : '';
-if (!hash_equals($SHARED_SECRET, $k)) { http_response_code(403); exit('forbidden'); }
+function requestHeader(string $name): string
+{
+    $key = 'HTTP_' . strtoupper(str_replace('-', '_', $name));
+    return trim((string)($_SERVER[$key] ?? ''));
+}
 
-$raw = file_get_contents('php://input');
-if ($raw === false || $raw === '') { http_response_code(400); exit('empty'); }
+function requirePullAuth(string $secret): void
+{
+    $provided = requestHeader('X-Pyme360-Pull-Token');
+    if ($secret === '' || $provided === '' || !hash_equals($secret, $provided)) {
+        jsonResponse(['ok' => false, 'error' => 'forbidden'], 403);
+    }
+}
 
-// Validar que es JSON; si no, guardar crudo igualmente para no perder nada.
-$decoded = json_decode($raw, true);
-$type = (is_array($decoded) && isset($decoded['type'])) ? $decoded['type'] : 'unknown';
+function verifyWebhookSignature(string $raw, string $secret): bool
+{
+    if ($secret === '') return false;
 
-// Guardar una linea con marca de tiempo de recepcion + el payload original.
-$record = json_encode([
-    'received_at' => gmdate('c'),
-    'type'        => $type,
-    'payload'     => $decoded !== null ? $decoded : $raw,
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    // Resend utiliza Svix. Se acepta v1 con una clave whsec_ o una clave HMAC
+    // directa para instalaciones que pasan por un proxy propio.
+    $svixId = requestHeader('svix-id');
+    $svixTimestamp = requestHeader('svix-timestamp');
+    $svixSignature = requestHeader('svix-signature');
+    if ($svixId !== '' && $svixTimestamp !== '' && $svixSignature !== '') {
+        if (!ctype_digit($svixTimestamp) || abs(time() - (int)$svixTimestamp) > 300) return false;
+        $encodedSecret = str_starts_with($secret, 'whsec_') ? substr($secret, 6) : $secret;
+        $key = base64_decode($encodedSecret, true);
+        if ($key === false) $key = $encodedSecret;
+        $expected = base64_encode(hash_hmac('sha256', $svixId . '.' . $svixTimestamp . '.' . $raw, $key, true));
+        foreach (preg_split('/\s+/', $svixSignature) as $candidate) {
+            [$version, $value] = array_pad(explode(',', $candidate, 2), 2, '');
+            if ($version === 'v1' && $value !== '' && hash_equals($expected, $value)) return true;
+        }
+        return false;
+    }
 
-@file_put_contents($STORE, $record . "\n", FILE_APPEND | LOCK_EX);
+    $provided = requestHeader('X-Pyme360-Signature') ?: requestHeader('X-Webhook-Signature');
+    if (str_starts_with($provided, 'sha256=')) $provided = substr($provided, 7);
+    $expected = hash_hmac('sha256', $raw, $secret);
+    return $provided !== '' && hash_equals($expected, $provided);
+}
 
-// Resend espera un 200 rapido.
-http_response_code(200);
-echo 'ok';
+function openStore(string $path)
+{
+    $fp = fopen($path, 'c+');
+    if ($fp === false) jsonResponse(['ok' => false, 'error' => 'store_unavailable'], 503);
+    return $fp;
+}
+
+function readSnapshot(string $path): array
+{
+    $fp = openStore($path);
+    if (!flock($fp, LOCK_SH)) { fclose($fp); jsonResponse(['ok' => false, 'error' => 'store_lock_failed'], 503); }
+    rewind($fp);
+    $contents = stream_get_contents($fp);
+    $contents = $contents === false ? '' : $contents;
+    $events = [];
+    foreach (preg_split('/\r?\n/', $contents) as $line) {
+        $line = trim($line);
+        if ($line === '') continue;
+        $record = json_decode($line, true);
+        $events[] = is_array($record)
+            ? $record
+            : ['received_at' => gmdate('c'), 'type' => 'unknown', 'payload' => $line];
+    }
+    $snapshotId = hash('sha256', $contents);
+    flock($fp, LOCK_UN);
+    fclose($fp);
+    return ['snapshot_id' => $snapshotId, 'events' => $events];
+}
+
+function ackSnapshot(string $path, string $snapshotId): void
+{
+    if ($snapshotId === '') jsonResponse(['ok' => false, 'error' => 'snapshot_id_required'], 400);
+    $fp = openStore($path);
+    if (!flock($fp, LOCK_EX)) { fclose($fp); jsonResponse(['ok' => false, 'error' => 'store_lock_failed'], 503); }
+    rewind($fp);
+    $contents = stream_get_contents($fp);
+    $contents = $contents === false ? '' : $contents;
+    if (!hash_equals(hash('sha256', $contents), $snapshotId)) {
+        flock($fp, LOCK_UN);
+        fclose($fp);
+        jsonResponse(['ok' => false, 'error' => 'snapshot_changed'], 409);
+    }
+    ftruncate($fp, 0);
+    fflush($fp);
+    flock($fp, LOCK_UN);
+    fclose($fp);
+    jsonResponse(['ok' => true, 'acked_snapshot_id' => $snapshotId]);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $raw = file_get_contents('php://input');
+    $raw = $raw === false ? '' : $raw;
+    $input = json_decode($raw, true);
+    $action = is_array($input) ? (string)($input['action'] ?? '') : '';
+
+    if ($action === 'pull') {
+        requirePullAuth($PULL_SECRET);
+        $snapshot = readSnapshot($STORE);
+        jsonResponse(['ok' => true, 'snapshot_id' => $snapshot['snapshot_id'], 'events' => $snapshot['events']]);
+    }
+    if ($action === 'ack') {
+        requirePullAuth($PULL_SECRET);
+        ackSnapshot($STORE, (string)($input['snapshot_id'] ?? ''));
+    }
+
+    if ($raw === '') jsonResponse(['ok' => false, 'error' => 'empty'], 400);
+    if (!verifyWebhookSignature($raw, $WEBHOOK_SECRET)) {
+        jsonResponse(['ok' => false, 'error' => 'invalid_signature'], 403);
+    }
+
+    $decoded = json_decode($raw, true);
+    $type = is_array($decoded) ? (string)($decoded['type'] ?? 'unknown') : 'unknown';
+    $record = json_encode([
+        'received_at' => gmdate('c'),
+        'type' => $type,
+        'payload' => is_array($decoded) ? $decoded : $raw,
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    if ($record === false) jsonResponse(['ok' => false, 'error' => 'json_encode_failed'], 500);
+
+    $fp = openStore($STORE);
+    if (!flock($fp, LOCK_EX)) { fclose($fp); jsonResponse(['ok' => false, 'error' => 'store_lock_failed'], 503); }
+    fseek($fp, 0, SEEK_END);
+    $written = fwrite($fp, $record . "\n");
+    fflush($fp);
+    flock($fp, LOCK_UN);
+    fclose($fp);
+    if ($written === false) jsonResponse(['ok' => false, 'error' => 'store_write_failed'], 503);
+    jsonResponse(['ok' => true]);
+}
+
+jsonResponse(['ok' => false, 'error' => 'method_not_allowed'], 405);

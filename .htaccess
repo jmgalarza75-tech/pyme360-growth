@@ -1,5 +1,15 @@
-# Pyme360 · protección del endpoint de baja
-# Sube este .htaccess junto a unsubscribe.php a la raíz pública de pyme360.online.
+# Pyme360 · protección de endpoints públicos y almacenes privados
+# Este archivo se despliega en la raíz pública de pyme360.online.
+
+# 0) El webhook debe llegar a PHP para que valide su propia firma/token.
+<Files "webhook-resend.php">
+  Require all granted
+</Files>
+
+# 0b) La configuración de secretos solo la incluye PHP; nunca se sirve por HTTP.
+<Files "pyme360-secrets.php">
+  Require all denied
+</Files>
 
 # 1) Bloquear acceso público al registro de bajas (datos personales)
 <Files "bajas.csv">

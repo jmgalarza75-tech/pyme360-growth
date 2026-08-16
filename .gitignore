@@ -1,4 +1,5 @@
 config.php
+pyme360-secrets.php
 
 eventos.jsonl
 bajas.csv
