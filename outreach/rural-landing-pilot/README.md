@@ -12,6 +12,10 @@ No buscamos volumen. Buscamos señales de mercado.
 
 > Miramos web, Google, fotos, reseñas, contacto y canales como Booking. Enviamos 3–5 observaciones claras sobre qué puede estar frenando reservas directas, confianza o contacto.
 
+Después de la mini-revisión, se puede ofrecer un **acompañamiento de estrategia de marketing online y comercialización de 30 días**, con alcance cerrado. El detalle está en `oferta-piloto-acompanamiento.md`.
+
+El acompañamiento no se presenta como software, PMS, agencia 360 ni promesa de ocupación. Se valida si el propietario paga por tener prioridades claras y ayuda para aplicar mejoras.
+
 ## Criterios de candidatos
 
 Priorizar alojamientos que cumplan 2+ criterios:
@@ -67,6 +71,12 @@ Evitar en primera tanda:
 
 - `prospectos-piloto.csv`: lista inicial de 20 candidatos.
 - `mensajes-frio.md`: mensajes para WhatsApp, email, LinkedIn/contacto web y follow-ups.
+- `campana-ab-test-rural-01.md`: diseño operativo del test A/B para comparar CTA de respuesta simple vs respuesta + landing.
+- `campana-ab-test-rural-01-tracker.csv`: tracker de campaña con variantes A/B, estados, métricas y resultados.
+- `auditoria-minima-ab-rural-01.json`: salida técnica de la auditoría mínima automatizada para leads A/B.
+- `borradores-email-1-ab-rural-01.md`: bandeja de aprobación con scoring, CQC y Email 1 personalizado para los leads aptos.
+- `borradores-outlook-creados-2026-07-24.md`: registro verificado de los borradores creados en Outlook para P008 y P013.
+- `envio-ejecutado-ab-rural-01-2026-07-24.md`: registro verificado del envío de Email 1 a P008 y P013.
 - `plantilla-mini-revision.md`: estructura para entregar la mini-revisión.
 - `primeros-3-observaciones-y-mensajes.md`: observaciones reales iniciales y mensajes personalizados para los tres primeros candidatos.
 - `cuestionario-mini-revision.md`: cuestionario corto/completo para cuando un lead responda “sí”.

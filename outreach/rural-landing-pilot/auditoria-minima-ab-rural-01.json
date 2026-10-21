@@ -1,0 +1,177 @@
+[
+  {
+    "lead_id": "P004",
+    "nombre": "Casa Rural La Campiña",
+    "variante": "pendiente",
+    "search": [],
+    "candidate_urls": [],
+    "page": {
+      "ok": false,
+      "error": "no candidate url"
+    }
+  },
+  {
+    "lead_id": "P005",
+    "nombre": "Rural house La Furnia",
+    "variante": "pendiente",
+    "search": [],
+    "candidate_urls": [],
+    "page": {
+      "ok": false,
+      "error": "no candidate url"
+    }
+  },
+  {
+    "lead_id": "P006",
+    "nombre": "Parque los Patos",
+    "variante": "pendiente",
+    "search": [],
+    "candidate_urls": [],
+    "page": {
+      "ok": false,
+      "error": "no candidate url"
+    }
+  },
+  {
+    "lead_id": "P007",
+    "nombre": "Hotel Rural los Tilos",
+    "variante": "pendiente",
+    "search": [],
+    "candidate_urls": [],
+    "page": {
+      "ok": false,
+      "error": "no candidate url"
+    }
+  },
+  {
+    "lead_id": "P008",
+    "nombre": "El Refugio Appartments & Villa",
+    "variante": "pendiente",
+    "search": [],
+    "candidate_urls": [
+      "https://www.111teneriffa.com/"
+    ],
+    "page": {
+      "url": "https://www.111teneriffa.com/",
+      "ok": true,
+      "error": null,
+      "final_url": "https://www.el-refugio-tenerife.com/",
+      "title": "El Refugio - El Refugio",
+      "meta": "",
+      "emails": [
+        "info@el-refugio-tenerife.com"
+      ],
+      "phones": [
+        "+34 639 644 576",
+        "00000000 0",
+        "100.07 100.07",
+        "100.07-100.07",
+        "109.28 256 9.21 35",
+        "12.28 12.28 32.2 12.",
+        "12.28 12.28-12.28 3",
+        "12.28-12.28 12.28-3"
+      ],
+      "has_whatsapp": true,
+      "has_booking_word": false,
+      "has_airbnb_word": false,
+      "has_reserva_word": false,
+      "has_disponibilidad": false,
+      "key_links": [
+        {
+          "href": "https://www.facebook.com/ElRefugioTeneriffa/",
+          "label": "Facebook"
+        }
+      ]
+    }
+  },
+  {
+    "lead_id": "P012",
+    "nombre": "Casa Antonia Guest House",
+    "variante": "pendiente",
+    "search": [],
+    "candidate_urls": [],
+    "page": {
+      "ok": false,
+      "error": "no candidate url"
+    }
+  },
+  {
+    "lead_id": "P013",
+    "nombre": "B&B La Laguna",
+    "variante": "pendiente",
+    "search": [],
+    "candidate_urls": [
+      "http://www.bblalaguna.com/"
+    ],
+    "page": {
+      "url": "http://www.bblalaguna.com/",
+      "ok": true,
+      "error": null,
+      "final_url": "https://www.bblalaguna.com/",
+      "title": "Inicio - Home",
+      "meta": "",
+      "emails": [
+        "info@bblalaguna.com"
+      ],
+      "phones": [
+        "+34 634339826",
+        "0-1.71 1.39-3.1 3.1-3.1",
+        "0.0541583111",
+        "0.0952333024",
+        "0.1000000015)",
+        "0.1199999973)",
+        "0.150000006)",
+        "0.200000003)"
+      ],
+      "has_whatsapp": true,
+      "has_booking_word": true,
+      "has_airbnb_word": false,
+      "has_reserva_word": true,
+      "has_disponibilidad": false,
+      "key_links": [
+        {
+          "href": "https://www.google.com/url?q=https%3A%2F%2Fwa.me%2F34634339826&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw2SMj3TKLo1hK85IRWWBjHa",
+          "label": "Reservar Whatsapp"
+        },
+        {
+          "href": "https://www.google.com/url?q=https%3A%2F%2Fwa.me%2F34634339826&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw2SMj3TKLo1hK85IRWWBjHa",
+          "label": "Booking Whatsapp"
+        },
+        {
+          "href": "https://www.google.com/url?q=https%3A%2F%2Fwa.me%2F34634339826&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw2SMj3TKLo1hK85IRWWBjHa",
+          "label": "Reserva por Whatsapp"
+        },
+        {
+          "href": "https://www.google.com/url?q=https%3A%2F%2Fwa.me%2F34634339826&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw2SMj3TKLo1hK85IRWWBjHa",
+          "label": "Booking Whatsapp"
+        },
+        {
+          "href": "mailto:info@bblalaguna.com",
+          "label": "info@bblalaguna.com"
+        }
+      ]
+    }
+  },
+  {
+    "lead_id": "P003",
+    "nombre": "Pensión Germán",
+    "variante": "pendiente",
+    "search": [],
+    "candidate_urls": [],
+    "page": {
+      "ok": false,
+      "error": "no candidate url"
+    }
+  },
+  {
+    "lead_id": "P010",
+    "nombre": "Faisan Azul",
+    "variante": "pendiente",
+    "search": [],
+    "candidate_urls": [],
+    "page": {
+      "ok": false,
+      "error": "no candidate url"
+    }
+  }
+]
