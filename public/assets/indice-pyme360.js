@@ -848,38 +848,93 @@ if (leakGallery && galleryPrev && galleryNext) {
         statusMsg.className = "form-status-msg form-wide";
       }
 
-      // Cálculo del informe formateado
+      // Cálculo del informe formateado de Autoevaluación 7P
       let sum = 0;
       for (let i = 1; i <= 14; i++) sum += (state.answers[i] || 1);
       const globalScore = (sum / 14).toFixed(1);
 
-      const pSummary = [
-        `P1 Producto: ${(((state.answers[1] || 1) + (state.answers[2] || 1)) / 2).toFixed(1)}/10`,
-        `P2 Precio: ${(((state.answers[3] || 1) + (state.answers[4] || 1)) / 2).toFixed(1)}/10`,
-        `P3 Plaza (Canales): ${(((state.answers[5] || 1) + (state.answers[6] || 1)) / 2).toFixed(1)}/10`,
-        `P4 Promoción: ${(((state.answers[7] || 1) + (state.answers[8] || 1)) / 2).toFixed(1)}/10`,
-        `P5 Personas: ${(((state.answers[9] || 1) + (state.answers[10] || 1)) / 2).toFixed(1)}/10`,
-        `P6 Procesos: ${(((state.answers[11] || 1) + (state.answers[12] || 1)) / 2).toFixed(1)}/10`,
-        `P7 Evidencia: ${(((state.answers[13] || 1) + (state.answers[14] || 1)) / 2).toFixed(1)}/10`
-      ].join(" | ");
+      const questionLabels = {
+        1: "P1 Producto · Definición de huésped objetivo por temporada",
+        2: "P1 Producto · Claridad de la propuesta y valor diferencial",
+        3: "P2 Precio · Tarifas estructuradas por temporada y estancia",
+        4: "P2 Precio · Control del margen neto tras comisiones de venta",
+        5: "P3 Canales · Canales de venta alineados con tu público objetivo",
+        6: "P3 Canales · Calendarios unificados y sincronizados sin solapes",
+        7: "P4 Promoción · Plan comercial para fechas valle y meses flojos",
+        8: "P4 Promoción · Medición del retorno de acciones comerciales",
+        9: "P5 Personas · Responsabilidades comerciales y de atención claras",
+        10: "P5 Personas · Agilidad en respuesta a consultas calientes",
+        11: "P6 Procesos · Facilidad en el paso de consulta a reserva directa",
+        12: "P6 Procesos · Seguimiento y fidelización de antiguos huéspedes",
+        13: "P7 Evidencia · Fotografías y vídeos atractivos y actualizados",
+        14: "P7 Evidencia · Información práctica clara en web (normas, servicios)"
+      };
 
-      const answersDetail = [];
+      const pScores = [
+        { key: "p1", name: "1. Producto", score: (((state.answers[1] || 1) + (state.answers[2] || 1)) / 2) },
+        { key: "p2", name: "2. Precio", score: (((state.answers[3] || 1) + (state.answers[4] || 1)) / 2) },
+        { key: "p3", name: "3. Plaza (Canales)", score: (((state.answers[5] || 1) + (state.answers[6] || 1)) / 2) },
+        { key: "p4", name: "4. Promoción", score: (((state.answers[7] || 1) + (state.answers[8] || 1)) / 2) },
+        { key: "p5", name: "5. Personas", score: (((state.answers[9] || 1) + (state.answers[10] || 1)) / 2) },
+        { key: "p6", name: "6. Procesos", score: (((state.answers[11] || 1) + (state.answers[12] || 1)) / 2) },
+        { key: "p7", name: "7. Evidencia física y digital", score: (((state.answers[13] || 1) + (state.answers[14] || 1)) / 2) }
+      ];
+
+      const sortedP = [...pScores].sort((a, b) => a.score - b.score);
+      const prio1 = sortedP[0];
+      const prio2 = sortedP[1];
+      const fortaleza = sortedP[sortedP.length - 1];
+
+      const pSummary = pScores.map(p => `${p.name}: ${p.score.toFixed(1)}/10`).join(" | ");
+
+      const detailedAnswers = [];
       for (let i = 1; i <= 14; i++) {
-        answersDetail.push(`Q${i}: ${state.answers[i] || 1}/10`);
+        detailedAnswers.push(`- Q${i < 10 ? '0' + i : i} [${questionLabels[i]}]: ${state.answers[i] || 1} / 10`);
       }
 
       const problemReportText = [
-        `=== AUTOEVALUACIÓN COMERCIAL 7P ===`,
-        `Alojamiento: ${state.profile.business || nameVal}`,
-        `Tipo: ${state.profile.sectorText || state.profile.sector}`,
-        `Unidades: ${state.profile.units}`,
-        `Ubicación: ${state.profile.location}`,
-        `Web: ${state.profile.web || "No facilitada"}`,
+        `============================================================`,
+        `INFORME COMPLETO DE AUTOEVALUACIÓN COMERCIAL 7P`,
+        `Pyme360 Growth · Alojamientos Rurales`,
+        `============================================================`,
         ``,
-        `PUNTUACIÓN GLOBAL: ${globalScore} / 10`,
-        `DESGLOSE 7 P: ${pSummary}`,
-        `RESPUESTAS DETALLADAS: ${answersDetail.join(", ")}`,
-        `SOLICITUD: Envío de informe detallado con observaciones comerciales aplicadas.`
+        `DATOS DEL ALOJAMIENTO:`,
+        `- Alojamiento: ${state.profile.business || nameVal}`,
+        `- Tipo: ${state.profile.sectorText || state.profile.sector || "No especificado"}`,
+        `- Habitaciones / Unidades: ${state.profile.units || "No especificado"}`,
+        `- Ubicación: ${state.profile.location || "Sin especificar"}`,
+        `- Web o enlace: ${state.profile.web || "No facilitada"}`,
+        ``,
+        `DATOS DE CONTACTO DEL RESPONSABLE:`,
+        `- Nombre: ${nameVal}`,
+        `- Email: ${emailVal}`,
+        `- Teléfono / WhatsApp: ${phoneVal || "No facilitado"}`,
+        `- Newsletter comercial: ${newsletterBox && newsletterBox.checked ? "Sí, suscrito" : "No"}`,
+        ``,
+        `------------------------------------------------------------`,
+        `RESULTADO GLOBAL: ${globalScore} / 10 (${Math.round(globalScore * 10)}% de madurez comercial)`,
+        `------------------------------------------------------------`,
+        ``,
+        `DESGLOSE DE LAS 7 P DEL MARKETING MIX:`,
+        pScores.map(p => `- ${p.name}: ${p.score.toFixed(1)} / 10`).join("\n"),
+        ``,
+        `------------------------------------------------------------`,
+        `LAS 2 PRIORIDADES CRÍTICAS DE MEJORA:`,
+        `1. ${prio1.name} (${prio1.score.toFixed(1)}/10):`,
+        `   ${pInsights[prio1.key]?.priority || "Revisar y estructurar este canal para frenar fugas de reservas."}`,
+        ``,
+        `2. ${prio2.name} (${prio2.score.toFixed(1)}/10):`,
+        `   ${pInsights[prio2.key]?.priority || "Ajustar procesos para mejorar la conversión directa."}`,
+        ``,
+        `FORTALEZA PRINCIPAL A POTENCIAR:`,
+        `- ${fortaleza.name} (${fortaleza.score.toFixed(1)}/10):`,
+        `   ${pInsights[fortaleza.key]?.strength || "Área con mayor consolidación comercial."}`,
+        ``,
+        `------------------------------------------------------------`,
+        `DETALLE DE LAS 14 PREGUNTAS Y PUNTUACIÓN (1 al 10):`,
+        detailedAnswers.join("\n"),
+        ``,
+        `============================================================`
       ].join("\n");
 
       const payload = {
