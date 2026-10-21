@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/pyme360-public.css?v=20261021-13">
+  <link rel="stylesheet" href="../assets/pyme360-public.css?v=20261021-15">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -131,24 +131,35 @@
   <main id="top">
     <section class="hero hero-rural-panoramic section">
       <div class="hero-copy hero-zoom-entrance">
-        <span class="hero-kicker-pill">
-          <span class="kicker-pulse-dot"></span> Tu acompañamiento comercial y digital
-        </span>
-        <h1 class="hero-title-cinematic">
-          <span class="title-sub">analizamos qué falla y</span>
-          <span class="title-main">VENDEMOS MEJOR TU ALOJAMIENTO</span>
-        </h1>
-        <p class="hero-lede">Ni te vendemos software ni te dejamos solo con informes: <strong>nos sentamos contigo a mejorar tus servicios</strong> y a vender mejor mes a mes.</p>
-        <div class="flatlogic-actions hero-actions">
-          <a class="flatlogic-btn flatlogic-btn-primary button button-primary hero-btn-main" href="#diagnostico">Comenzar autoevaluación gratuita <span class="arrow">↓</span></a>
-          <a class="flatlogic-btn flatlogic-btn-secondary button button-secondary hero-btn-secondary" href="#como-funciona">Cómo lo hacemos fácil <span class="arrow">↓</span></a>
+        <!-- 1: Kicker y subtítulo -->
+        <div class="hero-stage-1">
+          <span class="hero-kicker-pill">
+            <span class="kicker-pulse-dot"></span> Tu acompañamiento comercial y digital
+          </span>
+          <div class="title-sub">analizamos qué falla y</div>
         </div>
-        <p class="hero-trust-note">No pierdas más energía y realiza tu autoevaluación</p>
+
+        <!-- 2: Título principal en grande -->
+        <div class="hero-stage-2">
+          <h1 class="hero-title-cinematic">
+            <span class="title-main">VENDEMOS MEJOR TU ALOJAMIENTO</span>
+          </h1>
+        </div>
+
+        <!-- 3: Párrafo + Botones + Nota -->
+        <div class="hero-stage-3">
+          <p class="hero-lede">Ni te vendemos software ni te dejamos solo con informes: <strong>nos sentamos contigo a mejorar tus servicios</strong> y a vender mejor mes a mes.</p>
+          <div class="flatlogic-actions hero-actions">
+            <a class="flatlogic-btn flatlogic-btn-primary button button-primary hero-btn-main" href="#diagnostico">Comenzar autoevaluación gratuita <span class="arrow">↓</span></a>
+            <a class="flatlogic-btn flatlogic-btn-secondary button button-secondary hero-btn-secondary" href="#como-funciona">Cómo lo hacemos fácil <span class="arrow">↓</span></a>
+          </div>
+          <p class="hero-trust-note">No pierdas más energía y realiza tu autoevaluación</p>
+        </div>
       </div>
     </section>
 
     <!-- 4 Fichas en el borde inferior: Cómo lo hacemos fácil -->
-    <div id="como-funciona" class="hero-bottom-dock" aria-label="Cómo lo hacemos fácil en 4 fases">
+    <div id="como-funciona" class="hero-bottom-dock hero-stage-4 scroll-reveal-right" aria-label="Cómo lo hacemos fácil en 4 fases">
         <span id="situaciones" style="display:none;"></span>
         <div class="dock-header-bar">
           <span class="dock-header-pill">
@@ -158,7 +169,7 @@
         </div>
         <div class="dock-grid">
           <!-- Ficha 01 -->
-          <article class="dock-card dock-card-1">
+          <article class="dock-card dock-card-1 scroll-reveal-right stagger-1">
             <header class="dock-card-header">
               <h3 class="dock-title">Auditoría rápida</h3>
               <p class="dock-subtitle">Analizamos qué falla</p>
@@ -173,7 +184,7 @@
           </article>
 
           <!-- Ficha 02 -->
-          <article class="dock-card dock-card-2">
+          <article class="dock-card dock-card-2 scroll-reveal-right stagger-2">
             <header class="dock-card-header">
               <h3 class="dock-title">Posicionamiento</h3>
               <p class="dock-subtitle">Ponemos en valor tu producto</p>
@@ -188,7 +199,7 @@
           </article>
 
           <!-- Ficha 03 -->
-          <article class="dock-card dock-card-3">
+          <article class="dock-card dock-card-3 scroll-reveal-right stagger-3">
             <header class="dock-card-header">
               <h3 class="dock-title">Conversión</h3>
               <p class="dock-subtitle">Reserva directa ágil</p>
@@ -203,7 +214,7 @@
           </article>
 
           <!-- Ficha 04 -->
-          <article class="dock-card dock-card-4">
+          <article class="dock-card dock-card-4 scroll-reveal-right stagger-4">
             <header class="dock-card-header">
               <h3 class="dock-title">Crecimiento</h3>
               <p class="dock-subtitle">Acompañamiento continuo</p>
@@ -225,7 +236,7 @@
          BLOQUE 1: LA HERRAMIENTA / AUTOEVALUACIÓN COMERCIAL GRATUITA
          ===================================================================== -->
 <section id="diagnostico" class="diagnosis section diagnosis-rural autoevaluacion-section">
-      <div class="diagnosis-copy diagnosis-header-wrapper">
+      <div class="diagnosis-copy diagnosis-header-wrapper scroll-reveal-right">
         <span class="dock-header-pill" style="margin-bottom: 12px; display: inline-flex;">
           <span class="dock-pulse-dot"></span> Autoevaluación comercial en 5 minutos
         </span>
@@ -234,7 +245,7 @@
         
         <!-- Recorrido en 4 pasos: Diseño fluido, responsive e integrado -->
                 <!-- Recorrido en 4 pasos: Diseño fluido, responsive e integrado -->
-        <div class="quiz-flow-strip" role="region" aria-label="Cómo funciona la autoevaluación en 4 pasos">
+        <div class="quiz-flow-strip scroll-reveal-right" role="region" aria-label="Cómo funciona la autoevaluación en 4 pasos">
           <div class="flow-step-item">
             <div class="flow-step-top">
               <span class="flow-step-badge">01</span>
@@ -272,7 +283,7 @@
           </div>
         </div>
 
-        <div class="quiz-trust-badge">
+        <div class="quiz-trust-badge scroll-reveal-right">
           <svg class="trust-shield-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
@@ -996,7 +1007,7 @@
          BLOQUE 2: LA SOLUCIÓN Y ACOMPAÑAMIENTO PYME360
          Cómo trabajamos contigo para solucionar las prioridades detectadas
          ===================================================================== -->
-    <section id="solucion-pyme360" class="solution-bridge-section section">
+    <section id="solucion-pyme360" class="solution-bridge-section section scroll-reveal-right">
       <div class="section-heading">
         <p class="eyebrow">De la autoevaluación a los resultados</p>
         <h2>Ya conoces tus prioridades.<br>Así te acompañamos a solucionarlas mes a mes</h2>
@@ -1004,14 +1015,14 @@
       </div>
     </section>
 
-<section id="antes-despues" class="system section bento-comparison-section">
+<section id="antes-despues" class="system section bento-comparison-section scroll-reveal-right">
       <div class="section-heading">
         <p class="eyebrow">Diagnóstico vs. Solución</p>
         <h2>¿Qué estás haciendo hoy frente a lo que haremos juntos?</h2>
         <p>No se trata de trabajar más horas ni de comprar software innecesario. Se trata de frenar las fugas que te cuestan dinero y poner tu comercialización en marcha.</p>
       </div>
       <div class="bento-comparison-grid">
-        <div class="bento-col bento-before">
+        <div class="bento-col bento-before scroll-reveal-right stagger-1">
           <div class="bento-col-header">
             <span class="status-badge badge-danger">Tu situación actual</span>
             <h3>Lo que suele estar fallando hoy</h3>
@@ -1048,7 +1059,7 @@
           </ul>
         </div>
 
-        <div class="bento-col bento-after">
+        <div class="bento-col bento-after scroll-reveal-right stagger-2">
           <div class="bento-col-header">
             <span class="status-badge badge-success">Con Pyme360 a tu lado</span>
             <h3>Lo que conseguimos como tu equipo externo</h3>
@@ -1344,7 +1355,7 @@
 
     <!-- Preguntas Frecuentes (Acordeón Desplegable) -->
 
-<section id="dudas" class="faq section">
+<section id="dudas" class="faq section scroll-reveal-right">
       <div class="section-heading">
         <p class="eyebrow">Dudas normales</p>
         <h2>Preguntas normales antes de pedirlo</h2>
@@ -1477,7 +1488,7 @@
 
     <!-- Cierre y llamada final -->
     <section class="final-cta-section section">
-      <div class="final-cta-card">
+      <div class="final-cta-card scroll-reveal-right">
         <span class="dock-header-pill"><span class="dock-pulse-dot"></span> Pyme360 Growth</span>
         <h3>Frena comisiones innecesarias y vende mejor tu alojamiento</h3>
         <p>Comienza completando tu autoevaluación gratuita en 5 minutos o escríbenos directamente por WhatsApp para una primera valoración sin compromiso.</p>
@@ -1494,6 +1505,6 @@
     <a href="../index.html">Volver a la home</a>
   </footer>
 
-  <script src="../assets/indice-pyme360.js?v=20261021-12"></script>
+  <script src="../assets/indice-pyme360.js?v=20261021-15"></script>
 </body>
 </html>

@@ -7829,3 +7829,121 @@ body.indice-page .site-footer {
     line-height: 1.35 !important;
   }
 }
+
+
+/* ==========================================================================
+   SECUENCIA CINEMATOGRÁFICA HERO: 1, 2, 3, 4 DE DERECHA A IZQUIERDA
+   Al abrir la web, solo se ve la imagen de fondo limpia y entran en orden:
+   1: Píldora + "analizamos qué falla y"
+   2: "VENDEMOS MEJOR TU ALOJAMIENTO"
+   3: Párrafo + Botones de acción + Nota
+   4: Fases metodológicas en el dock inferior
+   ========================================================================== */
+
+html.rural-html,
+body.indice-page {
+  overflow-x: hidden !important;
+}
+
+.indice-page .hero-stage-1,
+.indice-page .hero-stage-2,
+.indice-page .hero-stage-3,
+.indice-page .hero-stage-4 {
+  opacity: 0;
+  transform: translate3d(65px, 0, 0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.indice-page .hero-stage-1.is-entered,
+.indice-page .hero-stage-2.is-entered,
+.indice-page .hero-stage-3.is-entered,
+.indice-page .hero-stage-4.is-entered {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* Fallback de seguridad en CSS puro si JS no ejecutase */
+@keyframes heroFallbackReveal {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.indice-page .hero-stage-1:not(.is-entered) { animation: heroFallbackReveal 0.6s ease 3.2s forwards; }
+.indice-page .hero-stage-2:not(.is-entered) { animation: heroFallbackReveal 0.6s ease 3.8s forwards; }
+.indice-page .hero-stage-3:not(.is-entered) { animation: heroFallbackReveal 0.6s ease 4.4s forwards; }
+.indice-page .hero-stage-4:not(.is-entered) { animation: heroFallbackReveal 0.6s ease 5.0s forwards; }
+
+.indice-page .hero-stage-1 {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  margin-bottom: 8px !important;
+}
+.indice-page .hero-stage-1 .hero-kicker-pill {
+  margin-bottom: 14px !important;
+}
+.indice-page .hero-stage-1 .title-sub {
+  margin: 0 0 6px 0 !important;
+}
+
+.indice-page .hero-stage-2 {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  margin-bottom: 20px !important;
+}
+.indice-page .hero-stage-2 .hero-title-cinematic {
+  margin: 0 !important;
+  gap: 0 !important;
+}
+
+.indice-page .hero-stage-3 {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+.indice-page .hero-stage-3 .hero-lede {
+  margin: 0 auto 24px auto !important;
+}
+
+/* ==========================================================================
+   SCROLL REVEAL: APARECEN DE DERECHA A IZQUIERDA AL HACER SCROLL
+   ========================================================================== */
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translate3d(55px, 0, 0);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-right.is-visible {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* Staggers progresivos para listas y rejillas */
+.scroll-reveal-right.stagger-1 { transition-delay: 0.08s; }
+.scroll-reveal-right.stagger-2 { transition-delay: 0.18s; }
+.scroll-reveal-right.stagger-3 { transition-delay: 0.28s; }
+.scroll-reveal-right.stagger-4 { transition-delay: 0.38s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .indice-page .hero-stage-1,
+  .indice-page .hero-stage-2,
+  .indice-page .hero-stage-3,
+  .indice-page .hero-stage-4,
+  .scroll-reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

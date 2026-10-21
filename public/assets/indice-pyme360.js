@@ -1164,3 +1164,117 @@ if (leakGallery && galleryPrev && galleryNext) {
 })();
 
 
+  // ========================================================
+  // Secuencia Cinematográfica de Entrada del Hero (1 -> 2 -> 3 -> 4)
+  // Al inicio solo se ve la imagen de fondo limpia, y los textos van entrando de derecha a izquierda
+  // ========================================================
+  function initHeroCinematicSequence() {
+    if (typeof document === "undefined" || typeof document.querySelector !== "function") return;
+
+    const s1 = document.querySelector(".hero-stage-1");
+    const s2 = document.querySelector(".hero-stage-2");
+    const s3 = document.querySelector(".hero-stage-3");
+    const s4 = document.querySelector(".hero-stage-4");
+
+    if (!s1 || !s2 || !s3) return;
+
+    // Si viene con ancla o demo, activar inmediatamente
+    if (typeof window !== "undefined" && window.location) {
+      if (window.location.hash || window.location.search.includes("demo=1")) {
+        [s1, s2, s3, s4].forEach((el) => el && el.classList.add("is-entered"));
+        return;
+      }
+    }
+
+    // 0ms a 500ms: Solo la imagen de fondo visible
+    // 500ms: Entra 1 (Kicker + "analizamos qué falla y")
+    setTimeout(() => {
+      s1.classList.add("is-entered");
+    }, 500);
+
+    // 1250ms: Entra 2 ("VENDEMOS MEJOR TU ALOJAMIENTO")
+    setTimeout(() => {
+      s2.classList.add("is-entered");
+    }, 1250);
+
+    // 2000ms: Entra 3 (Párrafo + Botones + Nota)
+    setTimeout(() => {
+      s3.classList.add("is-entered");
+    }, 2000);
+
+    // 2750ms: Entra 4 (Fases metodológicas en dock)
+    setTimeout(() => {
+      if (s4) s4.classList.add("is-entered");
+    }, 2750);
+
+    // Si el usuario scrollea antes de terminar la secuencia, revelar de inmediato
+    if (typeof window !== "undefined" && typeof window.addEventListener === "function") {
+      const onScrollTrigger = () => {
+        if (window.scrollY > 30) {
+          [s1, s2, s3, s4].forEach((el) => el && el.classList.add("is-entered"));
+          window.removeEventListener("scroll", onScrollTrigger);
+        }
+      };
+      window.addEventListener("scroll", onScrollTrigger, { passive: true });
+    }
+  }
+
+  // ========================================================
+  // Scroll Reveal: Elementos aparecen de derecha a izquierda al hacer scroll
+  // ========================================================
+  function initScrollRevealRight() {
+    if (typeof document === "undefined" || typeof document.querySelectorAll !== "function") return;
+
+    const items = document.querySelectorAll(".scroll-reveal-right");
+    if (!items || items.length === 0) return;
+
+    if (!("IntersectionObserver" in window)) {
+      items.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.08
+      }
+    );
+
+    items.forEach((el) => {
+      observer.observe(el);
+    });
+
+    if (typeof window !== "undefined" && window.location) {
+      if (window.location.hash || window.location.search.includes("demo=1")) {
+        setTimeout(() => {
+          items.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight + 250) {
+              el.classList.add("is-visible");
+            }
+          });
+        }, 50);
+      }
+    }
+  }
+
+  if (typeof document !== "undefined") {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => {
+        initHeroCinematicSequence();
+        initScrollRevealRight();
+      });
+    } else {
+      initHeroCinematicSequence();
+      initScrollRevealRight();
+    }
+  }
