@@ -46,3 +46,8 @@ La web pública se despliega mediante Hostinger.
 - **Entrega de Correos Infalible**: Integración en `procesar-lead.php` de la API de Resend para entrega ejecutiva en bandeja de entrada de `jmgalarza75@gmail.com` con enlace directo de WhatsApp al lead, manteniendo `mail()` secundario con flag `-f` a `info@pyme360.online`.
 - **Despliegue y Pruebas**: Suite completa de 8 tests pasada (`rural-mobile-layout`, `indice-form`, `asset-cache`, `form-submit`, `indice-backend`, `legal-visual`, `layout`, `logo`), envío de prueba en vivo verificado con éxito y cambios desplegados a producción en Hostinger vía `origin/main`.
 
+### Sesión: 2026-10-22 (Parte 2) — Línea Editorial de Alto Prestigio y Ensayo 01
+- **Estrategia y Posicionamiento de Autoridad**: Se definió el manifiesto editorial de Pyme360 Growth basado en el principio de consultoría ejecutiva: destapar la patología y las fugas de rentabilidad del negocio con rigor y números reales, evitando tutoriales genéricos "hazlo tú mismo" que atraen a perfiles sin presupuesto y devalúan la marca.
+- **Creación de Carpeta `articulos/`**: Documento [`articulos/README.md`](./articulos/README.md) con el manifiesto editorial y la hoja de ruta de los 4 ensayos de dirección comercial.
+- **Ensayo 01 Completado**: [`articulos/la-falacia-del-85-por-ciento-ocupacion.md`](./articulos/la-falacia-del-85-por-ciento-ocupacion.md) (*La falacia del 85% de ocupación: por qué colgar el cartel de lleno no se nota en la cuenta bancaria*), analizando el desfase entre facturación bruta y margen neto, cancelaciones de OTAs a 48h, rotación perversa y la ausencia de soberanía comercial, con cierre hacia la autoevaluación 7P.
+
