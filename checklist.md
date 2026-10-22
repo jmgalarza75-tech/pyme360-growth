@@ -165,9 +165,9 @@ En un plazo máximo de 48 horas laborables nos pondremos en contacto contigo por
 
 ### Pendiente
 
-- [ ] Validar sintaxis PHP en un entorno con PHP instalado o en Hostinger (`php -l procesar-lead.php`).
-- [ ] Probar envío real desde Hostinger.
-- [ ] Confirmar que `config.php` en Hostinger sigue presente y no se sube a Git.
+- [x] Validar sintaxis PHP en un entorno con PHP instalado o en Hostinger (`php -l procesar-lead.php`).
+- [x] Probar envío real desde Hostinger (validado envío de lead e informe completo 7P por Resend y mail()).
+- [x] Confirmar que `config.php` en Hostinger sigue presente y no se sube a Git.
 - [ ] Decidir si se implementa reintento de emails.
 - [ ] Crear tarea/estado de contacto a 48 horas laborables si se requiere en BD/CRM.
 
@@ -390,4 +390,5 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 | 2026-07-23 | Cuestionario de mini-revisión creado: versión corta para email/WhatsApp, versión completa para formulario y CSV estructurado de campos. | `outreach/rural-landing-pilot/cuestionario-mini-revision.md`, `cuestionario-campos.csv`, `README.md` | OK: CSV validado con 18 campos; cuestionario diseñado para no meter fricción antes de que el lead responda “sí”. | Si entra una respuesta, enviar versión corta; si se quiere formulario externo, crear Tally/Google Form con `cuestionario-campos.csv`. |
 | 2026-07-24 | Continuidad del proyecto actualizada: `CLAUDE.md` documenta landing activa, reglas de copy aprobadas, piloto comercial, envíos realizados, cuestionario y seguimiento programado; checklist añade cron de revisión. | `CLAUDE.md`, `checklist.md` | OK: estado real consolidado; cron `e3af288a709b` programado para 2026-07-28 09:30, read-only y sin envíos automáticos. | Próximo hito: revisar respuestas o preparar follow-up útil tras la revisión programada. |
 | 2026-10-20 | Reestructuración estratégica de la landing rural basada en la investigación de `pyme360 hotels`: nuevo titular de equipo externo de comercialización, 4 situaciones reconocibles de propietarios (comisiones OTA, temporada baja, fuga móvil, falta de tiempo), portfolio de 3 soluciones (puesta a punto, campaña aplicada, acompañamiento continuo), adaptación por tipología (casas individuales, complejos multiunidad, hoteles rurales) y eliminación de bloque outbound obsoleto. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `checklist.md` | OK: tests `rural-mobile-layout`, `indice-form`, `indice-backend`, `form-submit` y `asset-cache` pasados al 100%. | Revisión visual de José y despliegue a Hostinger. |
+| 2026-10-22 | Paridad de diseño en las 4 tarjetas de flujo de autoevaluación (`.quiz-flow-strip` adopta estilo `.dock-card`: cabeceras con gradientes temáticos, borde acento 3px, badge frosted glass, títulos blancos, viñetas de color), solución de conflicto de especificidad CSS en subtítulos, e implementación del envío del **Informe Completo de Autoevaluación 7P** (puntuación global, desglose 7P, 2 prioridades críticas, 14 respuestas detalladas y botón WhatsApp) vía Resend API y `mail()` secundario. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `assets/indice-pyme360.js`, `public/assets/indice-pyme360.js`, `procesar-lead.php`, `claude.md`, `checklist.md` | OK: 8 tests pasados al 100% (`rural-mobile-layout`, `indice-form`, `asset-cache`, `form-submit`, `indice-backend`, `legal-visual`, `layout`, `logo`), prueba en vivo real de envío completada y recibida en Gmail, y cambios desplegados a producción en Hostinger. | Seguimiento de leads entrantes. |
 
