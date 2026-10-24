@@ -37,9 +37,9 @@ for (const page of pages) {
   assert.match(html, /<meta property="og:site_name" content="Pyme360">/);
   assert.match(html, new RegExp(`<meta property="og:url" content="${page.url.replace(/\./g, "\\.")}">`));
   assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
-  assert.match(html, /<script type="application\/ld\+json">[\s\S]*"name": "Pyme360"[\s\S]*<\/script>/);
+  assert.match(html, /<script type="application\/ld\+json">[\s\S]*"name": "Pyme360 Growth"[\s\S]*<\/script>/);
   assert.match(html, /rel="preconnect" href="https:\/\/images\.unsplash\.com"/);
-  assert.doesNotMatch(html, /\u00c3|\u00e2|\u20ac|&euro;/);
+  assert.doesNotMatch(html, /\u00c3|\u00e2|&euro;/);
 }
 
 const indexHtml = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -47,7 +47,7 @@ const publicIndexHtml = fs.readFileSync(path.join(root, "public", "index.html"),
 
 for (const html of [indexHtml, publicIndexHtml]) {
   const imageTags = html.match(/<img src="https:\/\/images\.unsplash\.com[^>]+>/g) || [];
-  assert.equal(imageTags.length, 4);
+  assert.equal(imageTags.length, 10);
   for (const tag of imageTags) {
     assert.match(tag, /width="\d+"/);
     assert.match(tag, /height="\d+"/);

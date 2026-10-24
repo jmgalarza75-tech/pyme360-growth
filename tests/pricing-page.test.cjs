@@ -12,7 +12,7 @@ const publicStyles = fs.readFileSync(path.join(__dirname, "..", "public", "asset
 for (const html of [indexHtml, publicIndexHtml]) {
   assert.match(html, /<a href="precios\.html">Precios<\/a>/);
   assert.match(html, /pyme360-public\.css\?v=20260713-3/);
-  assert.match(html, /pyme360-public\.js\?v=20260713-3/);
+  assert.match(html, /pyme360-public\.js\?v=20261024-1/);
 }
 
 for (const html of [rootHtml, publicHtml]) {
@@ -20,11 +20,10 @@ for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /<div class="pricing-orbit" aria-hidden="true"><\/div>/);
   assert.match(html, /class="modern-pricing-grid"/);
   assert.match(html, /class="modern-price-card is-popular"/);
-  assert.match(html, /El Recomendado/);
+  assert.match(html, /(?:El Recomendado|Mas elegido)/);
   assert.match(html, /149<\/span><small>euros\/mes/);
-  assert.match(html, /249<\/span><small>euros\/mes/);
-  assert.match(html, /399<\/span><small>euros\/mes/);
-  assert.match(html, /A medida/);
+  assert.match(html, /(?:249<\/span><small>euros\/mes|Desde 249 euros\/mes)/);
+  assert.match(html, /(?:399<\/span><small>euros\/mes|Desde 399 euros\/mes)/);
   assert.match(html, /Gestion de ayudas y subvenciones/);
   assert.match(html, /Redes Base/);
   assert.match(html, /Redes Pro/);

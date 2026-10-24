@@ -10,7 +10,7 @@ const publicStyles = fs.readFileSync(path.join(__dirname, "..", "public", "asset
 for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /<section class="problem section" aria-labelledby="problem-title">/);
   assert.match(html, /<div class="problem-gallery-shell">/);
-  assert.match(html, /<div class="problem-gallery" aria-label="Galeria circular de problemas digitales">/);
+  assert.match(html, /<div class="problem-gallery" aria-label="Galería circular de problemas digitales">/);
   assert.match(html, /Fugas comunes en pymes locales/);
   assert.match(html, /Donde se te estan escapando clientes/);
   assert.match(html, /Tu ficha de Google no te trae suficientes llamadas/);

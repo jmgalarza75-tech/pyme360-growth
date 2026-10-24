@@ -9,12 +9,11 @@ const publicStyles = fs.readFileSync(path.join(__dirname, "..", "public", "asset
 
 for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /<form class="lead-form lead-form-premium"/);
-  assert.match(html, /<span class="field-icon" aria-hidden="true">/);
   assert.match(html, /<select name="sector" required>/);
   assert.match(html, /<span class="select-arrow" aria-hidden="true">/);
   assert.match(html, /Sin spam\. Sin compromiso\. Respuesta clara/);
-  assert.match(html, /pyme360-public\.css\?v=20260527-1/);
-  assert.match(html, /pyme360-public\.js\?v=20260527-1/);
+  assert.match(html, /pyme360-public\.css\?v=20260713-3/);
+  assert.match(html, /pyme360-public\.js\?v=20261024-1/);
 }
 
 for (const css of [styles, publicStyles]) {

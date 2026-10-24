@@ -420,6 +420,23 @@ if (shuffleButton) {
 const leadForm = document.querySelector(".lead-form");
 const LEAD_ENDPOINT = "/procesar-lead.php";
 
+function pyme360Track(eventName, parameters = {}) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  window.gtag("event", eventName, parameters);
+}
+
+// Track only high-signal interactions and never send PII to Google Analytics.
+if (typeof document.querySelectorAll === "function") {
+  document.querySelectorAll('a[href="#diagnostico"]').forEach((cta) => {
+    cta.addEventListener("click", () => {
+      pyme360Track("cta_click", {
+        cta_name: "diagnostico_gratuito",
+        cta_location: cta.classList.contains("nav-cta") ? "navigation" : "page"
+      });
+    });
+  });
+}
+
 function pyme360BuildLeadPayload(values) {
   const business = values.business.trim();
   const location = values.location.trim() || "Sin especificar";
@@ -485,6 +502,13 @@ if (typeof window !== "undefined") {
 if (leadForm) {
   pyme360PrefillLeadFormFromUrl(leadForm);
 
+  let formStartTracked = false;
+  leadForm.addEventListener("focusin", () => {
+    if (formStartTracked) return;
+    formStartTracked = true;
+    pyme360Track("form_start", { form_name: "diagnostico_gratuito" });
+  }, { once: false });
+
   const privacyCheckbox = leadForm.querySelector('input[name="privacy"]');
   const submitButton = leadForm.querySelector("button[type='submit']");
 
@@ -529,6 +553,10 @@ if (leadForm) {
 
     try {
       await pyme360SubmitLead(payload);
+      pyme360Track("generate_lead", {
+        form_name: "diagnostico_gratuito",
+        lead_source: "home"
+      });
 
       if (submitButton) {
         submitButton.textContent = "Solicitud recibida";
