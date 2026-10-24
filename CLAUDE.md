@@ -51,3 +51,9 @@ La web pública se despliega mediante Hostinger.
 - **Creación de Carpeta `articulos/`**: Documento [`articulos/README.md`](./articulos/README.md) con el manifiesto editorial y la hoja de ruta de los 4 ensayos de dirección comercial.
 - **Ensayo 01 Completado**: [`articulos/la-falacia-del-85-por-ciento-ocupacion.md`](./articulos/la-falacia-del-85-por-ciento-ocupacion.md) (*La falacia del 85% de ocupación: por qué colgar el cartel de lleno no se nota en la cuenta bancaria*), analizando el desfase entre facturación bruta y margen neto, cancelaciones de OTAs a 48h, rotación perversa y la ausencia de soberanía comercial, con cierre hacia la autoevaluación 7P.
 
+### Sesión: 2026-10-24 — Integración Global de Google Analytics 4 (GA4)
+- **Implementación del Tag Oficial**: Integración de Google tag (gtag.js) con ID de medición oficial `G-TV5EY510HZ` en el `<head>` de todas las páginas web públicas (18 archivos sincronizados entre raíz y `public/`: `index.html`, `alojamientos-rurales/`, `indice-pyme360/`, `precios.html`, `propuesta.html`, `lead_magnet.html`, `aviso-legal.html`, `privacidad.html` y `cookies.html`).
+- **Limpieza de IDs Obsoletos**: Reemplazo completo de las referencias de prueba antiguas (`G-PYME360G`) en `propuesta.html` y `lead_magnet.html`.
+- **Verificación**: Batería de 10 tests de integridad y contrato superada al 100%. Despliegue a GitHub/Hostinger en `main`.
+
+
