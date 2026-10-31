@@ -63,4 +63,25 @@ La web pública se despliega mediante Hostinger.
 - **Eventos de Conversión GA4 sin PII**: Se implementó en `assets/pyme360-public.js` (y `public/`) la medición de conversiones de leads (`generate_lead`) preservando la privacidad al no enviar datos personales (PII), y se actualizó la suite de tests (`analytics-events.test.cjs`), logrando que el 100% de los 20 tests del proyecto pasen en verde.
 - **Verificación**: Batería completa de 20 tests superada al 100% (`analytics-events`, `indice-form`, `indice-backend`, `form-submit`, `asset-cache`, `rural-mobile-layout`, `legal-visual`, `layout`, `logo`, `webhook-resend-contract`, `testimonials`, `premium-form`, `pricing-page`, `problem-gallery`, `seo-performance`, etc.).
 
+### Sesión: 2026-10-31 — Auditoría SEO Integral, Optimización de Rendimiento, Señales Locales y Cumplimiento RGPD
+- **Diagnóstico Inicial de Auditoría SEO**: Puntuación de partida 56/100 (página de alojamientos rurales huérfana de 8,9 MB, sin mención a Tenerife en texto visible, logo pesado de 523 KB, falta de 301 www, enlaces a /index.html y GA4 ejecutándose sin banner de consentimiento).
+- **Bloque 1 · Rendimiento, Enlazado Interno y SEO Técnico**:
+  - Enlazada la landing sectorial `/alojamientos-rurales/` desde navegación principal, tarjeta `#sectores` y footer de Home y Precios.
+  - Normalización de enlaces internos sustituyendo `/index.html` por rutas canónicas limpias (`/`).
+  - Reducción drástica de activos gráficos: Logo `lgo.png` (522,8 KB → 9,9 KB, -98,1%), Favicon (136 KB → 2,0 KB, -98,5%) y 14 imágenes en `assets/indice/` optimizadas a WebP/JPEG progresivo (de ~1 MB c/u a ~90-170 KB, reduciendo el peso de la landing rural de 13,7 MB a 1,7 MB).
+  - Añadidos atributos `width` y `height` en imágenes del carrusel de alojamientos rurales para asegurar CLS 0.
+  - Configurado `.htaccess` con redirección 301 de `www` a sin `www`, `AddDefaultCharset UTF-8` y cabeceras de seguridad (`HSTS`, `X-Content-Type-Options`, `Referrer-Policy`).
+  - Páginas legales (`aviso-legal`, `privacidad`, `cookies`) marcadas con `noindex, follow` y retiradas de `sitemap.xml`, incorporando etiquetas `<lastmod>` para URLs indexables.
+  - Corrección de solapamiento en cabecera móvil de `/alojamientos-rurales/` (píldora metodológica y texto de hero).
+- **Bloque 2 · On-Page, Señales Locales (Tenerife / Canarias) y Búsqueda con IA**:
+  - Titles optimizados: Home a 50 caracteres (`Marketing digital para pymes en Tenerife | Pyme360`), Alojamientos Rurales a 58 caracteres (`Marketing para casas rurales y reservas directas | Pyme360`), Precios con H1 orientado a intención de búsqueda.
+  - Incorporadas menciones visibles a Tenerife y Canarias en el hero y propuesta de valor.
+  - Corrección ortográfica exhaustiva de tildes en `precios.html`, `index.html` y textos legales.
+  - Datos estructurados (Schema.org JSON-LD): unificación de entidad `@id: "https://pyme360.online/#empresa"` con `Organization` + `ProfessionalService`, `areaServed` Tenerife/Canarias, teléfono, email, `OfferCatalog` en precios y `Service` conectado a `provider` en alojamientos rurales.
+  - Creado `/llms.txt` estructurado para indexación en motores de IA (ChatGPT, Perplexity, Claude, AI Overviews).
+- **Bloque 3 · Cumplimiento de Cookies RGPD/AEPD y Señales de Confianza**:
+  - Creado banner de consentimiento de cookies no invasivo conforme a normativa AEPD/RGPD.
+  - Carga diferida de Google Analytics 4 (`G-TV5EY510HZ`): el script de terceros (178 KB) solo se descarga e inicializa si el usuario consiente expresamente ("Aceptar todas").
+  - Incorporadas secciones "Quién está detrás" (atribución a Roam Retreats con CIF y sede en Tenerife) y FAQ estructurado en la Home con respuestas directas citables por motores de IA.
+- **Verificación**: 100% de la batería de 20 tests superada en verde en cada fase. Paridad rigurosa entre raíz y `/public/`.
 

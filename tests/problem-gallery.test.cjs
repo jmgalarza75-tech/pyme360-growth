@@ -12,9 +12,9 @@ for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /<div class="problem-gallery-shell">/);
   assert.match(html, /<div class="problem-gallery" aria-label="Galería circular de problemas digitales">/);
   assert.match(html, /Fugas comunes en pymes locales/);
-  assert.match(html, /Donde se te estan escapando clientes/);
+  assert.match(html, /Dónde se te están escapando clientes/);
   assert.match(html, /Tu ficha de Google no te trae suficientes llamadas/);
-  assert.match(html, /Los mensajes estan repartidos por todos lados/);
+  assert.match(html, /Los mensajes están repartidos por todos lados/);
   assert.match(html, /class="problem-nav problem-prev"/);
   assert.match(html, /class="problem-nav problem-next"/);
   assert.equal((html.match(/class="problem-card/g) || []).length, 10);

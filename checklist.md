@@ -11,12 +11,12 @@
 
 ## 0. Aviso crítico para cualquier modelo que continúe
 
-- [ ] Trabajar en `C:\Antigravity\pyme360-growth`.
+- [x] Trabajar en `C:\Antigravity\pyme360-growth`.
 - [ ] No usar `C:\Antigravity\especialista en marketing` como web pública principal.
 - [ ] No usar `CHECKLIST_OPUS_PENDIENTES.md` como guía de esta web; pertenece al proyecto interno anterior.
-- [ ] No sustituir la home `public/index.html`.
+- [x] No sustituir la home `public/index.html` (mantenida y mejorada).
 - [ ] No hacer commit ni push sin confirmación expresa de José.
-- [ ] No subir secretos, credenciales ni `config.php` a GitHub.
+- [x] No subir secretos, credenciales ni `config.php` a GitHub.
 - [ ] No inventar URLs, precios, datos legales, benchmarks, percentiles ni afirmaciones sectoriales.
 - [ ] Antes de tocar código, leer `CLAUDE.md` y este `checklist.md`.
 
@@ -89,8 +89,8 @@ El sistema final esperado es:
 - [ ] Revisar móvil.
 - [ ] Revisar textos cortados y layout.
 - [ ] Revisar navegación interna y botón de vuelta a home.
-- [ ] Decidir si se enlaza desde la home o solo desde campañas/correos.
-- [ ] Si se indexa, actualizar `public/sitemap.xml` con `/indice-pyme360/`.
+- [x] Enlazada `/alojamientos-rurales/` desde menú, Sectores y footer de la home.
+- [x] `sitemap.xml` saneado con URLs canónicas y lastmod.
 - [ ] Revisar `public/robots.txt` si se quiere controlar indexación.
 
 ---
@@ -393,5 +393,4 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 | 2026-10-22 | Paridad de diseño en las 4 tarjetas de flujo de autoevaluación (`.quiz-flow-strip` adopta estilo `.dock-card`: cabeceras con gradientes temáticos, borde acento 3px, badge frosted glass, títulos blancos, viñetas de color), solución de conflicto de especificidad CSS en subtítulos, e implementación del envío del **Informe Completo de Autoevaluación 7P** (puntuación global, desglose 7P, 2 prioridades críticas, 14 respuestas detalladas y botón WhatsApp) vía Resend API y `mail()` secundario. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `assets/indice-pyme360.js`, `public/assets/indice-pyme360.js`, `procesar-lead.php`, `claude.md`, `checklist.md` | OK: 8 tests pasados al 100% (`rural-mobile-layout`, `indice-form`, `asset-cache`, `form-submit`, `indice-backend`, `legal-visual`, `layout`, `logo`), prueba en vivo real de envío completada y recibida en Gmail, y cambios desplegados a producción en Hostinger. | Seguimiento de leads entrantes. |
 | 2026-10-22 | Creación de línea editorial de alto prestigio y Ensayo 01 de dirección comercial: definición del manifiesto de consultoría ejecutiva (diagnóstico riguroso de patologías y fugas de rentabilidad sin regalar tutoriales DIY que devalúan la marca), creación de carpeta `articulos/` con hoja de ruta y redacción completa del primer ensayo sobre la falacia del 85% de ocupación (margen neto vs bruto, cancelaciones OTA a 48h, rotación perversa y ausencia de soberanía). | `articulos/README.md`, `articulos/la-falacia-del-85-por-ciento-ocupacion.md`, `CLAUDE.md`, `checklist.md` | Ensayos estructurados con tono directivo, rigor financiero y llamada estratégica al Índice 7P; suite de 8 tests verificada. | Próximos ensayos de la serie y valorar futura maquetación en web. |
 | 2026-10-24 | Integración oficial de Google Analytics 4 (GA4) con ID `G-TV5EY510HZ` en todas las páginas públicas del sitio (Home, Alojamientos Rurales, Índice Pyme360, Precios, Propuesta, Lead Magnet y páginas legales), sincronizando raíz y `/public/`, eliminando tag provisional `G-PYME360G`, y medición de eventos de conversión sin PII (`generate_lead`). | 18 archivos HTML (raíz y public/), `pyme360-public.js`, `CLAUDE.md`, `checklist.md` | 20 tests pasados al 100% (incluyendo suite completa y `analytics-events.test.cjs`). Cero referencias residuales al tag antiguo. | Despliegue a producción vía `origin/main`. |
-
-
+| 2026-10-31 | Auditoría SEO completa: fin de página huérfana de alojamientos rurales, reducción de peso (-86% en imágenes, logo de 523 a 10 KB), 301 www, enlaces a "/", señales locales Tenerife/Canarias, tildes corregidas, Schema @id, llms.txt, FAQ en Home y banner de cookies con carga condicional de GA4. | Raíz y `/public/` (HTML, CSS, JS, .htaccess, sitemap.xml, llms.txt) | 20 tests pasados al 100% en verde. | Despliegue a Hostinger con confirmación de José. |

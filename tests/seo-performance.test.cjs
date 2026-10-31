@@ -7,7 +7,7 @@ const pages = [
   {
     file: path.join(root, "index.html"),
     url: "https://pyme360.online/",
-    title: "Pyme360 | Marketing claro para pymes que quieren mas clientes"
+    title: "Marketing digital para pymes en Tenerife | Pyme360"
   },
   {
     file: path.join(root, "precios.html"),
@@ -17,7 +17,7 @@ const pages = [
   {
     file: path.join(root, "public", "index.html"),
     url: "https://pyme360.online/",
-    title: "Pyme360 | Marketing claro para pymes que quieren mas clientes"
+    title: "Marketing digital para pymes en Tenerife | Pyme360"
   },
   {
     file: path.join(root, "public", "precios.html"),
@@ -75,6 +75,8 @@ for (const base of [root, path.join(root, "public")]) {
   assert.equal(manifestJson.name, "Pyme360");
   assert.equal(manifestJson.start_url, "/");
   assert.equal(manifestJson.theme_color, "#071310");
+
+  assert.equal(fs.existsSync(path.join(base, "llms.txt")), true);
 }
 
 console.log("seo performance tests passed");

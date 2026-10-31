@@ -24,12 +24,12 @@ for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /149<\/span><small>euros\/mes/);
   assert.match(html, /(?:249<\/span><small>euros\/mes|Desde 249 euros\/mes)/);
   assert.match(html, /(?:399<\/span><small>euros\/mes|Desde 399 euros\/mes)/);
-  assert.match(html, /Gestion de ayudas y subvenciones/);
+  assert.match(html, /Gestión de ayudas y subvenciones/);
   assert.match(html, /Redes Base/);
   assert.match(html, /Redes Pro/);
   assert.match(html, /Redes Premium/);
   assert.match(html, /Publicidad online/);
-  assert.match(html, /Branding y diseno/);
+  assert.match(html, /Branding y diseño/);
   assert.match(html, /Servicios extra para completar tu sistema/);
   assert.doesNotMatch(html, /\banade\b|\bAnade\b/);
   assert.doesNotMatch(html, /&euro;|\u00c3|\u00e2|\u20ac|dashboard\.html|buscador\.html|pipeline\.html|newsletter\.html|\.env/);

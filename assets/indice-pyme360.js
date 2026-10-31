@@ -1333,3 +1333,99 @@ if (leakGallery && galleryPrev && galleryNext) {
       initScrollRevealRight();
     }
   }
+
+
+/* ==========================================================================
+   Gestión de consentimiento de Cookies y Carga diferida de Google Analytics
+   ========================================================================== */
+function pyme360LoadAnalytics() {
+  if (typeof window === "undefined" || window._pyme360GaLoaded) return;
+  window._pyme360GaLoaded = true;
+
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== "function") {
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+  }
+  window.gtag("js", new Date());
+  window.gtag("config", "G-TV5EY510HZ");
+
+  if (typeof document !== "undefined" && typeof document.createElement === "function" && document.head) {
+    var gaScript = document.createElement("script");
+    gaScript.async = true;
+    gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-TV5EY510HZ";
+    document.head.appendChild(gaScript);
+  }
+}
+
+function pyme360InitCookieConsent() {
+  if (typeof window === "undefined" || typeof document === "undefined" || typeof document.createElement !== "function" || !document.body) return;
+
+  var CONSENT_KEY = "pyme360_cookie_consent";
+  var consent = null;
+  try {
+    if (typeof localStorage !== "undefined") {
+      consent = localStorage.getItem(CONSENT_KEY);
+    }
+  } catch (e) {}
+
+  if (consent === "accepted") {
+    pyme360LoadAnalytics();
+    return;
+  }
+  if (consent === "rejected") {
+    return;
+  }
+
+  var banner = document.createElement("aside");
+  banner.className = "pyme360-cookie-banner";
+  banner.setAttribute("aria-label", "Gestión de cookies");
+  banner.innerHTML = [
+    '<div class="pyme360-cookie-inner">',
+    '  <p class="pyme360-cookie-text">',
+    '    <strong>Privacidad y cookies:</strong> Utilizamos cookies analíticas de Google Analytics para medir visitas y mejorar nuestro servicio en Tenerife. Puedes aceptarlas o rechazarlas libremente. Consulta nuestra <a href="/cookies.html">política de cookies</a>.',
+    '  </p>',
+    '  <div class="pyme360-cookie-actions">',
+    '    <button type="button" class="pyme360-cookie-btn pyme360-cookie-reject" id="pyme360-cookie-reject">Solo necesarias</button>',
+    '    <button type="button" class="pyme360-cookie-btn pyme360-cookie-accept" id="pyme360-cookie-accept">Aceptar todas</button>',
+    '  </div>',
+    '</div>'
+  ].join("");
+
+  document.body.appendChild(banner);
+
+  if (typeof requestAnimationFrame === "function") {
+    requestAnimationFrame(function() {
+      banner.classList.add("is-visible");
+    });
+  } else {
+    banner.classList.add("is-visible");
+  }
+
+  var btnAccept = document.getElementById("pyme360-cookie-accept");
+  var btnReject = document.getElementById("pyme360-cookie-reject");
+
+  if (btnAccept) {
+    btnAccept.addEventListener("click", function() {
+      try { if (typeof localStorage !== "undefined") localStorage.setItem(CONSENT_KEY, "accepted"); } catch (e) {}
+      banner.classList.remove("is-visible");
+      setTimeout(function() { banner.remove(); }, 300);
+      pyme360LoadAnalytics();
+    });
+  }
+
+  if (btnReject) {
+    btnReject.addEventListener("click", function() {
+      try { if (typeof localStorage !== "undefined") localStorage.setItem(CONSENT_KEY, "rejected"); } catch (e) {}
+      banner.classList.remove("is-visible");
+      setTimeout(function() { banner.remove(); }, 300);
+    });
+  }
+}
+
+if (typeof document !== "undefined" && typeof document.addEventListener === "function") {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", pyme360InitCookieConsent);
+  } else {
+    pyme360InitCookieConsent();
+  }
+}

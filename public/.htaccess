@@ -1,0 +1,40 @@
+# Pyme360 · protección de endpoints públicos, SEO técnico y cabeceras de seguridad
+# Este archivo se despliega en la raíz pública de pyme360.online.
+
+AddDefaultCharset UTF-8
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# 0) El webhook debe llegar a PHP para que valide su propia firma/token.
+<Files "webhook-resend.php">
+  Require all granted
+</Files>
+
+# 0b) La configuración de secretos solo la incluye PHP; nunca se sirve por HTTP.
+<Files "pyme360-secrets.php">
+  Require all denied
+</Files>
+
+# 1) Bloquear acceso público al registro de bajas (datos personales)
+<Files "bajas.csv">
+  Require all denied
+</Files>
+
+# 1b) Bloquear acceso público al almacén de eventos de Resend
+<Files "eventos.jsonl">
+  Require all denied
+</Files>
+
+# 2) Redirección 301 canónica de www a sin www + URLs limpias (/unsubscribe -> unsubscribe.php)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.pyme360\.online$ [NC]
+  RewriteRule ^(.*)$ https://pyme360.online/$1 [R=301,L]
+
+  RewriteRule ^unsubscribe/?$ unsubscribe.php [L,QSA]
+</IfModule>
+
