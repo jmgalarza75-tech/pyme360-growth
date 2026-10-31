@@ -437,6 +437,20 @@ if (typeof document.querySelectorAll === "function") {
   });
 }
 
+
+// Track WhatsApp contact clicks
+if (typeof document !== "undefined" && typeof document.querySelectorAll === "function") {
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(waLink) {
+    waLink.addEventListener("click", function() {
+      pyme360Track("contact_click", {
+        contact_type: "whatsapp",
+        contact_destination: "34686184291",
+        contact_location: waLink.closest(".site-footer") ? "footer" : "page"
+      });
+    });
+  });
+}
+
 function pyme360BuildLeadPayload(values) {
   const business = values.business.trim();
   const location = values.location.trim() || "Sin especificar";
