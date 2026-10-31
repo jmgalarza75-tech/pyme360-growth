@@ -4156,7 +4156,7 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
 /* Pyme360 rural V2: mini-revisión, ejemplos, entregables y FAQ */
 .examples,
 .deliverables,
-.faq,
+.indice-page .faq,
 .outbound-note {
   background: linear-gradient(180deg, #f8f3e8 0%, #edf7ee 100%);
 }
@@ -7968,4 +7968,175 @@ body.indice-page {
     flex: 1;
     text-align: center;
   }
+}
+
+/* ==========================================================================
+   Home: Sección Trust About y FAQ en Tema Oscuro Premium
+   ========================================================================== */
+body:not(.indice-page) .trust-about {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background: radial-gradient(circle at 50% 0%, rgba(47, 191, 113, 0.08), transparent 50%), #07120f;
+  border-top: 1px solid rgba(247, 243, 234, 0.08);
+}
+
+body:not(.indice-page) .trust-about .trust-about-card {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 44px 36px;
+  background: rgba(16, 28, 23, 0.65);
+  border: 1px solid rgba(47, 191, 113, 0.22);
+  border-radius: 20px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+}
+
+body:not(.indice-page) .trust-about h2 {
+  color: #ffffff !important;
+  font-size: clamp(28px, 4vw, 44px);
+  margin: 14px 0 18px 0;
+  line-height: 1.15;
+}
+
+body:not(.indice-page) .trust-about-lead {
+  color: #c9d8d0 !important;
+  font-size: 16.5px;
+  line-height: 1.7;
+  max-width: 780px;
+  margin: 0 auto 28px auto;
+}
+
+body:not(.indice-page) .trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+body:not(.indice-page) .trust-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background: rgba(47, 191, 113, 0.1);
+  border: 1px solid rgba(47, 191, 113, 0.28);
+  border-radius: 999px;
+  color: #e5f5ec;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+/* Home: FAQ en Dark Mode */
+body:not(.indice-page) .faq {
+  padding-top: 80px;
+  padding-bottom: 90px;
+  background: linear-gradient(180deg, #07120f 0%, #050a09 100%) !important;
+  border-bottom: 1px solid rgba(247, 243, 234, 0.08);
+}
+
+body:not(.indice-page) .faq-heading-center {
+  max-width: 860px;
+  margin: 0 auto 40px auto;
+  text-align: center;
+}
+
+body:not(.indice-page) .faq-heading-center .eyebrow {
+  color: var(--gold) !important;
+  margin-bottom: 10px;
+}
+
+body:not(.indice-page) .faq-heading-center h2 {
+  color: #ffffff !important;
+  font-size: clamp(32px, 4.5vw, 52px) !important;
+  line-height: 1.1 !important;
+  margin: 0 0 16px 0 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+body:not(.indice-page) .faq-heading-center p {
+  color: #c4d4cc !important;
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+  max-width: 680px !important;
+  margin: 0 auto !important;
+}
+
+body:not(.indice-page) .faq-accordion-list {
+  max-width: 860px !important;
+  margin: 0 auto !important;
+}
+
+body:not(.indice-page) .faq-accordion-item {
+  background: rgba(14, 25, 21, 0.82) !important;
+  border: 1px solid rgba(47, 191, 113, 0.22) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+body:not(.indice-page) .faq-accordion-item:hover {
+  background: rgba(18, 32, 27, 0.95) !important;
+  border-color: rgba(47, 191, 113, 0.45) !important;
+}
+
+body:not(.indice-page) .faq-accordion-item[open] {
+  background: rgba(18, 34, 28, 0.96) !important;
+  border-color: rgba(47, 191, 113, 0.5) !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3), 0 0 20px rgba(47, 191, 113, 0.08) !important;
+}
+
+body:not(.indice-page) .faq-accordion-trigger {
+  color: #ffffff !important;
+  padding: 22px 26px !important;
+  font-size: 17.5px !important;
+  font-weight: 600 !important;
+}
+
+body:not(.indice-page) .faq-accordion-trigger:hover {
+  color: #2fbf71 !important;
+}
+
+body:not(.indice-page) .faq-icon {
+  background: rgba(47, 191, 113, 0.15) !important;
+  color: #2fbf71 !important;
+  border: 1px solid rgba(47, 191, 113, 0.25) !important;
+}
+
+body:not(.indice-page) .faq-accordion-item:hover .faq-icon {
+  background: rgba(47, 191, 113, 0.25) !important;
+  color: #ffffff !important;
+}
+
+body:not(.indice-page) .faq-accordion-item[open] .faq-icon {
+  background: #2fbf71 !important;
+  color: #06110e !important;
+  border-color: #2fbf71 !important;
+}
+
+body:not(.indice-page) .faq-accordion-content {
+  border-top: 1px solid rgba(47, 191, 113, 0.15) !important;
+  padding: 0 26px 24px 26px !important;
+}
+
+body:not(.indice-page) .faq-accordion-content p {
+  color: #c9d8d0 !important;
+  font-size: 15.5px !important;
+  line-height: 1.7 !important;
+}
+
+body:not(.indice-page) .faq-accordion-content strong {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+body:not(.indice-page) .faq-accordion-content a {
+  color: #2fbf71 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+  font-weight: 600 !important;
+}
+
+body:not(.indice-page) .faq-accordion-content a:hover {
+  color: #e7b75f !important;
 }
