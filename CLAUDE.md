@@ -84,4 +84,17 @@ La web pública se despliega mediante Hostinger.
   - Carga diferida de Google Analytics 4 (`G-TV5EY510HZ`): el script de terceros (178 KB) solo se descarga e inicializa si el usuario consiente expresamente ("Aceptar todas").
   - Incorporadas secciones "Quién está detrás" (atribución a Roam Retreats con CIF y sede en Tenerife) y FAQ estructurado en la Home con respuestas directas citables por motores de IA.
 - **Verificación**: 100% de la batería de 20 tests superada en verde en cada fase. Paridad rigurosa entre raíz y `/public/`.
-
+### Sesión: 2026-11-01 — Corrección de Contraste, Integración Dark Mode en FAQ y Blindaje contra Caché de Navegador
+- **Incidencia Visual Reportada**:
+  - En la Home (index.html), el título <h2> de la nueva sección de FAQ ('Dudas habituales sobre el sistema de crecimiento Pyme360') era completamente invisible, apareciendo como un espacio vacío gigante sobre fondo crema claro (#f8f3e8), con el acordeón desplazado hacia abajo.
+- **Causa Raíz Identificada**:
+  - La regla .faq en pyme360-public.css tenía asignado un gradiente de fondo crema claro heredado de la landing rural (lojamientos-rurales/), mientras que en la Home los encabezados h2 heredan color blanco/marfil (ar(--cream) / #ffffff) por defecto del tema oscuro. Por tanto, el texto h2 quedaba blanco sobre fondo crema.
+  - Al corregir el CSS inicialmente, los navegadores y servidores con políticas agresivas de caché (max-age=31536000 en .htaccess) continuaban sirviendo la versión CSS en disco cacheada con ?v=20260713-3.
+- **Solución Implementada y Blindaje**:
+  - **Aislamiento temático**: El gradiente claro se acotó estrictamente a .indice-page .faq.
+  - **Integración Dark Mode**: Se rediseñó #faq y .trust-about para integrarse con la paleta oscura de la Home (#07120f / #050a09), con títulos blancos nítidos, textos de apoyo en #c4d4cc, acordeones con fondo translúcido esmeralda (
+gba(14, 25, 21, 0.9)), bordes sutiles en #2fbf71 y badges de confianza física en Tenerife / Roam Retreats.
+  - **Blindaje anti-caché**: Se añadieron estilos prioritarios directamente en las etiquetas del markup (index.html y public/index.html) para garantizar contraste visible 100% incluso ante cachés de navegador viejas o proxies intermedios, sin alterar la versión contractual ?v=20260713-3 requerida por legal-visual.test.cjs, premium-form.test.cjs y pricing-page.test.cjs.
+- **Despliegue y Pruebas**:
+  - 20 de 20 tests pasados al 100% en verde.
+  - Commits 9440ea2 y c63049 subidos y verificados en origin/main.

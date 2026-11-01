@@ -5,7 +5,7 @@
 **URL elegida por José:** `https://pyme360.online/indice-pyme360/`  
 **Landing canónica:** `public/indice-pyme360/index.html`  
 **JS de la landing:** `public/assets/indice-pyme360.js`  
-**Última actualización:** 2026-10-24
+**Última actualización:** 2026-11-01
 
 ---
 
@@ -394,3 +394,4 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 | 2026-10-22 | Creación de línea editorial de alto prestigio y Ensayo 01 de dirección comercial: definición del manifiesto de consultoría ejecutiva (diagnóstico riguroso de patologías y fugas de rentabilidad sin regalar tutoriales DIY que devalúan la marca), creación de carpeta `articulos/` con hoja de ruta y redacción completa del primer ensayo sobre la falacia del 85% de ocupación (margen neto vs bruto, cancelaciones OTA a 48h, rotación perversa y ausencia de soberanía). | `articulos/README.md`, `articulos/la-falacia-del-85-por-ciento-ocupacion.md`, `CLAUDE.md`, `checklist.md` | Ensayos estructurados con tono directivo, rigor financiero y llamada estratégica al Índice 7P; suite de 8 tests verificada. | Próximos ensayos de la serie y valorar futura maquetación en web. |
 | 2026-10-24 | Integración oficial de Google Analytics 4 (GA4) con ID `G-TV5EY510HZ` en todas las páginas públicas del sitio (Home, Alojamientos Rurales, Índice Pyme360, Precios, Propuesta, Lead Magnet y páginas legales), sincronizando raíz y `/public/`, eliminando tag provisional `G-PYME360G`, y medición de eventos de conversión sin PII (`generate_lead`). | 18 archivos HTML (raíz y public/), `pyme360-public.js`, `CLAUDE.md`, `checklist.md` | 20 tests pasados al 100% (incluyendo suite completa y `analytics-events.test.cjs`). Cero referencias residuales al tag antiguo. | Despliegue a producción vía `origin/main`. |
 | 2026-10-31 | Auditoría SEO completa: fin de página huérfana de alojamientos rurales, reducción de peso (-86% en imágenes, logo de 523 a 10 KB), 301 www, enlaces a "/", señales locales Tenerife/Canarias, tildes corregidas, Schema @id, llms.txt, FAQ en Home y banner de cookies con carga condicional de GA4. | Raíz y `/public/` (HTML, CSS, JS, .htaccess, sitemap.xml, llms.txt) | 20 tests pasados al 100% en verde. | Despliegue a Hostinger con confirmación de José. |
+| 2026-11-01 | Corrección de contraste en FAQ y Trust-About: aislamiento de estilos rurales (.indice-page .faq), rediseño dark mode de FAQ/Trust-About en Home con H2 blanco de alta legibilidad, acordeones esmeralda y blindaje contra caché persistente en markup. | index.html, public/index.html, ssets/pyme360-public.css, public/assets/pyme360-public.css, CLAUDE.md, checklist.md | 20 de 20 tests pasados al 100% en verde. Commits 9440ea2 y c63049 en origin/main. | Recargar con Ctrl+F5 y verificar despliegue en Hostinger. |
