@@ -98,3 +98,17 @@ gba(14, 25, 21, 0.9)), bordes sutiles en #2fbf71 y badges de confianza física e
 - **Despliegue y Pruebas**:
   - 20 de 20 tests pasados al 100% en verde.
   - Commits 9440ea2 y c63049 subidos y verificados en origin/main.
+### Sesión: 2026-11-08 — Actualización Estratégica de Precios y Alojamientos Rurales, Reajuste Visual y Flip-Cards 3D
+- **Implementación del Brief Estratégico**:
+  - **Precios (precios.html y public/precios.html)**: Transición a oferta generalista para pymes locales, eliminación de tarifas fijas no aprobadas y claims exagerados. Modelo honesto de presupuesto según alcance acordado. CTA unificado a «Contactar» (/#diagnostico).
+  - **Alojamientos Rurales (/alojamientos-rurales/)**: Reorientación a mini-revisión de reservas directas (3–5 observaciones claras sobre elementos visibles). Eliminación de promesas desmesuradas (temporada baja, dos clics, envío de auditorías automáticas por email). Marco de autoevaluación 7P preservado. Retiradas flechas de los botones hero.
+  - **FAQ de Precios en Home (index.html)**: Respuesta transparente sin tarifas inventadas, explicando que la propuesta se personaliza por alcance antes de empezar y que la inversión publicitaria se aprueba y paga aparte.
+- **Perfeccionamiento Visual, Jerarquía y Flip-Cards 3D**:
+  - **Jerarquía y Escala Tipográfica**: Ajuste proporcional de titulares H1 y H2 en Precios y Alojamientos Rurales, eliminando bloques macizos en mayúsculas forzadas y reduciendo titulares CTA desproporcionados a escalas armónicas.
+  - **Centrado a 2/3 en Precios**: El contenedor principal y las tarjetas ocupan el 66.66% del ancho de pantalla en escritorio con centrado perfecto y balance simétrico.
+  - **Tarjetas Giratorias 3D (lip-card)**: Integradas en la sección «Qué ocurre cuando solicitas una valoración» de Precios con efecto 3D hover/tap idéntico al de alojamientos rurales.
+  - **Blindaje de Caché**: Actualización de hash de versión CSS en HTML para evitar bloqueos por caché de navegador.
+- **Despliegue y Pruebas**:
+  - 20 de 20 suites de tests superadas al 100% en verde.
+  - Auditoría de términos prohibidos superada sin incidencias.
+  - Paridad estricta 100% byte a byte entre raíz y /public/.

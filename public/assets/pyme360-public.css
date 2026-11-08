@@ -2051,10 +2051,14 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
 
 .modern-pricing-hero {
   position: relative;
-  min-height: calc(100vh - 79px);
-  display: grid;
-  align-content: center;
-  gap: clamp(38px, 5vw, 64px);
+  min-height: auto;
+  padding-top: clamp(84px, 8vw, 120px);
+  padding-bottom: clamp(64px, 7vw, 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(32px, 4vw, 52px);
   background:
     radial-gradient(circle at 50% 24%, rgba(47, 191, 113, 0.18), transparent 28%),
     radial-gradient(circle at 82% 12%, rgba(231, 183, 95, 0.14), transparent 30%),
@@ -2107,14 +2111,22 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
 .modern-pricing-copy {
   position: relative;
   z-index: 1;
-  max-width: 920px;
+  width: 100%;
+  max-width: 820px;
   margin: 0 auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modern-pricing-copy h1 {
-  max-width: 100%;
-  font-size: clamp(48px, 7vw, 94px);
+  max-width: 780px;
+  margin: 0 auto 16px auto;
+  font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.22;
+  text-align: center;
+  letter-spacing: -0.015em;
   background: linear-gradient(90deg, #f8fafc 0%, #f3d99f 45%, #2fbf71 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -2122,20 +2134,25 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
 }
 
 .modern-pricing-copy p:not(.eyebrow) {
-  max-width: 760px;
-  margin: 18px auto 0;
-  color: rgba(247, 243, 234, 0.76);
-  font-size: clamp(17px, 2vw, 21px);
-  line-height: 1.65;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  color: #d1ded6;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.62;
 }
 
 .modern-pricing-grid {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(4, minmax(240px, 1fr));
-  gap: clamp(18px, 2.3vw, 28px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 28px);
   align-items: stretch;
+  justify-content: center;
+  width: 66.666%;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .modern-price-card {
@@ -5327,38 +5344,42 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
   animation: pulseGlow 1.8s infinite;
 }
 
-/* Titular Editorial Cinematográfico */
+/* Titular Editorial Cinematográfico - Espaciado y Tipografía Armónica */
 .indice-page .hero-title-cinematic,
 .indice-page .flatlogic-title {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  gap: 6px !important;
-  margin: 0 0 20px 0 !important;
+  gap: 12px !important;
+  margin: 0 0 24px 0 !important;
   text-align: center !important;
   max-width: 100% !important;
 }
 
 .indice-page .title-sub {
   font-family: "Inter", system-ui, sans-serif !important;
-  font-size: clamp(22px, 2.8vw, 34px) !important;
-  font-weight: 400 !important;
-  font-style: italic !important;
-  color: #e5ece7 !important;
-  line-height: 1.25 !important;
-  letter-spacing: -0.01em !important;
+  font-size: clamp(14px, 1.15vw, 17px) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  color: #e7b75f !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  margin: 0 0 12px 0 !important;
 }
 
 .indice-page .title-main {
   font-family: "Outfit", system-ui, sans-serif !important;
-  font-size: clamp(34px, 5.6vw, 68px) !important;
-  font-weight: 900 !important;
-  text-transform: uppercase !important;
+  font-size: clamp(26px, 3.4vw, 44px) !important;
+  font-weight: 800 !important;
+  text-transform: none !important;
   color: #ffffff !important;
-  line-height: 1.04 !important;
-  letter-spacing: -0.015em !important;
-  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.55);
+  line-height: 1.28 !important;
+  letter-spacing: -0.005em !important;
+  max-width: 880px !important;
+  margin: 0 auto !important;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.65) !important;
 }
 
 /* Lede explicativo */
@@ -7624,13 +7645,13 @@ body.indice-page {
   flex-direction: column !important;
   align-items: center !important;
   text-align: center !important;
-  margin-bottom: 8px !important;
+  margin-bottom: 16px !important;
 }
 .indice-page .hero-stage-1 .hero-kicker-pill {
   margin-bottom: 14px !important;
 }
 .indice-page .hero-stage-1 .title-sub {
-  margin: 0 0 6px 0 !important;
+  margin: 0 0 10px 0 !important;
 }
 
 .indice-page .hero-stage-2 {
@@ -7638,11 +7659,11 @@ body.indice-page {
   flex-direction: column !important;
   align-items: center !important;
   text-align: center !important;
-  margin-bottom: 20px !important;
+  margin-bottom: 24px !important;
 }
 .indice-page .hero-stage-2 .hero-title-cinematic {
   margin: 0 !important;
-  gap: 0 !important;
+  gap: 10px !important;
 }
 
 .indice-page .hero-stage-3 {
@@ -8139,4 +8160,653 @@ body:not(.indice-page) .faq-accordion-content a {
 
 body:not(.indice-page) .faq-accordion-content a:hover {
   color: #e7b75f !important;
+}
+
+/* ==========================================================================
+   Ajuste Armónico de Tipografía y Tamaños de Texto (Brief 2026-11-08)
+   ========================================================================== */
+
+/* Precios: Titular H1 y Subtítulo equilibrados */
+.modern-pricing-copy h1 {
+  font-size: clamp(30px, 3.6vw, 48px) !important;
+  line-height: 1.15 !important;
+  max-width: 860px !important;
+  margin: 0 auto 16px auto !important;
+  letter-spacing: -0.015em !important;
+}
+
+.modern-pricing-copy p:not(.eyebrow) {
+  font-size: clamp(15.5px, 1.2vw, 18px) !important;
+  line-height: 1.6 !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
+}
+
+/* Precios: Tarjetas sin desbordes de texto */
+.modern-price-card {
+  min-height: auto !important;
+  padding: clamp(24px, 2.5vw, 32px) !important;
+}
+
+.modern-price-card h2 {
+  font-size: clamp(23px, 1.8vw, 28px) !important;
+  line-height: 1.2 !important;
+  margin: 14px 0 8px 0 !important;
+}
+
+.modern-price-card p {
+  font-size: 14.5px !important;
+  line-height: 1.55 !important;
+  color: #c9d8d0 !important;
+  margin-bottom: 0 !important;
+}
+
+.modern-price {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  margin: 16px 0 20px !important;
+  min-height: 58px !important;
+}
+
+.modern-price span {
+  font-family: "Outfit", system-ui, sans-serif !important;
+  font-size: clamp(20px, 1.55vw, 24px) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.01em !important;
+}
+
+.modern-price small {
+  color: #2fbf71 !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Alojamientos Rurales: Titular Hero proporcionado y legible */
+.indice-page .title-main {
+  font-family: "Outfit", system-ui, sans-serif !important;
+  font-size: clamp(26px, 3.4vw, 44px) !important;
+  font-weight: 800 !important;
+  text-transform: none !important;
+  color: #ffffff !important;
+  line-height: 1.28 !important;
+  letter-spacing: -0.005em !important;
+  max-width: 880px !important;
+  margin: 0 auto !important;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.65) !important;
+}
+
+.indice-page .hero-stage-1 .title-sub {
+  font-size: clamp(14px, 1.1vw, 16px) !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: #e7b75f !important;
+  font-weight: 600 !important;
+  margin-top: 8px !important;
+  margin-bottom: 10px !important;
+}
+
+.indice-page .hero-stage-3 .hero-lede {
+  font-size: clamp(15.5px, 1.25vw, 18px) !important;
+  line-height: 1.6 !important;
+  max-width: 760px !important;
+  margin: 0 auto 24px auto !important;
+  color: #e5f0ea !important;
+}
+
+.indice-page .hero-trust-note {
+  font-size: 13.5px !important;
+  color: rgba(247, 243, 234, 0.72) !important;
+}
+
+/* ==========================================================================
+   Ajuste 2/3 y Centrado Armónico de la Página de Precios (Pyme360)
+   ========================================================================== */
+
+/* Pestaña activa en navegación */
+.site-nav a[aria-current="page"] {
+  color: #2fbf71 !important;
+  font-weight: 800 !important;
+  border-bottom: 2px solid #2fbf71 !important;
+  padding-bottom: 2px !important;
+}
+
+/* En escritorio: Todos los bloques principales ocupan 2/3 (66.66%) y están centrados */
+@media (min-width: 1025px) {
+  .modern-pricing-copy,
+  .modern-pricing-grid,
+  .pricing-addons .section-heading,
+  .addon-grid,
+  .extra-services .section-heading,
+  .service-strip,
+  .pricing-cta {
+    width: 66.666% !important;
+    max-width: 1140px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* En tablets: Ancho proporcionado (86%) y centrado */
+@media (max-width: 1024px) and (min-width: 641px) {
+  .modern-pricing-copy,
+  .modern-pricing-grid,
+  .pricing-addons .section-heading,
+  .addon-grid,
+  .extra-services .section-heading,
+  .service-strip,
+  .pricing-cta {
+    width: 86% !important;
+    max-width: 840px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Hero de Precios: Espaciado y Centrado */
+.modern-pricing-hero {
+  min-height: auto !important;
+  padding-top: clamp(44px, 5.5vw, 76px) !important;
+  padding-bottom: clamp(64px, 7vw, 96px) !important;
+  gap: clamp(32px, 4vw, 52px) !important;
+}
+
+.modern-pricing-copy {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.modern-pricing-copy h1 {
+  font-size: clamp(28px, 3.2vw, 42px) !important;
+  line-height: 1.22 !important;
+  max-width: 780px !important;
+  margin: 0 auto 16px auto !important;
+  text-align: center !important;
+  letter-spacing: -0.015em !important;
+}
+
+.modern-pricing-copy p:not(.eyebrow) {
+  font-size: clamp(15px, 1.15vw, 17px) !important;
+  line-height: 1.62 !important;
+  max-width: 640px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  color: #d1ded6 !important;
+}
+
+/* Grid de las 3 Tarjetas de Precios (Centrado y equilibrado a 2/3) */
+.modern-pricing-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(18px, 1.8vw, 26px) !important;
+  align-items: stretch !important;
+}
+
+.modern-price-card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  min-height: auto !important;
+  padding: 34px 24px 28px 24px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35) !important;
+}
+
+.modern-price-card.is-popular {
+  transform: translateY(-8px) !important;
+  border-color: rgba(47, 191, 113, 0.45) !important;
+  box-shadow: 0 28px 75px rgba(0, 0, 0, 0.45), 0 0 35px rgba(47, 191, 113, 0.16) !important;
+}
+
+.modern-price-card .popular-pill {
+  align-self: center !important;
+  margin: 0 auto 14px auto !important;
+  padding: 5px 14px !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.modern-price-card h2 {
+  font-family: "Outfit", system-ui, sans-serif !important;
+  font-size: clamp(21px, 1.6vw, 25px) !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  margin: 0 auto 10px auto !important;
+  text-align: center !important;
+  color: #ffffff !important;
+}
+
+.modern-price-card p {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  color: #c9d8d0 !important;
+  min-height: 50px !important;
+  margin: 0 auto 16px auto !important;
+  text-align: center !important;
+  max-width: 280px !important;
+}
+
+.modern-price {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 3px !important;
+  margin: 0 auto 20px auto !important;
+  min-height: 58px !important;
+}
+
+.modern-price span {
+  font-family: "Outfit", system-ui, sans-serif !important;
+  font-size: clamp(18px, 1.4vw, 22px) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  color: #ffffff !important;
+  text-align: center !important;
+  letter-spacing: -0.01em !important;
+}
+
+.modern-price small {
+  color: #2fbf71 !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  letter-spacing: 0.02em !important;
+}
+
+.modern-price-card ul {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin: 0 auto 24px auto !important;
+  padding: 18px 0 0 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  list-style: none !important;
+  width: 100% !important;
+  max-width: 280px !important;
+  text-align: left !important;
+}
+
+.modern-price-card li {
+  font-size: 13.5px !important;
+  line-height: 1.45 !important;
+  color: #e5ece7 !important;
+}
+
+.pricing-button {
+  margin-top: auto !important;
+  min-height: 48px !important;
+  width: 100% !important;
+  max-width: 280px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border-radius: 12px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  text-decoration: none !important;
+  text-align: center !important;
+}
+
+/* Addon Grid: 4 tarjetas centradas */
+.addon-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+}
+
+.addon-card {
+  padding: 24px 20px !important;
+  border-radius: 14px !important;
+}
+
+.addon-card h3 {
+  font-size: clamp(16px, 1.3vw, 20px) !important;
+  line-height: 1.25 !important;
+  margin: 12px 0 10px 0 !important;
+}
+
+.addon-card ul {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+}
+
+/* Service Strip: 4 columnas centradas */
+.service-strip {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+}
+
+.service-strip article {
+  min-height: auto !important;
+  padding: 24px 18px !important;
+  border-radius: 14px !important;
+}
+
+/* Pricing CTA Section Centrado */
+.pricing-cta {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 24px !important;
+  padding: clamp(36px, 5vw, 64px) 24px !important;
+  border-radius: 20px !important;
+}
+
+.pricing-cta div {
+  text-align: center !important;
+}
+
+.pricing-cta h2 {
+  max-width: 680px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+
+.pricing-cta .button {
+  align-self: center !important;
+  margin: 0 auto !important;
+  padding: 14px 36px !important;
+}
+
+/* Adaptación responsive para móvil y pantallas estrechas */
+@media (max-width: 960px) {
+  .modern-pricing-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 440px !important;
+  }
+
+  .modern-price-card.is-popular {
+    transform: none !important;
+  }
+
+  .addon-grid,
+  .service-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .modern-pricing-copy,
+  .modern-pricing-grid,
+  .pricing-addons .section-heading,
+  .addon-grid,
+  .extra-services .section-heading,
+  .service-strip,
+  .pricing-cta {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .addon-grid,
+  .service-strip {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================================================
+   Ajuste de Escala Tipográfica Equilibrada en Secciones de Precios
+   ========================================================================== */
+
+/* CTA Final: Titular proporcionado, no gigante */
+.pricing-cta h2 {
+  font-size: clamp(20px, 2.2vw, 30px) !important;
+  line-height: 1.26 !important;
+  letter-spacing: -0.015em !important;
+  max-width: 620px !important;
+  margin: 0 auto 20px auto !important;
+  text-align: center !important;
+  text-wrap: balance !important;
+  color: #ffffff !important;
+}
+
+.pricing-cta .eyebrow {
+  font-size: 11.5px !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 12px !important;
+}
+
+.pricing-cta .button {
+  font-size: 15px !important;
+  padding: 13px 32px !important;
+  border-radius: 12px !important;
+}
+
+/* Titulares H2 de secciones intermedias: proporcionados */
+.pricing-addons .section-heading h2 {
+  font-size: clamp(22px, 2.4vw, 34px) !important;
+  line-height: 1.22 !important;
+  letter-spacing: -0.015em !important;
+  max-width: 760px !important;
+  margin: 0 auto 14px auto !important;
+  text-align: center !important;
+}
+
+.extra-services .section-heading h2 {
+  font-size: clamp(22px, 2.4vw, 34px) !important;
+  line-height: 1.22 !important;
+  letter-spacing: -0.015em !important;
+  max-width: 760px !important;
+  margin: 0 auto 14px auto !important;
+  text-align: center !important;
+}
+
+/* ==========================================================================
+   Tarjetas Giratorias 3D (Flip-Cards) en Transparencia y Proceso (Precios)
+   ========================================================================== */
+.service-strip {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+  perspective: 1200px !important;
+}
+
+.service-strip .flip-card {
+  perspective: 1200px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: 420px !important;
+  height: 100% !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  outline: none !important;
+  position: relative !important;
+}
+
+.service-strip .flip-card-inner {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 420px !important;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform-style: preserve-3d !important;
+  border-radius: 20px !important;
+}
+
+/* Giro 3D al pasar el cursor (Hover), focus o tap */
+.service-strip .flip-card:hover .flip-card-inner,
+.service-strip .flip-card:focus-within .flip-card-inner,
+.service-strip .flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg) !important;
+}
+
+.service-strip .flip-card-front,
+.service-strip .flip-card-back {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 20px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  overflow: hidden !important;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+/* CARA FRONTAL */
+.service-strip .flip-card-front {
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 36px 24px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border: 1px solid rgba(255, 255, 255, 0.20) !important;
+  box-shadow: 0 16px 40px rgba(10, 31, 23, 0.16) !important;
+  z-index: 2 !important;
+  transform: rotateY(0deg) !important;
+}
+
+.service-strip .flip-card-1 .flip-card-front {
+  background-image: linear-gradient(180deg, rgba(8, 26, 19, 0.45) 0%, rgba(8, 26, 19, 0.72) 45%, rgba(8, 26, 19, 0.95) 100%), url('indice/card-rural-01.jpg') !important;
+}
+.service-strip .flip-card-2 .flip-card-front {
+  background-image: linear-gradient(180deg, rgba(8, 26, 19, 0.45) 0%, rgba(8, 26, 19, 0.72) 45%, rgba(8, 26, 19, 0.95) 100%), url('indice/card-rural-02.jpg') !important;
+}
+.service-strip .flip-card-3 .flip-card-front {
+  background-image: linear-gradient(180deg, rgba(8, 26, 19, 0.45) 0%, rgba(8, 26, 19, 0.72) 45%, rgba(8, 26, 19, 0.95) 100%), url('indice/card-rural-03.jpg') !important;
+}
+.service-strip .flip-card-4 .flip-card-front {
+  background-image: linear-gradient(180deg, rgba(8, 26, 19, 0.45) 0%, rgba(8, 26, 19, 0.72) 45%, rgba(8, 26, 19, 0.95) 100%), url('indice/card-rural-04.jpg') !important;
+}
+
+.service-strip .flip-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  background: rgba(47, 191, 113, 0.18) !important;
+  border: 1px solid rgba(47, 191, 113, 0.38) !important;
+  color: #2fbf71 !important;
+  font-family: "Outfit", system-ui, sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  margin-bottom: 18px !important;
+}
+
+.service-strip .flip-title {
+  color: #ffffff !important;
+  font-family: "Outfit", system-ui, sans-serif !important;
+  font-size: clamp(20px, 1.55vw, 24px) !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.7) !important;
+  margin-bottom: 16px !important;
+  display: block !important;
+}
+
+.service-strip .flip-hint {
+  font-size: 11px !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: #e7b75f !important;
+  font-weight: 700 !important;
+  margin-top: auto !important;
+}
+
+/* CARA TRASERA */
+.service-strip .flip-card-back {
+  background: #0f281e !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 20px 48px rgba(10, 31, 23, 0.35) !important;
+  transform: rotateY(180deg) !important;
+  z-index: 1 !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  padding: 28px 22px !important;
+}
+
+.service-strip .flip-back-header {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 0 8px 0 !important;
+}
+
+.service-strip .flip-back-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: rgba(47, 191, 113, 0.16) !important;
+  border: 1px solid rgba(47, 191, 113, 0.32) !important;
+  color: #2fbf71 !important;
+  font-family: "Outfit", system-ui, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+
+.service-strip .flip-tag {
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #e7b75f !important;
+  text-align: center !important;
+  margin-bottom: 6px !important;
+}
+
+.service-strip .flip-desc {
+  font-size: 13.5px !important;
+  line-height: 1.5 !important;
+  color: #d1ded6 !important;
+  margin: 0 0 10px 0 !important;
+  text-align: left !important;
+}
+
+.service-strip .flip-bullet-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  text-align: left !important;
+  width: 100% !important;
+}
+
+.service-strip .flip-bullet-list li {
+  position: relative !important;
+  padding-left: 20px !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  color: #e8f1ea !important;
+}
+
+.service-strip .flip-bullet-list li::before {
+  content: "✓" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  color: #2fbf71 !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
 }

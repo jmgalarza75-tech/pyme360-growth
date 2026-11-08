@@ -20,18 +20,16 @@ for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /<div class="pricing-orbit" aria-hidden="true"><\/div>/);
   assert.match(html, /class="modern-pricing-grid"/);
   assert.match(html, /class="modern-price-card is-popular"/);
-  assert.match(html, /(?:El Recomendado|Mas elegido)/);
-  assert.match(html, /149<\/span><small>euros\/mes/);
-  assert.match(html, /(?:249<\/span><small>euros\/mes|Desde 249 euros\/mes)/);
-  assert.match(html, /(?:399<\/span><small>euros\/mes|Desde 399 euros\/mes)/);
-  assert.match(html, /Gestión de ayudas y subvenciones/);
-  assert.match(html, /Redes Base/);
-  assert.match(html, /Redes Pro/);
-  assert.match(html, /Redes Premium/);
+  assert.match(html, /Marketing digital para tu negocio, con un plan claro antes de empezar/);
+  assert.match(html, /Presupuesto según alcance/);
+  assert.match(html, /Contactar/);
+  assert.match(html, /Identidad y marca/);
+  assert.match(html, /Web y contacto/);
+  assert.match(html, /Presencia local y SEO/);
   assert.match(html, /Publicidad online/);
-  assert.match(html, /Branding y diseño/);
-  assert.match(html, /Servicios extra para completar tu sistema/);
+  assert.match(html, /Qué ocurre cuando solicitas una valoración/);
   assert.doesNotMatch(html, /\banade\b|\bAnade\b/);
+  assert.doesNotMatch(html, /149<\/span><small>euros\/mes|249<\/span><small>euros\/mes|399<\/span><small>euros\/mes|Sprint 30|Growth OS|Captación Total|CRM Básico|piloto automático|autopilot|robar cuota/);
   assert.doesNotMatch(html, /&euro;|\u00c3|\u00e2|\u20ac|dashboard\.html|buscador\.html|pipeline\.html|newsletter\.html|\.env/);
 }
 
