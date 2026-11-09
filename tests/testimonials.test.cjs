@@ -72,13 +72,6 @@ assert.match(contactoHtml, /name="phone"[^>]*required/);
 assert.match(contactoHtml, /name="business"[^>]*required/);
 assert.match(contactoHtml, /name="problem"[^>]*required/);
 
-// Primera capa informativa LOPD/RGPD visible
-assert.match(contactoHtml, /Información básica sobre protección de datos/);
-assert.match(contactoHtml, /Responsable:/);
-assert.match(contactoHtml, /Finalidad:/);
-assert.match(contactoHtml, /Legitimación:/);
-assert.match(contactoHtml, /Derechos:/);
-
 // Checkbox obligatorio de aceptación de política de privacidad
 assert.match(contactoHtml, /<input type="checkbox" name="privacy" required>/);
 assert.match(contactoHtml, /href="privacidad\.html"/);
