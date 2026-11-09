@@ -316,13 +316,27 @@ function showNextProcessOrbitNode() {
   updateProcessOrbit(processNodes[nextIndex]);
 }
 
+let processOrbitAngle = 0;
+let processOrbitAnimationActive = true;
+let processOrbitAnimationFrame = null;
+
+function animateProcessOrbitContinuous() {
+  if (processOrbitAnimationActive && processOrbitStage && window.innerWidth > 760) {
+    processOrbitAngle = (processOrbitAngle + 0.12) % 360;
+    processOrbitStage.style.setProperty("--orbit-angle", `${processOrbitAngle.toFixed(2)}deg`);
+  }
+  processOrbitAnimationFrame = requestAnimationFrame(animateProcessOrbitContinuous);
+}
+
 function stopProcessOrbitRotation() {
+  processOrbitAnimationActive = false;
   if (!processOrbitTimer) return;
   window.clearInterval(processOrbitTimer);
   processOrbitTimer = null;
 }
 
 function startProcessOrbitRotation() {
+  processOrbitAnimationActive = true;
   if (!processNodes.length || processOrbitTimer) return;
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   processOrbitTimer = window.setInterval(showNextProcessOrbitNode, PROCESS_ORBIT_ROTATION_MS);
@@ -347,6 +361,9 @@ if (processNodes.length) {
   }
 
   startProcessOrbitRotation();
+  if (window.requestAnimationFrame && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+    requestAnimationFrame(animateProcessOrbitContinuous);
+  }
 }
 
 if (navToggle && siteNav) {
