@@ -16,7 +16,8 @@ let processOrbitTimer = null;
 
 const clients = [
   {
-    logo: "EQ",
+    logo: "assets/logos/equalis_blanco.png",
+    logoImg: "assets/logos/equalis_blanco.png",
     logoClass: "testimonial-logo-equalis",
     author: "Equalis Consultoría Canaria",
     url: "https://www.equalisconsultoriacanaria.es/",
@@ -25,7 +26,8 @@ const clients = [
     services: ["Diseño web", "SEO local", "Google Ads"]
   },
   {
-    logo: "AJ",
+    logo: "assets/logos/acevinos.png",
+    logoImg: "assets/logos/acevinos.png",
     logoClass: "testimonial-logo-acevinos",
     author: "Aceviños Jardinería",
     url: "https://acevinosjardineria.com/",
@@ -37,7 +39,8 @@ const clients = [
 
 const testimonials = [
   {
-    logo: "H4",
+    logo: "assets/logos/home4escape.png",
+    logoImg: "assets/logos/home4escape.png",
     logoClass: "testimonial-logo-home",
     author: "Home4Escape",
     url: "https://www.home4escape.com/",
@@ -45,7 +48,8 @@ const testimonials = [
     sector: "Alquiler vacacional de villas y casas rurales en Canarias"
   },
   {
-    logo: "NJ",
+    logo: "assets/logos/nomadsjungle.png",
+    logoImg: "assets/logos/nomadsjungle.png",
     logoClass: "testimonial-logo-nomads",
     author: "Nomads Jungle",
     url: "https://nomadsjungle.com/",
@@ -53,7 +57,8 @@ const testimonials = [
     sector: "Vivienda profesional por temporada en Canarias"
   },
   {
-    logo: "DA",
+    logo: "assets/logos/diariodeabordo.svg",
+    logoImg: "assets/logos/diariodeabordo.svg",
     logoClass: "testimonial-logo-diario",
     author: "Diario de Abordo",
     url: "https://diariodeabordo.es/",
@@ -61,7 +66,8 @@ const testimonials = [
     sector: "Blog y newsletter sobre crecimiento y sistemas"
   },
   {
-    logo: "RR",
+    logo: "assets/logos/roamretreats.png",
+    logoImg: "assets/logos/roamretreats.png",
     logoClass: "testimonial-logo-roam",
     author: "Roam Retreats",
     url: "https://roamretreats.es/",

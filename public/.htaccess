@@ -37,4 +37,3 @@ AddDefaultCharset UTF-8
 
   RewriteRule ^unsubscribe/?$ unsubscribe.php [L,QSA]
 </IfModule>
-
