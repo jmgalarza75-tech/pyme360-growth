@@ -12,7 +12,7 @@ for (const html of [rootHtml, publicHtml]) {
   assert.match(html, /<select name="sector" required>/);
   assert.match(html, /<span class="select-arrow" aria-hidden="true">/);
   assert.match(html, /Sin spam\. Sin compromiso\. Respuesta clara/);
-  assert.match(html, /pyme360-public\.css\?v=20260713-3/);
+  assert.match(html, /pyme360-public\.css\?v=20261109-1/);
   assert.match(html, /pyme360-public\.js\?v=20261024-1/);
 }
 

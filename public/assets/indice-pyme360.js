@@ -487,7 +487,8 @@ if (leakGallery && galleryPrev && galleryNext) {
     },
     answers: {
       1: null, 2: null, 3: null, 4: null, 5: null, 6: null, 7: null,
-      8: null, 9: null, 10: null, 11: null, 12: null, 13: null, 14: null
+      8: null, 9: null, 10: null, 11: null, 12: null, 13: null, 14: null,
+      15: null, 16: null, 17: null, 18: null, 19: null, 20: null, 21: null
     }
   };
 
@@ -676,12 +677,13 @@ if (leakGallery && galleryPrev && galleryNext) {
       const targetStep = parseInt(btn.getAttribute("data-target-step"), 10);
       const currentStep = state.currentStep;
 
-      // Si está avanzando de un pilar (1 a 7), validar que ambas preguntas estén puntuadas
+      // Si está avanzando de un pilar (1 a 7), validar que las 3 preguntas estén puntuadas
       if (currentStep >= 1 && currentStep <= 7 && targetStep > currentStep) {
-        const q1 = (currentStep * 2) - 1;
-        const q2 = currentStep * 2;
-        if (state.answers[q1] === null || state.answers[q2] === null) {
-          alert("Por favor, selecciona una puntuación para cada una de las dos preguntas antes de avanzar.");
+        const q1 = (currentStep * 3) - 2;
+        const q2 = (currentStep * 3) - 1;
+        const q3 = currentStep * 3;
+        if (state.answers[q1] === null || state.answers[q2] === null || state.answers[q3] === null) {
+          alert("Por favor, selecciona una puntuación para cada una de las 3 preguntas antes de avanzar.");
           return;
         }
       }
@@ -715,20 +717,20 @@ if (leakGallery && galleryPrev && galleryNext) {
   // ==========================================================================
   function calculateAndRenderResults() {
     let sum = 0;
-    for (let i = 1; i <= 14; i++) {
+    for (let i = 1; i <= 21; i++) {
       sum += (state.answers[i] || 1);
     }
-    const globalScore = Math.round((sum / 14) * 10) / 10;
+    const globalScore = Math.round((sum / 21) * 10) / 10;
 
-    // Medias de las 7 P
+    // Medias de las 7 P (3 preguntas por pilar)
     const pScores = [
-      { key: "p1", name: pNames.p1, score: Math.round(((state.answers[1] + state.answers[2]) / 2) * 10) / 10 },
-      { key: "p2", name: pNames.p2, score: Math.round(((state.answers[3] + state.answers[4]) / 2) * 10) / 10 },
-      { key: "p3", name: pNames.p3, score: Math.round(((state.answers[5] + state.answers[6]) / 2) * 10) / 10 },
-      { key: "p4", name: pNames.p4, score: Math.round(((state.answers[7] + state.answers[8]) / 2) * 10) / 10 },
-      { key: "p5", name: pNames.p5, score: Math.round(((state.answers[9] + state.answers[10]) / 2) * 10) / 10 },
-      { key: "p6", name: pNames.p6, score: Math.round(((state.answers[11] + state.answers[12]) / 2) * 10) / 10 },
-      { key: "p7", name: pNames.p7, score: Math.round(((state.answers[13] + state.answers[14]) / 2) * 10) / 10 }
+      { key: "p1", name: pNames.p1, score: Math.round(((state.answers[1] + state.answers[2] + state.answers[3]) / 3) * 10) / 10 },
+      { key: "p2", name: pNames.p2, score: Math.round(((state.answers[4] + state.answers[5] + state.answers[6]) / 3) * 10) / 10 },
+      { key: "p3", name: pNames.p3, score: Math.round(((state.answers[7] + state.answers[8] + state.answers[9]) / 3) * 10) / 10 },
+      { key: "p4", name: pNames.p4, score: Math.round(((state.answers[10] + state.answers[11] + state.answers[12]) / 3) * 10) / 10 },
+      { key: "p5", name: pNames.p5, score: Math.round(((state.answers[13] + state.answers[14] + state.answers[15]) / 3) * 10) / 10 },
+      { key: "p6", name: pNames.p6, score: Math.round(((state.answers[16] + state.answers[17] + state.answers[18]) / 3) * 10) / 10 },
+      { key: "p7", name: pNames.p7, score: Math.round(((state.answers[19] + state.answers[20] + state.answers[21]) / 3) * 10) / 10 }
     ];
 
     // Renderizar Puntuación Global
@@ -850,34 +852,41 @@ if (leakGallery && galleryPrev && galleryNext) {
 
       // Cálculo del informe formateado de Autoevaluación 7P
       let sum = 0;
-      for (let i = 1; i <= 14; i++) sum += (state.answers[i] || 1);
-      const globalScore = (sum / 14).toFixed(1);
+      for (let i = 1; i <= 21; i++) sum += (state.answers[i] || 1);
+      const globalScore = (sum / 21).toFixed(1);
 
       const questionLabels = {
         1: "P1 Producto · Definición de huésped objetivo por temporada",
         2: "P1 Producto · Claridad de la propuesta y valor diferencial",
-        3: "P2 Precio · Tarifas estructuradas por temporada y estancia",
-        4: "P2 Precio · Control del margen neto tras comisiones de venta",
-        5: "P3 Canales · Canales de venta alineados con tu público objetivo",
-        6: "P3 Canales · Calendarios unificados y sincronizados sin solapes",
-        7: "P4 Promoción · Plan comercial para fechas valle y meses flojos",
-        8: "P4 Promoción · Medición del retorno de acciones comerciales",
-        9: "P5 Personas · Responsabilidades comerciales y de atención claras",
-        10: "P5 Personas · Agilidad en respuesta a consultas calientes",
-        11: "P6 Procesos · Facilidad en el paso de consulta a reserva directa",
-        12: "P6 Procesos · Seguimiento y fidelización de antiguos huéspedes",
-        13: "P7 Evidencia · Fotografías y vídeos atractivos y actualizados",
-        14: "P7 Evidencia · Información práctica clara en web (normas, servicios)"
+        3: "P1 Producto · Equipamiento, confort y detalles clave para el huésped",
+        4: "P2 Precio · Tarifas estructuradas por temporada y estancia",
+        5: "P2 Precio · Control del margen neto tras comisiones de venta",
+        6: "P2 Precio · Paridad e incentivos claros para la reserva directa",
+        7: "P3 Canales · Canales de venta alineados con tu público objetivo",
+        8: "P3 Canales · Calendarios unificados y sincronizados en tiempo real",
+        9: "P3 Canales · Web propia con consulta de disponibilidad y reserva",
+        10: "P4 Promoción · Plan comercial para fechas valle y meses flojos",
+        11: "P4 Promoción · Medición del retorno de acciones comerciales",
+        12: "P4 Promoción · Optimización de ficha Google Business y SEO local",
+        13: "P5 Personas · Responsabilidades comerciales y de atención claras",
+        14: "P5 Personas · Agilidad en respuesta a consultas calientes (< 1h)",
+        15: "P5 Personas · Protocolo activo de reseñas y reputación online",
+        16: "P6 Procesos · Facilidad en el paso de consulta a reserva directa",
+        17: "P6 Procesos · Seguimiento y fidelización de antiguos huéspedes",
+        18: "P6 Procesos · Instrucciones automatizadas y guía digital de bienvenida",
+        19: "P7 Evidencia · Fotografías y vídeos atractivos y profesionales",
+        20: "P7 Evidencia · Información práctica clara en web (normas, servicios)",
+        21: "P7 Evidencia · Cuidado de detalles físicos y experiencia memorable"
       };
 
       const pScores = [
-        { key: "p1", name: "1. Producto", score: (((state.answers[1] || 1) + (state.answers[2] || 1)) / 2) },
-        { key: "p2", name: "2. Precio", score: (((state.answers[3] || 1) + (state.answers[4] || 1)) / 2) },
-        { key: "p3", name: "3. Plaza (Canales)", score: (((state.answers[5] || 1) + (state.answers[6] || 1)) / 2) },
-        { key: "p4", name: "4. Promoción", score: (((state.answers[7] || 1) + (state.answers[8] || 1)) / 2) },
-        { key: "p5", name: "5. Personas", score: (((state.answers[9] || 1) + (state.answers[10] || 1)) / 2) },
-        { key: "p6", name: "6. Procesos", score: (((state.answers[11] || 1) + (state.answers[12] || 1)) / 2) },
-        { key: "p7", name: "7. Evidencia física y digital", score: (((state.answers[13] || 1) + (state.answers[14] || 1)) / 2) }
+        { key: "p1", name: "1. Producto", score: (((state.answers[1] || 1) + (state.answers[2] || 1) + (state.answers[3] || 1)) / 3) },
+        { key: "p2", name: "2. Precio", score: (((state.answers[4] || 1) + (state.answers[5] || 1) + (state.answers[6] || 1)) / 3) },
+        { key: "p3", name: "3. Plaza (Canales)", score: (((state.answers[7] || 1) + (state.answers[8] || 1) + (state.answers[9] || 1)) / 3) },
+        { key: "p4", name: "4. Promoción", score: (((state.answers[10] || 1) + (state.answers[11] || 1) + (state.answers[12] || 1)) / 3) },
+        { key: "p5", name: "5. Personas", score: (((state.answers[13] || 1) + (state.answers[14] || 1) + (state.answers[15] || 1)) / 3) },
+        { key: "p6", name: "6. Procesos", score: (((state.answers[16] || 1) + (state.answers[17] || 1) + (state.answers[18] || 1)) / 3) },
+        { key: "p7", name: "7. Evidencia física y digital", score: (((state.answers[19] || 1) + (state.answers[20] || 1) + (state.answers[21] || 1)) / 3) }
       ];
 
       const sortedP = [...pScores].sort((a, b) => a.score - b.score);
@@ -888,7 +897,7 @@ if (leakGallery && galleryPrev && galleryNext) {
       const pSummary = pScores.map(p => `${p.name}: ${p.score.toFixed(1)}/10`).join(" | ");
 
       const detailedAnswers = [];
-      for (let i = 1; i <= 14; i++) {
+      for (let i = 1; i <= 21; i++) {
         detailedAnswers.push(`- Q${i < 10 ? '0' + i : i} [${questionLabels[i]}]: ${state.answers[i] || 1} / 10`);
       }
 
@@ -931,7 +940,7 @@ if (leakGallery && galleryPrev && galleryNext) {
         `   ${pInsights[fortaleza.key]?.strength || "Área con mayor consolidación comercial."}`,
         ``,
         `------------------------------------------------------------`,
-        `DETALLE DE LAS 14 PREGUNTAS Y PUNTUACIÓN (1 al 10):`,
+        `DETALLE DE LAS 21 PREGUNTAS Y PUNTUACIÓN (1 al 10):`,
         detailedAnswers.join("\n"),
         ``,
         `============================================================`

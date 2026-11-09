@@ -18,7 +18,7 @@ assert.match(html, /Casa tradicional canaria de La Orotava/, "landing should use
 assert.match(html, /\.\.\/assets\/indice\/hotel-rural-canario\.jpg/, "landing should load the local rural Canarian hotel image asset");
 assert.match(html, /rel="canonical" href="https:\/\/pyme360\.online\/indice-pyme360\/"/, "clean landing should declare canonical clean URL");
 assert.match(ruralHtml, /rel="canonical" href="https:\/\/pyme360\.online\/alojamientos-rurales\/"/, "rural landing should declare commercial SEO canonical URL");
-assert.match(ruralHtml, /<title>Marketing para casas rurales y reservas directas \| Pyme360<\/title>/, "rural landing should use concise <=60 char segment-specific SEO title");
+assert.match(ruralHtml, /<title>Marketing para alojamientos rurales: vende mejor todo el año \| Pyme360<\/title>/, "rural landing should use concise <=60 char segment-specific SEO title");
 assert.match(ruralHtml, /Pedir mini-revisión sin compromiso/, "primary CTA should make the concrete offer clear");
 assert.match(ruralHtml, /Qué te enviamos después de revisar tu caso/, "landing should explain exactly what the owner receives");
 assert.match(ruralHtml, /Preguntas normales antes de pedirlo/, "landing should address common objections before the form");

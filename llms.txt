@@ -1,24 +1,44 @@
 # Pyme360 Growth
 
-> Agencia y sistema mensual de marketing digital, captación y crecimiento comercial para pequeñas y medianas empresas (pymes) y alojamientos turísticos en Tenerife y Canarias (España). Operado por Roam Retreats.
+> Consultoría y marketing digital orientado a captación y resultados para pequeñas y medianas empresas (pymes) y alojamientos rurales e independientes en Tenerife, Canarias y resto de España. Operado por Roam Retreats (CIF B16392094).
 
-## Quiénes somos y dónde operamos
-- **Marca comercial:** Pyme360 Growth (operado por Roam Retreats, CIF 16392094)
-- **Zona de servicio principal:** Tenerife y Canarias (servicio presencial/a domicilio en toda la isla de Tenerife y servicio remoto en toda España para alojamientos rurales)
+## Quiénes somos y cómo trabajamos
+- **Marca comercial:** Pyme360 Growth
+- **Sociedad titular:** Roam Retreats (CIF B16392094, Tigaday I, Águilas del Teide, 38640 Arona, Tenerife, Islas Canarias)
+- **Zona de servicio:** Atención presencial y directa en toda la isla de Tenerife y las Islas Canarias; servicio remoto en toda España para el sector de alojamientos rurales e independientes.
 - **Web oficial:** https://pyme360.online/
-- **Contacto directo:** info@pyme360.online | Teléfono y WhatsApp: +34 686 18 42 91 (https://wa.me/34686184291)
+- **Contacto directo:** info@pyme360.online | Teléfono: +34 686 18 42 91 | WhatsApp: https://wa.me/34686184291
 
-## Servicios principales
-- **Pyme360 Growth System:** Diagnóstico inicial de fugas comerciales, Sprint 30 de puesta a punto, sistema recurrente mensual (Growth OS) e informes de retorno en ventas, reservas y contactos.
-- **Comercialización para Alojamientos Rurales (`/alojamientos-rurales/`):** Equipo externo de dirección comercial y marketing para casas rurales, complejos multiunidad y hoteles rurales. Autoevaluación comercial gratuita de las 7 P, captación de reservas directas frente a Booking/OTAs, mejora de conversión móvil y campañas para temporada baja.
-- **Planes y Precios (`/precios.html`):**
-  - CRM Básico: 99 EUR/mes
-  - Growth OS (Recomendado): 149 EUR/mes
-  - Captación Total (con gestión de anuncios Meta/Google): 349 EUR/mes
-  - Servicios complementarios: Gestión de redes sociales (149–399 EUR/mes), Publicidad online, Branding y tramitación de ayudas/subvenciones.
+## Modelo de precios y cotización (/precios.html)
+- **Sin tarifas fijas universales ni paquetes cerrados:** No creemos en paquetes cerrados a ciegas que obligan a pagar por acciones innecesarias.
+- **Presupuesto según alcance acordado:** Primero analizamos la situación real de la pyme mediante un diagnóstico previo gratuito; después entregamos una propuesta escrita y cerrada con las acciones prioritarias, los plazos previstos y el presupuesto antes de comenzar.
+- **Costes de publicidad transparentes:** Si se acuerdan campañas publicitarias (Meta Ads, Google Ads), la inversión en las plataformas se aprueba y abona aparte directamente por el cliente; los honorarios cubren estrategia, creatividad, optimización y seguimiento.
+- **Acciones posibles valoradas según el negocio:**
+  1. Identidad y mensaje de marca (propuesta de valor, textos comerciales, coherencia visual).
+  2. Web y recorrido de contacto (conversión móvil, integración de WhatsApp, teléfono y formularios).
+  3. Presencia local y SEO (optimización de ficha de Google Business, posicionamiento local, reputación).
+  4. Publicidad digital y contenidos adaptados.
+
+## Alojamientos Rurales (/alojamientos-rurales/)
+- **Servicio específico:** Comercialización y estrategia digital para casas rurales, hoteles rurales, fincas turísticas y alojamientos independientes en España.
+- **Puerta de entrada (Mini-revisión de reservas directas):** Análisis concreto de 3 a 5 observaciones sobre los elementos que ve un huésped antes de reservar (web, móvil, ficha de Google, fotos, reseñas y canales OTA como Booking o Airbnb), sin coste ni compromiso.
+- **Diagnóstico 7P:** Marco estructurado de autoevaluación comercial (Producto, Precio, Plaza/Canales, Promoción, Personas, Procesos y Prueba física).
+- **Límites claros:** No se prometen resultados mágicos, llenar temporada baja ni cerrar reservas en dos clics. El contenido se adapta al material existente del alojamiento; la producción presencial de foto y vídeo se presupuesta como extra.
 
 ## Páginas clave
-- [Inicio — Sistema de crecimiento para pymes en Tenerife](https://pyme360.online/)
-- [Alojamientos Rurales — Reservas directas y autoevaluación 7P](https://pyme360.online/alojamientos-rurales/)
-- [Planes y Precios Pyme360](https://pyme360.online/precios.html)
+- [Inicio — Marketing digital para pymes en Tenerife](https://pyme360.online/)
+- [Alojamientos Rurales — Mini-revisión comercial y autoevaluación 7P](https://pyme360.online/alojamientos-rurales/)
+- [Precios Pyme360 — Cómo presupuestamos nuestro trabajo](https://pyme360.online/precios.html)
 
+## Blog
+- [Por qué tu web en Tenerife tiene visitas pero no genera contactos](https://pyme360.online/blog/web-visitas-sin-contactos-tenerife/): Tener tráfico web sin consultas comerciales es el síntoma clásico de fricción local. Analizamos los tres cuellos de botella que frenan las conversiones en empresas canarias.
+- [La falacia del 85% de ocupación: el coste real de tu casa rural](https://pyme360.online/blog/la-falacia-del-85-por-ciento-ocupacion/): Colgar el cartel de lleno no garantiza rentabilidad. Destapamos la fuga invisible de margen neto provocada por intermediarios, lavandería y desgaste operativo.
+- [SEO local en Canarias: cómo dominar Google Maps frente a tu competencia](https://pyme360.online/blog/seo-local-canarias-google-maps/): Aparecer entre los 3 primeros de Google Maps en tu municipio no depende de pagar anuncios, sino de geoseñales claras, consistencia de datos y reputación activa.
+- [Tus huéspedes no son tuyos: el riesgo de depender solo de Booking](https://pyme360.online/blog/tus-huespedes-no-son-tuyos/): Cuando una OTA gestiona los datos de contacto y la relación, tu alojamiento es un producto sustituible. Claves para construir un canal directo independiente.
+- [Errores en Google Ads que están quemando el presupuesto de tu pyme](https://pyme360.online/blog/errores-google-ads-pymes/): Concordancia amplia sin control, pujas automáticas a ciegas y páginas de destino genéricas: los tres desvíos donde se esfuma la inversión publicitaria local.
+- [La fricción invisible: por qué abandonan reservas en tu web móvil](https://pyme360.online/blog/friccion-invisible-reservas-web-movil/): Más del 70% de las consultas de escapadas rurales se inician en smartphones. Si tu motor exige formularios interminables o no carga en 3 segundos, vuelven a Booking.
+- [Marketing GEO: cómo aparecer en las respuestas de IA (ChatGPT, Gemini)](https://pyme360.online/blog/geo-aparecer-en-respuestas-ia/): Los motores generativos no rastrean palabras clave sueltas; extraen entidades, hechos verificados y Schema estructurado. Cómo adaptar la presencia de tu pyme.
+- [La trampa de bajar precios en temporada baja en tu alojamiento rural](https://pyme360.online/blog/trampa-bajar-precios-temporada-baja/): Rebajar tarifas en meses flojos deteriora el margen y atrae huéspedes de peor encaje. Descubre cómo empaquetar estancias temáticas y activar reservas de proximidad.
+- [El valor de las reseñas en Google para negocios locales en Tenerife](https://pyme360.online/blog/resenas-google-negocios-tenerife/): Las opiniones de clientes no son solo un sello de confianza; son el factor decisivo en la tasa de clics de Google Maps. Cómo solicitar y responder valoraciones con método.
+- [Radiografía de rentabilidad: control de costes para hoteles rurales](https://pyme360.online/blog/control-costes-hotel-rural/): Estructura de costes fijos, variables por noche ocupada y comisiones financieras. El método para calcular el umbral de rentabilidad real de cada unidad alojativa.
+- [Blog de Pyme360 — Marketing digital para pymes y alojamientos rurales](https://pyme360.online/blog/)

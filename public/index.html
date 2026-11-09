@@ -33,6 +33,8 @@
         "@id": "https://pyme360.online/#empresa",
         "name": "Pyme360 Growth",
         "legalName": "Roam Retreats",
+        "vatID": "B16392094",
+        "taxID": "B16392094",
         "url": "https://pyme360.online/",
         "logo": "https://pyme360.online/assets/lgo.png",
         "image": "https://pyme360.online/assets/pyme360-og-image.png",
@@ -51,8 +53,10 @@
         ],
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Tenerife",
-          "addressRegion": "Canarias",
+          "streetAddress": "Tigaday I, Águilas del Teide",
+          "addressLocality": "Arona",
+          "postalCode": "38640",
+          "addressRegion": "Santa Cruz de Tenerife",
           "addressCountry": "ES"
         },
         "contactPoint": {
@@ -75,6 +79,47 @@
         "publisher": {
           "@id": "https://pyme360.online/#empresa"
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://pyme360.online/#faq",
+        "isPartOf": {
+          "@id": "https://pyme360.online/#website"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿En qué consiste el diagnóstico gratuito inicial?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Revisamos tu presencia online real en 48 horas laborables. Analizamos tu web, velocidad móvil, perfil de Google Business, canales de contacto y puntos donde estás perdiendo clientes potenciales. Te entregamos 3 a 5 observaciones claras con prioridad de acción, sin compromiso ni coste alguno."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Tengo que cambiar mi página web o contratar nuevo software?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No obligamos a rehacer tu web ni a cambiar de programas. Trabajamos sobre las herramientas, CRM, web o motores que tu empresa ya utiliza, optimizando su conversión y corrigiendo fugas antes de considerar cualquier cambio técnico mayor."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuál es el ámbito geográfico de vuestros servicios?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Atención directa en toda la isla de Tenerife y las Islas Canarias, con posibilidad de reuniones presenciales y servicio a domicilio. Para el sector hotelero y de alojamientos rurales, prestamos servicio de dirección comercial y marketing en toda España."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta trabajar con Pyme360?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No hay una tarifa única para todos los negocios. Primero entendemos qué necesitas y el alcance; después te presentamos una propuesta con las acciones, el precio y las condiciones antes de empezar. Si se acuerda publicidad, la inversión en anuncios se aprueba y paga aparte. Consulta nuestra página de precios para ver los detalles."
+            }
+          }
+        ]
       }
     ]
   }
@@ -83,7 +128,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/pyme360-public.css?v=20260713-3">
+  <link rel="stylesheet" href="assets/pyme360-public.css?v=20261109-1">
 </head>
 <body>
   <header class="site-header">
@@ -102,6 +147,7 @@
       <a href="#sectores">Sectores</a>
       <a href="alojamientos-rurales/">Alojamientos rurales</a>
       <a href="precios.html">Precios</a>
+      <a href="blog/">Blog</a>
       <a class="nav-cta" href="#diagnostico">Diagnóstico gratis</a>
     </nav>
   </header>
@@ -329,40 +375,125 @@
       </div>
     </section>
 
-    <section class="testimonials section" aria-labelledby="testimonials-title">
-      <div class="testimonial-copy">
-        <p class="eyebrow">Pruebas de confianza</p>
-        <h2 id="testimonials-title">Marketing con criterio, explicado para personas que dirigen negocios reales.</h2>
-        <p>No se trata de hacer más cosas. Se trata de saber qué está frenando el crecimiento y actuar sobre lo que puede mover reservas, contactos y ventas.</p>
-        <button class="button button-secondary testimonial-shuffle" type="button">Ver otro testimonio</button>
+    <section id="casos" class="testimonials section" aria-labelledby="casos-title">
+      <div class="cases-header">
+        <p class="eyebrow">Casos y proyectos</p>
+        <h2 id="casos-title">Trabajo real, en negocios reales</h2>
+        <p class="cases-lead">Desarrollamos estrategias digitales para clientes y gestionamos nuestras propias marcas: aplicamos en ellas exactamente lo mismo que proponemos a las empresas que confían en nosotros.</p>
       </div>
 
-      <div class="testimonial-stage" aria-live="polite">
-        <article class="testimonial-card is-front" data-position="front">
-          <span class="testimonial-logo testimonial-logo-home" aria-label="Logo de Home4Escape">H4</span>
-          <blockquote>Pyme360 nos ayudó a ordenar la captación y convertir la presencia digital en una herramienta comercial, no solo en una web bonita.</blockquote>
-          <div><strong>Home4Escape</strong><span>Hospitality y alquiler vacacional</span></div>
-        </article>
-        <article class="testimonial-card is-middle" data-position="middle">
-          <span class="testimonial-logo testimonial-logo-nomads" aria-label="Logo de Nomads Jungle">NJ</span>
-          <blockquote>Por fin entendimos qué acciones priorizar. El diagnóstico aterrizó el marketing en decisiones concretas para crecer.</blockquote>
-          <div><strong>Nomads Jungle</strong><span>Experiencias y comunidad viajera</span></div>
-        </article>
-        <article class="testimonial-card is-back" data-position="back">
-          <span class="testimonial-logo testimonial-logo-brisa" aria-label="Logo de Cafetería Brisa">CB</span>
-          <blockquote>Necesitábamos más clientes locales sin perdernos en tecnicismos. El sistema nos dio foco, seguimiento y una ruta clara.</blockquote>
-          <div><strong>Cafetería Brisa</strong><span>Caso tipo de pyme local</span></div>
-        </article>
-        <article class="testimonial-card is-far" data-position="far">
-          <span class="testimonial-logo testimonial-logo-rural" aria-label="Logo de Hotel Rural El Mirador">HM</span>
-          <blockquote>Pasamos de depender de la temporada alta a trabajar campañas para temporada baja, reservas directas y mensajes mucho más claros.</blockquote>
-          <div><strong>Hotel Rural El Mirador</strong><span>Alojamiento rural y escapadas</span></div>
-        </article>
-        <article class="testimonial-card is-tail" data-position="tail">
-          <span class="testimonial-logo testimonial-logo-tours" aria-label="Logo de Isla Norte Tours">IN</span>
-          <blockquote>Pyme360 ordenó las solicitudes de excursiones, el seguimiento por WhatsApp y las acciones que de verdad traían reservas.</blockquote>
-          <div><strong>Isla Norte Tours</strong><span>Servicios turísticos y experiencias</span></div>
-        </article>
+      <!-- Subgrupo 1: Clientes -->
+      <div class="cases-subgroup clients-subgroup">
+        <div class="projects-subgroup-header">
+          <h3 class="projects-subgroup-title">Clientes</h3>
+          <p class="projects-subgroup-desc">Empresas que han confiado en Pyme360 para su presencia digital, visibilidad en Google y captación comercial.</p>
+        </div>
+
+        <div class="clients-grid" role="region" aria-label="Clientes de Pyme360">
+          <article class="project-card testimonial-card client-card">
+            <div class="project-card-header">
+              <span class="project-badge client-badge">Cliente</span>
+            </div>
+            <span class="testimonial-logo testimonial-logo-equalis" aria-label="Logo de Equalis Consultoría Canaria">EQ</span>
+            <div class="project-card-body">
+              <h4 class="project-name">Equalis Consultoría Canaria</h4>
+              <p class="project-desc">Consultoría especializada en planes de igualdad, protocolos de acoso y formación para empresas e instituciones en Canarias.</p>
+              <div class="service-tags">
+                <span class="service-tag">Diseño web</span>
+                <span class="service-tag">SEO local</span>
+                <span class="service-tag">Google Ads</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://www.equalisconsultoriacanaria.es/" target="_blank" rel="noopener" class="project-link">Visitar web oficial <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="project-card testimonial-card client-card">
+            <div class="project-card-header">
+              <span class="project-badge client-badge">Cliente</span>
+            </div>
+            <span class="testimonial-logo testimonial-logo-acevinos" aria-label="Logo de Aceviños Jardinería">AJ</span>
+            <div class="project-card-body">
+              <h4 class="project-name">Aceviños Jardinería</h4>
+              <p class="project-desc">Empresa de venta e instalación profesional de césped artificial y paisajismo para hogares y negocios en Tenerife.</p>
+              <div class="service-tags">
+                <span class="service-tag">Diseño web</span>
+                <span class="service-tag">SEO local</span>
+                <span class="service-tag">Google Ads</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://acevinosjardineria.com/" target="_blank" rel="noopener" class="project-link">Visitar web oficial <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Subgrupo 2: Proyectos propios -->
+      <div class="cases-subgroup projects-subgroup">
+        <div class="projects-subgroup-header">
+          <h3 class="projects-subgroup-title">Proyectos propios</h3>
+          <p class="projects-subgroup-desc">Marcas que hemos creado y gestionamos nosotros: aplicamos en ellas lo mismo que proponemos a nuestros clientes.</p>
+        </div>
+
+        <div class="projects-grid testimonial-stage" role="region" aria-label="Proyectos propios del equipo">
+          <article class="project-card testimonial-card">
+            <div class="project-card-header">
+              <span class="project-badge">Proyecto propio</span>
+            </div>
+            <span class="testimonial-logo testimonial-logo-home" aria-label="Logo de Home4Escape">H4</span>
+            <div class="project-card-body">
+              <h4 class="project-name">Home4Escape</h4>
+              <p class="project-desc">Alquiler vacacional de villas y casas rurales en Canarias</p>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://www.home4escape.com/" target="_blank" rel="noopener" class="project-link">Ver proyecto oficial <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="project-card testimonial-card">
+            <div class="project-card-header">
+              <span class="project-badge">Proyecto propio</span>
+            </div>
+            <span class="testimonial-logo testimonial-logo-nomads" aria-label="Logo de Nomads Jungle">NJ</span>
+            <div class="project-card-body">
+              <h4 class="project-name">Nomads Jungle</h4>
+              <p class="project-desc">Vivienda profesional por temporada (1–6 meses) en Canarias para empresas y profesionales desplazados</p>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://nomadsjungle.com/" target="_blank" rel="noopener" class="project-link">Ver proyecto oficial <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="project-card testimonial-card">
+            <div class="project-card-header">
+              <span class="project-badge">Proyecto propio</span>
+            </div>
+            <span class="testimonial-logo testimonial-logo-diario" aria-label="Logo de Diario de Abordo">DA</span>
+            <div class="project-card-body">
+              <h4 class="project-name">Diario de Abordo</h4>
+              <p class="project-desc">Blog y newsletter sobre crecimiento personal, liderazgo y sistemas</p>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://diariodeabordo.es/" target="_blank" rel="noopener" class="project-link">Ver proyecto oficial <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="project-card testimonial-card">
+            <div class="project-card-header">
+              <span class="project-badge">Proyecto propio</span>
+            </div>
+            <span class="testimonial-logo testimonial-logo-roam" aria-label="Logo de Roam Retreats">RR</span>
+            <div class="project-card-body">
+              <h4 class="project-name">Roam Retreats</h4>
+              <p class="project-desc">Consultoría boutique de inversión hotelera; sociedad titular de la marca Pyme360</p>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://roamretreats.es/" target="_blank" rel="noopener" class="project-link">Ver proyecto oficial <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -371,10 +502,10 @@
       <div class="trust-about-card">
         <p class="eyebrow">Quién está detrás</p>
         <h2 id="trust-title">Consultoría ejecutiva y marketing digital con base en Tenerife</h2>
-        <p class="trust-about-lead">Pyme360 Growth es un servicio operado por Roam Retreats (CIF 16392094, Calle Tinfugaya I 7, Tenerife). No somos una plataforma genérica ni una franquicia internacional: trabajamos sobre el terreno en las Islas Canarias y de forma remota para alojamientos de toda España, analizando tus números comerciales, tu posicionamiento y tu captación directa con rigor profesional.</p>
+        <p class="trust-about-lead">Pyme360 Growth es un servicio operado por Roam Retreats (CIF B16392094, Tigaday I, Águilas del Teide, 38640 Arona, Tenerife). No somos una plataforma genérica ni una franquicia internacional: trabajamos sobre el terreno en las Islas Canarias y de forma remota para alojamientos de toda España, analizando tus números comerciales, tu posicionamiento y tu captación directa con rigor profesional.</p>
         <div class="trust-badges">
           <span class="trust-badge">📍 Sede física en Tenerife · Islas Canarias</span>
-          <span class="trust-badge">🏢 Operado por Roam Retreats · CIF 16392094</span>
+          <span class="trust-badge">🏢 Operado por Roam Retreats · CIF B16392094</span>
           <span class="trust-badge">🤝 Trato directo con dirección comercial</span>
         </div>
       </div>
@@ -518,12 +649,13 @@
   <footer class="site-footer">
     <div class="footer-brand">
       <span>Pyme360 Growth · Tenerife y Canarias</span>
-      <span>Servicio en toda la isla de Tenerife · <a href="https://wa.me/34686184291" target="_blank" rel="noopener">WhatsApp: +34 686 18 42 91</a> · <a href="mailto:info@pyme360.online">info@pyme360.online</a></span>
+      <span>Servicio en toda la isla de Tenerife · <a href="tel:+34686184291">Tel: +34 686 18 42 91</a> · <a href="https://wa.me/34686184291" target="_blank" rel="noopener">WhatsApp</a> · <a href="mailto:info@pyme360.online">info@pyme360.online</a></span>
     </div>
     <img class="footer-mark" src="assets/lgo.png" alt="Pyme360 Escudo de Confianza" width="96" height="105" loading="lazy" decoding="async" aria-hidden="true">
     <nav class="footer-links" aria-label="Enlaces legales">
       <a href="alojamientos-rurales/">Alojamientos rurales</a>
       <a href="precios.html">Precios</a>
+      <a href="blog/">Blog</a>
       <a href="aviso-legal.html">Aviso legal</a>
       <a href="privacidad.html">Privacidad</a>
       <a href="cookies.html">Cookies</a>

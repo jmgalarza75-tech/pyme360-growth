@@ -404,12 +404,439 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 | 2026-11-08 | Reducción de escala tipográfica en bloque final CTA y secciones de Precios: rebajado titular H2 ('Cuéntanos tu caso...') de 64px a clamp(20px, 2.2vw, 30px) equilibrado con interlineado 1.26 y balance visual; reducidos titulares intermedios de addons y servicios a clamp(22px, 2.4vw, 34px); versión CSS actualizada a v=20261108-4. | `precios.html`, `public/precios.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `checklist.md` | 20 de 20 tests pasados al 100% en verde. Paridad 100% verificada. | Cambios locales activos en http://localhost:8765/precios.html. |
 | 2026-11-08 | Transformación a Flip-Cards 3D interactivas en 'Qué ocurre cuando solicitas una valoración': implementado el mismo diseño giratorio que en alojamientos rurales en las 4 cajas de proceso (cara frontal con imagen, badge numérico y titular; giro de 180° con perspectiva 3D al pasar el cursor o pulsar; cara trasera con distintivo, explicación y lista de puntos clave); versión CSS actualizada a v=20261108-5. | `precios.html`, `public/precios.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `checklist.md` | 20 de 20 tests pasados al 100% en verde. Paridad 100% verificada. | Cambios locales activos en http://localhost:8765/precios.html. |
 | 2026-11-08 | Despliegue a producción en Hostinger: confirmados y subidos cambios del brief estratégico (precios generalistas, mini-revisión rural, FAQ en Home), reajustes tipográficos, escala a 2/3 y flip-cards 3D en commit 89822b0 en origin/main. Despliegue automático vía Webhook. | `index.html`, `precios.html`, `alojamientos-rurales/index.html`, `assets/pyme360-public.css`, `CLAUDE.md`, `checklist.md` y réplicas `/public/` | 20 de 20 tests en verde (100%). Cero términos prohibidos. | Desplegado y sincronizado en producción https://pyme360.online/ |
+| 2026-11-09 | Auditoría SEO/GEO — Fase 1 (Victorias rápidas resueltas): Alineación total de `llms.txt` con `/precios.html` y mini-revisión; corrección oficial de CIF a `B16392094` y dirección postal completa confirmada por José (`Tigaday I, Águilas del Teide, 38640 Arona, Santa Cruz de Tenerife`) en aviso legal, privacidad, cookies, `PostalAddress` Schema de Home/Precios y `llms.txt`; integración de `FAQPage` en Schema JSON-LD de Home; enlace telefónico `tel:+34686184291` en footers; meta robots en `alojamientos-rurales`; tests actualizados y paridad 100% con `/public/`. | `llms.txt`, `index.html`, `precios.html`, `alojamientos-rurales/index.html`, `aviso-legal.html`, `privacidad.html`, `cookies.html`, réplicas `/public/`, `tests/legal-visual.test.cjs`, `checklist.md` | 20 de 20 tests en verde (100%). Cero términos prohibidos. Paridad confirmada. | Dirección NAP cerrada. `sameAs` queda fuera hasta tener perfiles reales. Listo para abordar Fase 2 de la auditoría. |
+| 2026-11-09 | Fase 2 SEO On-Page (local): title y metadatos sociales de Precios alineados a presupuesto por alcance; H1 rural centrado en revisar posibles fricciones, sin prometer resultados; migas visibles + `BreadcrumbList` JSON-LD en Precios y Alojamientos Rurales; CSS compartido unificado en `20261109-1`. | `precios.html` y `public/precios.html`; `alojamientos-rurales/index.html` y `public/alojamientos-rurales/index.html`; 7 pares de HTML y CSS; tests | 21/21 tests `.test.cjs` en verde; BreadcrumbList JSON-LD parseado; 7 pares fuente/público y CSS byte a byte iguales; comprobación en navegador local a 390 px sin overflow horizontal de página tras la animación; `git diff --check` limpio. | Solo local: sin commit, push ni despliegue. |
+| 2026-11-09 | Desbloqueo y saneamiento de claims en Alojamientos Rurales: eliminadas afirmaciones de 'tres clics', 'recuperar la inversión', porcentajes no respaldados ('15%–22%') y promesas de ocupación en temporada baja tanto en el Schema JSON-LD (`FAQPage`) como en los bloques visibles (Bento de problemas, Cartera Solución 03 y FAQ visible). Paridad 100% byte a byte confirmada. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `checklist.md` | 21/21 tests en verde; auditoría de términos prohibidos superada (cero incidencias); `git diff --check` limpio. | Landing rural totalmente alineada con el brief y libre de bloqueos de copy. |
+| 2026-11-09 | Integración de los tres briefs para Antigravity en `checklist.md` §15 (precios y alojamientos, blog, casos y proyectos) con resumen de tareas; los ficheros `ANTIGRAVITY-BRIEF-*.md` pasan a remitir aquí. | `checklist.md`, `ANTIGRAVITY-BRIEF-*.md`, `articulos/PLAN-EDITORIAL-BLOG.md` | Solo documentación; sin cambios en la web. | Antigravity: ejecutar tareas de §15.0. |
+| 2026-11-09 | Unificación del menú de navegación de Alojamientos Rurales con el de la Home (Sistema, Proceso, Sectores, Alojamientos rurales, Precios, Blog, CTA Diagnóstico gratis). Paridad 100% y 23/23 tests pasando. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; cero términos prohibidos. | Listo para commit y subida a GitHub/Hostinger con confirmación de José. |
+| 2026-11-09 | Sustitución completa de las imágenes generadas por fotografía real de alta resolución en los 10 artículos del Blog y sus casillas giratorias (/assets/blog/*.jpg): fotografías de alojamientos rurales, terrazas, fincas y gestión de marketing digital, optimizadas a 1200x630. | `assets/blog/`, `public/assets/blog/`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; sin términos prohibidos. | Listo y verificado en servidor local. |
+| 2026-11-09 | Corrección de rutas de imágenes en el Blog: convertidas todas las rutas de assets a rutas absolutas de raíz (/assets/blog/...), reforzadas las reglas de fondo de .blog-flip-front con !important y posicionamiento absoluto explícito. Comprobada carga HTTP 200 en localhost:8765. | `blog/`, `public/blog/`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; cero términos prohibidos. | Listo y verificado en servidor local. |
+| 2026-11-09 | Aplicado sistema de casillas giratorias 3D (Flip-Cards) en el Blog (/blog/): rejilla de 3 columnas por fila, con imagen destacada a toda cara delantera con degradado cinemático y titular, y cara trasera con resumen ejecutivo, tiempo de lectura y botón directo de lectura. Total paridad y accesibilidad por teclado. | `blog/index.html`, `public/blog/index.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; sin términos prohibidos. | Listo para revisión visual en servidor local. |
+| 2026-11-09 | Rediseño visual premium del Blog (/blog/): menú lateral sticky de categorías (Pymes y Rural) con contador de artículos y ficha de autora, tarjetas editoriales con hover 3D, badges semánticos, media ratios 16:9 y soporte responsive completo. | `blog/index.html`, `public/blog/index.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; sin términos prohibidos. | Listo para revisión visual en servidor local. |
+| 2026-11-09 | §15.2 Maquetación completa de los 10 primeros artículos del Blog con copy optimizado SEO/GEO, imágenes destacadas editoriales (1200x630), Schema BlogPosting y FAQPage, ficha de Theo Rubio, tarjetas dinámicas en /blog/, actualización de sitemap.xml y llms.txt. | `blog/`, `public/blog/`, `assets/blog/`, `public/assets/blog/`, `sitemap.xml`, `public/sitemap.xml`, `llms.txt`, `public/llms.txt`, `articulos/PLAN-EDITORIAL-BLOG.md`, `tests/blog-articles.test.cjs` | 23/23 tests en verde (suite completa); paridad 100% byte a byte; cero términos prohibidos. | Listo para revisión visual en servidor local. No commiteado ni desplegado. |
+| 2026-11-09 | Ampliación del test de Alojamientos Rurales a 21 preguntas (3 por cada una de las 7 P) con desglose en pantalla, envío de informe por email al usuario y radiografía completa a Pyme360 con botón de WhatsApp. Resueltos breadcrumbs, SEO/GEO y enlace a Blog. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `assets/indice-pyme360.js`, `public/assets/indice-pyme360.js`, `checklist.md` | 22/22 tests en verde; paridad 100% byte a byte; auditoría de prohibidos limpia; servidor local probado. | Pendiente: confirmación de borradores del blog antes de maquetar artículos y visto bueno final para commit/despliegue. |
+| 2026-11-09 | §15.1 Bloque A completado: nuevo H1 («Haz que tu alojamiento rural se venda mejor, todo el año») y subtítulo («Analizamos lo que ve un huésped antes de decidir...»), title («Marketing para alojamientos rurales: vende mejor todo el año | Pyme360»), descriptions (139 caracteres), name de Service en JSON-LD y línea en `llms.txt`. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `llms.txt`, `public/llms.txt`, `tests/indice-form.test.cjs`, `tests/on-page-contract.test.cjs` | 21/21 tests en verde; paridad 100% byte a byte; auditoría de términos prohibidos limpia. | Cambios locales; pendiente discrepancia técnica/legal de entrega de informe por email. |
+| 2026-11-09 | §15.3 Bloque C completado: sustituida la sección de testimonios de la Home por «Casos y proyectos» (`#casos`) con 4 tarjetas de Proyectos Propios (Home4Escape, Nomads Jungle, Diario de Abordo, Roam Retreats) enlazadas a sus webs oficiales (`rel="noopener"`), sin citas inventadas; retirados Cafetería Brisa, Hotel Rural El Mirador e Isla Norte Tours; tests/testimonials.test.cjs actualizado; paridad 100% byte a byte. | `index.html`, `public/index.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `assets/pyme360-public.js`, `public/assets/pyme360-public.js`, `tests/testimonials.test.cjs`, `checklist.md` | 21/21 tests en verde; paridad 100% confirmada; cero términos prohibidos. | Bloqueo: tarjetas de clientes (Equalis y Aceviños) pendientes de autorización y datos de servicios. |
+| 2026-11-09 | §15.2 Bloque B completado: creado `/blog/` (`blog/index.html` y plantilla reutilizable `blog/plantilla.html`) con diseño coherente, enlaces «Blog» en cabecera y pie de todas las páginas, sitemap y llms.txt actualizados, nuevo test `tests/blog.test.cjs` creado y 22/22 tests en verde. Ningún artículo maquetado (todos pendientes de revisión en plan editorial). Paridad 100% byte a byte. | `blog/index.html`, `blog/plantilla.html`, réplicas `/public/blog/`, `index.html`, `precios.html`, `alojamientos-rurales/index.html`, legales, `sitemap.xml`, `llms.txt`, `assets/pyme360-public.css`, `tests/blog.test.cjs`, `tests/on-page-contract.test.cjs`, `checklist.md` | 22/22 tests en verde; paridad 100% confirmada; cero términos prohibidos. | Bloqueo: fichas de autor y artículos en NotebookLM pendientes de estado «Revisado». |
+| 2026-11-09 | §15.3 Desbloqueo de Clientes completado: añadidas tarjetas de Equalis Consultoría Canaria y Aceviños Jardinería (Diseño web, SEO local, Google Ads) en `#casos` con enlaces oficiales directos (`rel="noopener"`), etiquetas de servicio, sin citas inventadas; tests/testimonials.test.cjs actualizado; paridad 100% byte a byte. | `index.html`, `public/index.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `assets/pyme360-public.js`, `public/assets/pyme360-public.js`, `tests/testimonials.test.cjs`, `checklist.md` | 22/22 tests en verde; paridad 100% confirmada; cero términos prohibidos. | Sección `#casos` 100% cerrada con Clientes y Proyectos Propios. |
 
+---
 
+## 15. Tareas activas para Antigravity (briefs integrados)
 
+> **Esta sección es la versión vigente de los briefs para Antigravity.** Los antiguos ficheros `ANTIGRAVITY-BRIEF-*.md` de la raíz solo remiten aquí. Si hay que cambiar una instrucción, se cambia en esta sección.
+> El estado del blog (artículos, slugs, datos, decisiones) vive en `articulos/PLAN-EDITORIAL-BLOG.md`.
+> Reglas generales de las tres tareas: trabajar solo en local, paridad raíz ↔ `public/` byte a byte, preservar cambios ajenos, no commit/push/deploy sin confirmación expresa de José.
 
+### 15.0 Resumen de tareas
 
+**A · Precios y alojamientos rurales (§15.1)**
+- [x] Implementación base del brief (precios generalistas, mini-revisión rural, FAQ de precios en Home) — 2026-11-08.
+- [x] Nuevo H1 y subtítulo de alojamientos rurales: «Haz que tu alojamiento rural se venda mejor, todo el año» (§15.1, apartado 4) — 2026-11-09.
+- [x] Alinear con el nuevo titular el `<title>`, `og:`/`twitter:` title y descriptions, `meta description` y el `name` del JSON-LD `Service` — 2026-11-09.
+- [x] Cambiar la línea de la landing rural en `llms.txt` y `public/llms.txt` — 2026-11-09.
 
+**B · Blog (§15.2)**
+- [x] Crear `/blog/` (índice + plantilla de artículo) con el diseño del resto de la web — 2026-11-09.
+- [ ] Maquetar cada artículo del plan editorial cuando su estado sea «Revisado» (contenido en NotebookLM).
+- [x] Enlace «Blog» en navegación y pie; `sitemap.xml` y `llms.txt` del índice — 2026-11-09.
+- [ ] Solo R01, R04 y R05 enlazan a Home4Escape (aplica al maquetar artículos).
+- [x] Crear `tests/blog.test.cjs` y pasar la batería completa — 2026-11-09.
+- [x] Ficha de autor completada: Theo Rubio (Superhost, cofundadora de Home4Escape, foto `assets/blog/theo.jpg` y bio integrada en plantilla y Schema `Person`) — 2026-11-09.
+- [ ] Fuentes de cifras de los artículos pendientes antes de maquetar.
 
+**C · Casos y proyectos en la Home (§15.3)**
+- [x] Sustituir la sección de testimonios por «Casos y proyectos» con el mismo diseño — 2026-11-09.
+- [x] Retirar Cafetería Brisa, Hotel Rural El Mirador e Isla Norte Tours (salvo confirmación de José) — 2026-11-09.
+- [x] Home4Escape, Nomads Jungle, Diario de Abordo y Roam Retreats como proyectos propios, sin citas — 2026-11-09.
+- [x] Tarjetas de clientes añadidas: Equalis Consultoría Canaria y Aceviños Jardinería (Diseño web, SEO local, Google Ads) con enlaces oficiales, sin citas inventadas — 2026-11-09.
+- [x] Actualizar `tests/testimonials.test.cjs` al nuevo contenido — 2026-11-09.
 
+### 15.1 Brief A — Precios y alojamientos rurales
 
+*Integrado desde `ANTIGRAVITY-BRIEF-PRECIOS-Y-ALOJAMIENTOS-RURALES.md` el 2026-11-09.*
+
+**Objetivo:** actualizar el mensaje de Pyme360 en la ficha general de precios, en la landing de alojamientos rurales y únicamente en la FAQ de precios de la Home, sin publicar cambios ni inventar precios, entregables o resultados.
+
+**Estado:** instrucciones internas para implementar y revisar cambios locales. Este documento no es copy público ni autorización para hacer commit, push o despliegue.
+
+---
+
+#### 1. Preparación obligatoria
+
+1. Trabaja en la raíz web correcta: `C:\Antigravity\pyme360-growth`.
+2. Lee `CLAUDE.md` y `checklist.md`; comprueba el árbol real, `git status --short`, rama y pruebas antes de modificar.
+3. Al preparar este brief, la rama era `main`, las copias fuente/públicas de estas páginas estaban sincronizadas y `git status --short` mostraba `?? intur/` y `?? scratch/`. **No borres, muevas ni incluyas esas carpetas.** Vuelve a comprobar el estado: no asumas que sigue igual.
+4. Mantén el sistema de archivos duplicado coherente. Las páginas fuente y públicas son:
+   - `precios.html` y `public/precios.html`
+   - `alojamientos-rurales/index.html` y `public/alojamientos-rurales/index.html`
+   - `index.html` y `public/index.html`, exclusivamente para la FAQ de precios descrita en la duda 3.
+5. No trabajes en `C:\Antigravity\especialista en marketing` como si fuera la web pública.
+6. No hagas commit, push, despliegue, publicación ni envío de comunicaciones. No leas, copies ni muestres secretos.
+
+#### 2. Arquitectura de oferta que debe reflejar la web
+
+##### Pyme360 en general
+
+- Pyme360 se centra en **imagen de marca y marketing digital**.
+- La página de precios debe hablar a **pymes y negocios independientes de distintos sectores**. No convertir la oferta general en una oferta para complejos turísticos, hoteles o alojamientos.
+- Puede usar ejemplos de comercio, servicios profesionales, turismo/alojamiento y otros negocios locales, pero como ejemplos, no como una lista de sectores para los que se garantiza el mismo paquete.
+- No trasladar automáticamente a todos los sectores el cuestionario turístico de las 7P: ese marco corresponde al diagnóstico de alojamientos rurales.
+- No presentar CRM, automatización, WhatsApp, “Growth OS” o un sistema en piloto automático como el producto central salvo que el alcance y la disponibilidad estén confirmados. No prometer funcionalidades, integraciones o soporte que no se hayan verificado.
+
+##### Alojamiento rural
+
+- Esta landing sí se dirige específicamente a casas rurales, hoteles rurales, apartamentos rurales, fincas turísticas y alojamientos independientes.
+- La autoevaluación de las 7P es **un marco de diagnóstico**, no la promesa de que Pyme360 vaya a ejecutar todas las P.
+- Entrada propuesta/aprobada: mini-revisión comercial del alojamiento (no solo de reservas directas) con **3–5 observaciones claras** sobre elementos visibles —web/móvil, Google, fotos, reseñas, contacto y canales como Booking/Airbnb— y qué convendría revisar primero.
+- Proyecto pagado: se define tras el diagnóstico y el acuerdo de alcance. Para esta oferta rural, la referencia de trabajo es una prioridad principal con acciones relacionadas; una segunda solo si está estrechamente vinculada y cabe en lo acordado.
+- La continuidad mensual es opcional. Tiene un núcleo de revisión, priorización, ejecución acordada y medición; cualquier módulo depende del diagnóstico. **No hay catálogo, precio ni volúmenes de contenido aprobados para publicar.**
+- El alojamiento aporta el material audiovisual existente; Pyme360 lo selecciona y adapta. Las sesiones presenciales de foto y vídeo son extras.
+- Si se gestionan campañas, el cliente aprueba plan y piezas clave antes de activarlas; la inversión publicitaria se aprueba y paga aparte.
+- Pyme360 no atiende consultas de reservas ni huéspedes. Eso queda en el propietario/gestor, salvo que exista un contrato independiente de gestión.
+- No mencionar H4E, FARO ni IA en el texto público. (Excepción posterior: los artículos del blog que tratan revenue management enlazan a Home4Escape; ver `checklist.md` §15.2. En esta landing sigue sin mencionarse.)
+
+#### 3. Cambios de la ficha general de precios (`/precios.html`)
+
+##### Enfoque
+
+La ficha debe explicar **cómo se estructura y cotiza el trabajo**, no vender planes estándar no confirmados. Mantenerla generalista: no usar Booking, OTA, ocupación, temporada baja o Revenue como eje de la página. Esos temas pueden aparecer solo en la landing rural cuando sean pertinentes.
+
+##### Copy de orientación (ajustar al diseño existente)
+
+- **H1 sugerido:** “Marketing digital para tu negocio, con un plan claro antes de empezar”.
+- **Introducción sugerida:** “Ayudamos a pymes y negocios independientes a mejorar su marca y su marketing digital. Primero entendemos el caso; después acordamos qué acciones tienen sentido, su alcance y su presupuesto”.
+- CTA principal de baja fricción: **“Solicitar una valoración”** o **“Hablar de mi proyecto”**. Conserva el destino solo si el formulario/CTA al que lleva funciona y su promesa es exacta.
+- Explica con lenguaje sencillo que el presupuesto depende del problema y del trabajo acordado. No insinuar que existe una tarifa única válida para todo negocio.
+
+##### Estructura aconsejada
+
+1. **Proyecto inicial:** alcance y presupuesto definidos después de entender la situación. Explicar diagnóstico, prioridad y acciones que se acuerden, sin fijar una cantidad universal de entregables ni una duración garantizada.
+2. **Acompañamiento mensual opcional:** si tiene sentido para el negocio, puede incluir revisar resultados, priorizar, ejecutar las acciones aprobadas y medir. El alcance se define por cliente; no prometer un paquete o volumen fijo universal.
+3. **Acciones que pueden valorarse según el caso:** identidad/mensaje de marca, web y recorrido de contacto, visibilidad local/SEO, contenidos o campañas. Presentarlas como **áreas posibles de trabajo, no como módulos contratables garantizados**.
+4. **Costes separados cuando proceda:** la inversión publicitaria no está incluida en honorarios de gestión y necesita aprobación del cliente. No inventar importes.
+5. Una explicación breve de qué ocurre tras solicitar valoración: revisión inicial, propuesta escrita con alcance y precio, y decisión del cliente antes de empezar. No prometer gratuidad, plazos o llamadas si no están confirmados.
+
+##### Eliminar o no repetir sin aprobación
+
+La ficha actual contiene importes y paquetes (incluidos 99/149/349 €, otros precios de redes), límites de publicaciones (8 y 12–16), “Sprint 30”, CRM/autopilot, automatizaciones de email/WhatsApp, filtro de reseñas, soporte prioritario y afirmaciones de ROI. **No trasladar estos precios, volúmenes, nombres ni promesas a la versión nueva como si estuvieran aprobados.** No inventar sustitutos.
+
+Si no existe un precio aprobado para publicar, sustituye el bloque de tarifa por una formulación honesta como **“Presupuesto según el alcance acordado”** y una CTA de valoración. No dejar cantidades antiguas escondidas en HTML, JSON-LD, metadata, tablas, cards, FAQs o texto alternativo.
+
+##### Generalidad y SEO
+
+- Actualiza H1, title, meta description, Open Graph y datos estructurados para que expresen la oferta general de marca/marketing digital para pymes; evita texto dirigido solo a alojamientos o complejos turísticos.
+- No incluir precios en `OfferCatalog`, `priceRange` ni Schema si no hay tarifas aprobadas. Retirar o corregir cualquier oferta estructurada que replique los importes antiguos.
+- Mantén el tono claro y útil; evita “robar cuota”, “piloto automático”, “blindar resultados”, urgencia artificial y porcentajes no respaldados.
+
+#### 4. Cambios de la landing rural (`/alojamientos-rurales/`)
+
+##### Promesa y jerarquía
+
+- Priorizar la mini-revisión concreta, no un catálogo de acompañamiento mensual.
+- **Titular aprobado (H1):** “Haz que tu alojamiento rural se venda mejor, todo el año”.
+- **Subtítulo aprobado:** “Analizamos lo que ve un huésped antes de decidir y cómo gestionas precios, canales y temporada baja. Te entregamos 3–5 observaciones concretas sobre qué mejorar primero, sin coste ni compromiso.”
+- El titular no debe reducir el servicio a las reservas directas: la landing cubre la gestión comercial completa (presentación, precios, canales, conversión y temporada baja). Sustituye el titular anterior (“Alojamiento rural: revisamos qué puede frenar una reserva directa” / “Te decimos qué puede estar frenando las reservas directas…”).
+- **SEO y GEO alineados con el nuevo titular** (en `alojamientos-rurales/index.html` y `public/alojamientos-rurales/index.html`, idénticos byte a byte):
+
+  | Dónde | Texto actual | Texto nuevo |
+  | --- | --- | --- |
+  | `<title>`, `og:title`, `twitter:title` | Marketing para casas rurales y reservas directas \| Pyme360 | Marketing para alojamientos rurales: vende mejor todo el año \| Pyme360 |
+  | `meta name="description"`, `og:description`, `twitter:description` | Variantes de “revisamos web, móvil, Google, reseñas y canales de reserva…” | Mini-revisión comercial para alojamientos rurales: web, Google, precios, canales y temporada baja. 3–5 observaciones claras, sin coste. |
+  | JSON-LD `Service` → `name` | Comercialización y reservas directas para alojamientos rurales | Marketing y gestión comercial para alojamientos rurales |
+
+  - No cambies `serviceType`, `@id`, `url`, `provider` ni la FAQPage del JSON-LD.
+  - Mantén “reservas directas” en el cuerpo, las FAQ y algún H2: es una búsqueda real de propietarios, pero ya no es la promesa principal.
+  - La meta description y las descripciones sociales deben quedar en ~150–160 caracteres; si el texto nuevo los supera, acórtalo sin perder “alojamientos rurales” ni “3–5 observaciones”.
+
+- **llms.txt** (también `public/llms.txt`, idéntico byte a byte): cambia solo la línea del enlace a la landing de “Alojamientos Rurales — Mini-revisión de reservas directas” a **“Alojamientos Rurales — Mini-revisión comercial y autoevaluación 7P”**. No toques el resto del archivo.
+- **CTA principal:** “Pedir mini-revisión”. Explica qué se revisa y qué recibe la persona: 3–5 observaciones claras y una orientación sobre qué mirar primero; no una auditoría interminable ni una llamada obligatoria.
+- Mantén el contexto rural alrededor del titular, sin repetirlo de forma pesada.
+- Usa ejemplos de casas rurales, hoteles rurales, apartamentos rurales y alojamientos independientes; no usar “pequeños alojamientos” ni “alojamientos pequeños”.
+
+##### Qué aclarar en los bloques de servicio
+
+- Las 7P ayudan a diagnosticar; no se ejecutan todas automáticamente.
+- El proyecto de implementación se define después del diagnóstico, con alcance aprobado, una prioridad principal y acciones relacionadas. Las demás oportunidades pueden quedar como hoja de ruta.
+- La mensualidad es opcional y se define según necesidad; no tiene precio o cantidad fija aprobada. No dejar cifras de publicaciones antiguas.
+- El contenido se adapta al material existente del alojamiento. Producción presencial de foto/vídeo: extra.
+- La inversión publicitaria va aparte. Ningún cambio se publica ni ninguna campaña se activa sin aprobación del cliente.
+- La atención a reservas/huéspedes y Revenue Management no son parte del servicio Pyme360 descrito en esta landing.
+
+##### Reescribir promesas no demostradas
+
+Retira o formula con prudencia las frases que prometen recuperar reservas, eliminar comisiones, llenar temporada baja, proteger el margen, “cerrar en dos clics”, lograr un ROI o que el propietario no tendrá que dedicar tiempo. No afirmar que la causa de una fuga o pérdida está demostrada sin datos. No prometer resultados que dependen del mercado, del alojamiento o de terceros.
+
+##### Flujo de autoevaluación: no dar por hecho un informe por email
+
+La página actual combina resultado inmediato en pantalla, solicitud de email y promesa de informe detallado. Hay una discrepancia pendiente entre esa promesa y lo que se ha verificado del procesador. En esta tarea:
+
+- No cambiar backend, JavaScript funcional del cuestionario, endpoints, campos, consentimientos ni política de privacidad.
+- No afirmar que el participante recibirá por email el informe o las 14 respuestas hasta comprobar que el flujo lo entrega realmente.
+- No inventar ni cambiar la base legal o el consentimiento de contacto. La intención de futuro es enviar un resumen de resultados y que el contacto comercial sea opcional, pero requiere revisión propia antes de implementarse.
+- Deja esta discrepancia expresamente señalada en el informe final como **pendiente técnico/legal y bloqueo para afirmar que el flujo está terminado**. No hacer una prueba real de envío.
+
+#### 5. Decisiones adicionales para las tres dudas planteadas
+
+Estas decisiones concretan el brief para Antigravity. Son instrucciones para cambios locales; no autorizan publicación, pruebas reales de correo ni despliegue.
+
+##### Duda 1 — CTA de la ficha de precios
+
+**Decisión:** conservar el formulario centralizado de la Home y el destino `/#diagnostico`; no crear un segundo formulario en `precios.html`. Así se evita duplicar captación y datos. En la ficha de precios, usar una CTA principal consistente —preferiblemente **“Solicitar valoración”**— y verificar que el ancla llega al formulario correcto.
+
+El formulario debe pedir solo los datos ya existentes. Si su título “Diagnóstico gratuito” puede interpretarse como una auditoría extensa gratis, ajustar el microcopy a una solicitud de valoración inicial; no prometer una revisión detallada gratuita de todos los negocios.
+
+##### Duda 2 — Resultado del cuestionario rural
+
+**Decisión de producto:** mantener el resultado inmediato en pantalla y avanzar hacia un email automático con un **resumen ejecutivo**, no con las 14 respuestas completas. El resumen deseado es: puntuación global, desglose de las 7P, dos prioridades, una fortaleza y una recomendación provisional. La conversación comercial posterior debe ser opcional y su autorización debe recogerse separada de la entrega del resumen.
+
+No adoptar la opción de enviar las 14 respuestas completas por email al participante. No presentar como funcional una entrega que no se haya probado técnicamente. Antes de cambiar el formulario/procesador, verificar exactamente qué manda hoy y resolver consentimiento, privacidad, persistencia del permiso de contacto y manejo seguro de credenciales. Si hace falta cambiar textos legales, esquema de datos o credenciales, detenerse y pedir revisión específica; no hacer una prueba de envío real ni publicar. En particular, no copiar ni mostrar ningún secreto incrustado que aparezca en el procesador.
+
+##### Duda 3 — FAQ de precios en Home
+
+**Decisión:** sí, eliminar de la FAQ de Home los precios antiguos de 99/149/349 € y los nombres de esos planes. Mantener coherencia con `precios.html` y con la oferta generalista.
+
+Texto de respuesta sugerido:
+
+> **¿Cuánto cuesta trabajar con Pyme360?** No hay una tarifa única para todos los negocios. Primero entendemos qué necesitas y el alcance; después te presentamos una propuesta con las acciones, el precio y las condiciones antes de empezar. Si se acuerda publicidad, la inversión en anuncios se aprueba y paga aparte.
+
+No afirmar que el diagnóstico inicial es gratuito ni comprometer plazos si no se ha confirmado que esas condiciones aplican a todos los sectores.
+
+#### 6. Diseño y experiencia
+
+- Reutiliza la identidad visual y componentes existentes. No reconstruyas el sitio. La única edición permitida en la Home es el bloque de FAQ de precios indicado en la duda 3; no cambies otros bloques.
+- Prioriza claridad y una CTA dominante; recorta bloques repetidos y texto que no ayude a decidir.
+- Mantén buen contraste y jerarquía tipográfica. Revisa al menos desktop y móvil estrecho (~390 px) en las secciones tocadas; ningún título, tarjeta o botón debe desbordarse.
+- Mantén navegación, canonical, enlaces internos, accesibilidad básica y acciones actuales de formularios salvo el copy que expresamente se pueda corregir sin cambiar su lógica.
+
+#### 7. Verificación y definición de terminado
+
+1. Mantén cada página fuente modificada idéntica a su copia de `public/` y compruébalo byte a byte, incluida la Home si modificas su FAQ.
+2. Ejecuta las pruebas pertinentes, en especial `tests/pricing-page.test.cjs`, `tests/rural-mobile-layout.test.cjs`, `tests/indice-form.test.cjs`, `tests/indice-backend.test.cjs`, `tests/form-submit.test.cjs` y `tests/asset-cache.test.cjs`, si existen en el estado actual del repositorio. No debilites ni elimines tests para hacerlos pasar.
+3. Comprueba que no quedan precios, volúmenes, promesas de autopilot/ROI ni claims eliminados en el HTML, metadata y datos estructurados.
+4. Comprueba que la ficha de precios conserva su enfoque **generalista**, mientras la landing rural sigue siendo específica para alojamientos.
+5. Actualiza `checklist.md` solo con cambios realmente hechos y pruebas realmente ejecutadas. No marques como publicados ni verificados en producción cambios que siguen locales.
+6. No hagas commit, push, deploy ni envíos. Antes de cerrar, vuelve a leer `git status --short` y `git diff --check`; preserva los cambios preexistentes.
+7. En el informe final, separa: archivos modificados, pruebas y revisión visual efectivamente realizadas, qué quedó local y qué no, decisiones/precios que siguen pendientes y el bloqueo del flujo de informe por email. No declares “terminado” si la paridad de archivos, las pruebas o la precisión de las promesas no se verifican.
+
+**Criterio final:** la página de precios representa a Pyme360 como oferta general de marketing digital para pymes de varios sectores; la landing rural comunica una mini-revisión concreta y límites honestos; no aparecen precios ni entregables no aprobados; ambas páginas fuente/públicas están sincronizadas; y no se ha publicado nada.
+
+---
+
+### 15.2 Brief B — Blog
+
+*Integrado desde `ANTIGRAVITY-BRIEF-BLOG.md` el 2026-11-09.*
+
+**Objetivo:** crear `/blog/` en la web de Pyme360 con un índice y una plantilla de artículo, y maquetar en local los 12 artículos del plan editorial a medida que su contenido esté listo. Todo coherente con SEO, datos estructurados y GEO.
+
+**Fuente del contenido: NotebookLM.** El texto de los artículos se redacta en NotebookLM, no en este repositorio. Cuaderno: https://notebooklm.google.com/notebook/02b925f2-2553-40f0-a1b3-9e41666d0f92 Toma de ahí el contenido de cada artículo. Si no puedes acceder al cuaderno o a un artículo concreto, detente con ese artículo y pídeselo a José; no redactes tú el texto ni lo completes con contenido propio.
+
+**Estado:** instrucciones internas para cambios locales. No autoriza commit, push, despliegue ni publicación.
+
+**Documentos relacionados:**
+- Plan editorial: `articulos/PLAN-EDITORIAL-BLOG.md`. Es la **fuente única de estado**: títulos, slugs, palabras clave, enlaces internos, datos por verificar y estado de cada artículo. Léelo siempre antes de empezar; José lo mantiene actualizado.
+- Manifiesto y ensayos rurales: `articulos/README.md`.
+- Brief anterior de precios y alojamientos: `checklist.md` §15.1. Sus restricciones siguen vigentes salvo donde este brief autoriza algo concreto.
+
+---
+
+#### 1. Preparación obligatoria
+
+1. Trabaja en `C:\Antigravity\pyme360-growth`. Lee `CLAUDE.md` y `checklist.md`.
+2. Comprueba `git status --short`, la rama y los tests antes de tocar nada. Al preparar este brief había cambios sin commitear en varias páginas (`index.html`, `precios.html`, `alojamientos-rurales/index.html`, `llms.txt`, CSS, legales…) y las carpetas `intur/` y `scratch/` sin seguimiento. **Presérvalos todos**: no los reviertas, muevas ni incluyas en otra cosa.
+3. Mantén la paridad raíz ↔ `public/` byte a byte en cada archivo que crees o modifiques.
+4. No hagas commit, push, despliegue ni envíos. No leas ni muestres secretos.
+
+#### 2. Estructura de URLs y archivos
+
+| URL | Archivo fuente | Copia pública |
+| --- | --- | --- |
+| `https://pyme360.online/blog/` | `blog/index.html` | `public/blog/index.html` |
+| `https://pyme360.online/blog/<slug>/` | `blog/<slug>/index.html` | `public/blog/<slug>/index.html` |
+
+- Los 12 slugs están fijados en la tabla del plan editorial. No los cambies sin que lo actualice el plan.
+- Slugs en minúsculas, sin tildes, separados por guiones y con barra final, igual que `/alojamientos-rurales/`.
+- Imágenes del blog en `assets/blog/` (y `public/assets/blog/`), en WebP o JPEG optimizado, con `width` y `height`. Si no hay imagen propia adecuada, reutiliza una de `assets/indice/` ya optimizada. No uses fotos de personas reales que no sean José.
+
+#### 3. Diseño
+
+- Reutiliza `assets/pyme360-public.css`, cabecera, pie, banner de cookies y carga diferida de GA4 tal como están en las demás páginas. Usa la misma versión de CSS que el resto (`?v=` actual) y comprueba qué exigen `asset-cache`, `legal-visual`, `premium-form` y `pricing-page` antes de cambiarla.
+- **Índice `/blog/`:** H1 «Blog de marketing digital para pymes y alojamientos rurales» (ajustable). Una introducción de 2 frases. Dos bloques con los artículos de cada línea («Marketing para pymes» y «Alojamientos rurales»): tarjeta con título, extracto de 1–2 frases, fecha y tiempo de lectura. Mientras solo haya un artículo, el bloque de pymes muestra un texto breve tipo «Próximamente», sin fechas prometidas.
+- **Plantilla de artículo:** ancho de lectura de 680–760 px, migas de pan visibles (Inicio › Blog › Título), H1, línea de autor y fecha, cuerpo, bloque de autor al final, CTA al diagnóstico y 1–2 artículos o páginas relacionadas.
+- Tipografía y contraste legibles en fondo claro u oscuro; revisa desktop y móvil a ~390 px sin desbordes.
+- Prioriza el contenido: sin animaciones pesadas ni scripts nuevos.
+
+#### 4. Flujo por artículo
+
+Solo maqueta un artículo cuando en el plan editorial su estado sea **«Revisado (datos y fuentes OK)»**. Para cada uno:
+
+1. Toma el texto de NotebookLM, título y slug del plan, y conviértelo a HTML con la plantilla.
+2. Comprueba que el primer párrafo responde directamente a la pregunta del título, que los H2 coinciden con los del texto y que hay un bloque final de preguntas frecuentes.
+3. **Cifras:** cada porcentaje o dato debe coincidir con la tabla «Datos citados» del plan y llevar enlace a su fuente primaria. Si aparece una cifra que no está verificada en el plan, no la publiques: deja el artículo sin terminar y avisa a José.
+4. **Revenue management y Home4Escape:** el revenue management no es servicio de Pyme360; se ofrece a través de Home4Escape. **Solo R01, R04 y R05** llevan un único enlace a `https://www.home4escape.com/` en el pasaje que trata precios, rentabilidad o revenue (redacción de ejemplo en la decisión 1 del plan). Es un enlace secundario: el CTA principal sigue siendo la autoevaluación rural. El resto de artículos y páginas no mencionan Home4Escape ni H4E.
+5. **Promesas:** retira las frases de la lista «Frases que no deben llegar al texto final» del plan, y cualquier ROI, ROAS o porcentaje de mejora presentado como resultado de trabajar con Pyme360.
+6. **Autor:** José María Galarza, con la ficha de autor (cargo, foto y trayectoria). Si esos datos aún no están confirmados en el plan, maqueta el artículo pero no lo marques como terminado.
+7. Enlace interno a la página que indica el plan, en un punto natural, y CTA final al diagnóstico (`/#diagnostico` en pymes, `/alojamientos-rurales/#diagnostico` en rurales; ambas anclas existen).
+8. Añade la tarjeta del artículo al índice `/blog/` dentro de su línea («Marketing para pymes» o «Alojamientos rurales»).
+9. Añade la URL a `sitemap.xml` y a la sección `## Blog` de `llms.txt` (con sus copias en `public/`).
+10. Al terminar, indica a José qué artículos han pasado a «Maquetado en local» para que actualice el plan.
+
+**R01 (ensayo 01):** hay un borrador previo en `articulos/la-falacia-del-85-por-ciento-ocupacion.md`. La versión válida es la de NotebookLM; usa el borrador solo si José lo confirma. En cualquier caso, quita el bloque interno «Línea editorial / Objetivo» y el emoji 👉, y no publiques sus cifras del 15–18%, del 22–27% ni el «60% menos de estrés» sin fuente.
+
+#### 5. SEO por página
+
+**Índice `/blog/`**
+- `<title>`: «Blog de marketing digital para pymes | Pyme360» (≤ 60 caracteres).
+- `meta description` de 140–160 caracteres que mencione pymes, Tenerife/Canarias y alojamientos rurales.
+- `canonical`, `og:*`, `twitter:*`, `lang="es"`, `meta robots` «index, follow».
+
+**Cada artículo**
+- `<title>` ≤ 60 caracteres con la palabra clave del plan y « | Pyme360». Ejemplo para R01: «La falacia del 85% de ocupación en casas rurales | Pyme360».
+- `meta description` de 140–160 caracteres basada en el párrafo de respuesta directa.
+- `canonical` a su propia URL; `og:type` «article»; `article:published_time`; `og:image` de 1200×630.
+- Un único H1; H2 tal como el ensayo.
+
+#### 6. Datos estructurados (JSON-LD)
+
+- **Índice:** `Blog` con `@id` `https://pyme360.online/blog/#blog`, `publisher` → `{"@id": "https://pyme360.online/#empresa"}`, `inLanguage` «es» y `BreadcrumbList` (Inicio › Blog).
+- **Artículo:** `BlogPosting` con `headline`, `description`, `image`, `datePublished`, `dateModified`, `inLanguage`, `mainEntityOfPage`, `isPartOf` → `#blog`, `publisher` → `#empresa` y `author` como `Person` (nombre, `jobTitle` y `url` o `sameAs` cuando José los confirme), más `BreadcrumbList` (Inicio › Blog › Artículo).
+- No redefinas la entidad `#empresa`: solo referénciala por `@id`.
+- No incluyas `FAQPage` en el artículo salvo que tenga una sección de preguntas visible.
+
+#### 7. Enlazado y descubrimiento
+
+- **Navegación:** añade «Blog» en el menú principal y en el pie de `index.html`, `precios.html`, `alojamientos-rurales/index.html` e `indice-pyme360/index.html`, más el pie de las páginas legales, con sus copias en `public/`. En la Home, este brief autoriza **solo** el enlace de navegación y el del pie; ningún otro bloque.
+- **Alojamientos rurales:** un enlace discreto a los artículos rurales (o al índice del blog) en un punto natural, por ejemplo cerca de las preguntas frecuentes, sin reordenar secciones.
+- **`sitemap.xml`** (y `public/`): añade `/blog/` y la URL de cada artículo maquetado con `<lastmod>`. Mantén las URLs que ya comprueba `tests/seo-performance.test.cjs`.
+- **`llms.txt`** (y `public/`): añade una sección `## Blog` con el índice y cada artículo maquetado (título + URL + una línea). No toques el resto del archivo.
+
+#### 8. Tests y verificación
+
+1. Crea `tests/blog.test.cjs`. Debe comprobar:
+   - paridad raíz ↔ `public/` de las páginas del blog;
+   - un solo H1, canonical correcto y title ≤ 60 caracteres;
+   - JSON-LD válido (`JSON.parse`) con `BlogPosting` y `author` de tipo `Person`;
+   - presencia de las URLs del blog en `sitemap.xml` y `llms.txt`;
+   - enlace «Blog» en la navegación de Home, Precios y Alojamientos.
+2. Ejecuta la batería completa de tests existente más el nuevo. No debilites ni elimines tests para que pasen.
+3. Revisión visual en desktop y móvil (~390 px) del índice y del artículo.
+4. Valida los JSON-LD con un parser y revisa que no aparezca ninguna cifra sin fuente verificada en el plan.
+5. Actualiza `checklist.md` y la sesión en `CLAUDE.md` solo con lo que realmente hayas hecho y probado.
+6. Antes de cerrar: `git status --short` y `git diff --check`. No commit, push ni despliegue.
+
+#### 9. Informe final
+
+Separa:
+- archivos creados y modificados;
+- tests ejecutados y su resultado;
+- revisión visual hecha;
+- qué artículos han pasado a «Maquetado en local» y cuáles siguen bloqueados y por qué (texto en NotebookLM, cifras, autor, imagen);
+- lo que queda solo en local.
+
+No declares «terminado» un artículo si falta la ficha de autor confirmada, si la paridad o los tests fallan o si quedan cifras sin fuente.
+
+**Criterio final:** `/blog/` existe con índice y plantilla reutilizables; cada artículo maquetado procede de NotebookLM, está firmado por José María Galarza y no tiene cifras inventadas; el blog está enlazado desde la navegación, el sitemap y `llms.txt`; todos los tests pasan; y no se ha publicado nada.
+
+---
+
+### 15.3 Brief C — Casos y proyectos en la Home
+
+*Integrado desde `ANTIGRAVITY-BRIEF-CASOS-Y-PROYECTOS.md` el 2026-11-09.*
+
+**Objetivo:** sustituir la sección actual de testimonios de la Home por una sección «Casos y proyectos» que muestre trabajo real: clientes con su permiso y, aparte, los proyectos propios del equipo.
+
+**Estado:** instrucciones internas para cambios locales. No autoriza commit, push, despliegue ni publicación.
+
+**Por qué:** los artículos del blog, la auditoría SEO y la confianza de Google y de las IAs dependen de pruebas verificables. La sección actual no lo es: mezcla proyectos propios presentados como clientes con negocios que parecen ejemplos inventados.
+
+---
+
+#### 1. Preparación obligatoria
+
+1. Trabaja en `C:\Antigravity\pyme360-growth`. Lee `CLAUDE.md`, `checklist.md` y este brief.
+2. Comprueba `git status --short`, rama y tests antes de tocar nada. Hay cambios locales sin commitear en varias páginas: **presérvalos**.
+3. Paridad raíz ↔ `public/` byte a byte en todo lo que toques (`index.html`, `assets/pyme360-public.css`, `assets/pyme360-public.js` y sus copias).
+4. No hagas commit, push, despliegue ni envíos.
+
+#### 2. Diseño: mismo sistema visual que el resto de la web
+
+**Regla de José:** cualquier sección o página nueva sigue exactamente el diseño del resto de la web.
+
+- Reutiliza las clases, tokens de color, tipografía, espaciados, tarjetas, botones y componentes que ya existen en `assets/pyme360-public.css`. Parte de las tarjetas de testimonios actuales (`.testimonial-card`) o de las tarjetas de sectores de la Home.
+- No crees una paleta, tipografía ni estilo de tarjeta nuevos. Si necesitas una variante, hazla como modificador de una clase existente.
+- Mantén el tema oscuro de la Home y su contraste. Revisa desktop y móvil a ~390 px sin desbordes.
+- Sin animaciones nuevas pesadas. Si se conserva el carrusel actual, reutiliza su JS; si la sección pasa a ser una rejilla estática, retira el JS que deje de usarse.
+
+#### 3. Qué hay ahora y qué se quita
+
+La sección `section.testimonials` de `index.html` muestra 5 testimonios (datos también en `window.pyme360Testimonials` de `assets/pyme360-public.js`):
+
+| Testimonio actual | Problema | Acción |
+| --- | --- | --- |
+| Home4Escape | Proyecto propio presentado como cliente con una cita | Pasa a «Proyectos propios», sin cita de testimonio |
+| Nomads Jungle | Proyecto propio presentado como cliente con una cita | Pasa a «Proyectos propios», sin cita de testimonio |
+| Cafetería Brisa | Etiquetado «Caso tipo de pyme local»: es un ejemplo, no un cliente | **Eliminar** |
+| Hotel Rural El Mirador | Sin constancia de que sea cliente real | **Eliminar**, salvo que José confirme por escrito que es cliente real y autoriza su nombre y cita |
+| Isla Norte Tours | Sin constancia de que sea cliente real | **Eliminar**, salvo confirmación por escrito de José |
+
+**No publiques ninguna cita, nombre o logo de cliente que no esté confirmado.** Un testimonio inventado o atribuido a quien no lo dijo daña la marca y puede ser publicidad engañosa.
+
+#### 4. Nueva sección «Casos y proyectos»
+
+**Ubicación:** donde está hoy la sección de testimonios, con el mismo ancla o una nueva `#casos`.
+**Título sugerido (H2):** «Trabajo real, en negocios reales». Eyebrow: «Casos y proyectos».
+**Introducción (1–2 frases):** qué hacemos para clientes y qué hemos construido para nosotros mismos.
+
+##### 4.1 Clientes
+
+| Cliente | Web | Qué es | Qué hizo Pyme360 | Estado |
+| --- | --- | --- | --- | --- |
+| Equalis Consultoría Canaria | https://www.equalisconsultoriacanaria.es/ | Consultoría en igualdad, protocolos de acoso, medidas LGTBI, Puntos Violeta y formación para empresas e instituciones en Canarias | Según José: diseño web, redes sociales, Google Ads, blog de contenidos, ficha de Google Business y estrategia de SEO local. **Confirmar la lista exacta con José** | Pendiente de permiso por escrito del cliente |
+| Aceviños Jardinería | https://acevinosjardineria.com/ | Venta e instalación de césped artificial en Tenerife | **Pendiente: José indica qué servicios se hicieron** | Pendiente de permiso por escrito del cliente |
+
+Cada tarjeta de cliente lleva:
+- nombre del cliente y enlace a su web (`rel="noopener"`);
+- sector en una línea;
+- servicios realizados, como etiquetas cortas (Web, SEO local, Google Ads, Redes, Contenidos);
+- **resultado solo si es un dato real y medible** que José facilite (por ejemplo, tráfico o contactos antes/después con fechas). Sin dato real, no se pone resultado;
+- **cita del cliente solo si el cliente la ha escrito o aprobado**. Sin cita aprobada, la tarjeta va sin cita;
+- logo del cliente solo con su permiso; si no, sus iniciales con el estilo de logo actual.
+
+**Bloqueo:** no publiques las tarjetas de clientes hasta que José confirme (a) permiso de cada cliente, (b) servicios realizados y (c) cualquier resultado o cita. Puedes maquetar la estructura, pero deja las tarjetas de clientes fuera del HTML final hasta tener la confirmación, y señálalo en el informe.
+
+##### 4.2 Proyectos propios del equipo
+
+Subtítulo sugerido: «Proyectos propios». Una línea que lo explique: «Marcas que hemos creado y gestionamos nosotros: aplicamos en ellas lo mismo que proponemos a nuestros clientes».
+
+| Proyecto | Web | Descripción en una línea |
+| --- | --- | --- |
+| Home4Escape | https://www.home4escape.com/ | Alquiler vacacional de villas y casas rurales en Canarias |
+| Nomads Jungle | https://nomadsjungle.com/ | Vivienda profesional por temporada (1–6 meses) en Canarias para empresas y profesionales desplazados |
+| Diario de Abordo | https://diariodeabordo.es/ | Blog y newsletter sobre crecimiento personal, liderazgo y sistemas |
+| Roam Retreats | https://roamretreats.es/ | Consultoría boutique de inversión hotelera; sociedad titular de la marca Pyme360 |
+
+- Sin citas de testimonio: son proyectos propios, no clientes.
+- Sin resultados numéricos salvo que José los facilite.
+- Diseño: misma tarjeta que los clientes, visualmente diferenciada solo con la etiqueta «Proyecto propio».
+
+**Home4Escape en la Home:** este brief autoriza nombrarlo en esta sección como proyecto propio. Es una excepción a la regla «no mencionar H4E» de `checklist.md` §15.1, que sigue vigente en la landing de alojamientos rurales.
+
+#### 5. SEO y datos estructurados
+
+- La sección usa un H2 y H3 por tarjeta; no añadas otro H1.
+- **No añadas** `Review`, `AggregateRating` ni testimonios a JSON-LD: Google no admite reseñas autopublicadas sobre la propia empresa.
+- No modifiques la entidad `#empresa` del JSON-LD por esta sección.
+- Enlaces a las webs de clientes y proyectos con `rel="noopener"`; sin `nofollow` (son relaciones reales).
+
+#### 6. Tests
+
+- `tests/testimonials.test.cjs` comprueba hoy los 5 autores actuales. **Actualízalo al nuevo contenido** (proyectos propios y, cuando estén confirmados, clientes): que no aparezcan Cafetería Brisa, Hotel Rural El Mirador ni Isla Norte Tours salvo confirmación; que cada tarjeta enlace a su web; paridad raíz ↔ `public/`. Es un cambio de contrato pedido por José, no una forma de debilitar el test: documenta el cambio en el informe.
+- Ejecuta la batería completa. No elimines tests para que pasen.
+- Revisión visual en desktop y móvil.
+
+#### 7. Registro
+
+- Actualiza `checklist.md` y la sesión en `CLAUDE.md` solo con lo hecho y probado.
+- Informe final: archivos tocados, tests, revisión visual, qué tarjetas quedaron fuera por falta de confirmación y qué falta que aporte José.
+
+**Criterio final:** la Home ya no muestra testimonios inventados ni proyectos propios disfrazados de clientes; la sección «Casos y proyectos» sigue el diseño del resto de la web; los clientes solo aparecen con permiso y datos confirmados; los tests pasan; y no se ha publicado nada.

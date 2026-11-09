@@ -12,7 +12,7 @@ const pages = [
   {
     file: path.join(root, "precios.html"),
     url: "https://pyme360.online/precios.html",
-    title: "Precios Pyme360 | Planes de crecimiento para pymes"
+    title: "Precios y presupuestos de marketing para pymes | Pyme360"
   },
   {
     file: path.join(root, "public", "index.html"),
@@ -22,7 +22,7 @@ const pages = [
   {
     file: path.join(root, "public", "precios.html"),
     url: "https://pyme360.online/precios.html",
-    title: "Precios Pyme360 | Planes de crecimiento para pymes"
+    title: "Precios y presupuestos de marketing para pymes | Pyme360"
   }
 ];
 

@@ -5,9 +5,15 @@ const vm = require("node:vm");
 
 const script = fs.readFileSync(path.join(__dirname, "..", "assets", "pyme360-public.js"), "utf8");
 const styles = fs.readFileSync(path.join(__dirname, "..", "assets", "pyme360-public.css"), "utf8");
+const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
 const publicHtml = fs.readFileSync(path.join(__dirname, "..", "public", "index.html"), "utf8");
 const publicScript = fs.readFileSync(path.join(__dirname, "..", "public", "assets", "pyme360-public.js"), "utf8");
 const publicStyles = fs.readFileSync(path.join(__dirname, "..", "public", "assets", "pyme360-public.css"), "utf8");
+
+// Paridad estricta raíz <-> public
+assert.equal(html, publicHtml, "index.html must match public/index.html byte for byte");
+assert.equal(script, publicScript, "pyme360-public.js must match public/assets/pyme360-public.js byte for byte");
+assert.equal(styles, publicStyles, "pyme360-public.css must match public/assets/pyme360-public.css byte for byte");
 
 const sandbox = {
   HTMLAnchorElement: function HTMLAnchorElement() {},
@@ -24,62 +30,52 @@ const sandbox = {
 vm.createContext(sandbox);
 vm.runInContext(script, sandbox);
 
+// Proyectos propios confirmados (§15.3)
+const expectedProjects = ["Home4Escape", "Nomads Jungle", "Diario de Abordo", "Roam Retreats"];
 assert.equal(Array.isArray(sandbox.window.pyme360Testimonials), true);
-assert.equal(sandbox.window.pyme360Testimonials.length, 5);
+assert.equal(sandbox.window.pyme360Testimonials.length, 4);
 assert.equal(
-  JSON.stringify(sandbox.window.pyme360Testimonials.map((testimonial) => testimonial.author)),
-  JSON.stringify(["Home4Escape", "Nomads Jungle", "Cafetería Brisa", "Hotel Rural El Mirador", "Isla Norte Tours"])
+  JSON.stringify(sandbox.window.pyme360Testimonials.map((p) => p.author)),
+  JSON.stringify(expectedProjects)
 );
-assert.equal(typeof sandbox.window.pyme360RotateTestimonials, "function");
-assert.equal(sandbox.window.pyme360Testimonials[0].quote.includes("ayudó"), true);
-assert.equal(sandbox.window.pyme360Testimonials[0].quote.includes("captación"), true);
-assert.equal(sandbox.window.pyme360Testimonials[0].quote.includes("presencia digital"), true);
 
-const rotated = sandbox.window.pyme360RotateTestimonials([
-  { author: "A" },
-  { author: "B" },
-  { author: "C" }
-]);
+// Proyectos retirados sin clientes verificados: Cafetería Brisa, Hotel Rural El Mirador, Isla Norte Tours
+const bannedExamples = ["Cafetería Brisa", "Hotel Rural El Mirador", "Isla Norte Tours"];
+for (const banned of bannedExamples) {
+  assert.equal(html.includes(banned), false, `html must not include unverified client '${banned}'`);
+  assert.equal(publicHtml.includes(banned), false, `publicHtml must not include unverified client '${banned}'`);
+  assert.equal(script.includes(banned), false, `script must not include unverified client '${banned}'`);
+  assert.equal(publicScript.includes(banned), false, `publicScript must not include unverified client '${banned}'`);
+}
 
-assert.equal(JSON.stringify(rotated.map((testimonial) => testimonial.author)), JSON.stringify(["B", "C", "A"]));
-assert.equal(styles.includes("background: #0f172a;"), true);
-assert.equal(styles.includes(".testimonial-logo"), true);
-assert.equal(styles.includes(".testimonial-card::before"), true);
-assert.equal(styles.includes("mix-blend-mode: screen;"), true);
-assert.equal(styles.includes(".testimonial-card.is-front:hover"), true);
-assert.equal(styles.includes("filter: blur(3px);"), true);
-assert.equal(styles.includes("min-height: 560px;"), true);
-assert.match(styles, /@media \(max-width: 620px\)[\s\S]*overflow-x: auto;/);
-assert.match(styles, /@media \(max-width: 620px\)[\s\S]*scroll-snap-type: x mandatory;/);
-assert.match(styles, /@media \(max-width: 620px\)[\s\S]*scroll-padding-inline: 18px;/);
-assert.match(styles, /@media \(max-width: 620px\)[\s\S]*scroll-snap-align: center;/);
-assert.match(styles, /@media \(max-width: 620px\)[\s\S]*\.testimonial-card\.is-front,\s*\.testimonial-card\.is-middle,\s*\.testimonial-card\.is-back,\s*\.testimonial-card\.is-far,\s*\.testimonial-card\.is-tail\s*{[\s\S]*transform: none;/);
-assert.match(styles, /@media \(max-width: 620px\)[\s\S]*\.testimonial-card\.is-middle \.testimonial-logo,[\s\S]*\.testimonial-card\.is-tail blockquote\s*{[\s\S]*filter: none;/);
-assert.equal(script.includes("pravatar"), false);
-assert.equal(script.includes("images.unsplash.com"), false);
-assert.equal(script.includes("Cafetería Brisa"), true);
-assert.equal(script.includes("Hotel Rural El Mirador"), true);
-assert.equal(script.includes("Isla Norte Tours"), true);
-assert.equal(script.includes("ayudó"), true);
-assert.equal(script.includes("captación"), true);
-assert.equal(script.includes("temporada baja"), true);
-assert.equal(script.includes("Servicios turísticos"), true);
-assert.equal(script.includes("function isMobileTestimonialsLayout"), true);
-assert.equal(script.includes("function scrollToNextTestimonial"), true);
-assert.equal(script.includes("scrollTo({"), true);
-assert.equal(publicHtml.includes("testimonial-stage"), true);
-assert.equal(publicHtml.includes("ayudó"), true);
-assert.equal(publicHtml.includes("Cafetería Brisa"), true);
-assert.equal(publicStyles.includes(".testimonial-card"), true);
-assert.equal(publicStyles.includes(".testimonial-logo"), true);
-assert.equal(publicStyles.includes(".testimonial-card::before"), true);
-assert.equal(publicStyles.includes("scroll-snap-type: x mandatory;"), true);
-assert.equal(publicScript.includes("pyme360Testimonials"), true);
-assert.equal(publicScript.includes("scrollToNextTestimonial"), true);
-assert.equal(publicScript.includes("Cafetería Brisa"), true);
-assert.equal(publicScript.includes("Hotel Rural El Mirador"), true);
-assert.equal(publicScript.includes("Isla Norte Tours"), true);
-assert.equal(publicScript.includes("pravatar"), false);
-assert.equal(publicScript.includes("images.unsplash.com"), false);
+// Comprobación de sección y enlaces oficiales con rel="noopener"
+assert.match(html, /<section id="casos" class="testimonials section"/);
+assert.match(html, /Trabajo real, en negocios reales/);
+assert.match(html, /Proyectos propios/);
+
+const expectedUrls = [
+  "https://www.home4escape.com/",
+  "https://nomadsjungle.com/",
+  "https://diariodeabordo.es/",
+  "https://roamretreats.es/"
+];
+
+for (const url of expectedUrls) {
+  assert.match(html, new RegExp(`href="${url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"[^>]*rel="noopener"`));
+}
+
+// Estilos de proyectos propios presentes
+assert.match(styles, /\.projects-grid/);
+assert.match(styles, /\.project-card/);
+assert.match(styles, /\.project-badge/);
+
+
+// Clientes confirmados (§15.3)
+assert.match(html, /Equalis Consultoría Canaria/);
+assert.match(html, /Aceviños Jardinería/);
+assert.match(html, /href="https:\/\/www\.equalisconsultoriacanaria\.es\/"[^>]*rel="noopener"/);
+assert.match(html, /href="https:\/\/acevinosjardineria\.com\/"[^>]*rel="noopener"/);
+assert.equal(Array.isArray(sandbox.window.pyme360Clients), true);
+assert.equal(sandbox.window.pyme360Clients.length, 2);
 
 console.log("testimonial tests passed");

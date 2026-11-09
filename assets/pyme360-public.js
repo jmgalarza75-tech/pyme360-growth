@@ -13,41 +13,60 @@ const processOrbitStage = document.querySelector("[data-process-orbit]");
 const processDetail = document.querySelector("[data-process-detail]");
 const PROCESS_ORBIT_ROTATION_MS = 3500;
 let processOrbitTimer = null;
+
+const clients = [
+  {
+    logo: "EQ",
+    logoClass: "testimonial-logo-equalis",
+    author: "Equalis Consultoría Canaria",
+    url: "https://www.equalisconsultoriacanaria.es/",
+    type: "Cliente",
+    sector: "Consultoría de igualdad y formación en Canarias",
+    services: ["Diseño web", "SEO local", "Google Ads"]
+  },
+  {
+    logo: "AJ",
+    logoClass: "testimonial-logo-acevinos",
+    author: "Aceviños Jardinería",
+    url: "https://acevinosjardineria.com/",
+    type: "Cliente",
+    sector: "Césped artificial y jardinería en Tenerife",
+    services: ["Diseño web", "SEO local", "Google Ads"]
+  }
+];
+
 const testimonials = [
   {
     logo: "H4",
     logoClass: "testimonial-logo-home",
     author: "Home4Escape",
-    sector: "Hospitality y alquiler vacacional",
-    quote: "Pyme360 nos ayudó a ordenar la captación y convertir la presencia digital en una herramienta comercial, no solo en una web bonita."
+    url: "https://www.home4escape.com/",
+    type: "Proyecto propio",
+    sector: "Alquiler vacacional de villas y casas rurales en Canarias"
   },
   {
     logo: "NJ",
     logoClass: "testimonial-logo-nomads",
     author: "Nomads Jungle",
-    sector: "Experiencias y comunidad viajera",
-    quote: "Por fin entendimos qué acciones priorizar. El diagnóstico aterrizó el marketing en decisiones concretas para crecer."
+    url: "https://nomadsjungle.com/",
+    type: "Proyecto propio",
+    sector: "Vivienda profesional por temporada en Canarias"
   },
   {
-    logo: "CB",
-    logoClass: "testimonial-logo-brisa",
-    author: "Cafetería Brisa",
-    sector: "Caso tipo de pyme local",
-    quote: "Necesitábamos más clientes locales sin perdernos en tecnicismos. El sistema nos dio foco, seguimiento y una ruta clara."
+    logo: "DA",
+    logoClass: "testimonial-logo-diario",
+    author: "Diario de Abordo",
+    url: "https://diariodeabordo.es/",
+    type: "Proyecto propio",
+    sector: "Blog y newsletter sobre crecimiento y sistemas"
   },
   {
-    logo: "HM",
-    logoClass: "testimonial-logo-rural",
-    author: "Hotel Rural El Mirador",
-    sector: "Alojamiento rural y escapadas",
-    quote: "Pasamos de depender de la temporada alta a trabajar campañas para temporada baja, reservas directas y mensajes mucho más claros."
-  },
-  {
-    logo: "IN",
-    logoClass: "testimonial-logo-tours",
-    author: "Isla Norte Tours",
-    sector: "Servicios turísticos y experiencias",
-    quote: "Pyme360 ordenó las solicitudes de excursiones, el seguimiento por WhatsApp y las acciones que de verdad traían reservas."
+    logo: "RR",
+    logoClass: "testimonial-logo-roam",
+    author: "Roam Retreats",
+    url: "https://roamretreats.es/",
+    type: "Proyecto propio",
+    sector: "Consultoría boutique de inversión hotelera"
   }
 ];
 
@@ -506,6 +525,8 @@ function pyme360PrefillLeadFormFromUrl(form) {
 
 if (typeof window !== "undefined") {
   window.pyme360Testimonials = testimonials;
+  window.pyme360Projects = testimonials;
+  window.pyme360Clients = clients;
   window.pyme360RotateTestimonials = rotateTestimonials;
   window.pyme360BuildLeadPayload = pyme360BuildLeadPayload;
   window.pyme360SubmitLead = pyme360SubmitLead;

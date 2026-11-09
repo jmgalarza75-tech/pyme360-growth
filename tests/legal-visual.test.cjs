@@ -26,11 +26,11 @@ for (const [file, title] of legalPages) {
     assert.match(html, new RegExp(`<title>${title} \\| Pyme360<\\/title>`));
     assert.match(html, /<meta name="robots" content="noindex, follow">/);
     assert.match(html, /Roam Retreats/);
-    assert.match(html, /CIF 16392094/);
-    assert.match(html, /Calle Tinfugaya I 7/);
+    assert.match(html, /CIF B?16392094/);
+    assert.match(html, /Tigaday I, Águilas del Teide/);
     assert.match(html, /<a href="\/">Inicio<\/a>/);
     assert.match(html, /<a href="precios\.html">Precios<\/a>/);
-    assert.match(html, /<link rel="stylesheet" href="assets\/pyme360-public\.css\?v=20260713-3">/);
+    assert.match(html, /<link rel="stylesheet" href="assets\/pyme360-public\.css\?v=20261109-1">/);
     assert.doesNotMatch(html, /dashboard\.html|buscador\.html|pipeline\.html|newsletter\.html|\.env/);
   }
 }
