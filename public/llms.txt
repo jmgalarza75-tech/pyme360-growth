@@ -42,3 +42,5 @@
 - [El valor de las reseñas en Google para negocios locales en Tenerife](https://pyme360.online/blog/resenas-google-negocios-tenerife/): Las opiniones de clientes no son solo un sello de confianza; son el factor decisivo en la tasa de clics de Google Maps. Cómo solicitar y responder valoraciones con método.
 - [Radiografía de rentabilidad: control de costes para hoteles rurales](https://pyme360.online/blog/control-costes-hotel-rural/): Estructura de costes fijos, variables por noche ocupada y comisiones financieras. El método para calcular el umbral de rentabilidad real de cada unidad alojativa.
 - [Blog de Pyme360 — Marketing digital para pymes y alojamientos rurales](https://pyme360.online/blog/)
+
+- [Contacto](https://pyme360.online/contacto.html): Formulario de contacto directo y atención a pymes en Canarias.

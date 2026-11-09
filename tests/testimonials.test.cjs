@@ -30,7 +30,7 @@ const sandbox = {
 vm.createContext(sandbox);
 vm.runInContext(script, sandbox);
 
-// Proyectos propios confirmados (§15.3)
+// Proyectos propios confirmados en JS
 const expectedProjects = ["Home4Escape", "Nomads Jungle", "Diario de Abordo", "Roam Retreats"];
 assert.equal(Array.isArray(sandbox.window.pyme360Testimonials), true);
 assert.equal(sandbox.window.pyme360Testimonials.length, 4);
@@ -48,34 +48,43 @@ for (const banned of bannedExamples) {
   assert.equal(publicScript.includes(banned), false, `publicScript must not include unverified client '${banned}'`);
 }
 
-// Comprobación de sección y enlaces oficiales con rel="noopener"
-assert.match(html, /<section id="casos" class="testimonials section"/);
-assert.match(html, /Trabajo real, en negocios reales/);
-assert.match(html, /Proyectos propios/);
+// A petición de usuario: Casos reales retirados de index.html
+assert.equal(html.includes('<section id="casos"'), false, "index.html must not include #casos section");
+assert.equal(publicHtml.includes('<section id="casos"'), false, "public/index.html must not include #casos section");
+assert.equal(html.includes('href="#casos"'), false, "index.html nav must not link to #casos");
 
-const expectedUrls = [
-  "https://www.home4escape.com/",
-  "https://nomadsjungle.com/",
-  "https://diariodeabordo.es/",
-  "https://roamretreats.es/"
-];
+// A petición de usuario: Pestaña con formulario de contacto que cumpla LOPD
+const contactoPath = path.join(__dirname, "..", "contacto.html");
+const publicContactoPath = path.join(__dirname, "..", "public", "contacto.html");
+assert.equal(fs.existsSync(contactoPath), true, "contacto.html must exist");
+assert.equal(fs.existsSync(publicContactoPath), true, "public/contacto.html must exist");
 
-for (const url of expectedUrls) {
-  assert.match(html, new RegExp(`href="${url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"[^>]*rel="noopener"`));
-}
+const contactoHtml = fs.readFileSync(contactoPath, "utf8");
+const publicContactoHtml = fs.readFileSync(publicContactoPath, "utf8");
+assert.equal(contactoHtml, publicContactoHtml, "contacto.html must match public/contacto.html byte for byte");
 
-// Estilos de proyectos propios presentes
-assert.match(styles, /\.projects-grid/);
-assert.match(styles, /\.project-card/);
-assert.match(styles, /\.project-badge/);
+// Verificación de formulario de contacto y cumplimiento estricto LOPD/RGPD
+assert.match(contactoHtml, /<form class="lead-form lead-form-premium contact-form"/);
+assert.match(contactoHtml, /action="\/procesar-lead\.php"/);
+assert.match(contactoHtml, /name="name"[^>]*required/);
+assert.match(contactoHtml, /name="email"[^>]*required/);
+assert.match(contactoHtml, /name="phone"[^>]*required/);
+assert.match(contactoHtml, /name="business"[^>]*required/);
+assert.match(contactoHtml, /name="problem"[^>]*required/);
 
+// Primera capa informativa LOPD/RGPD visible
+assert.match(contactoHtml, /Información básica sobre protección de datos/);
+assert.match(contactoHtml, /Responsable:/);
+assert.match(contactoHtml, /Finalidad:/);
+assert.match(contactoHtml, /Legitimación:/);
+assert.match(contactoHtml, /Derechos:/);
 
-// Clientes confirmados (§15.3)
-assert.match(html, /Equalis Consultoría Canaria/);
-assert.match(html, /Aceviños Jardinería/);
-assert.match(html, /href="https:\/\/www\.equalisconsultoriacanaria\.es\/"[^>]*rel="noopener"/);
-assert.match(html, /href="https:\/\/acevinosjardineria\.com\/"[^>]*rel="noopener"/);
-assert.equal(Array.isArray(sandbox.window.pyme360Clients), true);
-assert.equal(sandbox.window.pyme360Clients.length, 2);
+// Checkbox obligatorio de aceptación de política de privacidad
+assert.match(contactoHtml, /<input type="checkbox" name="privacy" required>/);
+assert.match(contactoHtml, /href="privacidad\.html"/);
 
-console.log("testimonial tests passed");
+// Navegación incluye Contacto
+assert.match(html, /<a href="contacto\.html">Contacto<\/a>/);
+assert.match(contactoHtml, /<a href="contacto\.html" aria-current="page">Contacto<\/a>/);
+
+console.log("testimonial and contact tests passed");

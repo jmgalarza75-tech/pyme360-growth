@@ -12,6 +12,7 @@ const mirroredPages = [
   ["aviso-legal.html", "public/aviso-legal.html"],
   ["privacidad.html", "public/privacidad.html"],
   ["cookies.html", "public/cookies.html"],
+  ["contacto.html", "public/contacto.html"],
   ["blog/index.html", "public/blog/index.html"],
   ["blog/plantilla.html", "public/blog/plantilla.html"]
 ];
@@ -47,7 +48,8 @@ for (const relative of ruralPages) {
 
 const breadcrumbPages = [
   ["precios.html", "Precios", "https://pyme360.online/precios.html"],
-  ["alojamientos-rurales/index.html", "Alojamientos rurales", "https://pyme360.online/alojamientos-rurales/"]
+  ["alojamientos-rurales/index.html", "Alojamientos rurales", "https://pyme360.online/alojamientos-rurales/"],
+  ["contacto.html", "Contacto", "https://pyme360.online/contacto.html"]
 ];
 for (const [relative, label, url] of breadcrumbPages) {
   const html = fs.readFileSync(path.join(root, relative), "utf8");

@@ -599,13 +599,16 @@ if (leadForm) {
         lead_source: "home"
       });
 
+      const isContactForm = leadForm.classList.contains("contact-form");
       if (submitButton) {
-        submitButton.textContent = "Solicitud recibida";
+        submitButton.textContent = isContactForm ? "Mensaje enviado" : "Solicitud recibida";
       }
 
       leadForm.insertAdjacentHTML(
         "beforeend",
-        '<p class="form-success form-wide" role="status">Gracias. Hemos recibido tu solicitud de diagnóstico y te contactaremos para preparar la revisión.</p>'
+        isContactForm
+          ? '<p class="form-success form-wide" role="status">Gracias. Hemos recibido tu mensaje correctamente y te responderemos en menos de 24 horas laborables.</p>'
+          : '<p class="form-success form-wide" role="status">Gracias. Hemos recibido tu solicitud de diagnóstico y te contactaremos para preparar la revisión.</p>'
       );
     } catch (error) {
       console.error(error);
