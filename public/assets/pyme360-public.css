@@ -9358,9 +9358,7 @@ body:not(.indice-page) .faq-accordion-content a:hover {
   align-items: flex-start !important;
   text-align: left !important;
   padding: 32px 26px !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
+  background-color: #0c281e !important;
   border: 1px solid rgba(255, 255, 255, 0.20) !important;
   box-shadow: 0 12px 36px rgba(10, 31, 23, 0.16) !important;
   z-index: 2 !important;
@@ -9371,11 +9369,30 @@ body:not(.indice-page) .faq-accordion-content a:hover {
   height: 100% !important;
 }
 
+.blog-flip-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  filter: contrast(1.05) !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.blog-flip-card:hover .blog-flip-bg,
+.blog-flip-card:focus-visible .blog-flip-bg {
+  transform: scale(1.05) !important;
+}
+
 .blog-flip-front-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(8, 26, 19, 0.25) 0%, rgba(8, 26, 19, 0.70) 50%, rgba(8, 26, 19, 0.95) 100%);
   z-index: 1;
+  pointer-events: none;
 }
 
 .blog-flip-front-content {
