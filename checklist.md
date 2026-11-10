@@ -408,6 +408,8 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 | 2026-11-09 | Fase 2 SEO On-Page (local): title y metadatos sociales de Precios alineados a presupuesto por alcance; H1 rural centrado en revisar posibles fricciones, sin prometer resultados; migas visibles + `BreadcrumbList` JSON-LD en Precios y Alojamientos Rurales; CSS compartido unificado en `20261109-1`. | `precios.html` y `public/precios.html`; `alojamientos-rurales/index.html` y `public/alojamientos-rurales/index.html`; 7 pares de HTML y CSS; tests | 21/21 tests `.test.cjs` en verde; BreadcrumbList JSON-LD parseado; 7 pares fuente/público y CSS byte a byte iguales; comprobación en navegador local a 390 px sin overflow horizontal de página tras la animación; `git diff --check` limpio. | Solo local: sin commit, push ni despliegue. |
 | 2026-11-09 | Desbloqueo y saneamiento de claims en Alojamientos Rurales: eliminadas afirmaciones de 'tres clics', 'recuperar la inversión', porcentajes no respaldados ('15%–22%') y promesas de ocupación en temporada baja tanto en el Schema JSON-LD (`FAQPage`) como en los bloques visibles (Bento de problemas, Cartera Solución 03 y FAQ visible). Paridad 100% byte a byte confirmada. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `checklist.md` | 21/21 tests en verde; auditoría de términos prohibidos superada (cero incidencias); `git diff --check` limpio. | Landing rural totalmente alineada con el brief y libre de bloqueos de copy. |
 | 2026-11-09 | Integración de los tres briefs para Antigravity en `checklist.md` §15 (precios y alojamientos, blog, casos y proyectos) con resumen de tareas; los ficheros `ANTIGRAVITY-BRIEF-*.md` pasan a remitir aquí. | `checklist.md`, `ANTIGRAVITY-BRIEF-*.md`, `articulos/PLAN-EDITORIAL-BLOG.md` | Solo documentación; sin cambios en la web. | Antigravity: ejecutar tareas de §15.0. |
+| 2026-11-09 | Estudio E1 completado por Claude: 90 webs de pymes de Tenerife medidas con navegador móvil (98 en muestra, 8 no comprobables); artículo redactado con datos reales; 3 webs con spam de casinos confirmado. Añadida §15.4 con la recogida por API de E1 (PageSpeed), E2 (Places) y E4 (asistentes de IA). | `articulos/estudios/E1-webs-pymes-tenerife.md`, `articulos/estudios/interno/`, `checklist.md`, `.gitignore` | Datos verificados a mano en las 3 detecciones de spam; detectores contrastados con dos pasadas. | Antigravity: ejecutar §15.4. |
+| 2026-11-10 | Decisión de José: los artículos del blog los firma Theo Rubio; los estudios E1–E4, Equipo Pyme360. Permiso de Equalis y Aceviños para aparecer como clientes confirmado por José. Plan editorial, estudios y §15.2/§15.3 actualizados. | `checklist.md`, `articulos/PLAN-EDITORIAL-BLOG.md`, `articulos/estudios/E1–E4` | Solo documentación. | Aplicar la firma de equipo al maquetar los estudios. |
 | 2026-11-09 | Unificación del menú de navegación de Alojamientos Rurales con el de la Home (Sistema, Proceso, Sectores, Alojamientos rurales, Precios, Blog, CTA Diagnóstico gratis). Paridad 100% y 23/23 tests pasando. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; cero términos prohibidos. | Listo para commit y subida a GitHub/Hostinger con confirmación de José. |
 | 2026-11-09 | Sustitución completa de las imágenes generadas por fotografía real de alta resolución en los 10 artículos del Blog y sus casillas giratorias (/assets/blog/*.jpg): fotografías de alojamientos rurales, terrazas, fincas y gestión de marketing digital, optimizadas a 1200x630. | `assets/blog/`, `public/assets/blog/`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; sin términos prohibidos. | Listo y verificado en servidor local. |
 | 2026-11-09 | Corrección de rutas de imágenes en el Blog: convertidas todas las rutas de assets a rutas absolutas de raíz (/assets/blog/...), reforzadas las reglas de fondo de .blog-flip-front con !important y posicionamiento absoluto explícito. Comprobada carga HTTP 200 en localhost:8765. | `blog/`, `public/blog/`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; cero términos prohibidos. | Listo y verificado en servidor local. |
@@ -419,6 +421,7 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 | 2026-11-09 | §15.3 Bloque C completado: sustituida la sección de testimonios de la Home por «Casos y proyectos» (`#casos`) con 4 tarjetas de Proyectos Propios (Home4Escape, Nomads Jungle, Diario de Abordo, Roam Retreats) enlazadas a sus webs oficiales (`rel="noopener"`), sin citas inventadas; retirados Cafetería Brisa, Hotel Rural El Mirador e Isla Norte Tours; tests/testimonials.test.cjs actualizado; paridad 100% byte a byte. | `index.html`, `public/index.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `assets/pyme360-public.js`, `public/assets/pyme360-public.js`, `tests/testimonials.test.cjs`, `checklist.md` | 21/21 tests en verde; paridad 100% confirmada; cero términos prohibidos. | Bloqueo: tarjetas de clientes (Equalis y Aceviños) pendientes de autorización y datos de servicios. |
 | 2026-11-09 | §15.2 Bloque B completado: creado `/blog/` (`blog/index.html` y plantilla reutilizable `blog/plantilla.html`) con diseño coherente, enlaces «Blog» en cabecera y pie de todas las páginas, sitemap y llms.txt actualizados, nuevo test `tests/blog.test.cjs` creado y 22/22 tests en verde. Ningún artículo maquetado (todos pendientes de revisión en plan editorial). Paridad 100% byte a byte. | `blog/index.html`, `blog/plantilla.html`, réplicas `/public/blog/`, `index.html`, `precios.html`, `alojamientos-rurales/index.html`, legales, `sitemap.xml`, `llms.txt`, `assets/pyme360-public.css`, `tests/blog.test.cjs`, `tests/on-page-contract.test.cjs`, `checklist.md` | 22/22 tests en verde; paridad 100% confirmada; cero términos prohibidos. | Bloqueo: fichas de autor y artículos en NotebookLM pendientes de estado «Revisado». |
 | 2026-11-09 | §15.3 Desbloqueo de Clientes completado: añadidas tarjetas de Equalis Consultoría Canaria y Aceviños Jardinería (Diseño web, SEO local, Google Ads) en `#casos` con enlaces oficiales directos (`rel="noopener"`), etiquetas de servicio, sin citas inventadas; tests/testimonials.test.cjs actualizado; paridad 100% byte a byte. | `index.html`, `public/index.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `assets/pyme360-public.js`, `public/assets/pyme360-public.js`, `tests/testimonials.test.cjs`, `checklist.md` | 22/22 tests en verde; paridad 100% confirmada; cero términos prohibidos. | Sección `#casos` 100% cerrada con Clientes y Proyectos Propios. |
+| 2026-11-10 | §15.4 Brief D completado al 100%: D1 (PageSpeed móvil 90 URLs en E1-pagespeed.csv; mediana 69.5, 37 con CrUX), D2 (Google Places 50 fichas SC y La Laguna en E2-fichas.csv; tabla de resultados agregados en E2-fichas-google-restaurantes.md actualizada) y D3 (90 ejecuciones en OpenAI, Gemini y Perplexity para las 10 consultas en E4-respuestas.csv; cálculos de coincidencia top 10/top 3, estabilidad y fantasmas). Datos privados en interno/ ignorados por git. Cero secretos expuestos. | `articulos/estudios/interno/E1-pagespeed.csv`, `articulos/estudios/interno/E2-fichas.csv`, `articulos/estudios/interno/E4-respuestas.csv`, `articulos/estudios/E2-fichas-google-restaurantes.md`, `checklist.md` | Datos 100% reales recogidos por API; suite de tests intacta; sin commit ni despliegue. | Datos listos para la redacción editorial de los estudios E1, E2 y E4. |
 
 ---
 
@@ -444,6 +447,12 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 - [x] Crear `tests/blog.test.cjs` y pasar la batería completa — 2026-11-09.
 - [x] Ficha de autor completada: Theo Rubio (Superhost, cofundadora de Home4Escape, foto `assets/blog/theo.jpg` y bio integrada en plantilla y Schema `Person`) — 2026-11-09.
 - [ ] Fuentes de cifras de los artículos pendientes antes de maquetar.
+- [ ] Estudios E1–E4: firmar como «Equipo Pyme360» (no Theo) al maquetarlos; ajustar `tests/blog.test.cjs` para aceptar `author` de organización en esas páginas.
+
+**D · Datos por API para estudios (§15.4)**
+- [x] D1 · Velocidad móvil de las 90 webs de E1 (PageSpeed Insights) — 2026-11-10.
+- [x] D2 · 50 fichas de restaurantes para E2 (Google Places) — 2026-11-10.
+- [x] D3 · 30 consultas a asistentes de IA para E4 (OpenAI, Gemini, Perplexity) + comparación con Google Places — 2026-11-10.
 
 **C · Casos y proyectos en la Home (§15.3)**
 - [x] Sustituir la sección de testimonios por «Casos y proyectos» con el mismo diseño — 2026-11-09.
@@ -451,6 +460,7 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 - [x] Home4Escape, Nomads Jungle, Diario de Abordo y Roam Retreats como proyectos propios, sin citas — 2026-11-09.
 - [x] Tarjetas de clientes añadidas: Equalis Consultoría Canaria y Aceviños Jardinería (Diseño web, SEO local, Google Ads) con enlaces oficiales, sin citas inventadas — 2026-11-09.
 - [x] Actualizar `tests/testimonials.test.cjs` al nuevo contenido — 2026-11-09.
+- [x] Permiso de Equalis Consultoría Canaria y Aceviños Jardinería para aparecer como clientes: confirmado por José — 2026-11-10.
 
 ### 15.1 Brief A — Precios y alojamientos rurales
 
@@ -675,7 +685,7 @@ Solo maqueta un artículo cuando en el plan editorial su estado sea **«Revisado
 3. **Cifras:** cada porcentaje o dato debe coincidir con la tabla «Datos citados» del plan y llevar enlace a su fuente primaria. Si aparece una cifra que no está verificada en el plan, no la publiques: deja el artículo sin terminar y avisa a José.
 4. **Revenue management y Home4Escape:** el revenue management no es servicio de Pyme360; se ofrece a través de Home4Escape. **Solo R01, R04 y R05** llevan un único enlace a `https://www.home4escape.com/` en el pasaje que trata precios, rentabilidad o revenue (redacción de ejemplo en la decisión 1 del plan). Es un enlace secundario: el CTA principal sigue siendo la autoevaluación rural. El resto de artículos y páginas no mencionan Home4Escape ni H4E.
 5. **Promesas:** retira las frases de la lista «Frases que no deben llegar al texto final» del plan, y cualquier ROI, ROAS o porcentaje de mejora presentado como resultado de trabajar con Pyme360.
-6. **Autor:** José María Galarza, con la ficha de autor (cargo, foto y trayectoria). Si esos datos aún no están confirmados en el plan, maqueta el artículo pero no lo marques como terminado.
+6. **Autor (decisión de José, 2026-11-10):** los artículos los firma **Theo Rubio**, con su ficha de autor y `author` de tipo `Person`. Los estudios propios E1–E4 (`articulos/estudios/`) los firma **Equipo Pyme360**: en la página, «Por el equipo de Pyme360», sin ficha personal; en JSON-LD, `author` = `{"@id": "https://pyme360.online/#empresa"}`.
 7. Enlace interno a la página que indica el plan, en un punto natural, y CTA final al diagnóstico (`/#diagnostico` en pymes, `/alojamientos-rurales/#diagnostico` en rurales; ambas anclas existen).
 8. Añade la tarjeta del artículo al índice `/blog/` dentro de su línea («Marketing para pymes» o «Alojamientos rurales»).
 9. Añade la URL a `sitemap.xml` y a la sección `## Blog` de `llms.txt` (con sus copias en `public/`).
@@ -715,7 +725,7 @@ Solo maqueta un artículo cuando en el plan editorial su estado sea **«Revisado
 1. Crea `tests/blog.test.cjs`. Debe comprobar:
    - paridad raíz ↔ `public/` de las páginas del blog;
    - un solo H1, canonical correcto y title ≤ 60 caracteres;
-   - JSON-LD válido (`JSON.parse`) con `BlogPosting` y `author` de tipo `Person`;
+   - JSON-LD válido (`JSON.parse`) con `BlogPosting`; `author` de tipo `Person` (Theo Rubio) en los artículos y la organización `#empresa` en los estudios E1–E4;
    - presencia de las URLs del blog en `sitemap.xml` y `llms.txt`;
    - enlace «Blog» en la navegación de Home, Precios y Alojamientos.
 2. Ejecuta la batería completa de tests existente más el nuevo. No debilites ni elimines tests para que pasen.
@@ -735,7 +745,7 @@ Separa:
 
 No declares «terminado» un artículo si falta la ficha de autor confirmada, si la paridad o los tests fallan o si quedan cifras sin fuente.
 
-**Criterio final:** `/blog/` existe con índice y plantilla reutilizables; cada artículo maquetado procede de NotebookLM, está firmado por José María Galarza y no tiene cifras inventadas; el blog está enlazado desde la navegación, el sitemap y `llms.txt`; todos los tests pasan; y no se ha publicado nada.
+**Criterio final:** `/blog/` existe con índice y plantilla reutilizables; cada artículo maquetado procede de NotebookLM, está firmado por Theo Rubio (los estudios, por Equipo Pyme360) y no tiene cifras inventadas; el blog está enlazado desde la navegación, el sitemap y `llms.txt`; todos los tests pasan; y no se ha publicado nada.
 
 ---
 
@@ -840,3 +850,32 @@ Subtítulo sugerido: «Proyectos propios». Una línea que lo explique: «Marcas
 - Informe final: archivos tocados, tests, revisión visual, qué tarjetas quedaron fuera por falta de confirmación y qué falta que aporte José.
 
 **Criterio final:** la Home ya no muestra testimonios inventados ni proyectos propios disfrazados de clientes; la sección «Casos y proyectos» sigue el diseño del resto de la web; los clientes solo aparecen con permiso y datos confirmados; los tests pasan; y no se ha publicado nada.
+
+---
+
+### 15.4 Brief D — Recogida de datos por API para los estudios E1, E2 y E4
+
+*Añadido el 2026-11-09. Archivos de cada estudio en `articulos/estudios/`; datos internos en `articulos/estudios/interno/` (excluido de git, NO PUBLICAR).*
+
+**Reglas comunes:** usa solo las claves de API que ya tienes configuradas; no las escribas en ningún fichero del repositorio, en informes ni en el chat. Guarda los resultados en `articulos/estudios/interno/`. Anota fecha y hora de cada recogida. Si una API no está disponible, dilo y sigue con la siguiente; no sustituyas datos por estimaciones. No publiques nada ni hagas commit/push.
+
+**D1 · E1, velocidad móvil (API de PageSpeed Insights)**
+- [x] Para cada URL de `articulos/estudios/interno/E1-datos.csv` (columna `final_url`), llama a PageSpeed Insights con `strategy=mobile` y `category=performance`.
+- [x] Guarda en `interno/E1-pagespeed.csv`: url, fecha, puntuación de rendimiento (0–100), LCP, CLS, TBT y si hay datos de campo (CrUX).
+- [x] Informa: mediana de la puntuación, nº de webs con puntuación <50, 50–89 y ≥90, y cuántas tienen datos de campo.
+
+**D2 · E2, fichas de Google de restaurantes (API de Google Places)**
+- [x] Búsquedas de texto: «restaurantes en Santa Cruz de Tenerife» y «restaurantes en San Cristóbal de La Laguna». Toma los 25 primeros resultados de cada una (50), excluyendo cadenas de más de 3 locales. Guarda la posición.
+- [x] Por ficha, con Place Details: categoría principal, horario (¿7 días?), teléfono, web (propia / plataforma / ninguna), valoración, número de reseñas, número de fotos devueltas, si tiene `reservable`, `menu`/carta, descripción editorial y atributos disponibles.
+- [x] Respuestas del propietario: la API no las ofrece de forma fiable. Si no puedes obtenerlas, deja la variable fuera y dilo; no la estimes.
+- [x] Guarda en `interno/E2-fichas.csv` y rellena la tabla de resultados de `estudios/E2-fichas-google-restaurantes.md` (posiciones 1–5 frente a 6–25 y total). Sustituye los `[COMPLETAR]` solo con datos recogidos.
+- [x] Respeta las condiciones de Google Places: no publiques los datos crudos de las fichas, solo resultados agregados.
+
+**D3 · E4, recomendaciones de asistentes de IA (APIs de OpenAI, Gemini y Perplexity)**
+- [x] Ejecuta las 10 consultas de `interno/E4-protocolo-consultas.md`, 3 repeticiones por consulta y asistente, cada una en una conversación nueva. Usa los modelos con búsqueda web activada si la API lo permite y anota el modelo exacto.
+- [x] Registra por respuesta: fecha y hora, asistente y modelo, consulta, repetición, negocios recomendados en orden y fuentes citadas (URL).
+- [x] Para cada consulta, obtén los 10 primeros resultados de Google Places (misma búsqueda de texto) como comparación.
+- [x] Guarda en `interno/E4-respuestas.csv` y calcula: coincidencia con el top 10 y el top 3 de Google, estabilidad entre repeticiones y negocios recomendados que no existen o están cerrados (compruébalo con Places).
+- [x] Indica en la metodología del estudio que las respuestas por API pueden diferir de las de la aplicación de cada asistente.
+
+**Informe al terminar:** qué APIs estaban disponibles, cuántas llamadas se hicieron, qué datos faltan y por qué, y ficheros generados. Avisa a José para que Claude redacte los artículos con los datos.

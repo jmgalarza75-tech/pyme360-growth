@@ -8,3 +8,9 @@ assets/caracteristicas ordenado.png
 components/
 lib/
 
+
+# Datos internos de estudios (URLs y negocios analizados): no publicar
+articulos/estudios/interno/
+
+# Contexto interno de marketing para agentes (no publicar)
+.agents/

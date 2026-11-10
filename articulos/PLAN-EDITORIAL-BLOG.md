@@ -4,7 +4,7 @@
 
 **Decisión de producción:** los 12 artículos se crean ya, no mes a mes. La columna «Bloque» solo indica el orden de prioridad.
 **Contenido:** se redacta en **NotebookLM**, en el cuaderno https://notebooklm.google.com/notebook/02b925f2-2553-40f0-a1b3-9e41666d0f92. Antigravity toma de ahí el texto de cada artículo (ver `checklist.md` §15.2).
-**Autor de todos los artículos:** Theo Rubio, cofundadora de Home4Escape, Superhost y especialista en comercialización, revenue management y gestión de alojamientos y pymes en Canarias. Foto incorporada en `assets/blog/theo.jpg`.
+**Firma (decisión de José, 2026-11-10):** los artículos del blog los firma **Theo Rubio** (ficha de autor y schema `Person`). Los estudios propios E1–E4 los firma **Equipo Pyme360** (schema `author` = organización `#empresa`). José no firma ningún artículo.
 **Última actualización:** 2026-11-09.
 
 ---
@@ -68,6 +68,21 @@ Comparativas, problemas urgentes y nichos. Mismas reglas y estados que las 12 pr
 
 ---
 
+## Estudios propios (autoridad)
+
+Contenido con datos recogidos por Pyme360. Cada estudio tiene su archivo en `articulos/estudios/`; los datos por negocio están en `articulos/estudios/interno/` (excluido de git, **no publicar**). Resultados siempre agregados, sin nombrar negocios.
+
+| # | Estudio | Archivo | Estado | Qué falta |
+| --- | --- | --- | --- | --- |
+| E4 | ¿A qué negocios locales recomiendan ChatGPT, Gemini y Perplexity? | `estudios/E4-recomendaciones-ia-negocios-locales.md` | **Publicable** como revisión de estudios + protocolo | 30 consultas por API (checklist §15.4 D3) para la versión definitiva |
+| E1 | Analizamos 90 webs de pymes de Tenerife | `estudios/E1-webs-pymes-tenerife.md` | **Publicable** (90 webs medidas el 9/11/2026) | Opcional: velocidad móvil (checklist §15.4 D1) |
+| E3 | ¿Cuántos alojamientos rurales permiten reservar directamente? | `estudios/E3-reserva-directa-alojamientos-rurales.md` | Piloto (5 alojamientos de Tenerife) | 95 alojamientos de toda España, precio web vs OTA, datos INE de Canarias |
+| E2 | Fichas de Google de restaurantes de Santa Cruz y La Laguna | `estudios/E2-fichas-google-restaurantes.md` | Protocolo, 0 fichas | Recogida por API de Google Places (checklist §15.4 D2) |
+
+Regla: no publicar titulares con «100» ni porcentajes hasta completar cada muestra.
+
+---
+
 ## Páginas de servicio (fuera del blog)
 
 Las búsquedas de contratación («agencia de marketing digital Tenerife», «diseño web Tenerife», «SEO Tenerife») no se ganan con artículos: Google muestra páginas de servicio y fichas de Maps. Son la prioridad comercial del sitio y los artículos les pasan autoridad con enlaces internos. Se tratarán en un brief propio para Antigravity.
@@ -92,7 +107,7 @@ Mientras no existan estas páginas, los artículos enlazan a `/precios.html` o `
    - El CTA principal de los artículos rurales sigue siendo la autoevaluación de `/alojamientos-rurales/#diagnostico`. El enlace a Home4Escape es secundario.
    - Fuera de estos artículos (y de la sección «Casos y proyectos» de la Home, donde aparece como proyecto propio) sigue vigente la regla de no mencionar Home4Escape (H4E) en el texto público de Pyme360.
 2. **Primera ola — resuelto (2026-11-09).** Mandan las 12 entradas de esta tabla. De la versión de NotebookLM se incorporan a la segunda ola la radiografía de la pyme canaria (O2-10), email marketing (O2-11) y el plan semestral (O2-12). NotebookLM debe alinear su lista con este plan.
-3. **Cargo, foto y trayectoria del autor** para la ficha de autor y el schema `Person`.
+3. **Autor — resuelto (2026-11-10).** Theo Rubio firma los artículos; los estudios, Equipo Pyme360.
 
 ---
 
@@ -130,7 +145,7 @@ Chocan con la regla de no prometer resultados del brief de precios y alojamiento
 
 ## Reglas comunes a todos los artículos
 
-1. Firma de José María Galarza con ficha de autor; nunca «Pyme360 Growth».
+1. Artículos firmados por Theo Rubio con ficha de autor; estudios firmados por «Equipo Pyme360». Nunca «Pyme360 Growth».
 2. Primer párrafo = respuesta directa (BLUF) en 2–3 frases.
 3. H2 en forma de pregunta y bloque final de 3 preguntas frecuentes.
 4. Sin cifras sin fuente primaria (tabla de arriba).
@@ -162,6 +177,9 @@ Si la línea de pymes genera un pico de diagnósticos, confirmar que hay capacid
 
 ## Registro de cambios
 
+- 2026-11-10: firma decidida por José: Theo Rubio en los artículos, Equipo Pyme360 en los estudios E1–E4.
+- 2026-11-09: E1 completado con 90 webs medidas; E2 y E4 pasan a recogida por API (checklist §15.4).
+- 2026-11-09: añadidos los 4 estudios propios (E1–E4) con su archivo en `articulos/estudios/`; E4 publicable, E1 y E3 en piloto, E2 en protocolo.
 - 2026-11-09: decidido mantener las 12 entradas de la primera ola; añadidos a la segunda ola O2-10 (radiografía pyme canaria), O2-11 (email marketing) y O2-12 (plan semestral).
 - 2026-11-09: añadidas la segunda ola (9 artículos más sectores y localidades) y las 5 páginas de servicio, a partir del plan consolidado de NotebookLM. 
 - 2026-11-09: los artículos que tratan revenue management (R01, R04, R05) enlazan a Home4Escape; el resto no lo menciona.
