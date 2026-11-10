@@ -9,15 +9,32 @@
 - **Web oficial:** https://pyme360.online/
 - **Contacto directo:** info@pyme360.online | Teléfono: +34 686 18 42 91 | WhatsApp: https://wa.me/34686184291
 
-## Modelo de precios y cotización (/precios.html)
-- **Sin tarifas fijas universales ni paquetes cerrados:** No creemos en paquetes cerrados a ciegas que obligan a pagar por acciones innecesarias.
-- **Presupuesto según alcance acordado:** Primero analizamos la situación real de la pyme mediante un diagnóstico previo gratuito; después entregamos una propuesta escrita y cerrada con las acciones prioritarias, los plazos previstos y el presupuesto antes de comenzar.
-- **Costes de publicidad transparentes:** Si se acuerdan campañas publicitarias (Meta Ads, Google Ads), la inversión en las plataformas se aprueba y abona aparte directamente por el cliente; los honorarios cubren estrategia, creatividad, optimización y seguimiento.
-- **Acciones posibles valoradas según el negocio:**
-  1. Identidad y mensaje de marca (propuesta de valor, textos comerciales, coherencia visual).
-  2. Web y recorrido de contacto (conversión móvil, integración de WhatsApp, teléfono y formularios).
-  3. Presencia local y SEO (optimización de ficha de Google Business, posicionamiento local, reputación).
-  4. Publicidad digital y contenidos adaptados.
+## Modelo de precios y tarifas (/precios.html)
+Tarifas «desde» (+ IGIC). Proyectos específicos con presupuesto cerrado según alcance acordado.
+
+- **Diseño Web en WordPress:**
+  - **Esencial:** desde 890 € + IGIC (web rápida de 1 página con hasta 5 secciones, contacto, WhatsApp, mapa, legal, seguridad, SEO local base y 1h de formación).
+  - **Profesional («La más elegida»):** desde 1.500 € + IGIC (todo lo de Esencial + 5 a 8 páginas, 3 landings de servicio/zona, 2 artículos de blog, textos redactados por Pyme360 y fotografía profesional).
+  - **Premium:** desde 2.500 € + IGIC (todo lo de Profesional + tema 100% a medida, 15 a 20 páginas con landings por sector y zona, blog corporativo con estrategia e integraciones a medida).
+  - **Extras:** Logotipo e identidad corporativa desde 300 € + IGIC; horas de desarrollo adicional a 50 €/hora + IGIC.
+
+- **Mantenimiento Web (opcional):**
+  - **Básico:** 40 €/mes + IGIC (actualizaciones periódicas, copias automáticas, seguridad activa, hosting y 1 ajuste menor al mes).
+  - **Plus:** 90 €/mes + IGIC (todo lo de Básico + 1h de cambios al mes, revisión de ficha de Google e informe mensual).
+  - *Nota:* El mantenimiento es opcional. Sin él, actualizaciones, seguridad y hosting corresponden al cliente; soporte posterior a 50 €/hora.
+
+- **SEO Local (/seo-local/):**
+  - **Puesta a punto (pago único):** desde 350 € + IGIC (auditoría inicial, optimización integral de Google Business Profile, coherencia NAP en web y directorios, Schema LocalBusiness y pauta de reseñas).
+
+- **Publicidad Digital (Google Ads y Meta Ads):**
+  - **Configuración inicial (pago único):** desde 350 € + IGIC (estudio de keywords/públicos, creación de campañas, anuncios y tracking de conversiones).
+  - **Gestión mensual:** desde 250 €/mes + IGIC (hasta 2 campañas activas, 4 creatividades/mes, gestión de hasta ~1.000 €/mes de inversión e informe mensual).
+  - *Nota obligatoria:* La inversión en anuncios no está incluida: la aprueba y la paga el cliente directamente a Google o Meta.
+
+- **Redes Sociales:**
+  - **Módulo de contenidos:** desde 300 €/mes + IGIC (8 publicaciones mensuales en Instagram y Facebook, planificación, diseño y redacción de textos, hasta 2 rondas de cambios). No incluye producción audiovisual ni gestión de mensajes.
+
+- **Hosting y Dominio:** El dominio se registra siempre a nombre del cliente y es suyo. El hosting de alto rendimiento lo gestiona Pyme360; el primer año está incluido en el precio de la web y, después, dentro del mantenimiento opcional.
 
 ## Alojamientos Rurales (/alojamientos-rurales/)
 - **Servicio específico:** Comercialización y estrategia digital para casas rurales, hoteles rurales, fincas turísticas y alojamientos independientes en España.
@@ -28,6 +45,7 @@
 ## Páginas clave
 - [Inicio — Marketing digital para pymes en Tenerife](https://pyme360.online/)
 - [Alojamientos Rurales — Mini-revisión comercial y autoevaluación 7P](https://pyme360.online/alojamientos-rurales/)
+- [SEO Local — Puesta a punto para destacar en Google Maps](https://pyme360.online/seo-local/)
 - [Precios Pyme360 — Cómo presupuestamos nuestro trabajo](https://pyme360.online/precios.html)
 
 ## Blog

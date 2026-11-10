@@ -354,7 +354,7 @@ function animateProcessOrbitContinuous() {
       processOrbitAngle += (processOrbitTargetAngle - processOrbitAngle) * 0.12;
     } else if (processOrbitAnimationActive && !isUserInteractingOrbit) {
       // Rotación ambiental continua cuando no hay scroll activo
-      processOrbitAngle = (processOrbitAngle + 0.10) % 360;
+      processOrbitAngle = (processOrbitAngle + 0.18) % 360;
       processOrbitTargetAngle = processOrbitAngle;
     }
     

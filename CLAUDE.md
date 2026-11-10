@@ -112,3 +112,13 @@ gba(14, 25, 21, 0.9)), bordes sutiles en #2fbf71 y badges de confianza física e
   - 20 de 20 suites de tests superadas al 100% en verde.
   - Auditoría de términos prohibidos superada sin incidencias.
   - Paridad estricta 100% byte a byte entre raíz y /public/.
+
+### Sesión: 2026-11-10 — Plan editorial, estudios propios y tarifas de diseño web (Claude)
+- **Tareas para Antigravity:** todas en `checklist.md` §15 (resumen en §15.0). Nuevas: §15.4 (recogida por API para los estudios E1, E2 y E4), §15.5 (tarifas de diseño web) y §15.6 (resto de tarifas, landing de SEO local y condiciones).
+- **Tarifas de diseño web (decisión de José):** se publican tres planes «desde» en `/precios.html`: Esencial 890 €, Profesional 1.500 € («La más elegida») y Premium 2.500 €, todos + IGIC. Extras: logotipo desde 300 € y desarrollo adicional a 50 €/h. Mantenimiento opcional: 40 €/mes (básico) y 90 €/mes (plus). Esto sustituye la regla de §15.1 de no publicar precios.
+- **Resto de tarifas (§15.6):** SEO local, puesta a punto desde 350 € (pago único) con landing nueva `/seo-local/`; publicidad digital, configuración desde 350 € y gestión desde 250 €/mes (inversión en anuncios aparte); redes, desde 300 €/mes (8 publicaciones). Dominio a nombre del cliente; hosting de Pyme360, primer año incluido y después dentro del mantenimiento. Condiciones de contratación en la plantilla de presupuesto (https://claude.ai/artifact/QppQ8RjorxwxiDdQBTD7Jk), no en la web.
+- **Blog:** firma de Theo Rubio en los artículos; los estudios propios E1–E4 (`articulos/estudios/`) los firma «Equipo Pyme360». Plan y estado en `articulos/PLAN-EDITORIAL-BLOG.md`. Home4Escape solo en artículos de revenue (R01, R04, R05) y en «Casos y proyectos».
+- **Estudio E1:** 90 webs de pymes de Tenerife medidas el 9/11/2026; datos internos en `articulos/estudios/interno/` (excluido de git).
+- **Contexto de marketing para agentes:** `.agents/product-marketing.md` (excluido de git). Las skills de `C:\Antigravity\skills marketing` lo leen antes de trabajar.
+- **Clientes:** permiso de Equalis Consultoría Canaria y Aceviños Jardinería confirmado por José. El precio de Equalis fue de oferta y no se publica.
+

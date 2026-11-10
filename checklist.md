@@ -410,6 +410,8 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 | 2026-11-09 | Integración de los tres briefs para Antigravity en `checklist.md` §15 (precios y alojamientos, blog, casos y proyectos) con resumen de tareas; los ficheros `ANTIGRAVITY-BRIEF-*.md` pasan a remitir aquí. | `checklist.md`, `ANTIGRAVITY-BRIEF-*.md`, `articulos/PLAN-EDITORIAL-BLOG.md` | Solo documentación; sin cambios en la web. | Antigravity: ejecutar tareas de §15.0. |
 | 2026-11-09 | Estudio E1 completado por Claude: 90 webs de pymes de Tenerife medidas con navegador móvil (98 en muestra, 8 no comprobables); artículo redactado con datos reales; 3 webs con spam de casinos confirmado. Añadida §15.4 con la recogida por API de E1 (PageSpeed), E2 (Places) y E4 (asistentes de IA). | `articulos/estudios/E1-webs-pymes-tenerife.md`, `articulos/estudios/interno/`, `checklist.md`, `.gitignore` | Datos verificados a mano en las 3 detecciones de spam; detectores contrastados con dos pasadas. | Antigravity: ejecutar §15.4. |
 | 2026-11-10 | Decisión de José: los artículos del blog los firma Theo Rubio; los estudios E1–E4, Equipo Pyme360. Permiso de Equalis y Aceviños para aparecer como clientes confirmado por José. Plan editorial, estudios y §15.2/§15.3 actualizados. | `checklist.md`, `articulos/PLAN-EDITORIAL-BLOG.md`, `articulos/estudios/E1–E4` | Solo documentación. | Aplicar la firma de equipo al maquetar los estudios. |
+| 2026-11-10 | Decisión de José: publicar tres tarifas «desde» de diseño web (Esencial 890 €, Profesional 1.500 €, Premium 2.500 €, + IGIC); el resto de servicios sigue según alcance. Añadida §15.5 (Brief E) y su resumen en §15.0. | `checklist.md`, `CLAUDE.md`, `.agents/product-marketing.md` | Solo documentación. | Antigravity: ejecutar §15.5; José: confirmar precio del mantenimiento. |
+| 2026-11-10 | Decisiones de José sobre el resto de tarifas: mantenimiento opcional 40/90 €/mes; SEO local puesta a punto desde 350 € con landing propia; publicidad configuración desde 350 € y gestión desde 250 €/mes; redes desde 300 €/mes; dominio a nombre del cliente y hosting de Pyme360; condiciones de contratación. Añadida §15.6 (Brief F) y actualizada §15.5. | `checklist.md`, `CLAUDE.md`, `.agents/product-marketing.md` | Solo documentación. | Antigravity: ejecutar §15.5 y §15.6. |
 | 2026-11-09 | Unificación del menú de navegación de Alojamientos Rurales con el de la Home (Sistema, Proceso, Sectores, Alojamientos rurales, Precios, Blog, CTA Diagnóstico gratis). Paridad 100% y 23/23 tests pasando. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; cero términos prohibidos. | Listo para commit y subida a GitHub/Hostinger con confirmación de José. |
 | 2026-11-09 | Sustitución completa de las imágenes generadas por fotografía real de alta resolución en los 10 artículos del Blog y sus casillas giratorias (/assets/blog/*.jpg): fotografías de alojamientos rurales, terrazas, fincas y gestión de marketing digital, optimizadas a 1200x630. | `assets/blog/`, `public/assets/blog/`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; sin términos prohibidos. | Listo y verificado en servidor local. |
 | 2026-11-09 | Corrección de rutas de imágenes en el Blog: convertidas todas las rutas de assets a rutas absolutas de raíz (/assets/blog/...), reforzadas las reglas de fondo de .blog-flip-front con !important y posicionamiento absoluto explícito. Comprobada carga HTTP 200 en localhost:8765. | `blog/`, `public/blog/`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `checklist.md` | 23/23 tests en verde; paridad 100% byte a byte; cero términos prohibidos. | Listo y verificado en servidor local. |
@@ -422,6 +424,7 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 | 2026-11-09 | §15.2 Bloque B completado: creado `/blog/` (`blog/index.html` y plantilla reutilizable `blog/plantilla.html`) con diseño coherente, enlaces «Blog» en cabecera y pie de todas las páginas, sitemap y llms.txt actualizados, nuevo test `tests/blog.test.cjs` creado y 22/22 tests en verde. Ningún artículo maquetado (todos pendientes de revisión en plan editorial). Paridad 100% byte a byte. | `blog/index.html`, `blog/plantilla.html`, réplicas `/public/blog/`, `index.html`, `precios.html`, `alojamientos-rurales/index.html`, legales, `sitemap.xml`, `llms.txt`, `assets/pyme360-public.css`, `tests/blog.test.cjs`, `tests/on-page-contract.test.cjs`, `checklist.md` | 22/22 tests en verde; paridad 100% confirmada; cero términos prohibidos. | Bloqueo: fichas de autor y artículos en NotebookLM pendientes de estado «Revisado». |
 | 2026-11-09 | §15.3 Desbloqueo de Clientes completado: añadidas tarjetas de Equalis Consultoría Canaria y Aceviños Jardinería (Diseño web, SEO local, Google Ads) en `#casos` con enlaces oficiales directos (`rel="noopener"`), etiquetas de servicio, sin citas inventadas; tests/testimonials.test.cjs actualizado; paridad 100% byte a byte. | `index.html`, `public/index.html`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `assets/pyme360-public.js`, `public/assets/pyme360-public.js`, `tests/testimonials.test.cjs`, `checklist.md` | 22/22 tests en verde; paridad 100% confirmada; cero términos prohibidos. | Sección `#casos` 100% cerrada con Clientes y Proyectos Propios. |
 | 2026-11-10 | §15.4 Brief D completado al 100%: D1 (PageSpeed móvil 90 URLs en E1-pagespeed.csv; mediana 69.5, 37 con CrUX), D2 (Google Places 50 fichas SC y La Laguna en E2-fichas.csv; tabla de resultados agregados en E2-fichas-google-restaurantes.md actualizada) y D3 (90 ejecuciones en OpenAI, Gemini y Perplexity para las 10 consultas en E4-respuestas.csv; cálculos de coincidencia top 10/top 3, estabilidad y fantasmas). Datos privados en interno/ ignorados por git. Cero secretos expuestos. | `articulos/estudios/interno/E1-pagespeed.csv`, `articulos/estudios/interno/E2-fichas.csv`, `articulos/estudios/interno/E4-respuestas.csv`, `articulos/estudios/E2-fichas-google-restaurantes.md`, `checklist.md` | Datos 100% reales recogidos por API; suite de tests intacta; sin commit ni despliegue. | Datos listos para la redacción editorial de los estudios E1, E2 y E4. |
+| 2026-11-10 | §15.5 y §15.6 Brief E y F completados: tarifas de diseño web en `/precios.html` (Esencial 890 €, Profesional 1.500 € [«La más elegida»], Premium 2.500 €), mantenimiento opcional (40 €/mes y 90 €/mes) con aviso de responsabilidad y horas a 50 €/h; SEO local puesta a punto (desde 350 € + IGIC); publicidad digital (configuración 350 € y gestión 250 €/mes con aviso de inversión del cliente aparte); redes sociales (desde 300 €/mes); texto informativo de hosting y dominio; nueva landing `/seo-local/` creada (`seo-local/index.html` y réplica pública: SEO local en Google Maps, cita a soporte oficial de Google [relevancia, distancia, prominencia], datos del estudio E1 [50% y 36%], 4 FAQs con Schema `FAQPage`, `Service` con precio mínimo 350 EUR y `BreadcrumbList`); nuevo test `tests/seo-local.test.cjs`; `tests/pricing-page.test.cjs` actualizado; `sitemap.xml`, `llms.txt` y enlaces en Home y pie alineados; 24 de 24 tests en verde; paridad 100% byte a byte con `/public/`. | `precios.html`, `seo-local/index.html`, `index.html`, `sitemap.xml`, `llms.txt`, `tests/seo-local.test.cjs`, `tests/pricing-page.test.cjs` y réplicas `/public/` | 24 de 24 tests en verde (100%); paridad byte a byte confirmada; cero términos prohibidos. | Listo para revisión visual. Sin commit, push ni despliegue. |
 
 ---
 
@@ -453,6 +456,20 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 - [x] D1 · Velocidad móvil de las 90 webs de E1 (PageSpeed Insights) — 2026-11-10.
 - [x] D2 · 50 fichas de restaurantes para E2 (Google Places) — 2026-11-10.
 - [x] D3 · 30 consultas a asistentes de IA para E4 (OpenAI, Gemini, Perplexity) + comparación con Google Places — 2026-11-10.
+
+**E · Tarifas de diseño web (§15.5)**
+- [x] Sección de diseño web en `/precios.html` con Esencial (desde 890 €), Profesional (desde 1.500 €, «La más elegida») y Premium (desde 2.500 €), todo + IGIC — 2026-11-10.
+- [x] Alinear `llms.txt`, JSON-LD de precios y la FAQ de precios de la Home — 2026-11-10.
+- [x] Actualizar `tests/pricing-page.test.cjs` al nuevo contrato — 2026-11-10.
+- [x] Precio del mantenimiento decidido por José: opcional, 40 €/mes (básico) y 90 €/mes (plus) — 2026-11-10. Ver §15.6.
+
+**F · Resto de tarifas, SEO local y condiciones (§15.6)**
+- [x] Mantenimiento opcional (40 €/mes y 90 €/mes) bajo las tarifas de diseño web — 2026-11-10.
+- [x] Precios de SEO local (puesta a punto desde 350 €), publicidad (configuración desde 350 € y gestión desde 250 €/mes) y redes (desde 300 €/mes) en `/precios.html` — 2026-11-10.
+- [x] Texto de hosting y dominio en `/precios.html` — 2026-11-10.
+- [x] Landing nueva `/seo-local/` con su test, sitemap y llms.txt — 2026-11-10.
+- [x] Alinear `llms.txt`, JSON-LD, FAQ de la Home y `tests/pricing-page.test.cjs` — 2026-11-10.
+- [ ] Bloqueos de José: precio del hosting suelto, correo corporativo y pack combinado.
 
 **C · Casos y proyectos en la Home (§15.3)**
 - [x] Sustituir la sección de testimonios por «Casos y proyectos» con el mismo diseño — 2026-11-09.
@@ -879,3 +896,118 @@ Subtítulo sugerido: «Proyectos propios». Una línea que lo explique: «Marcas
 - [x] Indica en la metodología del estudio que las respuestas por API pueden diferir de las de la aplicación de cada asistente.
 
 **Informe al terminar:** qué APIs estaban disponibles, cuántas llamadas se hicieron, qué datos faltan y por qué, y ficheros generados. Avisa a José para que Claude redacte los artículos con los datos.
+
+---
+
+### 15.5 Brief E — Tarifas de diseño web (Esencial, Profesional, Premium)
+
+*Decisión de José, 2026-11-10. Origen: documento «Brief Antigravity — Tarifas de diseño web» (https://claude.ai/artifact/KmyGJMiRvixrS19ikbZZ2h).*
+
+**Cambio respecto a §15.1:** §15.1 prohibía publicar precios en `/precios.html`. **José decide ahora publicar tarifas «desde»**: las tres de diseño web de esta sección y las de mantenimiento, SEO local, publicidad y redes de §15.6. Cualquier otro servicio sigue con «presupuesto según alcance». No vuelvas a publicar los antiguos 99/149/349 € ni ningún otro importe que no esté en este brief.
+
+**Dónde:** en `/precios.html` (y `public/precios.html`), como sección propia de diseño web. Mismo diseño que el resto de la página; nada de estilos nuevos que no salgan de `assets/pyme360-public.css`.
+
+**Estructura:** tres columnas, todas con precio «desde» y «+ IGIC». La del medio, destacada como «La más elegida». El guiño «el bueno, el feo y el malo» solo puede usarse en el título de la sección; los planes llevan nombres claros.
+
+**Esencial — desde 890 € + IGIC**
+Para negocios que necesitan una web profesional, rápida y que cumpla la ley.
+- Web en WordPress sobre plantilla propia de Pyme360, adaptada a la marca del cliente.
+- Una página con secciones y formulario de contacto.
+- Teléfono pulsable, botón de WhatsApp y mapa.
+- Aviso legal, política de privacidad y banner de cookies.
+- Seguridad: SSL, protección básica y copias automáticas.
+- SEO local de base: ficha de Google revisada, datos estructurados de negocio local, Search Console y Analytics.
+- Velocidad optimizada para móvil.
+- Una hora de formación para editar la web.
+- Límites: hasta 5 secciones y 2 rondas de cambios; textos y fotos los aporta el cliente.
+
+**Profesional — desde 1.500 € + IGIC · «La más elegida»**
+Para negocios que quieren captar clientes desde Google.
+- Todo lo de Esencial.
+- De 5 a 8 páginas.
+- 3 landings de servicio o de zona.
+- 2 artículos de blog.
+- Textos redactados por Pyme360.
+- Fotografía (sesión o selección y tratamiento).
+
+**Premium — desde 2.500 € + IGIC**
+Para empresas que necesitan una web a medida y con funciones propias.
+- Todo lo de Profesional.
+- Tema WordPress diseñado a medida.
+- De 15 a 20 páginas, con landings por sector y por zona.
+- Blog con estrategia de contenidos.
+- Integraciones: formularios conectados, base de datos y otras funciones a medida.
+
+**Extras (fuera de los tres planes)**
+- Logotipo e identidad corporativa: desde 300 € + IGIC.
+- Desarrollo adicional: 50 €/hora + IGIC.
+- Mantenimiento mensual: **opcional**, en dos niveles; ver §15.6 A (decidido por José el 2026-11-10).
+
+**Reglas**
+- No publiques el precio ni el descuento del caso Equalis; Equalis aparece solo como caso en «Casos y proyectos».
+- No incluyas cifras de mercado ni comparaciones con competidores sin fuente.
+- CTA de cada plan: «Pedir presupuesto» hacia `/#diagnostico` (el formulario existente). No crees formularios nuevos.
+- Alinea con estos importes: `llms.txt` y `public/llms.txt` (sección de precios: tres planes «desde», el resto según alcance), el JSON-LD de `/precios.html` (`Offer` por plan con `priceSpecification` de tipo `UnitPriceSpecification`, `price` = importe mínimo, `priceCurrency` EUR y `valueAddedTaxIncluded: false`) y la FAQ de precios de la Home (`index.html` y `public/index.html`: solo esa respuesta, para que no diga que no hay tarifas publicadas).
+- Actualiza `tests/pricing-page.test.cjs` al nuevo contrato (tres planes, importes exactos, «desde», «+ IGIC», sin 99/149/349). Es un cambio de contrato pedido por José: documéntalo en el informe; no debilites el resto del test.
+- Paridad raíz ↔ `public/` byte a byte, batería completa de tests, revisión visual en escritorio y móvil (~390 px).
+- No hagas commit, push ni despliegue sin confirmación de José.
+
+**Criterio de terminado:** `/precios.html` muestra las tres tarifas con «desde» y «+ IGIC», la Profesional destacada; los demás servicios siguen «según alcance»; llms.txt, JSON-LD y la FAQ de la Home dicen lo mismo; el mantenimiento aparece con sus dos niveles (§15.6 A); tests en verde.
+
+---
+
+### 15.6 Brief F — Resto de tarifas, landing de SEO local y condiciones de contratación
+
+*Decisiones de José, 2026-11-10. Plantilla de presupuesto y condiciones: «Pyme360 — Plantilla de presupuesto y condiciones» (https://claude.ai/artifact/QppQ8RjorxwxiDdQBTD7Jk).*
+
+Todos los precios, «desde» y **+ IGIC**. Mismo diseño que el resto de `/precios.html`. CTA de cada bloque: «Pedir presupuesto» hacia `/#diagnostico`. Los textos «Qué incluye / Qué no incluye» deben ser los de esta sección; no añadas promesas de resultados.
+
+**A · Mantenimiento web (opcional) — en `/precios.html`, justo debajo de las tres tarifas de diseño web**
+- **Básico — 40 €/mes:** actualizaciones de WordPress y plugins, copias de seguridad, vigilancia de seguridad, hosting y una pequeña modificación al mes.
+- **Plus — 90 €/mes:** todo lo del Básico, más una hora de cambios al mes, revisión de la ficha de Google e informe mensual sencillo.
+- Texto obligatorio bajo los dos niveles: «El mantenimiento es opcional. Sin él, las actualizaciones, la seguridad y el hosting pasan a ser responsabilidad del cliente; los arreglos posteriores se presupuestan a 50 €/hora.»
+- Nada de landing propia para el mantenimiento.
+
+**B · SEO local — landing propia + precio en `/precios.html`**
+- **Puesta a punto de SEO local, pago único — desde 350 €:** revisión inicial, ficha de Google optimizada (categorías, servicios, horario, fotos, descripción), nombre, dirección y teléfono coherentes en web, Google, redes y directorios principales, datos estructurados de negocio local en la web y una pauta para pedir y responder reseñas.
+- **El SEO local mensual no se ofrece todavía.** No lo publiques.
+- **Landing nueva `/seo-local/`** (`seo-local/index.html` y `public/seo-local/index.html`):
+  - H1 orientado a «posicionar tu negocio en Google Maps en Tenerife»; title ≤ 60 caracteres con «SEO local» y «Tenerife»; meta description 140–160 caracteres; canonical; `og:`/`twitter:`; `lang="es"`.
+  - Secciones: qué es el SEO local y por qué importa; qué incluye la puesta a punto (lista de arriba); cómo trabajamos (diagnóstico → propuesta → puesta a punto); precio «desde 350 € + IGIC»; 3–4 preguntas frecuentes; CTA al diagnóstico.
+  - Puede citar datos del estudio E1 (`articulos/estudios/E1-webs-pymes-tenerife.md`): por ejemplo, que solo la mitad de 90 webs de pymes de Tenerife enlaza a su ficha de Google o reseñas y solo el 36% marca sus datos como negocio local. Solo esas cifras, con enlace al estudio cuando se publique. Puede citar lo que dice la ayuda oficial de Google (relevancia, distancia, prominencia) con enlace a https://support.google.com/business/answer/7091?hl=es.
+  - JSON-LD: `Service` (`serviceType` «SEO local», `provider` → `{"@id": "https://pyme360.online/#empresa"}`, `areaServed` Tenerife/Canarias, `offers` con precio mínimo 350, EUR, sin IGIC), `FAQPage` si hay preguntas visibles, `BreadcrumbList`.
+  - Enlaces: desde la navegación o el bloque de servicios de la Home (solo ese enlace), desde `/precios.html` y desde el pie. Añádela a `sitemap.xml` y `llms.txt` (y sus copias en `public/`).
+  - Test nuevo `tests/seo-local.test.cjs`: paridad, un H1, canonical, title ≤ 60, JSON-LD válido con `Service`, presencia en sitemap y llms.txt.
+
+**C · Publicidad digital (Google Ads y Meta Ads) — en `/precios.html`**
+- **Configuración inicial, pago único — desde 350 €:** estudio de palabras clave o públicos, creación de campañas y anuncios, medición de llamadas y formularios.
+- **Gestión mensual — desde 250 €/mes:** hasta 2 campañas activas en una plataforma, hasta 4 anuncios o creatividades nuevas al mes, inversión publicitaria del cliente de hasta unos 1.000 €/mes (si es mayor, la gestión se presupuesta aparte) e informe mensual.
+- Texto obligatorio: «La inversión en anuncios no está incluida: la aprueba y la paga el cliente directamente a Google o Meta.»
+- Sin promesas de ROAS, ROI ni número de contactos.
+
+**D · Redes sociales — en `/precios.html`**
+- **Módulo de redes — desde 300 €/mes:** 8 publicaciones al mes en Instagram y Facebook, planificación mensual, diseño de las piezas y textos, hasta 2 rondas de cambios por pieza.
+- **No incluye (presupuesto aparte):** reels, sesiones de grabación o fotografía, desplazamientos, gestión de mensajes y comentarios.
+- Es un módulo aparte: no forma parte de ningún plan de web.
+
+**E · Hosting y dominio — texto informativo en `/precios.html` (bloque «Cómo trabajamos» o preguntas frecuentes)**
+- El dominio se registra siempre a nombre del cliente y es suyo.
+- El hosting lo gestiona Pyme360 en su proveedor; el primer año va incluido en el precio de la web y, después, dentro del mantenimiento.
+- Si el cliente no contrata mantenimiento, el hosting se presupuesta aparte o se lleva la web a su propio proveedor.
+- No publiques el precio del hosting suelto (pendiente de José).
+
+**F · Condiciones de contratación — van en la plantilla de presupuesto, NO en la web**
+Para referencia de Antigravity y de quien prepare presupuestos; la web solo debe ser coherente con ellas (no contradecirlas):
+- Pago de proyectos: 50% al empezar y 50% a la entrega.
+- Servicios mensuales: permanencia mínima de 3 meses.
+- Propiedad: la web, el dominio, los textos y las fotos son del cliente una vez pagados; las cuentas de Google (Ads, Perfil de Empresa, Analytics) y redes, siempre a nombre del cliente, con acceso de Pyme360.
+- Salida: preaviso de 30 días; se entrega copia completa de la web y la base de datos; migración hecha por Pyme360, 90 €.
+- Impago: aviso; a los 30 días, suspensión; a los 60 días, borrado, tras enviar la copia.
+- Licencias de plugins de pago de Pyme360: al irse, el cliente deja de recibir actualizaciones de esas licencias.
+- Correo corporativo: **pendiente de José** decidir si va con el hosting o aparte.
+- Garantía: 30 días de corrección de errores tras la entrega.
+- Plazos: si el cliente se retrasa en aportar material, el plazo se mueve; pasado un tiempo, se factura lo realizado.
+
+**Alineación obligatoria:** `llms.txt` y `public/llms.txt` (sección de precios con todas las tarifas «desde» y la nota de inversión publicitaria aparte), JSON-LD de `/precios.html` (un `Offer` por tarifa con `priceSpecification` «desde», EUR, sin IVA/IGIC) y la FAQ de precios de la Home. Actualiza `tests/pricing-page.test.cjs` con todos los importes. Paridad raíz ↔ `public/`, batería completa de tests, revisión en escritorio y móvil. Sin commit, push ni despliegue sin confirmación de José.
+
+**Pendiente de José:** precio del hosting sin mantenimiento; correo corporativo; si se ofrece un pack combinado (mantenimiento + SEO local + publicidad) con descuento.

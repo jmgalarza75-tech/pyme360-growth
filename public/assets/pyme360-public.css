@@ -771,12 +771,14 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
   background: rgba(8, 17, 15, 0.74);
   box-shadow: 0 22px 58px rgba(0, 0, 0, 0.26);
   cursor: pointer;
+  scale: 1;
   transform:
     translate(-50%, -50%)
     rotate(calc(var(--orbit-angle, 0deg) + var(--orbit-index) * 72deg))
     translateX(clamp(270px, 32vw, 390px))
     rotate(calc(0deg - var(--orbit-angle, 0deg) - var(--orbit-index) * 72deg));
-  transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
+  transition: scale 0.28s ease, border-color 0.28s ease, background 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
+  will-change: transform;
 }
 
 .process-orbit-node span {
@@ -813,12 +815,12 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
   border-color: rgba(47, 191, 113, 0.86);
   background: #2fbf71;
   box-shadow: 0 28px 80px rgba(47, 191, 113, 0.28);
+  scale: 1.08;
   transform:
     translate(-50%, -50%)
     rotate(calc(var(--orbit-angle, 0deg) + var(--orbit-index) * 72deg))
     translateX(clamp(270px, 32vw, 390px))
-    rotate(calc(0deg - var(--orbit-angle, 0deg) - var(--orbit-index) * 72deg))
-    scale(1.08);
+    rotate(calc(0deg - var(--orbit-angle, 0deg) - var(--orbit-index) * 72deg));
 }
 
 .process-orbit-node.is-active span {
