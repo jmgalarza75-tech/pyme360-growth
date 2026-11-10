@@ -317,12 +317,47 @@ function showNextProcessOrbitNode() {
 }
 
 let processOrbitAngle = 0;
+let processOrbitTargetAngle = 0;
 let processOrbitAnimationActive = true;
 let processOrbitAnimationFrame = null;
+let lastProcessOrbitScrollTime = 0;
+let isUserInteractingOrbit = false;
+
+function onProcessOrbitScroll() {
+  if (!processOrbitStage || window.innerWidth <= 760) return;
+  const rect = processOrbitStage.getBoundingClientRect();
+  const vh = window.innerHeight || 800;
+  
+  // Calcular el progreso del paso de la sección por la ventana visible
+  const totalDist = vh + rect.height;
+  const progress = Math.max(0, Math.min(1, (vh - rect.top) / totalDist));
+  
+  // Giro proporcional al scroll (420 grados a lo largo de su paso por pantalla)
+  processOrbitTargetAngle = progress * 420;
+  lastProcessOrbitScrollTime = Date.now();
+
+  // Conectar el avance del scroll con el nodo activo correspondiente (1 de 5)
+  if (processNodes.length && !isUserInteractingOrbit) {
+    const nodeIndex = Math.min(processNodes.length - 1, Math.floor(progress * processNodes.length));
+    if (processNodes[nodeIndex] && !processNodes[nodeIndex].classList.contains("is-active")) {
+      updateProcessOrbit(processNodes[nodeIndex]);
+    }
+  }
+}
 
 function animateProcessOrbitContinuous() {
-  if (processOrbitAnimationActive && processOrbitStage && window.innerWidth > 760) {
-    processOrbitAngle = (processOrbitAngle + 0.12) % 360;
+  if (processOrbitStage && window.innerWidth > 760) {
+    const timeSinceScroll = Date.now() - lastProcessOrbitScrollTime;
+    
+    if (timeSinceScroll < 1500) {
+      // Respuesta dinámica al scroll con interpolación fluida (Lerp a 60fps)
+      processOrbitAngle += (processOrbitTargetAngle - processOrbitAngle) * 0.12;
+    } else if (processOrbitAnimationActive && !isUserInteractingOrbit) {
+      // Rotación ambiental continua cuando no hay scroll activo
+      processOrbitAngle = (processOrbitAngle + 0.10) % 360;
+      processOrbitTargetAngle = processOrbitAngle;
+    }
+    
     processOrbitStage.style.setProperty("--orbit-angle", `${processOrbitAngle.toFixed(2)}deg`);
   }
   processOrbitAnimationFrame = requestAnimationFrame(animateProcessOrbitContinuous);
@@ -330,6 +365,7 @@ function animateProcessOrbitContinuous() {
 
 function stopProcessOrbitRotation() {
   processOrbitAnimationActive = false;
+  isUserInteractingOrbit = true;
   if (!processOrbitTimer) return;
   window.clearInterval(processOrbitTimer);
   processOrbitTimer = null;
@@ -337,6 +373,7 @@ function stopProcessOrbitRotation() {
 
 function startProcessOrbitRotation() {
   processOrbitAnimationActive = true;
+  isUserInteractingOrbit = false;
   if (!processNodes.length || processOrbitTimer) return;
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   processOrbitTimer = window.setInterval(showNextProcessOrbitNode, PROCESS_ORBIT_ROTATION_MS);
@@ -358,6 +395,9 @@ if (processNodes.length) {
     processOrbitStage.addEventListener("mouseleave", startProcessOrbitRotation);
     processOrbitStage.addEventListener("focusin", stopProcessOrbitRotation);
     processOrbitStage.addEventListener("focusout", startProcessOrbitRotation);
+
+    window.addEventListener("scroll", onProcessOrbitScroll, { passive: true });
+    onProcessOrbitScroll();
   }
 
   startProcessOrbitRotation();
