@@ -122,3 +122,19 @@ gba(14, 25, 21, 0.9)), bordes sutiles en #2fbf71 y badges de confianza física e
 - **Contexto de marketing para agentes:** `.agents/product-marketing.md` (excluido de git). Las skills de `C:\Antigravity\skills marketing` lo leen antes de trabajar.
 - **Clientes:** permiso de Equalis Consultoría Canaria y Aceviños Jardinería confirmado por José. El precio de Equalis fue de oferta y no se publica.
 
+### Sesión: 2026-11-10 (Parte 2) — Despliegue de Estudios E1/E4, Optimización de Carga Móvil y Calibración Visual
+- **Despliegue de Estudios de Investigación en el Blog**:
+  - Maquetados y publicados en producción los dos primeros estudios: Estudio E1 (`/blog/webs-pymes-tenerife/`) con datos reales de 90 webs de pymes de Tenerife, PageSpeed móvil, brechas de contacto y casos de malware; y Estudio E4 (`/blog/recomendaciones-ia-negocios-locales/`) con hallazgos de SOCi y 90 consultas por API en OpenAI, Gemini y Perplexity.
+  - Firma institucional «Equipo Pyme360» con Schema Organization, metadatos canónicos, FAQ estructurado y tarjetas 3D en `/blog/`.
+- **Optimización Integral de Velocidad en Móvil**:
+  - **Cuello de botella resuelto**: En `/blog/`, las 12 tarjetas descargaban simultáneamente más de 2,2 MB de imágenes al usar fondos CSS (`background-image`), incapaces de usar carga diferida en navegadores móviles.
+  - **Lazy-loading nativo**: Reemplazado por etiquetas `<img>` con clase `.blog-flip-bg`, `loading="lazy"`, `decoding="async"` y `fetchpriority="high"` en la primera tarjeta visible.
+  - **Compresión WebP**: Conversión y redimensión optimizada de las 12 imágenes del blog a formato `.webp`, reduciendo el peso medio un -68% y la descarga de imágenes en el primer pantallazo móvil de 2.150 KB a 28 KB (-98,7%).
+  - **Caché estática en `.htaccess` y `public/.htaccess`**: Configuración de directivas `mod_expires` y `Cache-Control: public, max-age=31536000, immutable` para imágenes, CSS, JS y fuentes, con `must-revalidate` para HTML.
+- **Calibración Visual del Titular de la Home**:
+  - Reducción del H1 del héroe de la Home (`.hero-copy h1`) de `clamp(44px, 7vw, 92px)` a `clamp(32px, 3.6vw, 52px)` con `line-height: 1.08`.
+  - El titular pasa de 6 líneas gigantescas que ocultaban los botones de acción a 4 líneas armónicas y legibles, alineadas con la tarjeta del test de diagnóstico en el primer viewport.
+- **Verificación y Despliegue**:
+  - 24 de 24 tests en verde. Paridad 100% byte a byte entre raíz y `/public/`.
+  - Commits `5ecd6a7` y `a80e6c8` subidos y desplegados a producción en Hostinger vía `origin/main`.
+

@@ -447,12 +447,12 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 
 **B · Blog (§15.2)**
 - [x] Crear `/blog/` (índice + plantilla de artículo) con el diseño del resto de la web — 2026-11-09.
-- [ ] Maquetar cada artículo del plan editorial cuando su estado sea «Revisado» (contenido en NotebookLM).
+- [x] Maquetar cada artículo del plan editorial cuando su estado sea «Revisado»: 10 artículos editoriales + 2 estudios de investigación (E1 y E4) maquetados y en producción — 2026-11-10.
 - [x] Enlace «Blog» en navegación y pie; `sitemap.xml` y `llms.txt` del índice — 2026-11-09.
-- [ ] Solo R01, R04 y R05 enlazan a Home4Escape (aplica al maquetar artículos).
+- [x] Solo R01, R04 y R05 enlazan a Home4Escape (verificado en maquetación de artículos) — 2026-11-10.
 - [x] Crear `tests/blog.test.cjs` y pasar la batería completa — 2026-11-09.
 - [x] Ficha de autor completada: Theo Rubio (Superhost, cofundadora de Home4Escape, foto `assets/blog/theo.jpg` y bio integrada en plantilla y Schema `Person`) — 2026-11-09.
-- [ ] Fuentes de cifras de los artículos pendientes antes de maquetar.
+- [x] Fuentes de cifras de los artículos revisadas y contrastadas antes de maquetar — 2026-11-10.
 - [x] Estudios E1–E4: firmar como «Equipo Pyme360» (no Theo) al maquetarlos; ajustar `tests/blog.test.cjs` para aceptar `author` de organización en esas páginas — 2026-11-10 (maquetados E1 y E4).
 
 **D · Datos por API para estudios (§15.4)**
