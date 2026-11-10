@@ -4,7 +4,7 @@ const path = require("node:path");
 
 const root = path.join(__dirname, "..");
 
-const generatedSlugs = [
+const editorialSlugs = [
   "web-visitas-sin-contactos-tenerife",
   "la-falacia-del-85-por-ciento-ocupacion",
   "seo-local-canarias-google-maps",
@@ -17,7 +17,14 @@ const generatedSlugs = [
   "control-costes-hotel-rural"
 ];
 
-for (const slug of generatedSlugs) {
+const studySlugs = [
+  "webs-pymes-tenerife",
+  "recomendaciones-ia-negocios-locales"
+];
+
+const allSlugs = [...editorialSlugs, ...studySlugs];
+
+for (const slug of allSlugs) {
   const rootPath = path.join(root, "blog", slug, "index.html");
   const publicPath = path.join(root, "public", "blog", slug, "index.html");
 
@@ -37,10 +44,15 @@ for (const slug of generatedSlugs) {
   // Canonical matches slug
   assert.match(rootHtml, new RegExp(`<link rel="canonical" href="https:\\/\\/pyme360\\.online\\/blog\\/${slug}\\/">`));
 
-  // Author is Theo Rubio
-  assert.match(rootHtml, /Theo Rubio/);
+  // Author verification (Theo Rubio for editorial articles, Equipo Pyme360 for research studies)
+  if (editorialSlugs.includes(slug)) {
+    assert.match(rootHtml, /Theo Rubio/);
+  } else {
+    assert.match(rootHtml, /Equipo Pyme360/);
+    assert.match(rootHtml, /https:\/\/pyme360\.online\/#empresa/);
+  }
 
-  // FAQPage JSON-LD valid
+  // FAQPage and BlogPosting JSON-LD valid
   const jsonLdMatches = [...rootHtml.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   assert.ok(jsonLdMatches.length >= 1, `${slug} must contain JSON-LD`);
   for (const m of jsonLdMatches) {
@@ -49,5 +61,5 @@ for (const slug of generatedSlugs) {
   }
 }
 
-console.log("All 10 generated articles passed validation test suite!");
+console.log("All 12 blog entries (10 articles + 2 studies) passed validation test suite!");
 
