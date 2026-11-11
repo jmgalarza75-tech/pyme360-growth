@@ -150,6 +150,7 @@ gba(14, 25, 21, 0.9)), bordes sutiles en #2fbf71 y badges de confianza física e
   - **Carga Asíncrona de Fuentes (`index.html`)**: Patrón no bloqueante con `preload`, `media="print" onload="this.media='all'"` y fallback `<noscript>`.
   - **Ergonomía y Neuro-Diseño (`assets/pyme360-public.css`)**: `font-size: 16px` en inputs para frenar auto-zoom de iOS, áreas táctiles mínimas de 48px, y `aspect-ratio` para evitar CLS.
   - **Corrección de Responsividad en Servicios de la Home (`#sistema`)**: Se resolvió la fuga de especificidad CSS en `.system .module-grid`, que forzaba 2 columnas fijas de `minmax(280px, 1fr)` causando desborde horizontal en móvil. Ahora pasa fluidamente a 1 columna vertical en pantallas `<= 768px` con tarjetas legibles, alineadas a la izquierda y con altura adaptativa.
+  - **Reducción de Peso de Imágenes y Fluidez en Scroll Móvil**: Redimensionadas las 10 fotos de la galería de problemas de 900px a 420px (`w=420&q=72`), reduciendo el consumo de red en un -75% (de ~1,6 MB a ~320 KB) y la memoria bitmap de GPU de 41,5 MB a 8,2 MB. En móvil (`<= 620px`), se neutralizaron los filtros CSS pesados (`filter: saturate/contrast`), transformaciones continuas y sombras de 110px de desenfoque, eliminando el tartamudeo (*jank*) durante el scroll táctil.
 - **Verificación**:
   - 24/24 tests superados al 100% en Node nativo.
   - Paridad estricta 100% byte a byte entre raíz y `/public/`.
