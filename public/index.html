@@ -131,6 +131,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="assets/pyme360-public.css?v=20261109-1">
+  <style id="mobile-anti-cache-shield">
+    @media (max-width: 768px) {
+      .hero-shader { display: none !important; }
+      .problem { min-height: auto !important; padding-top: 48px !important; padding-bottom: 48px !important; }
+      .problem-gallery-shell { min-height: auto !important; perspective: none !important; margin-top: 18px !important; }
+      .problem-gallery { position: relative !important; display: grid !important; grid-template-columns: 1fr !important; gap: 16px !important; min-height: auto !important; height: auto !important; inset: auto !important; transform: none !important; }
+      .problem-card, .problem-card.is-active, .problem-card.is-left, .problem-card.is-right, .problem-card.is-back, .problem-card.is-hidden {
+        position: relative !important; left: auto !important; top: auto !important; width: 100% !important; height: auto !important; min-height: auto !important; transform: none !important; opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; filter: none !important; display: block !important; margin: 0 !important; box-shadow: 0 8px 24px rgba(0,0,0,0.35) !important; will-change: auto !important; transition: none !important;
+      }
+      .problem-card img { width: 100% !important; height: 240px !important; object-fit: cover !important; display: block !important; filter: none !important; transform: none !important; }
+      .problem-card div { position: relative !important; inset: auto !important; padding: 20px !important; background: rgba(6, 16, 13, 0.94) !important; }
+      .problem-nav { display: none !important; }
+      .system .section-heading { margin-bottom: 28px !important; }
+      .system .section-heading h2 { font-size: clamp(28px, 6vw, 36px) !important; line-height: 1.15 !important; margin-bottom: 12px !important; }
+      .system .section-heading p { font-size: 15px !important; line-height: 1.5 !important; color: #c4d4cc !important; }
+      .system .module-grid { display: grid !important; grid-template-columns: 1fr !important; width: 100% !important; max-width: 100% !important; gap: 14px !important; margin: 0 !important; }
+      .system .module-grid article { display: flex !important; flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; text-align: left !important; min-height: auto !important; padding: 22px 20px !important; border-radius: 12px !important; background: rgba(255, 255, 255, 0.04) !important; border: 1px solid rgba(255, 255, 255, 0.09) !important; box-sizing: border-box !important; width: 100% !important; }
+      .system .module-grid span { display: inline-flex !important; align-items: center !important; justify-content: center !important; width: 38px !important; height: 38px !important; border-radius: 8px !important; background: rgba(231, 183, 95, 0.12) !important; color: #e7b75f !important; font-size: 15px !important; font-weight: 900 !important; margin-bottom: 14px !important; border: 1px solid rgba(231, 183, 95, 0.28) !important; }
+      .system .module-grid strong { font-size: 19px !important; font-weight: 800 !important; line-height: 1.25 !important; color: #ffffff !important; margin-bottom: 8px !important; text-align: left !important; }
+      .system .module-grid p { font-size: 14.5px !important; line-height: 1.55 !important; color: #c4d4cc !important; margin: 0 !important; text-align: left !important; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">

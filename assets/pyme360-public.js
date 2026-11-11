@@ -296,7 +296,7 @@ if (problemCards.length) {
   }
 
   window.addEventListener("scroll", () => {
-    if (window.innerWidth <= 620) return;
+    if (window.innerWidth <= 768) return;
     const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
     if (scrollableHeight <= 0) return;
     const nextIndex = Math.round((window.scrollY / scrollableHeight) * (problemCards.length - 1));
