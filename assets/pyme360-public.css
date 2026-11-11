@@ -1948,6 +1948,24 @@ h2 { font-size: clamp(34px, 5vw, 64px); }
     display: none !important;
   }
 
+  /* Desactivar bucles de animacion continua y movimientos pesados en movil */
+  .pricing-orbit {
+    animation: none !important;
+  }
+
+  .score-ring,
+  .score-value span {
+    animation: none !important;
+  }
+
+  .problem-card,
+  .problem-card img,
+  .flip-card,
+  .flip-card-inner {
+    transition: none !important;
+    will-change: auto !important;
+  }
+
   /* Sección Servicios / El Producto (#sistema) adaptada a móvil */
   .system .section-heading {
     margin-bottom: 28px !important;
