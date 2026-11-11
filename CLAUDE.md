@@ -138,3 +138,19 @@ gba(14, 25, 21, 0.9)), bordes sutiles en #2fbf71 y badges de confianza física e
   - 24 de 24 tests en verde. Paridad 100% byte a byte entre raíz y `/public/`.
   - Commits `5ecd6a7` y `a80e6c8` subidos y desplegados a producción en Hostinger vía `origin/main`.
 
+### Sesión: 2026-11-11 — Optimización de Rendimiento y Neuro-Diseño Exclusivo para Formato Móvil
+- **Auditoría Forense Móvil (Design Loop & Neuro-Design)**:
+  - Bucle continuo de WebGL en el Hero Shader (`hero-shader`): `requestAnimationFrame` en GPU móvil consumía batería y provocaba microtirones de scroll.
+  - Carga bloqueante de Google Fonts (`Inter` y `Outfit`) demorando el First Contentful Paint (FCP).
+  - Mutaciones DOM innecesarias en `updateProblemGallery()` durante el scroll móvil (`<= 620px`).
+  - Inputs de formulario inferiores a 16px en iOS Safari provocando auto-zoom indeseado.
+- **Soluciones Implementadas (Escritorio 100% Intacto)**:
+  - **Suspensión de GPU y rAF en Móvil (`assets/pyme360-public.js`)**: WebGL pausado en móviles (`<= 768px`) dejando el gradiente CSS atmosférico. Integrado `IntersectionObserver` para congelar el renderizado al salir del viewport del Hero en cualquier pantalla.
+  - **Desbloqueo de Scroll**: Cancelación de mutaciones DOM en `problem-gallery` para móvil (`<= 620px`) y detención de bucle de animación orbital cuando no está visible (`<= 760px`).
+  - **Carga Asíncrona de Fuentes (`index.html`)**: Patrón no bloqueante con `preload`, `media="print" onload="this.media='all'"` y fallback `<noscript>`.
+  - **Ergonomía y Neuro-Diseño (`assets/pyme360-public.css`)**: `font-size: 16px` en inputs para frenar auto-zoom de iOS, áreas táctiles mínimas de 48px, y `aspect-ratio` para evitar CLS.
+- **Verificación**:
+  - 24/24 tests superados al 100% en Node nativo.
+  - Paridad estricta 100% byte a byte entre raíz y `/public/`.
+
+

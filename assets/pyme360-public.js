@@ -216,7 +216,11 @@ function initHeroShader() {
     gl.viewport(0, 0, heroShaderCanvas.width, heroShaderCanvas.height);
   }
 
+  let isShaderVisible = true;
+  let isMobile = window.innerWidth <= 768;
+
   function render() {
+    if (!isShaderVisible || isMobile) return;
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.useProgram(shaderProgram);
@@ -229,9 +233,36 @@ function initHeroShader() {
     requestAnimationFrame(render);
   }
 
-  window.addEventListener("resize", resizeCanvas);
+  function handleVisibilityChange(visible) {
+    const wasRendering = isShaderVisible && !isMobile;
+    isShaderVisible = visible;
+    if (!wasRendering && isShaderVisible && !isMobile) {
+      requestAnimationFrame(render);
+    }
+  }
+
+  if (typeof IntersectionObserver !== "undefined") {
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        handleVisibilityChange(entry.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    heroObserver.observe(heroShaderCanvas);
+  }
+
+  window.addEventListener("resize", () => {
+    const wasMobile = isMobile;
+    isMobile = window.innerWidth <= 768;
+    resizeCanvas();
+    if (wasMobile && !isMobile && isShaderVisible) {
+      requestAnimationFrame(render);
+    }
+  }, { passive: true });
+
   resizeCanvas();
-  requestAnimationFrame(render);
+  if (!isMobile) {
+    requestAnimationFrame(render);
+  }
 }
 
 initHeroShader();
@@ -265,6 +296,7 @@ if (problemCards.length) {
   }
 
   window.addEventListener("scroll", () => {
+    if (window.innerWidth <= 620) return;
     const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
     if (scrollableHeight <= 0) return;
     const nextIndex = Math.round((window.scrollY / scrollableHeight) * (problemCards.length - 1));
@@ -325,6 +357,9 @@ let isUserInteractingOrbit = false;
 
 function onProcessOrbitScroll() {
   if (!processOrbitStage || window.innerWidth <= 760) return;
+  if (!processOrbitAnimationFrame && window.requestAnimationFrame) {
+    processOrbitAnimationFrame = requestAnimationFrame(animateProcessOrbitContinuous);
+  }
   const rect = processOrbitStage.getBoundingClientRect();
   const vh = window.innerHeight || 800;
   
@@ -359,8 +394,10 @@ function animateProcessOrbitContinuous() {
     }
     
     processOrbitStage.style.setProperty("--orbit-angle", `${processOrbitAngle.toFixed(2)}deg`);
+    processOrbitAnimationFrame = requestAnimationFrame(animateProcessOrbitContinuous);
+  } else {
+    processOrbitAnimationFrame = null;
   }
-  processOrbitAnimationFrame = requestAnimationFrame(animateProcessOrbitContinuous);
 }
 
 function stopProcessOrbitRotation() {
