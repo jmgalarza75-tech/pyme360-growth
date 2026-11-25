@@ -1,7 +1,7 @@
 # Oferta piloto — Estrategia de marketing online y comercialización rural
 
 **Proyecto:** Pyme360 Growth  
-**Estado:** borrador interno para validación comercial  
+**Estado:** borrador interno para validación comercial; alcance y precio pendientes según diagnóstico y decisión de José del 2026-11-08<br>
 **Fecha:** 28/07/2026  
 **Landing:** `/alojamientos-rurales/`
 
@@ -88,26 +88,19 @@ Entrega breve con:
 
 En la comunicación pública inicial no se muestran nombres personales. Se presenta la experiencia acumulada y el método de trabajo.
 
-## 7. Precio piloto aprobado
+## 7. Precio y límite operativo — pendiente de decisión
 
-Precio de prueba: **350 € por el acompañamiento completo de 30 días**.
+La decisión más reciente de José (2026-11-08), registrada en `marketing/decisions.md` del repositorio operativo `especialista en marketing`, establece que el precio del proyecto inicial dependerá del diagnóstico y del alcance; no hay una cifra única fijada ni publicada. No presentar los 350 € de la versión anterior de este borrador como precio vigente.
 
-Límite operativo:
+**Referencia histórica de esta versión (2026-07-28):** se propusieron 350 € por 30 días y un máximo de 6 horas, con una sesión inicial y tres seguimientos breves. Esta combinación no debe cotizarse hasta que José confirme de nuevo el alcance, límite de horas, precio y condiciones.
 
-- máximo de 6 horas de trabajo total;
-- una sesión inicial;
-- tres seguimientos breves;
-- revisión de textos, CTAs, Google, mensajes o seguimiento dentro de ese límite;
-- cualquier trabajo adicional se presupone aparte y requiere aprobación.
+Antes de ofrecer cualquier acompañamiento se debe dejar claro:
 
-Este precio sirve para validar disposición de pago, alcance, horas reales y margen. No es todavía el precio definitivo de Pyme360.
-
-Antes de ofrecerlo se debe dejar claro:
-
-- canales incluidos;
-- plazo de respuesta;
-- qué cambios aplica Pyme360 y cuáles aplica el cliente;
-- qué queda fuera del límite de 6 horas.
+- objetivo y prioridad concreta derivados del diagnóstico;
+- entregables, canales incluidos y responsabilidades de cada parte;
+- duración, horas máximas y plazo de respuesta;
+- precio aprobado, impuestos y gastos fuera de alcance;
+- cómo se aprobarán y verificarán los cambios.
 
 ## 8. Validación de 30 días
 

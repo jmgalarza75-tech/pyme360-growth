@@ -673,11 +673,44 @@ if (leakGallery && galleryPrev && galleryNext) {
     return { brand, complementaryBrand, title, text, nextStep };
   }
 
-  // Disparar evento analítico en GA4 (sin PII)
+  // Disparar evento analítico en GA4 y Meta Pixel (sin PII)
   function trackAnalyticsEvent(eventName, params) {
+    // 1. Google Analytics 4
     try {
       if (typeof window !== "undefined" && typeof window.gtag === "function") {
         window.gtag("event", eventName, params || {});
+      }
+    } catch (e) {}
+
+    // 2. Meta Pixel (Dataset ID: 1508603327820296)
+    try {
+      if (typeof window !== "undefined" && typeof window.fbq === "function") {
+        if (eventName === "generate_lead") {
+          window.fbq("track", "Lead", {
+            content_name: "Informe Diagnóstico Comercial 7P",
+            value: (params && params.score_100) ? params.score_100 : undefined,
+            currency: "EUR"
+          });
+        } else if (eventName === "booking_click") {
+          window.fbq("track", "Schedule", {
+            content_name: "Reunión Asesoramiento 20 min",
+            value: (params && params.score_100) ? params.score_100 : undefined,
+            currency: "EUR"
+          });
+          window.fbq("track", "Contact", {
+            content_name: "WhatsApp Asesoramiento 20 min"
+          });
+        } else if (eventName === "diagnostic_complete") {
+          window.fbq("track", "ViewContent", {
+            content_name: "Resultado Diagnóstico Comercial",
+            value: (params && params.score_100) ? params.score_100 : undefined,
+            currency: "EUR"
+          });
+        } else if (eventName === "diagnostic_start") {
+          window.fbq("trackCustom", "DiagnosticStart", params || {});
+        } else if (eventName === "needs_selected") {
+          window.fbq("trackCustom", "NeedsSelected", params || {});
+        }
       }
     } catch (e) {}
   }
@@ -1593,12 +1626,15 @@ if (leakGallery && galleryPrev && galleryNext) {
 
 
 /* ==========================================================================
-   Gestión de consentimiento de Cookies y Carga diferida de Google Analytics
+   Gestión de consentimiento de Cookies y Carga diferida de Analytics y Meta Pixel
    ========================================================================== */
-function pyme360LoadAnalytics() {
-  if (typeof window === "undefined" || window._pyme360GaLoaded) return;
-  window._pyme360GaLoaded = true;
+var META_PIXEL_ID = "1508603327820296";
 
+function pyme360LoadAnalytics() {
+  if (typeof window === "undefined" || window._pyme360AnalyticsLoaded) return;
+  window._pyme360AnalyticsLoaded = true;
+
+  // 1. Google Analytics 4
   window.dataLayer = window.dataLayer || [];
   if (typeof window.gtag !== "function") {
     window.gtag = function(){ window.dataLayer.push(arguments); };
@@ -1612,6 +1648,33 @@ function pyme360LoadAnalytics() {
     gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-TV5EY510HZ";
     document.head.appendChild(gaScript);
   }
+
+  // 2. Meta Pixel (1508603327820296)
+  if (typeof window.fbq !== "function") {
+    (function(f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function() {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = "2.0";
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      if (s && s.parentNode) {
+        s.parentNode.insertBefore(t, s);
+      } else if (b.head) {
+        b.head.appendChild(t);
+      }
+    })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+  }
+
+  window.fbq("init", META_PIXEL_ID);
+  window.fbq("track", "PageView");
 }
 
 function pyme360InitCookieConsent() {
@@ -1622,6 +1685,17 @@ function pyme360InitCookieConsent() {
   try {
     if (typeof localStorage !== "undefined") {
       consent = localStorage.getItem(CONSENT_KEY);
+    }
+  } catch (e) {}
+
+  // Activar inmediatamente si viene con parámetros de prueba de Meta Ads
+  try {
+    if (window.location && window.location.search) {
+      var sp = new URLSearchParams(window.location.search);
+      if (sp.has("test_event_code") || sp.get("test") === "pixel" || sp.get("meta_test") === "1") {
+        pyme360LoadAnalytics();
+        return;
+      }
     }
   } catch (e) {}
 
@@ -1639,7 +1713,7 @@ function pyme360InitCookieConsent() {
   banner.innerHTML = [
     '<div class="pyme360-cookie-inner">',
     '  <p class="pyme360-cookie-text">',
-    '    <strong>Privacidad y cookies:</strong> Utilizamos cookies analíticas de Google Analytics para medir visitas y mejorar nuestro servicio en Tenerife. Puedes aceptarlas o rechazarlas libremente. Consulta nuestra <a href="/cookies.html">política de cookies</a>.',
+    '    <strong>Privacidad y cookies:</strong> Utilizamos cookies analíticas y de medición (Google Analytics y Meta Pixel) para evaluar visitas y mejorar nuestro servicio. Puedes aceptarlas o rechazarlas libremente. Consulta nuestra <a href="/cookies.html">política de cookies</a>.',
     '  </p>',
     '  <div class="pyme360-cookie-actions">',
     '    <button type="button" class="pyme360-cookie-btn pyme360-cookie-reject" id="pyme360-cookie-reject">Solo necesarias</button>',

@@ -540,8 +540,27 @@ const leadForm = document.querySelector(".lead-form");
 const LEAD_ENDPOINT = "/procesar-lead.php";
 
 function pyme360Track(eventName, parameters = {}) {
-  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
-  window.gtag("event", eventName, parameters);
+  if (typeof window === "undefined") return;
+
+  // 1. Google Analytics 4
+  if (typeof window.gtag === "function") {
+    window.gtag("event", eventName, parameters);
+  }
+
+  // 2. Meta Pixel (Dataset ID: 1508603327820296)
+  if (typeof window.fbq === "function") {
+    if (eventName === "generate_lead") {
+      window.fbq("track", "Lead", {
+        content_name: parameters.form_name || "Formulario General",
+        currency: "EUR"
+      });
+    } else if (eventName === "contact_click") {
+      window.fbq("track", "Contact", {
+        content_name: parameters.contact_type || "WhatsApp",
+        content_category: "Lead Contact"
+      });
+    }
+  }
 }
 
 // Track only high-signal interactions and never send PII to Google Analytics.
@@ -722,12 +741,15 @@ if (leadForm) {
 
 
 /* ==========================================================================
-   Gestión de consentimiento de Cookies y Carga diferida de Google Analytics
+   Gestión de consentimiento de Cookies y Carga diferida de Analytics y Meta Pixel
    ========================================================================== */
-function pyme360LoadAnalytics() {
-  if (typeof window === "undefined" || window._pyme360GaLoaded) return;
-  window._pyme360GaLoaded = true;
+var META_PIXEL_ID = "1508603327820296";
 
+function pyme360LoadAnalytics() {
+  if (typeof window === "undefined" || window._pyme360AnalyticsLoaded) return;
+  window._pyme360AnalyticsLoaded = true;
+
+  // 1. Google Analytics 4
   window.dataLayer = window.dataLayer || [];
   if (typeof window.gtag !== "function") {
     window.gtag = function(){ window.dataLayer.push(arguments); };
@@ -741,6 +763,33 @@ function pyme360LoadAnalytics() {
     gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-TV5EY510HZ";
     document.head.appendChild(gaScript);
   }
+
+  // 2. Meta Pixel (1508603327820296)
+  if (typeof window.fbq !== "function") {
+    (function(f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function() {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = "2.0";
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      if (s && s.parentNode) {
+        s.parentNode.insertBefore(t, s);
+      } else if (b.head) {
+        b.head.appendChild(t);
+      }
+    })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+  }
+
+  window.fbq("init", META_PIXEL_ID);
+  window.fbq("track", "PageView");
 }
 
 function pyme360InitCookieConsent() {
@@ -751,6 +800,17 @@ function pyme360InitCookieConsent() {
   try {
     if (typeof localStorage !== "undefined") {
       consent = localStorage.getItem(CONSENT_KEY);
+    }
+  } catch (e) {}
+
+  // Activar inmediatamente si viene con parámetros de prueba de Meta Ads
+  try {
+    if (window.location && window.location.search) {
+      var sp = new URLSearchParams(window.location.search);
+      if (sp.has("test_event_code") || sp.get("test") === "pixel" || sp.get("meta_test") === "1") {
+        pyme360LoadAnalytics();
+        return;
+      }
     }
   } catch (e) {}
 
@@ -768,7 +828,7 @@ function pyme360InitCookieConsent() {
   banner.innerHTML = [
     '<div class="pyme360-cookie-inner">',
     '  <p class="pyme360-cookie-text">',
-    '    <strong>Privacidad y cookies:</strong> Utilizamos cookies analíticas de Google Analytics para medir visitas y mejorar nuestro servicio en Tenerife. Puedes aceptarlas o rechazarlas libremente. Consulta nuestra <a href="/cookies.html">política de cookies</a>.',
+    '    <strong>Privacidad y cookies:</strong> Utilizamos cookies analíticas y de medición (Google Analytics y Meta Pixel) para evaluar visitas y mejorar nuestro servicio. Puedes aceptarlas o rechazarlas libremente. Consulta nuestra <a href="/cookies.html">política de cookies</a>.',
     '  </p>',
     '  <div class="pyme360-cookie-actions">',
     '    <button type="button" class="pyme360-cookie-btn pyme360-cookie-reject" id="pyme360-cookie-reject">Solo necesarias</button>',

@@ -137,6 +137,16 @@ test("Commercial Funnel - Tracking and Analytics Events", () => {
   assert.match(js, /state\.utms/, "Must store UTM parameters");
   assert.match(js, /utm_source/, "Must capture utm_source");
   assert.match(js, /utm_campaign/, "Must capture utm_campaign");
+
+  // Meta Pixel (Dataset ID: 1508603327820296)
+  assert.match(js, /1508603327820296/, "Meta Pixel ID 1508603327820296 must be present");
+  assert.match(js, /fbq\("init", META_PIXEL_ID\)/, "Must initialize Meta Pixel with ID");
+  assert.match(js, /fbq\("track", "PageView"\)/, "Must track PageView on load");
+  assert.match(js, /fbq\("track", "Lead",/, "Must track Lead event on completed report request");
+  assert.match(js, /fbq\("track", "Schedule",/, "Must track Schedule event on booking click");
+  assert.match(js, /fbq\("track", "Contact",/, "Must track Contact event on WhatsApp/advisory click");
+  assert.match(js, /fbq\("track", "ViewContent",/, "Must track ViewContent on diagnostic score view");
+  assert.match(js, /test_event_code/, "Must support Meta Test Events parameter");
 });
 
 test("Commercial Funnel - Backend Lead Processing & Email Delivery", () => {

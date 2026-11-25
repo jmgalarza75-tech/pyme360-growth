@@ -1,8 +1,8 @@
 # Primer lote propuesto — Acompañamiento rural Pyme360
 
-**Estado:** pendiente de validación y aprobación de contacto  
+**Estado:** borrador histórico de 2026-07-28; no es la cola operativa actual. Verificar candidatos y estados en la cola vigente antes de cualquier uso. No contactar desde este archivo.<br>
 **Fecha:** 28/07/2026  
-**Objetivo:** preparar cinco mini-revisiones para probar si el acompañamiento de 350 € tiene interés real.
+**Objetivo original:** preparar cinco mini-revisiones para validar interés en un acompañamiento rural. El precio y alcance siguen pendientes de decisión; no hay una cifra única vigente.
 
 ## Candidatos
 
@@ -39,6 +39,6 @@ No entra en el lote un candidato si no podemos demostrar:
 - un contacto legítimo y adecuado;
 - por qué la revisión puede ser útil para ese caso.
 
-## Hipótesis que se prueba
+## Hipótesis histórica — precio por validar
 
-> Un propietario independiente puede estar dispuesto a pagar 350 € por una revisión comercial y un acompañamiento de 30 días si entiende con claridad qué está perdiendo y qué cambios puede aplicar primero.
+> Un propietario independiente puede valorar una revisión comercial y un acompañamiento acotado si entiende con claridad qué problema se ha observado y qué cambios puede aplicar primero. La disposición de pago, el alcance y el precio deben validarse; no asumir los 350 € del borrador de julio como oferta vigente.
