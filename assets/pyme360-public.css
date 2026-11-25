@@ -10019,3 +10019,8 @@ body:not(.indice-page) .faq-accordion-content a:hover {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* El bloque de metodología sigue al cuestionario; no debe invadir sus controles. */
+.autoevaluacion-section + .hero-bottom-dock {
+  margin-top: 32px !important;
+}
