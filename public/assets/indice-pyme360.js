@@ -477,10 +477,12 @@ if (leakGallery && galleryPrev && galleryNext) {
   // Estado reactivo del cuestionario
   const state = {
     currentStep: 0,
+    needs: [],         // Array de letras seleccionadas: ['A', 'B', ...]
+    primaryNeed: "",   // 'A' .. 'H'
     profile: {
-      sector: "",
-      sectorText: "",
-      units: "",
+      sector: "vivienda",
+      sectorText: "Vivienda vacacional",
+      units: "1",
       location: "",
       business: "",
       web: ""
@@ -489,7 +491,38 @@ if (leakGallery && galleryPrev && galleryNext) {
       1: null, 2: null, 3: null, 4: null, 5: null, 6: null, 7: null,
       8: null, 9: null, 10: null, 11: null, 12: null, 13: null, 14: null,
       15: null, 16: null, 17: null, 18: null, 19: null, 20: null, 21: null
+    },
+    utms: {
+      source: "",
+      medium: "",
+      campaign: "",
+      content: "",
+      term: ""
     }
+  };
+
+  // Extraer parámetros UTM de la URL
+  try {
+    if (typeof window !== "undefined" && window.location) {
+      const sp = new URLSearchParams(window.location.search);
+      state.utms.source = sp.get("utm_source") || "";
+      state.utms.medium = sp.get("utm_medium") || "";
+      state.utms.campaign = sp.get("utm_campaign") || "";
+      state.utms.content = sp.get("utm_content") || "";
+      state.utms.term = sp.get("utm_term") || "";
+    }
+  } catch (e) {}
+
+  // Catálogo de necesidades
+  const needsDescriptions = {
+    A: "Conseguir más reservas y mejorar la comercialización",
+    B: "Mejorar mi página web y aumentar las reservas directas",
+    C: "Reducir la dependencia de Booking y Airbnb",
+    D: "Mejorar fotografías, descripciones y presentación del alojamiento",
+    E: "Delegar la gestión de reservas, huéspedes u operativa",
+    F: "Organizar mejor el negocio, ahorrar tiempo y mejorar procesos",
+    G: "Mejorar mi estrategia de precios y rentabilidad",
+    H: "Todavía no lo tengo claro; quiero conocer mi situación"
   };
 
   const scaleTexts = {
@@ -518,33 +551,136 @@ if (leakGallery && galleryPrev && galleryNext) {
   const pInsights = {
     p1: {
       strength: "Tienes una propuesta diferencial y un tipo de huésped definido para cada temporada.",
-      priority: "Conviene definir mejor el público prioritario de cada temporada y destacar tu valor diferencial."
+      priority: "Conviene definir mejor el público prioritario de cada temporada y destacar tu valor diferencial.",
+      action: "Revisar la propuesta de valor y destacar qué incluye tu alojamiento que los competidores cercanos no ofrecen."
     },
     p2: {
       strength: "Cuentas con tarifas estructuradas y control del margen neto tras comisiones de venta.",
-      priority: "Revisar el coste real de cada canal y ajustar tarifas por temporada protegerá tu margen neto."
+      priority: "Revisar el coste real de cada canal y ajustar tarifas por temporada protegerá tu margen neto.",
+      action: "Calcular el margen neto real tras comisiones de Booking/Airbnb y establecer un incentivo directo en tu web para estancias de más de 3 noches."
     },
     p3: {
       strength: "Tus canales de venta encajan con tu cliente y mantienes tus calendarios actualizados.",
-      priority: "Alinear canales con tu huésped objetivo y coordinar disponibilidad evitará desajustes y fricciones."
+      priority: "Alinear canales con tu huésped objetivo y coordinar disponibilidad evitará desajustes y fricciones.",
+      action: "Asegurar que la web propia permite consultar disponibilidad en tiempo real sin obligar al viajero a llamar o esperar respuesta."
     },
     p4: {
       strength: "Planificas acciones comerciales en fechas valle y compruebas qué iniciativas dan reservas.",
-      priority: "Anticipar acciones para meses flojos y medir su eficacia evitará recurrir a rebajas de última hora."
+      priority: "Anticipar acciones para meses flojos y medir su eficacia evitará recurrir a rebajas de última hora.",
+      action: "Optimizar la ficha de Google Business con fotos de temporada y activar el enlace a tu web para captar búsquedas locales."
     },
     p5: {
       strength: "Las responsabilidades comerciales están claras y respondéis con agilidad a las consultas.",
-      priority: "Asignar claramente tareas comerciales y reducir el tiempo de respuesta acelerará el cierre de reservas."
+      priority: "Asignar claramente tareas comerciales y reducir el tiempo de respuesta acelerará el cierre de reservas.",
+      action: "Establecer un protocolo de respuesta rápida (< 1 hora) para consultas en fechas calientes y solicitar reseñas activamente."
     },
     p6: {
       strength: "El recorrido de reserva está estructurado y mantenéis el contacto con antiguos clientes.",
-      priority: "Simplificar el paso de consulta a reserva y hacer seguimiento de huéspedes abrirá ventas directas."
+      priority: "Simplificar el paso de consulta a reserva y hacer seguimiento de huéspedes abrirá ventas directas.",
+      action: "Simplificar los pasos de reserva directa en móvil eliminando campos innecesarios en el formulario de contacto o consulta."
     },
     p7: {
       strength: "Tus imágenes reflejan fielmente el alojamiento y el huésped encuentra datos claros para decidir.",
-      priority: "Actualizar fotos nítidas y facilitar información práctica (normas y condiciones) mejorará la conversión móvil."
+      priority: "Actualizar fotos nítidas y facilitar información práctica (normas y condiciones) mejorará la conversión móvil.",
+      action: "Actualizar las primeras 5 fotografías de portada con luz natural y comprobar que las condiciones de reserva se leen claras desde el móvil."
     }
   };
+
+  // Motor determinista de clasificación comercial
+  function pyme360GetBrandRecommendation(primaryNeed, pScores, location, tipo, selectedNeeds) {
+    const locLower = String(location || "").toLowerCase();
+    const isCanary = locLower.includes("tenerife") || locLower.includes("canaria") || locLower.includes("palma") || locLower.includes("gomera") || locLower.includes("hierro") || locLower.includes("lanzarote") || locLower.includes("fuerteventura");
+    const needsList = Array.isArray(selectedNeeds) ? selectedNeeds : [];
+
+    let brand = "PYME360";
+    let complementaryBrand = null;
+    let title = "Podemos ayudarte a convertir estas oportunidades en mejoras concretas";
+    let text = "Según tus respuestas, una de tus prioridades es mejorar cómo presentas y comercializas tu alojamiento. Desde PYME360 podemos estudiar tu situación y proponerte una intervención adaptada a tu negocio.";
+    let nextStep = "Analizar conjuntamente tus canales actuales y tu web para eliminar fugas de margen.";
+
+    // Mapeo de notas de las 7P
+    const pMap = {};
+    if (Array.isArray(pScores)) {
+      pScores.forEach((p) => { pMap[p.key] = p.score; });
+    }
+    const avgP3 = pMap.p3 ?? 6.0; // Canales
+    const avgP4 = pMap.p4 ?? 6.0; // Promoción
+    const avgP6 = pMap.p6 ?? 6.0; // Procesos
+
+    if (primaryNeed === "E" || (needsList.includes("E") && !primaryNeed)) {
+      brand = "Home4Escape";
+      title = "¿Necesitas recuperar tiempo delegando la gestión?";
+      const coverageNote = isCanary
+        ? "Contamos con equipo operativo en Canarias para coordinar comercialización y reservas."
+        : "Podemos valorar si las necesidades operativas de tu alojamiento encajan con nuestro alcance en tu zona.";
+      text = `Tus respuestas indican que la gestión diaria del alojamiento es una de tus principales preocupaciones. ${coverageNote} Te ayudamos a liberar tiempo manteniendo el control de tu negocio.`;
+      nextStep = "Comprobar el encaje operativo y la ubicación del alojamiento para valorar un modelo de gestión delegada.";
+
+      if (needsList.includes("B") || needsList.includes("D")) {
+        complementaryBrand = {
+          brand: "PYME360",
+          note: "Complementariamente, para la renovación web o producción visual, PYME360 puede intervenir directamente sobre tus activos de captación."
+        };
+      }
+    } else if (primaryNeed === "F" || (needsList.includes("F") && !primaryNeed)) {
+      brand = "FARO";
+      title = "Una organización más eficiente empieza por identificar qué cambiar";
+      text = "Has señalado la organización y los procesos como una de tus prioridades. Un acompañamiento especializado en procesos te ayudará a estructurar rutinas, optimizar tiempos y asentar métodos claros de trabajo.";
+      nextStep = "Mapear los 3 procesos que más tiempo te consumen semanalmente y diseñar protocolos de simplificación.";
+
+      if (needsList.includes("B") || needsList.includes("C") || avgP3 < 5.0) {
+        complementaryBrand = {
+          brand: "PYME360",
+          note: "En paralelo con la optimización de procesos, PYME360 puede ayudarte a reforzar tu captación directa para no perder reservas durante la reorganización."
+        };
+      }
+    } else if (primaryNeed === "H" || (needsList.includes("H") && !primaryNeed)) {
+      if (avgP3 < 5.0 || avgP4 < 5.0) {
+        brand = "PYME360";
+        title = "Punto de partida: corregir fugas en comercialización y canales";
+        text = "Tus respuestas reflejan que las mayores oportunidades se concentran en tus canales de venta y promoción. En una sesión de valoración de 20 minutos analizaremos tus canales actuales para ordenar tus primeras prioridades.";
+        nextStep = "Revisar los datos del diagnóstico en una sesión de 20 minutos para definir cuál es la primera palanca de rentabilidad.";
+      } else if (avgP6 < 5.0) {
+        brand = "FARO";
+        title = "Punto de partida: simplificar rutinas y operativa";
+        text = "Tus respuestas muestran que la principal fricción no está en la venta, sino en la carga de procesos diarios. Un acompañamiento en procesos te ayudará a recuperar control y tiempo.";
+        nextStep = "Analizar en una sesión de 20 minutos las rutinas que más tiempo te restan en el día a día.";
+      } else {
+        brand = "PYME360";
+        title = "Un punto de partida claro para ordenar prioridades";
+        text = "Has indicado que prefieres conocer tu situación antes de decidir un área concreta. En una breve conversación de valoración podemos repasar tus resultados del diagnóstico y orientarte sobre qué paso tiene mayor sentido abordar primero.";
+        nextStep = "Revisar los datos del diagnóstico en una sesión de 20 minutos para definir cuál es la primera palanca de rentabilidad.";
+      }
+    } else {
+      // A, B, C, D, G -> PYME360
+      brand = "PYME360";
+      title = "Podemos ayudarte a convertir estas oportunidades en mejoras concretas";
+      text = "Según tus respuestas, una de tus prioridades es mejorar cómo presentas y comercializas tu alojamiento. Desde PYME360 podemos estudiar tu situación y proponerte una intervención adaptada a tu negocio.";
+      if (primaryNeed === "B") nextStep = "Auditar el flujo de reserva de tu página web y optimizar la conversión desde dispositivos móviles.";
+      else if (primaryNeed === "C") nextStep = "Establecer incentivos exclusivos de reserva directa para frenar la fuga de comisiones hacia Booking y Airbnb.";
+      else if (primaryNeed === "D") nextStep = "Renovar la narrativa visual y las descripciones clave para posicionar el alojamiento en un segmento de mayor valor.";
+      else if (primaryNeed === "G") nextStep = "Estructurar tarifas dinámicas por temporada para proteger el margen neto en meses valle.";
+      else nextStep = "Analizar conjuntamente tus canales actuales y tu web para eliminar fugas de margen.";
+
+      if (needsList.includes("F")) {
+        complementaryBrand = {
+          brand: "FARO",
+          note: "Como también has señalado la necesidad de mejorar procesos y organización, un asesoramiento estructurado de FARO puede complementar la estrategia comercial."
+        };
+      }
+    }
+
+    return { brand, complementaryBrand, title, text, nextStep };
+  }
+
+  // Disparar evento analítico en GA4 (sin PII)
+  function trackAnalyticsEvent(eventName, params) {
+    try {
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", eventName, params || {});
+      }
+    } catch (e) {}
+  }
 
   // Elementos DOM principales
   const stepPanes = app.querySelectorAll(".quiz-step-pane");
@@ -559,14 +695,112 @@ if (leakGallery && galleryPrev && galleryNext) {
   const webInput = app.querySelector("#quiz-web");
   const btnStart = app.querySelector("#quiz-btn-start");
 
+  // Manejo de la selección de necesidades (Paso 0)
+  const needsGrid = app.querySelector("#quiz-needs-grid");
+  const priorityWrap = app.querySelector("#quiz-primary-priority-wrap");
+  const primaryNeedSelect = app.querySelector("#quiz-primary-need-select");
+
+  if (needsGrid) {
+    const needCards = needsGrid.querySelectorAll(".quiz-need-card");
+
+    needCards.forEach((card) => {
+      const checkbox = card.querySelector("input[type='checkbox']");
+      const needCode = card.getAttribute("data-need");
+      if (!checkbox) return;
+
+      checkbox.addEventListener("change", () => {
+        // Si se marca "H" (No lo tengo claro), desmarcar las demás
+        if (needCode === "H" && checkbox.checked) {
+          needCards.forEach((c) => {
+            if (c !== card) {
+              const cb = c.querySelector("input[type='checkbox']");
+              if (cb) cb.checked = false;
+              c.classList.remove("is-selected");
+            }
+          });
+        } else if (needCode !== "H" && checkbox.checked) {
+          // Si se marca otra, desmarcar H si estuviese marcada
+          const hCard = needsGrid.querySelector('.quiz-need-card[data-need="H"]');
+          if (hCard) {
+            const hCb = hCard.querySelector("input[type='checkbox']");
+            if (hCb) hCb.checked = false;
+            hCard.classList.remove("is-selected");
+          }
+        }
+
+        if (checkbox.checked) {
+          card.classList.add("is-selected");
+        } else {
+          card.classList.remove("is-selected");
+        }
+
+        // Actualizar array de necesidades seleccionadas
+        const selectedCodes = [];
+        needCards.forEach((c) => {
+          const cb = c.querySelector("input[type='checkbox']");
+          if (cb && cb.checked) {
+            selectedCodes.push(c.getAttribute("data-need"));
+          }
+        });
+        state.needs = selectedCodes;
+        state.selectedNeeds = selectedCodes;
+
+        // Gestión de la Prioridad Principal
+        if (selectedCodes.length === 1) {
+          state.primaryNeed = selectedCodes[0];
+          state.primaryPriority = selectedCodes[0];
+          if (priorityWrap) priorityWrap.style.display = "none";
+        } else if (selectedCodes.length > 1) {
+          if (priorityWrap && primaryNeedSelect) {
+            priorityWrap.style.display = "block";
+            const currentSelected = state.primaryNeed || state.primaryPriority;
+            primaryNeedSelect.innerHTML = '<option value="">Selecciona tu prioridad número uno</option>' +
+              selectedCodes.map((code) => {
+                const label = needsDescriptions[code] || code;
+                return `<option value="${code}">${code}. ${label}</option>`;
+              }).join("");
+
+            if (selectedCodes.includes(currentSelected)) {
+              primaryNeedSelect.value = currentSelected;
+            } else {
+              primaryNeedSelect.value = selectedCodes[0];
+              state.primaryNeed = selectedCodes[0];
+              state.primaryPriority = selectedCodes[0];
+            }
+          }
+        } else {
+          state.primaryNeed = "";
+          state.primaryPriority = "";
+          if (priorityWrap) priorityWrap.style.display = "none";
+        }
+
+        // GA4 tracking del inicio
+        if (selectedCodes.length === 1 && !state._startedTracked) {
+          state._startedTracked = true;
+          trackAnalyticsEvent("diagnostic_start", {
+            first_need: selectedCodes[0]
+          });
+        }
+      });
+    });
+
+    if (primaryNeedSelect) {
+      primaryNeedSelect.addEventListener("change", () => {
+        state.primaryNeed = primaryNeedSelect.value;
+      });
+    }
+  }
+
   // Adaptación dinámica de palabras según el perfil del alojamiento
   function updateTerminology(tipo) {
     let term = "alojamiento o cada una de sus unidades";
-    if (tipo === "casa") term = "casa completa";
+    if (tipo === "vivienda") term = "vivienda vacacional";
+    else if (tipo === "apartamento") term = "apartamento";
+    else if (tipo === "casa_rural") term = "casa rural";
     else if (tipo === "hotel") term = "habitación o categoría";
-    else if (tipo === "complejo") term = "unidad y conjunto";
+    else if (tipo === "otro") term = "alojamiento turístico";
 
-    const unitSpans = app.querySelectorAll(".quiz-unit-term");
+    const unitSpans = app.querySelectorAll(".quiz-unit-term, .quiz-unit-label");
     unitSpans.forEach((span) => {
       span.textContent = term;
     });
@@ -590,14 +824,22 @@ if (leakGallery && galleryPrev && galleryNext) {
 
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        const val = parseInt(btn.getAttribute("data-val"), 10);
-        state.answers[qNum] = val;
-
-        buttons.forEach((b) => b.classList.remove("is-selected"));
-        btn.classList.add("is-selected");
-
-        if (feedback && scaleTexts[val]) {
-          feedback.textContent = scaleTexts[val];
+        const valAttr = btn.getAttribute("data-val");
+        if (valAttr === "na") {
+          state.answers[qNum] = "na";
+          buttons.forEach((b) => b.classList.remove("is-selected"));
+          btn.classList.add("is-selected");
+          if (feedback) {
+            feedback.textContent = "No aplica a tu modelo de alojamiento · No penaliza tu puntuación";
+          }
+        } else {
+          const val = parseInt(valAttr, 10);
+          state.answers[qNum] = val;
+          buttons.forEach((b) => b.classList.remove("is-selected"));
+          btn.classList.add("is-selected");
+          if (feedback && scaleTexts[val]) {
+            feedback.textContent = scaleTexts[val];
+          }
         }
         if (card) {
           card.classList.add("has-selection");
@@ -623,7 +865,7 @@ if (leakGallery && galleryPrev && galleryNext) {
     if (progressFill && progressText && progressPercent) {
       if (targetStep === 0) {
         progressFill.style.width = "0%";
-        progressText.textContent = "Paso 0 de 7 · Perfil de tu alojamiento";
+        progressText.textContent = "Paso 0 de 7 · Necesidades y perfil";
         progressPercent.textContent = "0% completado";
       } else if (targetStep >= 1 && targetStep <= 7) {
         const pct = Math.round((targetStep / 7) * 100);
@@ -633,7 +875,7 @@ if (leakGallery && galleryPrev && galleryNext) {
         progressPercent.textContent = `${pct}% completado`;
       } else if (targetStep === 8) {
         progressFill.style.width = "100%";
-        progressText.textContent = "Autoevaluación completada · Diagnóstico listo";
+        progressText.textContent = "Diagnóstico completado · Índice calculado";
         progressPercent.textContent = "100% completado";
       }
     }
@@ -642,29 +884,34 @@ if (leakGallery && galleryPrev && galleryNext) {
     app.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  // Validación y navegación entre pasos
+  // Validación inicial y paso a las preguntas
   if (btnStart) {
     btnStart.addEventListener("click", () => {
-      const sector = tipoSelect ? tipoSelect.value.trim() : "";
-      const units = unidadesInput ? unidadesInput.value.trim() : "";
-      const location = ubicacionInput ? ubicacionInput.value.trim() : "";
-      const business = nombreInput ? nombreInput.value.trim() : "";
-
-      if (!sector || !units || !location || !business) {
-        alert("Por favor, completa los campos de perfil para personalizar las preguntas y contextualizar tu resultado.");
-        if (!sector && tipoSelect) tipoSelect.focus();
-        else if (!units && unidadesInput) unidadesInput.focus();
-        else if (!location && ubicacionInput) ubicacionInput.focus();
-        else if (!business && nombreInput) nombreInput.focus();
+      if (state.needs.length === 0) {
+        alert("Por favor, selecciona al menos un aspecto que te gustaría mejorar en tu alojamiento rural para iniciar el diagnóstico.");
         return;
       }
 
-      state.profile.sector = sector;
-      state.profile.sectorText = tipoSelect.options[tipoSelect.selectedIndex]?.text || sector;
-      state.profile.units = units;
-      state.profile.location = location;
-      state.profile.business = business;
+      if (state.needs.length > 1 && !state.primaryNeed) {
+        if (primaryNeedSelect && primaryNeedSelect.value) {
+          state.primaryNeed = primaryNeedSelect.value;
+        } else {
+          state.primaryNeed = state.needs[0];
+        }
+      }
+
+      // Guardar contexto
+      state.profile.sector = tipoSelect ? (tipoSelect.value || "casa") : "casa";
+      state.profile.sectorText = tipoSelect?.options[tipoSelect.selectedIndex]?.text || "Casa rural o vivienda vacacional independiente";
+      state.profile.units = unidadesInput ? (unidadesInput.value || "1") : "1";
+      state.profile.location = ubicacionInput ? ubicacionInput.value.trim() : "";
+      state.profile.business = nombreInput ? nombreInput.value.trim() : "";
       state.profile.web = webInput ? webInput.value.trim() : "";
+
+      trackAnalyticsEvent("needs_selected", {
+        needs_count: state.needs.length,
+        primary_need: state.primaryNeed
+      });
 
       goToStep(1);
     });
@@ -683,7 +930,7 @@ if (leakGallery && galleryPrev && galleryNext) {
         const q2 = (currentStep * 3) - 1;
         const q3 = currentStep * 3;
         if (state.answers[q1] === null || state.answers[q2] === null || state.answers[q3] === null) {
-          alert("Por favor, selecciona una puntuación para cada una de las 3 preguntas antes de avanzar.");
+          alert("Por favor, puntúa o selecciona 'N/A' en cada una de las 3 preguntas antes de avanzar.");
           return;
         }
       }
@@ -712,47 +959,84 @@ if (leakGallery && galleryPrev && galleryNext) {
     });
   }
 
+  // Botón para revelar y enfocar el formulario de captación
+  const btnUnlockReport = app.querySelector("#btn-unlock-report");
+  if (btnUnlockReport) {
+    btnUnlockReport.addEventListener("click", () => {
+      const formCard = app.querySelector("#quiz-report-form-card");
+      if (formCard) {
+        formCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        const nameInput = formCard.querySelector("#report-name");
+        if (nameInput) setTimeout(() => nameInput.focus(), 300);
+      }
+    });
+  }
+
   // ==========================================================================
   // Cálculo y Presentación Inmediata de Resultados (Paso 8)
   // ==========================================================================
   function calculateAndRenderResults() {
-    let sum = 0;
-    for (let i = 1; i <= 21; i++) {
-      sum += (state.answers[i] || 1);
+    function calcPillarScore(qIndices) {
+      const valid = qIndices
+        .map((q) => state.answers[q])
+        .filter((val) => typeof val === "number" && !isNaN(val));
+      if (valid.length === 0) return null;
+      return Math.round((valid.reduce((acc, v) => acc + v, 0) / valid.length) * 10) / 10;
     }
-    const globalScore = Math.round((sum / 21) * 10) / 10;
 
-    // Medias de las 7 P (3 preguntas por pilar)
-    const pScores = [
-      { key: "p1", name: pNames.p1, score: Math.round(((state.answers[1] + state.answers[2] + state.answers[3]) / 3) * 10) / 10 },
-      { key: "p2", name: pNames.p2, score: Math.round(((state.answers[4] + state.answers[5] + state.answers[6]) / 3) * 10) / 10 },
-      { key: "p3", name: pNames.p3, score: Math.round(((state.answers[7] + state.answers[8] + state.answers[9]) / 3) * 10) / 10 },
-      { key: "p4", name: pNames.p4, score: Math.round(((state.answers[10] + state.answers[11] + state.answers[12]) / 3) * 10) / 10 },
-      { key: "p5", name: pNames.p5, score: Math.round(((state.answers[13] + state.answers[14] + state.answers[15]) / 3) * 10) / 10 },
-      { key: "p6", name: pNames.p6, score: Math.round(((state.answers[16] + state.answers[17] + state.answers[18]) / 3) * 10) / 10 },
-      { key: "p7", name: pNames.p7, score: Math.round(((state.answers[19] + state.answers[20] + state.answers[21]) / 3) * 10) / 10 }
+    const rawScores = [
+      { key: "p1", name: pNames.p1, score: calcPillarScore([1, 2, 3]) },
+      { key: "p2", name: pNames.p2, score: calcPillarScore([4, 5, 6]) },
+      { key: "p3", name: pNames.p3, score: calcPillarScore([7, 8, 9]) },
+      { key: "p4", name: pNames.p4, score: calcPillarScore([10, 11, 12]) },
+      { key: "p5", name: pNames.p5, score: calcPillarScore([13, 14, 15]) },
+      { key: "p6", name: pNames.p6, score: calcPillarScore([16, 17, 18]) },
+      { key: "p7", name: pNames.p7, score: calcPillarScore([19, 20, 21]) }
     ];
 
-    // Renderizar Puntuación Global
+    const validPillars = rawScores.filter((p) => p.score !== null);
+    const overallAvg = validPillars.length > 0
+      ? (validPillars.reduce((a, b) => a + b.score, 0) / validPillars.length)
+      : 6.0;
+
+    const pScores = rawScores.map((p) => ({
+      key: p.key,
+      name: p.name,
+      score: p.score !== null ? p.score : Math.round(overallAvg * 10) / 10
+    }));
+
+    const finalAvg = pScores.reduce((sum, p) => sum + p.score, 0) / 7;
+    const globalScore100 = Math.min(100, Math.max(10, Math.round(finalAvg * 10)));
+    const globalScore10 = finalAvg.toFixed(1);
+
+    // Renderizar Puntuación Global sobre 100
     const globalNumEl = app.querySelector("#res-global-score");
     const globalLevelEl = app.querySelector("#res-global-level");
     const globalDescEl = app.querySelector("#res-global-desc");
+    const globalBarEl = app.querySelector("#res-global-bar");
 
-    if (globalNumEl) globalNumEl.textContent = globalScore.toFixed(1);
+    if (globalNumEl) globalNumEl.textContent = String(globalScore100);
+
+    if (globalBarEl) {
+      globalBarEl.style.width = `${globalScore100}%`;
+      if (globalScore100 < 50) globalBarEl.style.background = "linear-gradient(90deg, #ef4444, #f87171)";
+      else if (globalScore100 < 70) globalBarEl.style.background = "linear-gradient(90deg, #f59e0b, #fbbf24)";
+      else globalBarEl.style.background = "linear-gradient(90deg, #10b981, #34d399)";
+    }
 
     if (globalLevelEl && globalDescEl) {
-      if (globalScore <= 4.0) {
-        globalLevelEl.textContent = "Nivel inicial de desarrollo comercial";
-        globalDescEl.textContent = "Tus prácticas comerciales se apoyan principalmente en la reacción puntual. Tienes una oportunidad directa para asentar métodos estables en tarifas, canales y seguimiento sin complicarte con herramientas caras.";
-      } else if (globalScore <= 6.5) {
-        globalLevelEl.textContent = "Nivel de desarrollo en consolidación";
-        globalDescEl.textContent = "Cuentas con bases de gestión y métodos definidos, aunque todavía se aplican de forma irregular. Establecer rutinas fijas y medir el rendimiento de tus canales te permitirá defender mejor tu margen neto.";
-      } else if (globalScore <= 8.5) {
-        globalLevelEl.textContent = "Nivel comercial consolidado";
-        globalDescEl.textContent = "Tienes procesos claros y registrados en la mayor parte de las áreas comerciales. Tu margen de mejora está en afinar la conversión de la venta directa y optimizar las fechas de menor demanda.";
+      if (globalScore100 <= 49) {
+        globalLevelEl.textContent = "Tu Índice: " + globalScore100 + "/100 · Nivel Inicial de Madurez";
+        globalDescEl.textContent = "Tus prácticas comerciales se apoyan principalmente en la reacción puntual ante la demanda. Tienes una oportunidad directa para asentar métodos estables en tarifas, canales y presentación sin complicarte con herramientas caras.";
+      } else if (globalScore100 <= 69) {
+        globalLevelEl.textContent = "Tu Índice: " + globalScore100 + "/100 · Buen Punto de Partida con Margen de Mejora";
+        globalDescEl.textContent = "Cuentas con bases de gestión y métodos definidos, aunque todavía se aplican de forma irregular. Establecer rutinas fijas y optimizar tus canales te permitirá defender mejor tu margen neto frente a comisiones de intermediarios.";
+      } else if (globalScore100 <= 84) {
+        globalLevelEl.textContent = "Tu Índice: " + globalScore100 + "/100 · Nivel Comercial Consolidado";
+        globalDescEl.textContent = "Tienes procesos claros y registrados en la mayor parte de las áreas comerciales. Tu principal palanca de rentabilidad consiste en afinar la conversión de venta directa y optimizar la ocupación en fechas de menor demanda.";
       } else {
-        globalLevelEl.textContent = "Nivel de gestión avanzada y analítica";
-        globalDescEl.textContent = "Demuestras un control riguroso y una gestión guiada por datos en tus canales y procesos. El foco consiste en proteger la rentabilidad neta y rentabilizar aún más la fidelización directa.";
+        globalLevelEl.textContent = "Tu Índice: " + globalScore100 + "/100 · Nivel de Gestión Avanzada y Excelente";
+        globalDescEl.textContent = "Demuestras un control riguroso y una gestión guiada por datos en tus canales y procesos. El foco consiste en proteger la rentabilidad neta y rentabilizar aún más la fidelización de antiguos huéspedes.";
       }
     }
 
@@ -781,41 +1065,75 @@ if (leakGallery && galleryPrev && galleryNext) {
     const sortedDesc = [...pScores].sort((a, b) => b.score - a.score);
     const sortedAsc = [...pScores].sort((a, b) => a.score - b.score);
 
-    const strengths = [sortedDesc[0], sortedDesc[1]];
-    const priorities = [sortedAsc[0], sortedAsc[1]];
+    const mainStrength = sortedDesc[0];
+    const mainPriority = sortedAsc[0];
 
     const strengthsListEl = app.querySelector("#res-strengths-list");
     if (strengthsListEl) {
-      strengthsListEl.innerHTML = strengths.map((s) => `
+      strengthsListEl.innerHTML = `
         <li>
-          <strong>${s.name} (${s.score.toFixed(1)}/10):</strong>
-          ${pInsights[s.key]?.strength || "Área con prácticas comerciales consolidadas."}
+          <strong>${mainStrength.name} (${mainStrength.score.toFixed(1)}/10):</strong>
+          ${pInsights[mainStrength.key]?.strength || "Área con prácticas comerciales consolidadas."}
         </li>
-      `).join("");
+      `;
     }
 
     const prioritiesListEl = app.querySelector("#res-priorities-list");
     if (prioritiesListEl) {
-      prioritiesListEl.innerHTML = priorities.map((p) => `
+      prioritiesListEl.innerHTML = `
         <li>
-          <strong>${p.name} (${p.score.toFixed(1)}/10):</strong>
-          ${pInsights[p.key]?.priority || "Área prioritaria para impulsar reservas directas."}
+          <strong>${mainPriority.name} (${mainPriority.score.toFixed(1)}/10):</strong>
+          ${pInsights[mainPriority.key]?.priority || "Área prioritaria para impulsar reservas directas."}
         </li>
-      `).join("");
+      `;
     }
 
-    // Enlace de WhatsApp pre-rellenado (conversación voluntaria)
-    const whatsappCta = app.querySelector("#quiz-whatsapp-cta");
-    if (whatsappCta) {
-      const msg = `Hola Pyme360, he completado la autoevaluación comercial de ${state.profile.business || "mi alojamiento"} con una puntuación de ${globalScore.toFixed(1)}/10. Mis dos prioridades son ${priorities[0].name} y ${priorities[1].name}. Me gustaría comentarlas con vosotros.`;
-      whatsappCta.href = `https://wa.me/34686184291?text=${encodeURIComponent(msg)}`;
+    // Recomendación de marca personalizada
+    const rec = pyme360GetBrandRecommendation(state.primaryNeed, pScores, state.profile.location, state.profile.sector, state.needs);
+    const recKicker = app.querySelector("#rec-kicker");
+    const recTitle = app.querySelector("#rec-title");
+    const recText = app.querySelector("#rec-text");
+    const recBookingBtn = app.querySelector("#rec-booking-btn");
+
+    if (recKicker) recKicker.textContent = `Recomendación comercial adaptada · Solución para tu caso`;
+    if (recTitle) recTitle.textContent = rec.title;
+    if (recText) recText.textContent = rec.text;
+
+    // Configuración del botón de agenda
+    if (recBookingBtn) {
+      const bookingMsg = `Hola, he completado el diagnóstico comercial para ${state.profile.business || "mi alojamiento rural"} (Puntuación: ${globalScore100}/100, Prioridad: ${needsDescriptions[state.primaryNeed] || state.primaryNeed}). Me gustaría reservar la sesión gratuita de asesoramiento de 20 minutos.`;
+      const finalAgendaUrl = (typeof window !== "undefined" && window.PYME360_AGENDA_URL)
+        ? window.PYME360_AGENDA_URL
+        : `https://wa.me/34686184291?text=${encodeURIComponent(bookingMsg)}`;
+
+      recBookingBtn.href = finalAgendaUrl;
+      recBookingBtn.addEventListener("click", () => {
+        trackAnalyticsEvent("booking_click", {
+          score_100: globalScore100,
+          primary_need: state.primaryNeed,
+          brand: rec.brand
+        });
+      });
     }
 
-    // Pre-rellenar formulario de informe detallado por correo
+    // Pre-rellenar formulario de informe con datos de perfil si existen
     const reportName = app.querySelector("#report-name");
-    if (reportName && state.profile.business && !reportName.value) {
-      reportName.value = state.profile.business;
+    const reportBusiness = app.querySelector("#report-business");
+    const reportLocation = app.querySelector("#report-location");
+
+    if (reportBusiness && state.profile.business && !reportBusiness.value) {
+      reportBusiness.value = state.profile.business;
     }
+    if (reportLocation && state.profile.location && !reportLocation.value) {
+      reportLocation.value = state.profile.location;
+    }
+
+    // GA4 evento de diagnóstico completado
+    trackAnalyticsEvent("diagnostic_complete", {
+      score_100: globalScore100,
+      primary_need: state.primaryNeed,
+      recommended_brand: rec.brand
+    });
   }
 
   // ==========================================================================
@@ -831,12 +1149,14 @@ if (leakGallery && galleryPrev && galleryNext) {
 
       const nameVal = emailForm.querySelector("#report-name")?.value.trim() || "";
       const emailVal = emailForm.querySelector("#report-email")?.value.trim() || "";
+      const businessVal = emailForm.querySelector("#report-business")?.value.trim() || state.profile.business || "";
+      const locationVal = emailForm.querySelector("#report-location")?.value.trim() || state.profile.location || "Sin especificar";
       const phoneVal = emailForm.querySelector("#report-phone")?.value.trim() || "";
       const newsletterBox = emailForm.querySelector("#report-newsletter");
       const privacyBox = emailForm.querySelector("#report-privacy");
 
       if (!privacyBox || !privacyBox.checked) {
-        alert("Debes aceptar la política de privacidad para que podamos enviarte el informe.");
+        alert("Debes aceptar la política de privacidad para que podamos generar y enviarte el informe.");
         return;
       }
 
@@ -850,10 +1170,33 @@ if (leakGallery && galleryPrev && galleryNext) {
         statusMsg.className = "form-status-msg form-wide";
       }
 
-      // Cálculo del informe formateado de Autoevaluación 7P
+      // Cálculo del informe de Autoevaluación 7P
       let sum = 0;
       for (let i = 1; i <= 21; i++) sum += (state.answers[i] || 1);
-      const globalScore = (sum / 21).toFixed(1);
+      const globalScore100 = Math.min(100, Math.max(10, Math.round((sum / (21 * 10)) * 100)));
+      const globalScore10 = (sum / 21).toFixed(1);
+
+      const pScores = [
+        { key: "p1", name: "1. Producto", score: (((state.answers[1] || 1) + (state.answers[2] || 1) + (state.answers[3] || 1)) / 3) },
+        { key: "p2", name: "2. Precio", score: (((state.answers[4] || 1) + (state.answers[5] || 1) + (state.answers[6] || 1)) / 3) },
+        { key: "p3", name: "3. Plaza (Canales)", score: (((state.answers[7] || 1) + (state.answers[8] || 1) + (state.answers[9] || 1)) / 3) },
+        { key: "p4", name: "4. Promoción", score: (((state.answers[10] || 1) + (state.answers[11] || 1) + (state.answers[12] || 1)) / 3) },
+        { key: "p5", name: "5. Personas", score: (((state.answers[13] || 1) + (state.answers[14] || 1) + (state.answers[15] || 1)) / 3) },
+        { key: "p6", name: "6. Procesos", score: (((state.answers[16] || 1) + (state.answers[17] || 1) + (state.answers[18] || 1)) / 3) },
+        { key: "p7", name: "7. Evidencia física y digital", score: (((state.answers[19] || 1) + (state.answers[20] || 1) + (state.answers[21] || 1)) / 3) }
+      ];
+
+      const sortedAsc = [...pScores].sort((a, b) => a.score - b.score);
+      const sortedDesc = [...pScores].sort((a, b) => b.score - a.score);
+
+      const prio1 = sortedAsc[0];
+      const prio2 = sortedAsc[1];
+      const prio3 = sortedAsc[2];
+      const fort1 = sortedDesc[0];
+      const fort2 = sortedDesc[1];
+      const fort3 = sortedDesc[2];
+
+      const rec = pyme360GetBrandRecommendation(state.primaryNeed, pScores, locationVal, state.profile.sector, state.needs);
 
       const questionLabels = {
         1: "P1 Producto · Definición de huésped objetivo por temporada",
@@ -879,65 +1222,71 @@ if (leakGallery && galleryPrev && galleryNext) {
         21: "P7 Evidencia · Cuidado de detalles físicos y experiencia memorable"
       };
 
-      const pScores = [
-        { key: "p1", name: "1. Producto", score: (((state.answers[1] || 1) + (state.answers[2] || 1) + (state.answers[3] || 1)) / 3) },
-        { key: "p2", name: "2. Precio", score: (((state.answers[4] || 1) + (state.answers[5] || 1) + (state.answers[6] || 1)) / 3) },
-        { key: "p3", name: "3. Plaza (Canales)", score: (((state.answers[7] || 1) + (state.answers[8] || 1) + (state.answers[9] || 1)) / 3) },
-        { key: "p4", name: "4. Promoción", score: (((state.answers[10] || 1) + (state.answers[11] || 1) + (state.answers[12] || 1)) / 3) },
-        { key: "p5", name: "5. Personas", score: (((state.answers[13] || 1) + (state.answers[14] || 1) + (state.answers[15] || 1)) / 3) },
-        { key: "p6", name: "6. Procesos", score: (((state.answers[16] || 1) + (state.answers[17] || 1) + (state.answers[18] || 1)) / 3) },
-        { key: "p7", name: "7. Evidencia física y digital", score: (((state.answers[19] || 1) + (state.answers[20] || 1) + (state.answers[21] || 1)) / 3) }
-      ];
-
-      const sortedP = [...pScores].sort((a, b) => a.score - b.score);
-      const prio1 = sortedP[0];
-      const prio2 = sortedP[1];
-      const fortaleza = sortedP[sortedP.length - 1];
-
-      const pSummary = pScores.map(p => `${p.name}: ${p.score.toFixed(1)}/10`).join(" | ");
-
       const detailedAnswers = [];
       for (let i = 1; i <= 21; i++) {
-        detailedAnswers.push(`- Q${i < 10 ? '0' + i : i} [${questionLabels[i]}]: ${state.answers[i] || 1} / 10`);
+        const val = state.answers[i];
+        const valStr = val === "na" ? "N/A (No aplica a este modelo)" : `${val || 1} / 10`;
+        detailedAnswers.push(`- Q${i < 10 ? '0' + i : i} [${questionLabels[i]}]: ${valStr}`);
       }
 
       const problemReportText = [
         `============================================================`,
         `INFORME COMPLETO DE AUTOEVALUACIÓN COMERCIAL 7P`,
-        `Pyme360 Growth · Alojamientos Rurales`,
+        `Pyme360 Growth · Alojamientos Turísticos Independientes de España`,
         `============================================================`,
         ``,
         `DATOS DEL ALOJAMIENTO:`,
-        `- Alojamiento: ${state.profile.business || nameVal}`,
+        `- Alojamiento: ${businessVal}`,
         `- Tipo: ${state.profile.sectorText || state.profile.sector || "No especificado"}`,
-        `- Habitaciones / Unidades: ${state.profile.units || "No especificado"}`,
-        `- Ubicación: ${state.profile.location || "Sin especificar"}`,
+        `- Habitaciones / Unidades: ${state.profile.units || "1"}`,
+        `- Ubicación: ${locationVal}`,
         `- Web o enlace: ${state.profile.web || "No facilitada"}`,
+        ``,
+        `NECESIDADES DECLARADAS:`,
+        `- Aspectos seleccionados: ${state.needs.map(n => n + ': ' + (needsDescriptions[n] || '')).join('; ') || 'No especificado'}`,
+        `- Prioridad principal: ${state.primaryNeed ? (state.primaryNeed + ': ' + (needsDescriptions[state.primaryNeed] || '')) : 'No especificada'}`,
+        `- Solución recomendada: ${rec.brand} (${rec.title})`,
         ``,
         `DATOS DE CONTACTO DEL RESPONSABLE:`,
         `- Nombre: ${nameVal}`,
         `- Email: ${emailVal}`,
         `- Teléfono / WhatsApp: ${phoneVal || "No facilitado"}`,
-        `- Newsletter comercial: ${newsletterBox && newsletterBox.checked ? "Sí, suscrito" : "No"}`,
+        `- Newsletter comercial: ${newsletterBox && newsletterBox.checked ? "Sí, suscrito voluntariamente" : "No"}`,
+        `- Privacidad: Aceptada conforme a RGPD`,
+        `- Atribución campaña: source=${state.utms.source || 'directo'}, campaign=${state.utms.campaign || 'ninguna'}, medium=${state.utms.medium || 'ninguno'}`,
         ``,
         `------------------------------------------------------------`,
-        `RESULTADO GLOBAL: ${globalScore} / 10 (${Math.round(globalScore * 10)}% de madurez comercial)`,
+        `RESULTADO GLOBAL: ${globalScore100} / 100 (${globalScore10} / 10 en madurez comercial)`,
         `------------------------------------------------------------`,
         ``,
         `DESGLOSE DE LAS 7 P DEL MARKETING MIX:`,
         pScores.map(p => `- ${p.name}: ${p.score.toFixed(1)} / 10`).join("\n"),
         ``,
         `------------------------------------------------------------`,
-        `LAS 2 PRIORIDADES CRÍTICAS DE MEJORA:`,
-        `1. ${prio1.name} (${prio1.score.toFixed(1)}/10):`,
-        `   ${pInsights[prio1.key]?.priority || "Revisar y estructurar este canal para frenar fugas de reservas."}`,
+        `TRES FORTALEZAS SUSTENTADAS EN LAS RESPUESTAS:`,
+        `1. ${fort1.name} (${fort1.score.toFixed(1)}/10): ${pInsights[fort1.key]?.strength || "Práctica comercial afianzada."}`,
+        `2. ${fort2.name} (${fort2.score.toFixed(1)}/10): ${pInsights[fort2.key]?.strength || "Práctica comercial afianzada."}`,
+        `3. ${fort3.name} (${fort3.score.toFixed(1)}/10): ${pInsights[fort3.key]?.strength || "Práctica comercial afianzada."}`,
         ``,
-        `2. ${prio2.name} (${prio2.score.toFixed(1)}/10):`,
-        `   ${pInsights[prio2.key]?.priority || "Ajustar procesos para mejorar la conversión directa."}`,
+        `------------------------------------------------------------`,
+        `TRES OPORTUNIDADES PRIORITARIAS DE MEJORA:`,
+        `1. ${prio1.name} (${prio1.score.toFixed(1)}/10): ${pInsights[prio1.key]?.priority || "Revisar y asentar métodos claros."}`,
+        `2. ${prio2.name} (${prio2.score.toFixed(1)}/10): ${pInsights[prio2.key]?.priority || "Revisar y asentar métodos claros."}`,
+        `3. ${prio3.name} (${prio3.score.toFixed(1)}/10): ${pInsights[prio3.key]?.priority || "Revisar y asentar métodos claros."}`,
         ``,
-        `FORTALEZA PRINCIPAL A POTENCIAR:`,
-        `- ${fortaleza.name} (${fortaleza.score.toFixed(1)}/10):`,
-        `   ${pInsights[fortaleza.key]?.strength || "Área con mayor consolidación comercial."}`,
+        `PROBLEMA PRIORITARIO:`,
+        `El área de mayor fricción identificada es ${prio1.name}. Descuidar este aspecto suele provocar fugas directas de margen hacia intermediarios y pérdida de consultas de clientes interesados.`,
+        ``,
+        `TRES ACCIONES PRÁCTICAS RECOMENDADAS:`,
+        `1. ${pInsights[prio1.key]?.action || "Revisar la propuesta de valor y destacar qué incluye tu alojamiento."}`,
+        `2. ${pInsights[prio2.key]?.action || "Calcular el margen neto real tras comisiones y crear un incentivo directo en web."}`,
+        `3. ${pInsights[prio3.key]?.action || "Optimizar la presencia móvil y simplificar los datos de contacto."}`,
+        ``,
+        `PRÓXIMO PASO RECOMENDADO:`,
+        `${rec.nextStep}`,
+        ``,
+        `PROPUESTA COMERCIAL ADAPTADA (${rec.brand}):`,
+        `${rec.text}`,
         ``,
         `------------------------------------------------------------`,
         `DETALLE DE LAS 21 PREGUNTAS Y PUNTUACIÓN (1 al 10):`,
@@ -950,33 +1299,47 @@ if (leakGallery && galleryPrev && galleryNext) {
         name: nameVal,
         email: emailVal,
         phone: phoneVal,
-        business: state.profile.business || nameVal,
+        business: businessVal,
         sector: state.profile.sectorText || state.profile.sector,
-        location: state.profile.location || "Sin especificar",
+        accommodation_type: state.profile.sector || "vivienda",
+        location: locationVal,
         web: state.profile.web || "",
-        units: state.profile.units || "",
+        units: state.profile.units || "1",
         problem: problemReportText,
+        source: "indice_pyme360_autoevaluacion",
         newsletter: newsletterBox && newsletterBox.checked ? "yes" : "",
-        privacy: "yes"
+        privacy: "yes",
+        needs: state.needs,
+        primary_need: state.primaryNeed,
+        recommended_brand: rec.brand,
+        complementary_brand: rec.complementaryBrand ? rec.complementaryBrand.brand : "",
+        score_100: globalScore100,
+        utms: state.utms
       };
 
       try {
         const fullPayload = pyme360BuildIndiceLeadPayload(payload);
         await pyme360SubmitIndiceLead(fullPayload);
 
+        trackAnalyticsEvent("generate_lead", {
+          score_100: globalScore100,
+          primary_need: state.primaryNeed,
+          recommended_brand: rec.brand
+        });
+
         if (statusMsg) {
-          statusMsg.textContent = "¡Informe registrado! Hemos enviado una copia a tu email y registrado tu autoevaluación. Revisaremos tus prioridades para responderte.";
+          statusMsg.textContent = "¡Informe generado con éxito! Hemos enviado una copia personalizada a tu email (" + emailVal + "). También puedes reservar tu sesión de asesoramiento de 20 minutos a continuación.";
           statusMsg.classList.add("is-success");
           statusMsg.style.display = "block";
         }
         if (submitBtn) {
-          submitBtn.textContent = "Informe enviado correctamente ✓";
+          submitBtn.textContent = "Informe enviado a tu email ✓";
         }
         pyme360LanzarConfeti();
       } catch (err) {
         console.error("Error al enviar autoevaluacion lead:", err);
         if (statusMsg) {
-          statusMsg.textContent = "No se pudo conectar con el servidor en este momento. Hemos conservado tus resultados en pantalla; puedes escribirnos directamente a info@pyme360.online con tus resultados.";
+          statusMsg.textContent = "No se pudo conectar con el servidor en este momento. Tus resultados siguen visibles en pantalla; escríbenos directamente a info@pyme360.online con tus resultados.";
           statusMsg.classList.add("is-error");
           statusMsg.style.display = "block";
         }
@@ -988,9 +1351,37 @@ if (leakGallery && galleryPrev && galleryNext) {
     });
   }
 
-    // Soporte para previsualización inmediata (?demo=1 o ?paso=8)
-    const urlParams = (typeof window !== "undefined" && window.location) ? new URLSearchParams(window.location.search) : null;
-    if (urlParams && (urlParams.get("demo") === "1" || urlParams.get("paso") === "8" || urlParams.get("test") === "resultados")) {
+  // Soporte para previsualización inmediata (?demo=1 o ?paso=8)
+  const urlParams = (typeof window !== "undefined" && window.location) ? new URLSearchParams(window.location.search) : null;
+  if (urlParams && (urlParams.get("demo") === "1" || urlParams.get("paso") === "8" || urlParams.get("test") === "resultados")) {
+    state.needs = ["B", "C"];
+    state.primaryNeed = "B";
+    state.profile = {
+      sector: "casa",
+      sectorText: "Casa rural o vivienda vacacional independiente",
+      units: "6",
+      location: "Asturias",
+      business: "Finca El Valle",
+      web: "fincaelvalle.es"
+    };
+    state.answers = {
+      1: 8, 2: 7, 3: 5,
+      4: 4, 5: 6, 6: 5,
+      7: 4, 8: 3, 9: 8,
+      10: 7, 11: 6, 12: 5,
+      13: 7, 14: 6, 15: 6,
+      16: 5, 17: 4, 18: 5,
+      19: 7, 20: 6, 21: 7
+    };
+    calculateAndRenderResults();
+    goToStep(8);
+    setTimeout(pyme360LanzarConfeti, 150);
+  }
+
+  if (typeof window !== "undefined") {
+    window.pyme360VerResultadosDemo = function() {
+      state.needs = ["B", "C"];
+      state.primaryNeed = "B";
       state.profile = {
         sector: "casa",
         sectorText: "Casa rural o vivienda vacacional independiente",
@@ -1000,163 +1391,20 @@ if (leakGallery && galleryPrev && galleryNext) {
         web: "fincaelvalle.es"
       };
       state.answers = {
-        1: 8, 2: 7,
-        3: 5, 4: 4,
-        5: 6, 6: 5,
-        7: 4, 8: 3,
-        9: 8, 10: 7,
-        11: 6, 12: 5,
-        13: 7, 14: 6
+        1: 8, 2: 7, 3: 5,
+        4: 4, 5: 6, 6: 5,
+        7: 4, 8: 3, 9: 8,
+        10: 7, 11: 6, 12: 5,
+        13: 7, 14: 6, 15: 6,
+        16: 5, 17: 4, 18: 5,
+        19: 7, 20: 6, 21: 7
       };
       calculateAndRenderResults();
       goToStep(8);
       setTimeout(pyme360LanzarConfeti, 150);
-    }
-
-
-  // ========================================================
-  // Celebración WOW: Confeti de marca y pajaritos volando
-  // ========================================================
-  function pyme360LanzarConfeti() {
-    if (typeof window === "undefined" || typeof document === "undefined") return;
-    try {
-      const existing = document.getElementById("pyme360-celebration-canvas");
-      if (existing && existing.parentNode) {
-        existing.parentNode.removeChild(existing);
-      }
-
-      const canvas = document.createElement("canvas");
-      canvas.id = "pyme360-celebration-canvas";
-      canvas.style.cssText = "position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:999999;";
-      document.body.appendChild(canvas);
-
-      const ctx = canvas.getContext("2d");
-      let width = (canvas.width = window.innerWidth);
-      let height = (canvas.height = window.innerHeight);
-
-      // Paleta Pyme360: esmeraldas, oros, naranjas cálidos, cian y blanco
-      const colors = ["#10b981", "#059669", "#34d399", "#f59e0b", "#fbbf24", "#ea580c", "#f97316", "#38bdf8", "#ffffff"];
-      const particles = [];
-      const particleCount = 135;
-
-      // Generar partículas (confeti vibrante + pajaritos voladores origami)
-      for (let i = 0; i < particleCount; i++) {
-        const isBird = (i % 6 === 0); // 1 de cada 6 es un pajarito volador
-        particles.push({
-          isBird: isBird,
-          x: width * (0.2 + Math.random() * 0.6),
-          y: height * 0.6 + (Math.random() * 80 - 40),
-          vx: (Math.random() - 0.5) * (isBird ? 13 : 19),
-          vy: -Math.random() * (isBird ? 15 : 22) - 6,
-          size: isBird ? (Math.random() * 8 + 11) : (Math.random() * 8 + 6),
-          color: colors[Math.floor(Math.random() * colors.length)],
-          rotation: Math.random() * Math.PI * 2,
-          vRot: (Math.random() - 0.5) * 0.22,
-          wingAngle: Math.random() * Math.PI * 2,
-          wingSpeed: 0.16 + Math.random() * 0.18,
-          opacity: 1,
-          gravity: isBird ? 0.20 : 0.44,
-          drag: isBird ? 0.985 : 0.965
-        });
-      }
-
-      let startTime = performance.now();
-      let animId = null;
-
-      function render(currentTime) {
-        const elapsed = currentTime - startTime;
-        ctx.clearRect(0, 0, width, height);
-
-        let alive = false;
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-          p.vx *= p.drag;
-          p.vy = p.vy * p.drag + p.gravity;
-          p.x += p.vx;
-          p.y += p.vy;
-          p.rotation += p.vRot;
-          p.wingAngle += p.wingSpeed;
-
-          if (elapsed > 2400) {
-            p.opacity -= 0.024;
-          }
-
-          if (p.opacity > 0 && p.y < height + 80) {
-            alive = true;
-            ctx.save();
-            ctx.translate(p.x, p.y);
-            ctx.rotate(p.rotation);
-            ctx.globalAlpha = Math.max(0, Math.min(1, p.opacity));
-
-            if (p.isBird) {
-              // Silueta origami de pajarito batiendo alas
-              ctx.fillStyle = p.color;
-              ctx.beginPath();
-              const wingOffset = Math.sin(p.wingAngle) * (p.size * 0.5);
-              ctx.moveTo(-p.size, wingOffset);
-              ctx.quadraticCurveTo(0, -p.size * 0.7, p.size, wingOffset);
-              ctx.quadraticCurveTo(0, p.size * 0.3, -p.size, wingOffset);
-              ctx.fill();
-
-              // Detalle de cabeza / pico
-              ctx.beginPath();
-              ctx.arc(p.size * 0.7, wingOffset * 0.5, p.size * 0.22, 0, Math.PI * 2);
-              ctx.fillStyle = "#ffffff";
-              ctx.fill();
-            } else {
-              // Cinta o papel de confeti ondeante en perspectiva 3D
-              ctx.fillStyle = p.color;
-              const w = p.size;
-              const h = p.size * (0.35 + 0.65 * Math.abs(Math.cos(p.wingAngle)));
-              ctx.fillRect(-w / 2, -h / 2, w, h);
-            }
-
-            ctx.restore();
-          }
-        }
-
-        if (alive && elapsed < 4800) {
-          animId = requestAnimationFrame(render);
-        } else {
-          if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
-          if (animId) cancelAnimationFrame(animId);
-        }
-      }
-
-      animId = requestAnimationFrame(render);
-    } catch (e) {
-      console.warn("Celebration animation skipped:", e);
-    }
+    };
+    window.pyme360GetBrandRecommendation = pyme360GetBrandRecommendation;
   }
-
-  if (typeof window !== "undefined") {
-    window.pyme360LanzarConfeti = pyme360LanzarConfeti;
-  }
-
-    if (typeof window !== "undefined") {
-      window.pyme360VerResultadosDemo = function() {
-        state.profile = {
-          sector: "casa",
-          sectorText: "Casa rural o vivienda vacacional independiente",
-          units: "6",
-          location: "Asturias",
-          business: "Finca El Valle",
-          web: "fincaelvalle.es"
-        };
-        state.answers = {
-          1: 8, 2: 7,
-          3: 5, 4: 4,
-          5: 6, 6: 5,
-          7: 4, 8: 3,
-          9: 8, 10: 7,
-          11: 6, 12: 5,
-          13: 7, 14: 6
-        };
-        calculateAndRenderResults();
-        goToStep(8);
-        setTimeout(pyme360LanzarConfeti, 150);
-      };
-    }
 })();
 
 // ========================================================

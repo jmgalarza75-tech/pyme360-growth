@@ -16,3 +16,7 @@ define('DB_PASS', 'tu_contraseña_de_bd');
 define('SMTP_FROM', 'info@pyme360.online');
 define('SMTP_PASS', 'tu_contraseña_de_email');
 define('NOTIFY_TO', 'info@pyme360.online');        // dónde quieres recibir los leads
+
+// --- Entrega de correos vía Resend (opcional, si el dominio está verificado en Resend) ---
+// define('RESEND_FROM', 'Teo Rubio Pérez · Pyme360 Growth <info@pyme360.online>');
+// define('PYME360_AGENDA_URL', 'https://calendly.com/...'); // Enlace de agenda opcional

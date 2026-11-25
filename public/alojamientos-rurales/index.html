@@ -207,12 +207,1063 @@
       </div>
     </section>
 
+    <!-- =====================================================================
+         BLOQUE 1: LA HERRAMIENTA / AUTOEVALUACIÓN COMERCIAL GRATUITA
+         ===================================================================== -->
+<section id="diagnostico" class="diagnosis section diagnosis-rural autoevaluacion-section">
+      <div class="diagnosis-copy diagnosis-header-wrapper scroll-reveal-right">
+        <span class="dock-header-pill" style="margin-bottom: 12px; display: inline-flex;">
+          <span class="dock-pulse-dot"></span> Autoevaluación comercial en 5 minutos
+        </span>
+        <h2 class="diagnosis-main-title">Evalúa la gestión comercial de tu alojamiento sin coste</h2>
+        <p class="diagnosis-main-subtitle">Sustituye la consulta a ciegas por un diagnóstico de estado claro. Las 7 P del marketing mix son nuestro marco de análisis para detectar oportunidades (no la promesa de ejecutar todas las P). Responde 21 preguntas y obtén al instante tu resultado en pantalla, con tus áreas más trabajadas y tus dos prioridades de mejora.</p>
+        
+        <div class="quiz-trust-badge scroll-reveal-right">
+          <svg class="trust-shield-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span class="form-note">Pedir mini-revisión sin compromiso: el resultado se calcula en pantalla de forma inmediata y no te compromete a contratar nada.</span>
+        </div>
+      </div>
+
+      <div id="autoevaluacion-app" class="autoevaluacion-card" role="region" aria-label="Cuestionario de autoevaluación comercial de 7 P">
+        <!-- Indicador y Barra de Progreso -->
+        <div class="quiz-progress-wrapper" aria-hidden="true">
+          <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 0%;"></div>
+          </div>
+          <div class="quiz-progress-meta">
+            <span id="quiz-progress-text">Paso 0 de 7 · Perfil de tu alojamiento</span>
+            <span id="quiz-progress-percent">0% completado</span>
+          </div>
+        </div>
+
+                <!-- Paso 0: Identificación de Necesidades y Contexto Inicial -->
+        <div class="quiz-step-pane is-active" data-step="0">
+          <div class="quiz-pane-header">
+            <span class="quiz-kicker">Paso inicial · Personalización</span>
+            <h3>¿Qué te gustaría mejorar en tu alojamiento?</h3>
+            <p>Selecciona los aspectos que más te preocupan. Adaptaremos el diagnóstico para ayudarte a identificar tus principales oportunidades de mejora.</p>
+          </div>
+
+          <!-- Cuadrícula de Necesidades -->
+          <div class="quiz-needs-grid" id="quiz-needs-grid" role="group" aria-label="Aspectos prioritarios a mejorar">
+            <label class="quiz-need-card" data-need="A">
+              <input type="checkbox" name="quiz_needs" value="A">
+              <div class="need-card-inner">
+                <span class="need-letter">A</span>
+                <span class="need-text">Conseguir más reservas y mejorar la comercialización.</span>
+              </div>
+            </label>
+            <label class="quiz-need-card" data-need="B">
+              <input type="checkbox" name="quiz_needs" value="B">
+              <div class="need-card-inner">
+                <span class="need-letter">B</span>
+                <span class="need-text">Mejorar mi página web y aumentar las reservas directas.</span>
+              </div>
+            </label>
+            <label class="quiz-need-card" data-need="C">
+              <input type="checkbox" name="quiz_needs" value="C">
+              <div class="need-card-inner">
+                <span class="need-letter">C</span>
+                <span class="need-text">Reducir la dependencia de Booking y Airbnb.</span>
+              </div>
+            </label>
+            <label class="quiz-need-card" data-need="D">
+              <input type="checkbox" name="quiz_needs" value="D">
+              <div class="need-card-inner">
+                <span class="need-letter">D</span>
+                <span class="need-text">Mejorar fotografías, descripciones y presentación del alojamiento.</span>
+              </div>
+            </label>
+            <label class="quiz-need-card" data-need="E">
+              <input type="checkbox" name="quiz_needs" value="E">
+              <div class="need-card-inner">
+                <span class="need-letter">E</span>
+                <span class="need-text">Delegar la gestión de reservas, huéspedes u operativa.</span>
+              </div>
+            </label>
+            <label class="quiz-need-card" data-need="F">
+              <input type="checkbox" name="quiz_needs" value="F">
+              <div class="need-card-inner">
+                <span class="need-letter">F</span>
+                <span class="need-text">Organizar mejor el negocio, ahorrar tiempo y mejorar procesos.</span>
+              </div>
+            </label>
+            <label class="quiz-need-card" data-need="G">
+              <input type="checkbox" name="quiz_needs" value="G">
+              <div class="need-card-inner">
+                <span class="need-letter">G</span>
+                <span class="need-text">Mejorar mi estrategia de precios y rentabilidad.</span>
+              </div>
+            </label>
+            <label class="quiz-need-card" data-need="H">
+              <input type="checkbox" name="quiz_needs" value="H">
+              <div class="need-card-inner">
+                <span class="need-letter">H</span>
+                <span class="need-text">Todavía no lo tengo claro; quiero conocer mi situación.</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- Selector de Prioridad Principal (si se marcan 2 o más) -->
+          <div class="quiz-primary-priority-wrap" id="quiz-primary-priority-wrap" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:16px; margin-bottom:22px;">
+            <label class="quiz-field quiz-field-wide">
+              <span style="font-weight:700; color:#14532d; font-size:14.5px;">Has seleccionado varias opciones. ¿Cuál es tu prioridad principal?</span>
+              <select id="quiz-primary-need-select" class="quiz-select" style="margin-top:6px; background:#ffffff; border:1px solid #86efac; border-radius:8px; padding:10px 14px; font-size:14px; color:#1e293b;">
+                <option value="">Selecciona tu prioridad número uno</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Contextualización rápida del tipo de alojamiento -->
+          <div class="quiz-profile-fields" style="border-top:1px solid #e2e8f0; padding-top:20px; margin-top:10px;">
+            <label class="quiz-field quiz-field-wide">
+              <span style="font-weight:700; color:#14532d;">Paso 1 · ¿Qué tipo de alojamiento gestionas?</span>
+              <select id="quiz-tipo" name="quiz_sector" class="quiz-select" style="font-weight:600;">
+                <option value="vivienda">Vivienda vacacional</option>
+                <option value="apartamento">Apartamento turístico</option>
+                <option value="casa_rural">Casa rural</option>
+                <option value="hotel">Hotel o establecimiento hotelero independiente</option>
+                <option value="otro">Otro alojamiento turístico</option>
+              </select>
+            </label>
+
+            <label class="quiz-field">
+              <span>Nº aprox. de habitaciones o unidades</span>
+              <input id="quiz-unidades" name="quiz_units" type="number" min="1" max="999" placeholder="Ej. 6" value="1">
+            </label>
+
+            <label class="quiz-field">
+              <span>Provincia o isla en España</span>
+              <input id="quiz-ubicacion" name="quiz_location" type="text" placeholder="Ej. Asturias, Ávila, Tenerife...">
+            </label>
+
+            <label class="quiz-field">
+              <span>Nombre del alojamiento <small style="font-weight:400;color:#607369;">(opcional)</small></span>
+              <input id="quiz-nombre" name="quiz_business" type="text" placeholder="Ej. Finca El Valle">
+            </label>
+
+            <label class="quiz-field">
+              <span>Web o enlace del alojamiento <small style="font-weight:400;color:#607369;">(opcional)</small></span>
+              <input id="quiz-web" name="quiz_web" type="text" inputmode="url" autocomplete="url" placeholder="tudominio.com, Booking o Google">
+            </label>
+          </div>
+
+          <div class="quiz-nav-actions">
+            <span class="quiz-hint-note" style="font-size:13px; color:#526057;">Resultado porcentual inmediato al finalizar · Sin registro previo</span>
+            <button type="button" class="button button-primary quiz-btn-next" id="quiz-btn-start">Comenzar diagnóstico →</button>
+          </div>
+        </div>
+
+        <!-- Paso 1: Producto -->
+        <div class="quiz-step-pane" data-step="1">
+          <div class="quiz-pane-header">
+            <span class="quiz-kicker">1 de 7 · Producto</span>
+            <h3>Propuesta de valor y público objetivo</h3>
+            <p>Evalúa la claridad de lo que ofreces y a quién buscas atraer en cada momento del año.</p>
+          </div>
+
+          <div class="quiz-questions-group">
+
+            <article class="quiz-question-card" data-q="1">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">01</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Tienes definido qué tipo de huésped quieres atraer en cada temporada?</h4>
+                  <p class="quiz-q-help">Tener claro si buscas parejas, familias, grupos o nómadas según las fechas del año.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="1">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q1">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="2">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">02</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Está claro qué hace diferente tu <span class="quiz-unit-label">alojamiento o cada una de sus unidades</span> frente al resto de la zona?</h4>
+                  <p class="quiz-q-help">Saber por qué un viajero te elegiría a ti antes que a otra opción cercana.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="2">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q2">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="3">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">03</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Revisas y renuevas periódicamente los elementos clave que más valoran los huéspedes (descanso, climatización, wifi, cocina o detalles locales)?</h4>
+                  <p class="quiz-q-help">Garantizar que las instalaciones esenciales cumplen o superan la expectativa del viajero.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="3">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q3">Selecciona una puntuación del 1 al 10</div>
+            </article>
+          </div>
+
+          <div class="quiz-nav-actions">
+            <button type="button" class="quiz-btn-prev" data-target-step="0">← Anterior</button>
+            <button type="button" class="button button-primary quiz-btn-next" data-target-step="2">Siguiente: Precio →</button>
+          </div>
+        </div>
+
+        <!-- Paso 2: Precio -->
+        <div class="quiz-step-pane" data-step="2">
+          <div class="quiz-pane-header">
+            <span class="quiz-kicker">2 de 7 · Precio</span>
+            <h3>Tarificación y rentabilidad por canal</h3>
+            <p>Evalúa el control sobre tus tarifas y el margen neto que te queda tras comisiones.</p>
+          </div>
+
+          <div class="quiz-questions-group">
+
+            <article class="quiz-question-card" data-q="4">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">04</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Tienes tarifas y condiciones de estancia mínima definidas por temporada y fechas clave?</h4>
+                  <p class="quiz-q-help">Evitar fijar un precio único todo el año y adaptar mínimos según calendario.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="4">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q4">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="5">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">05</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Sabes exactamente cuánto ingreso neto te queda de cada reserva tras restar comisiones de plataformas (Booking/Airbnb), limpieza y pasarela de pago?</h4>
+                  <p class="quiz-q-help">Tener claro el margen real que entra en tu cuenta bancaria.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="5">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q5">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="6">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">06</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Tu canal directo (web o WhatsApp) ofrece siempre el mejor precio o ventajas reales frente a las comisiones de las OTAs?</h4>
+                  <p class="quiz-q-help">Incentivar al viajero a reservar directamente sin violar acuerdos ni perder margen.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="6">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q6">Selecciona una puntuación del 1 al 10</div>
+            </article>
+          </div>
+
+          <div class="quiz-nav-actions">
+            <button type="button" class="quiz-btn-prev" data-target-step="1">← Anterior</button>
+            <button type="button" class="button button-primary quiz-btn-next" data-target-step="3">Siguiente: Canales →</button>
+          </div>
+        </div>
+
+        <!-- Paso 3: Plaza: canales y reservas -->
+        <div class="quiz-step-pane" data-step="3">
+          <div class="quiz-pane-header">
+            <span class="quiz-kicker">3 de 7 · Plaza</span>
+            <h3>Canales de venta y disponibilidad</h3>
+            <p>Evalúa cómo seleccionas tus puntos de venta y la coordinación de tus calendarios.</p>
+          </div>
+
+          <div class="quiz-questions-group">
+
+            <article class="quiz-question-card" data-q="7">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">07</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Has elegido tus canales de venta según dónde busca realmente tu tipo de huésped objetivo?</h4>
+                  <p class="quiz-q-help">No depender únicamente de un solo portal generalista si tu público busca en canales especializados.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="7">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q7">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="8">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">08</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Mantienes actualizados precios y disponibilidad en los canales donde vendes en tiempo real evitando solapes?</h4>
+                  <p class="quiz-q-help">Evitar cancelaciones imprevistas o desajustes de calendario entre portales.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="8">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q8">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="9">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">09</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Tienes una página web propia donde el viajero pueda consultar disponibilidad real y solicitar o confirmar su reserva sin fricción?</h4>
+                  <p class="quiz-q-help">Tener un canal de venta independiente bajo tu propio control.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="9">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q9">Selecciona una puntuación del 1 al 10</div>
+            </article>
+          </div>
+
+          <div class="quiz-nav-actions">
+            <button type="button" class="quiz-btn-prev" data-target-step="2">← Anterior</button>
+            <button type="button" class="button button-primary quiz-btn-next" data-target-step="4">Siguiente: Promoción →</button>
+          </div>
+        </div>
+
+        <!-- Paso 4: Promoción -->
+        <div class="quiz-step-pane" data-step="4">
+          <div class="quiz-pane-header">
+            <span class="quiz-kicker">4 de 7 · Promoción</span>
+            <h3>Planificación comercial y medición</h3>
+            <p>Evalúa tus iniciativas para generar demanda y comprobar qué acciones dan resultado.</p>
+          </div>
+
+          <div class="quiz-questions-group">
+
+            <article class="quiz-question-card" data-q="10">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">10</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Planificas acciones comerciales activas para atraer reservas en las temporadas o fechas más flojas?</h4>
+                  <p class="quiz-q-help">No esperar a que lleguen las reservas en temporada baja sin hacer nada previo.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="10">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q10">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="11">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">11</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Compruebas qué canales, publicaciones o acciones comerciales generan reservas reales y cuáles no?</h4>
+                  <p class="quiz-q-help">Saber dónde merece la pena invertir tiempo y dinero.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="11">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q11">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="12">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">12</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Tienes optimizada tu ficha de Google Business Profile (fotos, ubicación, reseñas actualizadas) para captar búsquedas locales?</h4>
+                  <p class="quiz-q-help">Aparecer de forma destacada en Google Maps y búsquedas orgánicas cuando buscan alojamiento en tu zona.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="12">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q12">Selecciona una puntuación del 1 al 10</div>
+            </article>
+          </div>
+
+          <div class="quiz-nav-actions">
+            <button type="button" class="quiz-btn-prev" data-target-step="3">← Anterior</button>
+            <button type="button" class="button button-primary quiz-btn-next" data-target-step="5">Siguiente: Personas →</button>
+          </div>
+        </div>
+
+        <!-- Paso 5: Personas -->
+        <div class="quiz-step-pane" data-step="5">
+          <div class="quiz-pane-header">
+            <span class="quiz-kicker">5 de 7 · Personas</span>
+            <h3>Organización y agilidad de respuesta</h3>
+            <p>Evalúa el reparto de tareas comerciales y la rapidez de contacto con posibles huéspedes.</p>
+          </div>
+
+          <div class="quiz-questions-group">
+
+            <article class="quiz-question-card" data-q="13">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">13</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Está claro quién se ocupa de cada tarea de comercialización, atención y proveedores?</h4>
+                  <p class="quiz-q-help">Saber quién atiende mensajes, quién actualiza tarifas y quién coordina la operativa.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="13">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q13">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="14">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">14</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Mides y mantienes un tiempo de respuesta rápido (menos de 1 hora) ante consultas de posibles huéspedes?</h4>
+                  <p class="quiz-q-help">Responder ágilmente cuando el interés del huésped está caliente antes de que busque otra opción.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="14">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q14">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="15">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">15</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Tienes un protocolo para contestar a todas las opiniones (positivas y críticas) y solicitar activamente reseñas a huéspedes satisfechos?</h4>
+                  <p class="quiz-q-help">Gestionar activamente la reputación online para transmitir confianza continua.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="15">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q15">Selecciona una puntuación del 1 al 10</div>
+            </article>
+          </div>
+
+          <div class="quiz-nav-actions">
+            <button type="button" class="quiz-btn-prev" data-target-step="4">← Anterior</button>
+            <button type="button" class="button button-primary quiz-btn-next" data-target-step="6">Siguiente: Procesos →</button>
+          </div>
+        </div>
+
+        <!-- Paso 6: Procesos -->
+        <div class="quiz-step-pane" data-step="6">
+          <div class="quiz-pane-header">
+            <span class="quiz-kicker">6 de 7 · Procesos</span>
+            <h3>Recorrido de reserva y seguimiento</h3>
+            <p>Evalúa el protocolo desde la primera duda hasta la confirmación y la relación tras la estancia.</p>
+          </div>
+
+          <div class="quiz-questions-group">
+
+            <article class="quiz-question-card" data-q="16">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">16</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Tienes definido el recorrido desde la primera consulta hasta la confirmación y cobro de la reserva?</h4>
+                  <p class="quiz-q-help">Que el huésped no encuentre barreras ni dudas durante el proceso de pago y reserva.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="16">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q16">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="17">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">17</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Haces seguimiento de consultas que no reservaron y mantienes contacto con antiguos huéspedes que aceptaron comunicaciones?</h4>
+                  <p class="quiz-q-help">Recuperar clientes que ya conocen tu alojamiento y re-activar su interés en fechas valle.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="17">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q17">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="18">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">18</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Dispones de instrucciones automatizadas o guía digital de bienvenida (llegada, normas, recomendaciones de la zona) que ahorren tiempo y eviten dudas?</h4>
+                  <p class="quiz-q-help">Asegurar una llegada impecable sin tener que repetir la misma información manualmente en cada reserva.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="18">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q18">Selecciona una puntuación del 1 al 10</div>
+            </article>
+          </div>
+
+          <div class="quiz-nav-actions">
+            <button type="button" class="quiz-btn-prev" data-target-step="5">← Anterior</button>
+            <button type="button" class="button button-primary quiz-btn-next" data-target-step="7">Siguiente: Evidencia →</button>
+          </div>
+        </div>
+
+        <!-- Paso 7: Evidencia física y digital -->
+        <div class="quiz-step-pane" data-step="7">
+          <div class="quiz-pane-header">
+            <span class="quiz-kicker">7 de 7 · Evidencia física y digital</span>
+            <h3>Claridad visual e información para decidir</h3>
+            <p>Evalúa cómo muestras tu alojamiento y si el visitante encuentra todo lo necesario para reservar con confianza.</p>
+          </div>
+
+          <div class="quiz-questions-group">
+
+            <article class="quiz-question-card" data-q="19">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">19</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Las fotos y vídeos muestran con calidad profesional y precisión lo que el huésped encontrará?</h4>
+                  <p class="quiz-q-help">Tener imágenes cuidadas, luminosas y actualizadas que generen deseo real de alojarse.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="19">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q19">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="20">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">20</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿El cliente encuentra fácilmente la información que necesita para confiar y decidir: servicios clave, ubicación y condiciones de cancelación?</h4>
+                  <p class="quiz-q-help">Evitar dudas frecuentes antes de reservar y reducir consultas repetitivas.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="20">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q20">Selecciona una puntuación del 1 al 10</div>
+            </article>
+            <article class="quiz-question-card" data-q="21">
+              <div class="quiz-question-header">
+                <span class="quiz-q-num">21</span>
+                <div class="quiz-q-text-wrap">
+                  <h4 class="quiz-q-text">¿Cuidas los puntos de contacto físicos (aroma, bienvenida con producto local, señalética limpia) que impulsan fotos y recomendaciones espontáneas?</h4>
+                  <p class="quiz-q-help">Generar una experiencia memorable que motive reseñas de 5 estrellas de forma natural.</p>
+                </div>
+              </div>
+              <div class="quiz-rating-scale" data-question="21">
+                <button type="button" class="scale-btn" data-val="1">1</button>
+                <button type="button" class="scale-btn" data-val="2">2</button>
+                <button type="button" class="scale-btn" data-val="3">3</button>
+                <button type="button" class="scale-btn" data-val="4">4</button>
+                <button type="button" class="scale-btn" data-val="5">5</button>
+                <button type="button" class="scale-btn" data-val="6">6</button>
+                <button type="button" class="scale-btn" data-val="7">7</button>
+                <button type="button" class="scale-btn" data-val="8">8</button>
+                <button type="button" class="scale-btn" data-val="9">9</button>
+                <button type="button" class="scale-btn" data-val="10">10</button>
+                <button type="button" class="scale-btn scale-btn-na" data-val="na" title="No aplica a mi modelo de alojamiento">N/A</button>
+              </div>
+              <div class="scale-legend-bar" aria-hidden="true">
+                <span>1: No se hace</span>
+                <span>3: Puntual / reactivo</span>
+                <span>5: Método irregular</span>
+                <span>8: Habitual y registrado</span>
+                <span>10: Guiado por datos</span>
+                <span>N/A: No aplica</span>
+              </div>
+              <div class="quiz-scale-feedback" id="feedback-q21">Selecciona una puntuación del 1 al 10</div>
+            </article>
+          </div>
+
+          <div class="quiz-nav-actions">
+            <button type="button" class="quiz-btn-prev" data-target-step="6">← Anterior</button>
+            <button type="button" class="button button-primary quiz-btn-next" id="quiz-btn-finish" data-target-step="8">Ver mis resultados inmediatos →</button>
+          </div>
+        </div>
+
+                <!-- Paso 8: Pantalla de Resultados Inmediatos -->
+        <div class="quiz-step-pane" data-step="8">
+          <div class="quiz-results-container">
+            <!-- Puntuación Global sobre 100 -->
+            <div class="quiz-global-card">
+              <span class="quiz-kicker" style="background: rgba(52, 211, 153, 0.15); color: #34d399;">Diagnóstico completado</span>
+              <div class="quiz-global-score-badge" style="gap:4px;">
+                <span class="quiz-global-score-num" id="res-global-score">0</span>
+                <span class="quiz-global-score-max" style="font-size:20px;">/ 100</span>
+              </div>
+              <h3 class="quiz-global-level" id="res-global-level">Tu Índice de Desarrollo Comercial</h3>
+              <p class="quiz-global-desc" id="res-global-desc">Calculando interpretación...</p>
+              
+              <!-- Barra de progreso porcentual visual -->
+              <div class="quiz-global-progress-bar" style="background:rgba(255,255,255,0.08); border-radius:999px; height:10px; width:100%; max-width:380px; margin:16px auto; overflow:hidden;">
+                <div id="res-global-bar" style="height:100%; width:0%; background:linear-gradient(90deg, #10b981, #34d399); border-radius:999px; transition:width 1s ease;"></div>
+              </div>
+
+              <p class="quiz-disclaimer">Autoevaluación técnica orientativa basada en las prácticas que has declarado, no una auditoría comprobada ni un ranking frente a otros alojamientos.</p>
+            </div>
+
+            <!-- Destacados Inmediatos: Fortaleza Principal vs Oportunidad Prioritaria -->
+            <div class="quiz-highlights-grid">
+              <div class="quiz-highlight-box is-strong">
+                <h5><span aria-hidden="true">🌟</span> Tu fortaleza principal</h5>
+                <ul id="res-strengths-list">
+                  <!-- Inyectado dinámicamente -->
+                </ul>
+              </div>
+
+              <div class="quiz-highlight-box is-priority">
+                <h5><span aria-hidden="true">🎯</span> Tu oportunidad prioritaria de mejora</h5>
+                <ul id="res-priorities-list">
+                  <!-- Inyectado dinámicamente -->
+                </ul>
+              </div>
+            </div>
+
+            <!-- Desglose de las 7 P -->
+            <div class="quiz-breakdown-card">
+              <h4>Desglose por las 7 P del marketing mix</h4>
+              <div class="quiz-p-list" id="res-p-list">
+                <!-- Se inyectan dinámicamente las 7 filas -->
+              </div>
+            </div>
+
+            <!-- Invitación a recibir el informe completo -->
+            <div class="quiz-report-invite-box" id="quiz-report-invite-box" style="background:linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border:1.5px solid #10b981; border-radius:14px; padding:28px 24px; text-align:center; margin:28px 0; box-shadow:0 4px 18px rgba(16,185,129,0.12);">
+              <span class="quiz-kicker" style="background:#d1fae5; color:#047857; font-weight:700;">Informe técnico listo</span>
+              <h4 style="font-family:'Outfit',sans-serif; font-size:23px; color:#064e3b; margin:10px 0 8px 0;">Qué te enviamos después de revisar tu caso con el diagnóstico</h4>
+              <p style="color:#374151; font-size:15px; line-height:1.6; margin:0 0 20px 0; max-width:540px; margin-left:auto; margin-right:auto;">
+                Te enviamos un informe exhaustivo por email analizando el porqué de cada puntuación, la patología comercial prioritaria de tu alojamiento y <strong>3 acciones prácticas inmediatas</strong> para mejorar tu rentabilidad.
+              </p>
+              <button type="button" class="button button-primary" id="btn-unlock-report" style="background:#059669; border-color:#059669; font-size:16px; padding:14px 32px; border-radius:10px; font-weight:700; cursor:pointer;">Recibir mi informe completo gratis ↓</button>
+            </div>
+
+            <!-- Formulario de Captación del Informe Completo -->
+            <div class="quiz-email-report-card" id="quiz-report-form-card" style="scroll-margin-top:40px;">
+              <h4>¿Dónde te enviamos el informe completo?</h4>
+              <p>Indícanos tus datos para generar y enviarte el documento personalizado con el desglose de tus 7 P y las 3 recomendaciones de acción.</p>
+
+              <form id="quiz-email-form" class="quiz-report-form" method="post" action="/procesar-lead.php">
+                <label class="quiz-field">
+                  <span>Tu nombre y apellidos *</span>
+                  <input id="report-name" name="name" type="text" placeholder="Ej. Carlos Martínez" required autocomplete="name">
+                </label>
+                <label class="quiz-field">
+                  <span>Email donde recibir el informe *</span>
+                  <input id="report-email" name="email" type="email" placeholder="tu@email.com" required autocomplete="email">
+                </label>
+                <label class="quiz-field">
+                  <span>Nombre del alojamiento o empresa *</span>
+                  <input id="report-business" name="business" type="text" placeholder="Ej. Casa Rural El Roble" required>
+                </label>
+                <label class="quiz-field">
+                  <span>Provincia o isla *</span>
+                  <input id="report-location" name="location" type="text" placeholder="Ej. Asturias, Tenerife, Ávila..." required>
+                </label>
+                <label class="quiz-field form-wide">
+                  <span>Teléfono o WhatsApp <small style="font-weight:400;color:#607369;">(opcional, para agilizar dudas)</small></span>
+                  <input id="report-phone" name="phone" type="tel" placeholder="Opcional" autocomplete="tel">
+                </label>
+
+                <label class="checkbox-label form-wide">
+                  <input id="report-privacy" name="privacy" type="checkbox" value="yes" required>
+                  <span>Acepto la <a href="../privacidad.html" target="_blank" rel="noopener">política de privacidad</a> para la generación y envío del informe solicitado y la resolución de mis consultas comerciales. *</span>
+                </label>
+
+                <label class="checkbox-label form-wide">
+                  <input id="report-newsletter" name="newsletter" type="checkbox" value="yes">
+                  <span>Deseo recibir periódicamente por email ideas, análisis y estrategias de rentabilidad para alojamientos rurales (opcional).</span>
+                </label>
+
+                <div class="form-wide" style="margin-top:10px;">
+                  <button type="submit" class="button button-primary" style="width:100%; font-size:16px; padding:14px;" id="report-submit-btn">Enviar mi informe completo gratis →</button>
+                </div>
+                <p class="form-status-msg form-wide" id="report-status-msg" style="display:none;"></p>
+              </form>
+            </div>
+
+            <!-- Recomendación Comercial Adaptada y Agenda Única -->
+            <div class="quiz-solution-recommendation" id="quiz-solution-recommendation" style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:14px; padding:26px 24px; text-align:center; margin-top:28px;">
+              <span class="quiz-kicker" id="rec-kicker" style="background:rgba(19,78,53,0.09); color:#134e35; font-weight:700;">Recomendación adaptada a tu caso</span>
+              <h4 id="rec-title" style="font-family:'Outfit',sans-serif; font-size:21px; color:#0e2b20; margin:12px 0 8px 0;">Podemos ayudarte a convertir estas oportunidades en mejoras concretas</h4>
+              <p id="rec-text" style="color:#475569; font-size:14.5px; line-height:1.65; margin:0 0 20px 0; max-width:620px; margin-left:auto; margin-right:auto;">
+                Según tus respuestas, una de tus prioridades es mejorar cómo presentas y comercializas tu alojamiento. Desde PYME360 podemos estudiar tu situación y proponerte una intervención adaptada a tu negocio.
+              </p>
+              <div class="voluntary-actions" style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+                <a id="rec-booking-btn" href="https://wa.me/34686184291" target="_blank" rel="noopener" class="button button-primary" style="background:#134e35; border-color:#134e35; font-size:15px; padding:13px 26px; border-radius:10px; font-weight:700; text-decoration:none; display:inline-block;">Reservar asesoramiento gratuito de 20 minutos →</a>
+              </div>
+            </div>
+
+            <!-- Botón para volver y modificar respuestas -->
+            <div style="text-align: center; margin-top: 18px;">
+              <button type="button" class="quiz-btn-prev" id="quiz-btn-modify" data-target-step="7" style="margin: 0 auto;">← Modificar alguna respuesta</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         METODOLOGÍA: CÓMO LO HACEMOS FÁCIL EN 4 FASES
+         ===================================================================== -->
     <!-- 4 Fichas en el borde inferior: Cómo lo hacemos fácil -->
     <div id="como-funciona" class="hero-bottom-dock hero-stage-4 scroll-reveal-right" aria-label="Cómo lo hacemos fácil en 4 fases">
         <span id="situaciones" style="display:none;"></span>
         <div class="dock-header-bar">
           <span class="dock-header-pill">
-            <span class="dock-pulse-dot"></span> METODOLOGÍA DIRECTA · 4 FASES CLARAS
+            <span class="dock-pulse-dot"></span> METODOLOGÍA DIRECTA · CÓMO APLICAMOS LAS MEJORAS
           </span>
           <p class="dock-header-sub">Sin rodeos ni sobrecarga de texto. 4 fases para transformar visitas en huéspedes directos:</p>
         </div>
@@ -278,1022 +1329,6 @@
           </article>
         </div>
       </div>
-
-    <!-- Comparativa visual 21st.dev: Situación actual vs Con Pyme360 -->
-
-    <!-- =====================================================================
-         BLOQUE 1: LA HERRAMIENTA / AUTOEVALUACIÓN COMERCIAL GRATUITA
-         ===================================================================== -->
-<section id="diagnostico" class="diagnosis section diagnosis-rural autoevaluacion-section">
-      <div class="diagnosis-copy diagnosis-header-wrapper scroll-reveal-right">
-        <span class="dock-header-pill" style="margin-bottom: 12px; display: inline-flex;">
-          <span class="dock-pulse-dot"></span> Autoevaluación comercial en 5 minutos
-        </span>
-        <h2 class="diagnosis-main-title">Evalúa la gestión comercial de tu alojamiento sin coste</h2>
-        <p class="diagnosis-main-subtitle">Sustituye la consulta a ciegas por un diagnóstico de estado claro. Las 7 P del marketing mix son nuestro marco de análisis para detectar oportunidades (no la promesa de ejecutar todas las P). Responde 21 preguntas y obtén al instante tu resultado en pantalla, con tus áreas más trabajadas y tus dos prioridades de mejora.</p>
-        
-        <!-- Recorrido en 4 pasos: Diseño fluido, responsive e integrado -->
-                <!-- Recorrido en 4 pasos: Diseño fluido, responsive e integrado -->
-        <div class="quiz-flow-strip scroll-reveal-right" role="region" aria-label="Cómo funciona la autoevaluación en 4 pasos">
-          <!-- Paso 01 (Verde Esmeralda - idéntico a Ficha 01 superior) -->
-          <article class="dock-card dock-card-1 flow-step-card scroll-reveal-right stagger-1">
-            <header class="dock-card-header">
-              <div class="flow-badge-row">
-                <span class="flow-step-badge">01</span>
-                <span class="flow-action-tag">Completas</span>
-              </div>
-              <h3 class="dock-title">21 preguntas</h3>
-              <p class="dock-subtitle">Paso 1 · Tu autoevaluación</p>
-            </header>
-            <div class="dock-card-body">
-              <ul class="dock-bullet-list">
-                <li>En 5 minutos sobre tus 7 P comerciales.</li>
-                <li>Cuestionario ágil sin tecnicismos.</li>
-                <li>100% online y gratuito sin tarjeta.</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Paso 02 (Azul Petróleo - idéntico a Ficha 02 superior) -->
-          <article class="dock-card dock-card-2 flow-step-card scroll-reveal-right stagger-2">
-            <header class="dock-card-header">
-              <div class="flow-badge-row">
-                <span class="flow-step-badge">02</span>
-                <span class="flow-action-tag">Obtienes</span>
-              </div>
-              <h3 class="dock-title">Resultado inmediato</h3>
-              <p class="dock-subtitle">Paso 2 · Puntuación en pantalla</p>
-            </header>
-            <div class="dock-card-body">
-              <ul class="dock-bullet-list">
-                <li>Puntuación global calculada al instante.</li>
-                <li>Desglose visual de tus 7 P comerciales.</li>
-                <li>Tus áreas más fuertes identificadas.</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Paso 03 (Terracota - idéntico a Ficha 03 superior) -->
-          <article class="dock-card dock-card-3 flow-step-card scroll-reveal-right stagger-3">
-            <header class="dock-card-header">
-              <div class="flow-badge-row">
-                <span class="flow-step-badge">03</span>
-                <span class="flow-action-tag">Detectamos</span>
-              </div>
-              <h3 class="dock-title">Tus 2 prioridades</h3>
-              <p class="dock-subtitle">Paso 3 · Dónde frenar fugas</p>
-            </header>
-            <div class="dock-card-body">
-              <ul class="dock-bullet-list">
-                <li>Dónde se escapan reservas a Booking y OTAs.</li>
-                <li>Fricciones que frenan la reserva en móvil.</li>
-                <li>2 focos claros de mejora comercial.</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Paso 04 (Dorado/Marrón - idéntico a Ficha 04 superior) -->
-          <article class="dock-card dock-card-4 flow-step-card scroll-reveal-right stagger-4">
-            <header class="dock-card-header">
-              <div class="flow-badge-row">
-                <span class="flow-step-badge">04</span>
-                <span class="flow-action-tag">Decides</span>
-              </div>
-              <h3 class="dock-title">Siguientes pasos</h3>
-              <p class="dock-subtitle">Paso 4 · Sin compromiso</p>
-            </header>
-            <div class="dock-card-body">
-              <ul class="dock-bullet-list">
-                <li>Resultado y desglose inmediato en pantalla.</li>
-                <li>Consulta dudas por WhatsApp al momento.</li>
-                <li>Tú decides si quieres valorar una propuesta.</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-
-        <div class="quiz-trust-badge scroll-reveal-right">
-          <svg class="trust-shield-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          <span class="form-note">Pedir mini-revisión sin compromiso: el resultado se calcula en pantalla de forma inmediata y no te compromete a contratar nada.</span>
-        </div>
-      </div>
-
-      <div id="autoevaluacion-app" class="autoevaluacion-card" role="region" aria-label="Cuestionario de autoevaluación comercial de 7 P">
-        <!-- Indicador y Barra de Progreso -->
-        <div class="quiz-progress-wrapper" aria-hidden="true">
-          <div class="quiz-progress-bar">
-            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 0%;"></div>
-          </div>
-          <div class="quiz-progress-meta">
-            <span id="quiz-progress-text">Paso 0 de 7 · Perfil de tu alojamiento</span>
-            <span id="quiz-progress-percent">0% completado</span>
-          </div>
-        </div>
-
-        <!-- Paso 0: Perfil inicial (no puntúa) -->
-        <div class="quiz-step-pane is-active" data-step="0">
-          <div class="quiz-pane-header">
-            <span class="quiz-kicker">Paso inicial · Datos de perfil</span>
-            <h3>Perfil de tu alojamiento</h3>
-            <p>Estos datos no puntúan. Nos permiten adaptar la terminología de las preguntas al tipo de alojamiento que gestionas.</p>
-          </div>
-
-          <div class="quiz-profile-fields">
-            <label class="quiz-field quiz-field-wide">
-              <span>Tipo de alojamiento</span>
-              <select id="quiz-tipo" name="quiz_sector" required>
-                <option value="">Selecciona tu tipo de alojamiento</option>
-                <option value="casa">Casa rural o vivienda vacacional independiente</option>
-                <option value="hotel">Hotel rural que vende habitaciones</option>
-                <option value="complejo">Complejo con varias casas, habitaciones o unidades</option>
-              </select>
-            </label>
-
-            <label class="quiz-field">
-              <span>Nº aproximado de habitaciones o unidades</span>
-              <input id="quiz-unidades" name="quiz_units" type="number" min="1" max="999" placeholder="Ej. 6" required>
-            </label>
-
-            <label class="quiz-field">
-              <span>País y región</span>
-              <input id="quiz-ubicacion" name="quiz_location" type="text" placeholder="Ej. España · Asturias / Tenerife" required>
-            </label>
-
-            <label class="quiz-field">
-              <span>Nombre del alojamiento</span>
-              <input id="quiz-nombre" name="quiz_business" type="text" placeholder="Ej. Finca El Valle" required>
-            </label>
-
-            <label class="quiz-field">
-              <span>Web o enlace del alojamiento <small style="font-weight:400;color:#607369;">(opcional)</small></span>
-              <input id="quiz-web" name="quiz_web" type="text" inputmode="url" autocomplete="url" placeholder="tudominio.com, Booking o Google">
-            </label>
-          </div>
-
-          <div class="quiz-nav-actions">
-            <span class="quiz-hint-note" style="font-size:13px; color:#526057;">21 preguntas puntuables · Escala 1 al 10 · ~5 minutos</span>
-            <button type="button" class="button button-primary quiz-btn-next" id="quiz-btn-start">Comenzar autoevaluación →</button>
-          </div>
-        </div>
-
-        <!-- Paso 1: Producto -->
-        <div class="quiz-step-pane" data-step="1">
-          <div class="quiz-pane-header">
-            <span class="quiz-kicker">1 de 7 · Producto</span>
-            <h3>Propuesta de valor y público objetivo</h3>
-            <p>Evalúa la claridad de lo que ofreces y a quién buscas atraer en cada momento del año.</p>
-          </div>
-
-          <div class="quiz-questions-group">
-
-            <article class="quiz-question-card" data-q="1">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">01</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Tienes definido qué tipo de huésped quieres atraer en cada temporada?</h4>
-                  <p class="quiz-q-help">Tener claro si buscas parejas, familias, grupos o nómadas según las fechas del año.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="1">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q1">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="2">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">02</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Está claro qué hace diferente tu <span class="quiz-unit-label">alojamiento o cada una de sus unidades</span> frente al resto de la zona?</h4>
-                  <p class="quiz-q-help">Saber por qué un viajero te elegiría a ti antes que a otra opción cercana.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="2">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q2">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="3">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">03</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Revisas y renuevas periódicamente los elementos clave que más valoran los huéspedes (descanso, climatización, wifi, cocina o detalles locales)?</h4>
-                  <p class="quiz-q-help">Garantizar que las instalaciones esenciales cumplen o superan la expectativa del viajero.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="3">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q3">Selecciona una puntuación del 1 al 10</div>
-            </article>
-          </div>
-
-          <div class="quiz-nav-actions">
-            <button type="button" class="quiz-btn-prev" data-target-step="0">← Anterior</button>
-            <button type="button" class="button button-primary quiz-btn-next" data-target-step="2">Siguiente: Precio →</button>
-          </div>
-        </div>
-
-        <!-- Paso 2: Precio -->
-        <div class="quiz-step-pane" data-step="2">
-          <div class="quiz-pane-header">
-            <span class="quiz-kicker">2 de 7 · Precio</span>
-            <h3>Tarificación y rentabilidad por canal</h3>
-            <p>Evalúa el control sobre tus tarifas y el margen neto que te queda tras comisiones.</p>
-          </div>
-
-          <div class="quiz-questions-group">
-
-            <article class="quiz-question-card" data-q="4">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">04</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Tienes tarifas y condiciones de estancia mínima definidas por temporada y fechas clave?</h4>
-                  <p class="quiz-q-help">Evitar fijar un precio único todo el año y adaptar mínimos según calendario.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="4">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q4">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="5">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">05</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Sabes exactamente cuánto ingreso neto te queda de cada reserva tras restar comisiones de plataformas (Booking/Airbnb), limpieza y pasarela de pago?</h4>
-                  <p class="quiz-q-help">Tener claro el margen real que entra en tu cuenta bancaria.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="5">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q5">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="6">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">06</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Tu canal directo (web o WhatsApp) ofrece siempre el mejor precio o ventajas reales frente a las comisiones de las OTAs?</h4>
-                  <p class="quiz-q-help">Incentivar al viajero a reservar directamente sin violar acuerdos ni perder margen.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="6">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q6">Selecciona una puntuación del 1 al 10</div>
-            </article>
-          </div>
-
-          <div class="quiz-nav-actions">
-            <button type="button" class="quiz-btn-prev" data-target-step="1">← Anterior</button>
-            <button type="button" class="button button-primary quiz-btn-next" data-target-step="3">Siguiente: Canales →</button>
-          </div>
-        </div>
-
-        <!-- Paso 3: Plaza: canales y reservas -->
-        <div class="quiz-step-pane" data-step="3">
-          <div class="quiz-pane-header">
-            <span class="quiz-kicker">3 de 7 · Plaza</span>
-            <h3>Canales de venta y disponibilidad</h3>
-            <p>Evalúa cómo seleccionas tus puntos de venta y la coordinación de tus calendarios.</p>
-          </div>
-
-          <div class="quiz-questions-group">
-
-            <article class="quiz-question-card" data-q="7">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">07</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Has elegido tus canales de venta según dónde busca realmente tu tipo de huésped objetivo?</h4>
-                  <p class="quiz-q-help">No depender únicamente de un solo portal generalista si tu público busca en canales especializados.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="7">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q7">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="8">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">08</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Mantienes actualizados precios y disponibilidad en los canales donde vendes en tiempo real evitando solapes?</h4>
-                  <p class="quiz-q-help">Evitar cancelaciones imprevistas o desajustes de calendario entre portales.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="8">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q8">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="9">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">09</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Tienes una página web propia donde el viajero pueda consultar disponibilidad real y solicitar o confirmar su reserva sin fricción?</h4>
-                  <p class="quiz-q-help">Tener un canal de venta independiente bajo tu propio control.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="9">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q9">Selecciona una puntuación del 1 al 10</div>
-            </article>
-          </div>
-
-          <div class="quiz-nav-actions">
-            <button type="button" class="quiz-btn-prev" data-target-step="2">← Anterior</button>
-            <button type="button" class="button button-primary quiz-btn-next" data-target-step="4">Siguiente: Promoción →</button>
-          </div>
-        </div>
-
-        <!-- Paso 4: Promoción -->
-        <div class="quiz-step-pane" data-step="4">
-          <div class="quiz-pane-header">
-            <span class="quiz-kicker">4 de 7 · Promoción</span>
-            <h3>Planificación comercial y medición</h3>
-            <p>Evalúa tus iniciativas para generar demanda y comprobar qué acciones dan resultado.</p>
-          </div>
-
-          <div class="quiz-questions-group">
-
-            <article class="quiz-question-card" data-q="10">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">10</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Planificas acciones comerciales activas para atraer reservas en las temporadas o fechas más flojas?</h4>
-                  <p class="quiz-q-help">No esperar a que lleguen las reservas en temporada baja sin hacer nada previo.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="10">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q10">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="11">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">11</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Compruebas qué canales, publicaciones o acciones comerciales generan reservas reales y cuáles no?</h4>
-                  <p class="quiz-q-help">Saber dónde merece la pena invertir tiempo y dinero.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="11">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q11">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="12">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">12</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Tienes optimizada tu ficha de Google Business Profile (fotos, ubicación, reseñas actualizadas) para captar búsquedas locales?</h4>
-                  <p class="quiz-q-help">Aparecer de forma destacada en Google Maps y búsquedas orgánicas cuando buscan alojamiento en tu zona.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="12">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q12">Selecciona una puntuación del 1 al 10</div>
-            </article>
-          </div>
-
-          <div class="quiz-nav-actions">
-            <button type="button" class="quiz-btn-prev" data-target-step="3">← Anterior</button>
-            <button type="button" class="button button-primary quiz-btn-next" data-target-step="5">Siguiente: Personas →</button>
-          </div>
-        </div>
-
-        <!-- Paso 5: Personas -->
-        <div class="quiz-step-pane" data-step="5">
-          <div class="quiz-pane-header">
-            <span class="quiz-kicker">5 de 7 · Personas</span>
-            <h3>Organización y agilidad de respuesta</h3>
-            <p>Evalúa el reparto de tareas comerciales y la rapidez de contacto con posibles huéspedes.</p>
-          </div>
-
-          <div class="quiz-questions-group">
-
-            <article class="quiz-question-card" data-q="13">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">13</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Está claro quién se ocupa de cada tarea de comercialización, atención y proveedores?</h4>
-                  <p class="quiz-q-help">Saber quién atiende mensajes, quién actualiza tarifas y quién coordina la operativa.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="13">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q13">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="14">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">14</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Mides y mantienes un tiempo de respuesta rápido (menos de 1 hora) ante consultas de posibles huéspedes?</h4>
-                  <p class="quiz-q-help">Responder ágilmente cuando el interés del huésped está caliente antes de que busque otra opción.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="14">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q14">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="15">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">15</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Tienes un protocolo para contestar a todas las opiniones (positivas y críticas) y solicitar activamente reseñas a huéspedes satisfechos?</h4>
-                  <p class="quiz-q-help">Gestionar activamente la reputación online para transmitir confianza continua.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="15">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q15">Selecciona una puntuación del 1 al 10</div>
-            </article>
-          </div>
-
-          <div class="quiz-nav-actions">
-            <button type="button" class="quiz-btn-prev" data-target-step="4">← Anterior</button>
-            <button type="button" class="button button-primary quiz-btn-next" data-target-step="6">Siguiente: Procesos →</button>
-          </div>
-        </div>
-
-        <!-- Paso 6: Procesos -->
-        <div class="quiz-step-pane" data-step="6">
-          <div class="quiz-pane-header">
-            <span class="quiz-kicker">6 de 7 · Procesos</span>
-            <h3>Recorrido de reserva y seguimiento</h3>
-            <p>Evalúa el protocolo desde la primera duda hasta la confirmación y la relación tras la estancia.</p>
-          </div>
-
-          <div class="quiz-questions-group">
-
-            <article class="quiz-question-card" data-q="16">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">16</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Tienes definido el recorrido desde la primera consulta hasta la confirmación y cobro de la reserva?</h4>
-                  <p class="quiz-q-help">Que el huésped no encuentre barreras ni dudas durante el proceso de pago y reserva.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="16">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q16">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="17">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">17</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Haces seguimiento de consultas que no reservaron y mantienes contacto con antiguos huéspedes que aceptaron comunicaciones?</h4>
-                  <p class="quiz-q-help">Recuperar clientes que ya conocen tu alojamiento y re-activar su interés en fechas valle.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="17">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q17">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="18">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">18</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Dispones de instrucciones automatizadas o guía digital de bienvenida (llegada, normas, recomendaciones de la zona) que ahorren tiempo y eviten dudas?</h4>
-                  <p class="quiz-q-help">Asegurar una llegada impecable sin tener que repetir la misma información manualmente en cada reserva.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="18">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q18">Selecciona una puntuación del 1 al 10</div>
-            </article>
-          </div>
-
-          <div class="quiz-nav-actions">
-            <button type="button" class="quiz-btn-prev" data-target-step="5">← Anterior</button>
-            <button type="button" class="button button-primary quiz-btn-next" data-target-step="7">Siguiente: Evidencia →</button>
-          </div>
-        </div>
-
-        <!-- Paso 7: Evidencia física y digital -->
-        <div class="quiz-step-pane" data-step="7">
-          <div class="quiz-pane-header">
-            <span class="quiz-kicker">7 de 7 · Evidencia física y digital</span>
-            <h3>Claridad visual e información para decidir</h3>
-            <p>Evalúa cómo muestras tu alojamiento y si el visitante encuentra todo lo necesario para reservar con confianza.</p>
-          </div>
-
-          <div class="quiz-questions-group">
-
-            <article class="quiz-question-card" data-q="19">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">19</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Las fotos y vídeos muestran con calidad profesional y precisión lo que el huésped encontrará?</h4>
-                  <p class="quiz-q-help">Tener imágenes cuidadas, luminosas y actualizadas que generen deseo real de alojarse.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="19">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q19">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="20">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">20</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿El cliente encuentra fácilmente la información que necesita para confiar y decidir: servicios clave, ubicación y condiciones de cancelación?</h4>
-                  <p class="quiz-q-help">Evitar dudas frecuentes antes de reservar y reducir consultas repetitivas.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="20">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q20">Selecciona una puntuación del 1 al 10</div>
-            </article>
-            <article class="quiz-question-card" data-q="21">
-              <div class="quiz-question-header">
-                <span class="quiz-q-num">21</span>
-                <div class="quiz-q-text-wrap">
-                  <h4 class="quiz-q-text">¿Cuidas los puntos de contacto físicos (aroma, bienvenida con producto local, señalética limpia) que impulsan fotos y recomendaciones espontáneas?</h4>
-                  <p class="quiz-q-help">Generar una experiencia memorable que motive reseñas de 5 estrellas de forma natural.</p>
-                </div>
-              </div>
-              <div class="quiz-rating-scale" data-question="21">
-                <button type="button" class="scale-btn" data-val="1">1</button>
-                <button type="button" class="scale-btn" data-val="2">2</button>
-                <button type="button" class="scale-btn" data-val="3">3</button>
-                <button type="button" class="scale-btn" data-val="4">4</button>
-                <button type="button" class="scale-btn" data-val="5">5</button>
-                <button type="button" class="scale-btn" data-val="6">6</button>
-                <button type="button" class="scale-btn" data-val="7">7</button>
-                <button type="button" class="scale-btn" data-val="8">8</button>
-                <button type="button" class="scale-btn" data-val="9">9</button>
-                <button type="button" class="scale-btn" data-val="10">10</button>
-              </div>
-              <div class="scale-legend-bar" aria-hidden="true">
-                <span>1: No se hace</span>
-                <span>3: Puntual / reactivo</span>
-                <span>5: Método irregular</span>
-                <span>8: Habitual y registrado</span>
-                <span>10: Guiado por datos</span>
-              </div>
-              <div class="quiz-scale-feedback" id="feedback-q21">Selecciona una puntuación del 1 al 10</div>
-            </article>
-          </div>
-
-          <div class="quiz-nav-actions">
-            <button type="button" class="quiz-btn-prev" data-target-step="6">← Anterior</button>
-            <button type="button" class="button button-primary quiz-btn-next" id="quiz-btn-finish" data-target-step="8">Ver mis resultados inmediatos →</button>
-          </div>
-        </div>
-
-        <!-- Paso 8: Pantalla de Resultados Inmediatos -->
-        <div class="quiz-step-pane" data-step="8">
-          <div class="quiz-results-container">
-            <!-- Puntuación Global -->
-            <div class="quiz-global-card">
-              <span class="quiz-kicker" style="background: rgba(52, 211, 153, 0.15); color: #34d399;">Autoevaluación completada</span>
-              <div class="quiz-global-score-badge">
-                <span class="quiz-global-score-num" id="res-global-score">0.0</span>
-                <span class="quiz-global-score-max">/ 10</span>
-              </div>
-              <h3 class="quiz-global-level" id="res-global-level">Nivel de desarrollo de prácticas comerciales</h3>
-              <p class="quiz-global-desc" id="res-global-desc">Calculando interpretación...</p>
-              <p class="quiz-disclaimer">Autoevaluación orientativa basada en las prácticas que has declarado, no una auditoría comprobada ni un ranking frente a otros alojamientos. Las categorías son internas para orientar tus decisiones.</p>
-            </div>
-
-            <!-- Desglose de las 7 P -->
-            <div class="quiz-breakdown-card">
-              <h4>Desglose por las 7 P del marketing mix</h4>
-              <div class="quiz-p-list" id="res-p-list">
-                <!-- Se inyectan dinámicamente las 7 filas -->
-              </div>
-            </div>
-
-            <!-- Destacados: Fortalezas vs Prioridades -->
-            <div class="quiz-highlights-grid">
-              <div class="quiz-highlight-box is-strong">
-                <h5><span aria-hidden="true">🌟</span> Tus 2 áreas con mayor desarrollo</h5>
-                <ul id="res-strengths-list">
-                  <!-- Inyectado dinámicamente -->
-                </ul>
-              </div>
-
-              <div class="quiz-highlight-box is-priority">
-                <h5><span aria-hidden="true">🎯</span> Tus 2 prioridades de foco comercial</h5>
-                <ul id="res-priorities-list">
-                  <!-- Inyectado dinámicamente -->
-                </ul>
-              </div>
-            </div>
-
-            <!-- Qué te enviamos después de revisar tu caso (Entregables de la autoevaluación) -->
-            <div class="quiz-deliverables-card" id="entrega">
-              <div class="quiz-deliverables-header">
-                <span class="quiz-kicker" style="background: rgba(16, 47, 37, 0.08); color: #10291f;">Qué recibes al completar la autoevaluación</span>
-                <h4 style="font-family:'Outfit',sans-serif; font-size:22px; color:#0e2b20; margin:8px 0 6px 0;">Qué te enviamos después de revisar tu caso con la autoevaluación</h4>
-                <p style="color:#4a6659; font-size:14.5px; margin:0 0 16px 0;">Un diagnóstico inmediato en pantalla y observaciones prácticas para tu alojamiento. Sin informes eternos de teoría ni llamadas comerciales forzadas.</p>
-              </div>
-              <div class="deliverable-card">
-                <ul>
-                  <li><strong>Diagnóstico inmediato en pantalla</strong><span>Puntuación global y evaluación de tus 7 P comerciales en 5 minutos, sin esperas ni registros forzados.</span></li>
-                  <li><strong>Tus 2 prioridades comerciales</strong><span>Detección nítida de tus fortalezas y las áreas con mayor margen de mejora en captación directa.</span></li>
-                  <li><strong>Resumen de prioridades</strong><span>Consulta tus resultados en pantalla y guarda tu autoevaluación o consúltanos por WhatsApp si deseas valorar mejoras.</span></li>
-                  <li><strong>Honestidad y conversación voluntaria</strong><span>Comentamos tus prioridades solo si quieres; si tu venta directa ya funciona impecable, te lo diremos.</span></li>
-                </ul>
-                <p style="margin: 0; font-size: 13.5px; color: #526057;">La autoevaluación es sin compromiso. El informe y la newsletter son opcionales y solo se activan si marcas su casilla.</p>
-              </div>
-            </div>
-
-            <!-- Conversación voluntaria con Pyme360 -->
-            <div class="quiz-voluntary-box">
-              <h4>¿Quieres comentar estas prioridades con nosotros?</h4>
-              <p>Podemos comentar en 15 minutos cómo abordar tus dos áreas prioritarias con las herramientas que ya tienes montadas, sin compromiso ni llamadas comerciales forzadas.</p>
-              <div class="voluntary-actions" style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-                <a id="quiz-whatsapp-cta" href="https://wa.me/34686184291" target="_blank" rel="noopener" class="button button-primary" style="background:#1b5138; border-color:#1b5138;">Comentar mis prioridades por WhatsApp →</a>
-              </div>
-            </div>
-
-            <!-- Contacto opcional para comentar el caso -->
-            <div class="quiz-email-report-card">
-              <h4>Solicitar propuesta y contacto para tu caso</h4>
-              <p>Indícanos tu contacto si deseas que revisemos tus respuestas y preparemos una propuesta adaptada a tu alojamiento. No te suscribiremos a ninguna lista comercial sin tu permiso expreso.</p>
-
-              <form id="quiz-email-form" class="quiz-report-form" method="post" action="/procesar-lead.php">
-                <label class="quiz-field">
-                  <span>Tu nombre</span>
-                  <input id="report-name" name="name" type="text" placeholder="Tu nombre" required>
-                </label>
-                <label class="quiz-field">
-                  <span>Email donde recibir el informe</span>
-                  <input id="report-email" name="email" type="email" placeholder="tu@email.com" required autocomplete="email">
-                </label>
-                <label class="quiz-field form-wide">
-                  <span>Teléfono o WhatsApp <small style="font-weight:400;color:#607369;">(opcional, por si prefieres comentario ágil)</small></span>
-                  <input id="report-phone" name="phone" type="tel" placeholder="Opcional">
-                </label>
-
-                <label class="checkbox-label form-wide">
-                  <input id="report-newsletter" name="newsletter" type="checkbox" value="yes">
-                  <span>Quiero recibir ideas y contenidos de comercialización de Pyme360 por email.</span>
-                </label>
-
-                <label class="checkbox-label form-wide">
-                  <input id="report-privacy" name="privacy" type="checkbox" value="yes" required>
-                  <span>Acepto la <a href="../privacidad.html" target="_blank" rel="noopener">política de privacidad</a> para el envío de este informe y la resolución de mis dudas comerciales.</span>
-                </label>
-
-                <div class="form-wide" style="margin-top:8px;">
-                  <button type="submit" class="button button-primary" style="width:100%;" id="report-submit-btn">Enviar mi informe detallado</button>
-                </div>
-                <p class="form-status-msg form-wide" id="report-status-msg" style="display:none;"></p>
-              </form>
-            </div>
-
-            <!-- Llamada a Bloque 2: Solución Pyme360 tras el diagnóstico -->
-            <div class="quiz-next-steps-banner">
-              <span class="quiz-kicker" style="background: rgba(16, 47, 37, 0.08); color: #10291f;">Acompañamiento Pyme360</span>
-              <h4 style="font-family:'Outfit',sans-serif; font-size:20px; color:#0e2b20; margin:8px 0 6px 0;">¿Quieres ver cómo resolvemos estas prioridades contigo?</h4>
-              <p style="color:#4a6659; font-size:14.5px; margin:0 0 16px 0;">Conoce cómo nuestro equipo externo protege tu margen, elimina fugas a Booking y vende mejor tu alojamiento mes a mes.</p>
-              <a href="#solucion-pyme360" class="button button-primary" style="background:#134e35; border-color:#134e35; font-size:14px; padding:12px 24px; border-radius:10px; text-decoration:none; display:inline-block; font-weight:700;">Ver cómo te acompañamos ↓</a>
-            </div>
-
-            <!-- Botón para volver y modificar respuestas -->
-            <div style="text-align: center; margin-top: 10px;">
-              <button type="button" class="quiz-btn-prev" id="quiz-btn-modify" data-target-step="7" style="margin: 0 auto;">← Modificar alguna respuesta</button>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
 
     <!-- =====================================================================
          BLOQUE 2: LA SOLUCIÓN Y ACOMPAÑAMIENTO PYME360

@@ -5,7 +5,13 @@
 **URL elegida por José:** `https://pyme360.online/indice-pyme360/`  
 **Landing canónica:** `public/indice-pyme360/index.html`  
 **JS de la landing:** `public/assets/indice-pyme360.js`  
-**Última actualización:** 2026-11-08
+**Última actualización:** 2026-11-23
+
+## Nota operativa de oferta rural — 2026-11-23
+
+- [x] El borrador de acompañamiento y el plan de primer lote identifican los 350 € de julio como referencia histórica, no como precio vigente. La decisión del 2026-11-08 deja precio y alcance sujetos al diagnóstico.
+- [ ] José debe concretar alcance, límites, precio e impuestos antes de usar una propuesta comercial.
+- [x] Solo se modificaron documentos internos. No hubo cambios en HTML público, commit, push, publicación ni contacto.
 
 ---
 
@@ -428,6 +434,7 @@ Al ejecutar todos los `.cjs`, `tests/premium-form.test.cjs` falla por una expect
 | 2026-11-10 | §15.2 Maquetación y publicación de los dos primeros estudios de investigación en el blog: Estudio E1 (`/blog/webs-pymes-tenerife/`) con los datos de 90 webs de pymes en Tenerife, análisis por sector, brechas de contacto, PageSpeed móvil y 3 casos de malware confirmados; y Estudio E4 (`/blog/recomendaciones-ia-negocios-locales/`) con los datos de SOCi y las 90 consultas por API en Tenerife. Ambos firmados por «Equipo Pyme360» con Schema Organization, tarjetas 3D en `/blog/`, actualización de `sitemap.xml`, `llms.txt` y `tests/blog-articles.test.cjs`. | `blog/webs-pymes-tenerife/`, `blog/recomendaciones-ia-negocios-locales/`, `blog/index.html`, `sitemap.xml`, `llms.txt`, `tests/blog-articles.test.cjs` y réplicas `/public/` | 24 de 24 tests en verde; paridad 100% byte a byte. | Desplegado y sincronizado con origin/main. |
 | 2026-11-10 | Optimización de rendimiento y velocidad de carga móvil: sustitución de fondos CSS en las 12 tarjetas de `/blog/` por elementos `<img>` con `loading="lazy"`, `decoding="async"` y `fetchpriority="high"` en la primera tarjeta; compresión y generación de versiones `.webp` (-68% de peso medio y -98,7% de transferencia inicial móvil); cabeceras `mod_expires` y `Cache-Control` inmutables en `.htaccess` y `public/.htaccess`. Paridad 100% y 24/24 tests en verde. | `blog/index.html`, `public/blog/index.html`, `.htaccess`, `public/.htaccess`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `assets/blog/*.webp`, `public/assets/blog/*.webp`, `checklist.md` | 24 de 24 tests en verde; paridad 100% byte a byte confirmada; capturas desktop/móvil validadas. | Listo y desplegado en producción. |
 | 2026-11-10 | Calibración visual y reducción armónica del H1 del héroe de la Home: ajuste de `.hero-copy h1` a `clamp(32px, 3.6vw, 52px)` con `line-height: 1.08` para resolver el tamaño sobredimensionado (92px en 6 líneas) y equilibrar el titular en 4 líneas proporcionales alineadas con la tarjeta de diagnóstico en el primer viewport. | `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `checklist.md` | 24 de 24 tests en verde; paridad 100% byte a byte confirmada; capturas de comprobación validadas. | Listo y desplegado en producción. |
+| 2026-11-25 | Adaptación integral del embudo comercial PMV para alojamientos turísticos independientes (viviendas vacacionales, apartamentos turísticos, casas rurales, hoteles independientes, otros): Paso 1 (identificación tipo de alojamiento), Paso 2 (necesidades A-H con prioridad única y exclusividad mutua de H), adaptación no penalizante con botón 'N/A' en las 21 preguntas 7P, cálculo porcentual (0-100) inmediato con barras y nivel de madurez, desbloqueo de informe completo con captura de lead y consentimientos RGPD separados, enrutamiento determinista de soluciones comerciales (PYME360, Home4Escape con notas territoriales, FARO con procesos, y complementarias), CTA de agenda 20 min, envío automático multipart con firma de Teo Rubio Pérez y barra negra corporativa, columnas extendidas en `schema.sql` y script de recordatorio a 5 días (`cron-seguimiento-5dias.php`). Paridad 100% raíz y `/public/`. | `alojamientos-rurales/index.html`, `public/alojamientos-rurales/index.html`, `assets/indice-pyme360.js`, `public/assets/indice-pyme360.js`, `assets/pyme360-public.css`, `public/assets/pyme360-public.css`, `procesar-lead.php`, `schema.sql`, `cron-seguimiento-5dias.php`, `tests/commercial-funnel.test.cjs`, `tests/mandatory-profiles.test.cjs`, `docs/crm-data-exchange-format.md`, `checklist.md` | 36 de 36 tests en verde (100% passing); 5 perfiles obligatorios validados; sintaxis PHP limpia; cero términos prohibidos en HTML estático. | Listo en local. Pendiente de aprobación expresa de José antes de commit, push o despliegue. |
 
 ---
 
@@ -1014,3 +1021,22 @@ Para referencia de Antigravity y de quien prepare presupuestos; la web solo debe
 **Alineación obligatoria:** `llms.txt` y `public/llms.txt` (sección de precios con todas las tarifas «desde» y la nota de inversión publicitaria aparte), JSON-LD de `/precios.html` (un `Offer` por tarifa con `priceSpecification` «desde», EUR, sin IVA/IGIC) y la FAQ de precios de la Home. Actualiza `tests/pricing-page.test.cjs` con todos los importes. Paridad raíz ↔ `public/`, batería completa de tests, revisión en escritorio y móvil. Sin commit, push ni despliegue sin confirmación de José.
 
 **Pendiente de José:** precio del hosting sin mantenimiento; correo corporativo; si se ofrece un pack combinado (mantenimiento + SEO local + publicidad) con descuento.
+
+---
+
+## 16. PMV de Captación mediante Diagnóstico Comercial Inteligente (Campaña Meta Ads) — 2026-11-25
+
+- [x] **Paso 0: Identificación de Necesidades:** Incorporada pantalla inicial con opciones A-H («¿Qué te gustaría mejorar en tu alojamiento rural?») con selección múltiple y selector de prioridad principal condicional.
+- [x] **Cuestionario 7P Conservado:** Las 21 preguntas de las 7P se preservan con su escala 1-10 y metodología original de puntuación sin romper histórico ni tests.
+- [x] **Resultado Inmediato sin Registro:** Al terminar, se muestra de inmediato el Índice de Desarrollo Comercial (0-100), barra de progreso, fortaleza principal, oportunidad principal y desglose de las 7P sin solicitar datos previos.
+- [x] **Captura de Leads Desbloqueable:** El informe técnico completo se desbloquea tras el resultado mediante formulario (nombre, email, nombre de negocio, ubicación, teléfono opcional, privacidad obligatoria y newsletter independiente).
+- [x] **Motor Determinista de Recomendación de Solución:** Clasificación objetiva basada en prioridad declarada y puntuaciones 7P:
+  - **PYME360 Growth:** foco en web, reservas directas, SEO local y comercialización.
+  - **Home4Escape:** delegación operativa y gestión integral de reservas.
+  - **FARO:** formación, procesos internos, organización y revenue.
+- [x] **Agenda Única de 20 Minutos:** Botón centralizado de llamada a la acción hacia reunión gratuita de 20 minutos (`window.PYME360_AGENDA_URL` / fallback WhatsApp).
+- [x] **Entrega de Informe por Email (`procesar-lead.php`):** Correo transaccional con asunto `Tu diagnóstico comercial: [Alojamiento] | PYME360 Growth` entregado vía Resend API y `mail()` de respaldo, con resumen ejecutivo, score /100, desglose 7P, 3 fortalezas, 3 oportunidades, patología comercial, 3 acciones a corto plazo, siguiente paso, solución recomendada y botón de reserva.
+- [x] **Medición GA4 / Meta Pixel:** Eventos integrados: `diagnostic_start`, `needs_selected`, `diagnostic_complete`, `generate_lead` y `booking_click`. Captura persistente de parámetros UTM sin transmitir datos personales.
+- [x] **Batería de Tests Completa:** Creado `tests/commercial-funnel.test.cjs`. Los 29 tests en 25 suites pasan al 100% en verde.
+- [x] **Paridad 100%:** Byte a byte entre raíz y `public/`.
+- [ ] **Despliegue a Producción:** Pendiente de autorización explícita de José María.

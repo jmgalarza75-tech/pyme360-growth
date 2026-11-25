@@ -51,6 +51,17 @@ La web pública se despliega mediante Hostinger.
 - **Creación de Carpeta `articulos/`**: Documento [`articulos/README.md`](./articulos/README.md) con el manifiesto editorial y la hoja de ruta de los 4 ensayos de dirección comercial.
 - **Ensayo 01 Completado**: [`articulos/la-falacia-del-85-por-ciento-ocupacion.md`](./articulos/la-falacia-del-85-por-ciento-ocupacion.md) (*La falacia del 85% de ocupación: por qué colgar el cartel de lleno no se nota en la cuenta bancaria*), analizando el desfase entre facturación bruta y margen neto, cancelaciones de OTAs a 48h, rotación perversa y la ausencia de soberanía comercial, con cierre hacia la autoevaluación 7P.
 
+### Sesión: 2026-11-25 — Adaptación del Cuestionario y Embudo Comercial PMV para Alojamientos Turísticos Independientes
+- **Ampliación de Mercado**: Extensión del diagnóstico para cubrir todo tipo de alojamientos turísticos independientes de España: viviendas vacacionales, apartamentos turísticos, casas rurales, pequeños hoteles independientes y otros.
+- **Paso 1 (Identificación del Alojamiento)**: Selector con las 5 opciones oficiales (`vivienda`, `apartamento`, `casa_rural`, `hotel`, `otro`) y adaptación dinámica de terminología en todo el cuestionario.
+- **Paso 2 (Identificación de Necesidades)**: Opciones A-H («¿Qué te gustaría mejorar en tu alojamiento?»), selección múltiple, prioridad principal automática o seleccionable, y exclusividad mutua para H («No lo tengo claro»).
+- **Paso 3 (Cuestionario Adaptativo & N/A)**: Integración de botón 'N/A' en las 21 preguntas 7P con cálculo matemático que excluye 'na' del denominador (no penaliza la puntuación del alojamiento).
+- **Paso 4 (Resultado Inmediato)**: Puntuación 0-100 en pantalla, nivel de madurez, fortalezas y oportunidades sin exigir registro previo.
+- **Paso 5 (Captación y Privacidad RGPD)**: Desbloqueo de informe completo con nombre, email, alojamiento, ubicación y teléfono opcional; casillas de privacidad y newsletter desacopladas y no premarcadas.
+- **Paso 6 (Enrutamiento Comercial y Envío)**: Motor determinista de recomendación para PYME360, Home4Escape (con nota territorial), FARO (procesos) y complementarias. Envío automático por email firmado por Teo Rubio Pérez con barra negra corporativa Pyme360.
+- **Paso 7 (Datos y Futuro CRM)**: Documentado formato de intercambio JSON desacoplado en `docs/crm-data-exchange-format.md`, esquema de base de datos ampliado en `schema.sql` y script de seguimiento a 5 días `cron-seguimiento-5dias.php` preparado en modo dry-run.
+- **Verificación**: 36 de 36 tests automatizados en verde (`tests/*.test.cjs`), incluyendo simulación exhaustiva de los 5 perfiles ficticios obligatorios.
+
 ### Sesión: 2026-10-24 — Integración Global de Google Analytics 4 (GA4) y Saneamiento de Credenciales
 - **Tareas Realizadas**:
   - Integración del snippet oficial de Google tag (gtag.js) con ID `G-TV5EY510HZ` en el `<head>` de todas las 9 páginas web públicas del proyecto, manteniendo sincronía 100% entre raíz y `public/` (18 archivos modificados: `index.html`, `alojamientos-rurales/index.html`, `indice-pyme360/index.html`, `precios.html`, `propuesta.html`, `lead_magnet.html`, `aviso-legal.html`, `privacidad.html` y `cookies.html`).
@@ -157,4 +168,20 @@ gba(14, 25, 21, 0.9)), bordes sutiles en #2fbf71 y badges de confianza física e
   - 24/24 tests superados al 100% en Node nativo.
   - Paridad estricta 100% byte a byte entre raíz y `/public/`.
 
-
+### Sesión: 2026-11-25 — PMV de Captación mediante Diagnóstico Comercial Inteligente para Alojamientos Rurales
+- **Objetivo**: Transformar el cuestionario de `/alojamientos-rurales/` en un embudo comercial medible para campaña de Meta Ads (Facebook e Instagram), reutilizando el motor 7P existente.
+- **Implementación Front-end**:
+  - Nueva pantalla previa (Paso 0) de necesidades (opciones A a H) con selección múltiple y fijación de prioridad principal.
+  - Mantenimiento íntegro de las 21 preguntas de las 7P en los Pasos 1 a 7.
+  - Pantalla de resultados inmediatos (Paso 8): Índice de Desarrollo Comercial (0 a 100), nivel de madurez, barra visual, fortalezas, oportunidades y barras 7P sin pedir datos previos.
+  - Bloque de desbloqueo y formulario de captación para recibir el informe completo por correo electrónico (con consentimiento de privacidad RGPD obligatorio y newsletter opcional).
+  - Motor de recomendación determinista de marca (PYME360 Growth, Home4Escape, FARO) y CTA a reunión de asesoramiento de 20 minutos (`window.PYME360_AGENDA_URL`).
+  - Eventos de analítica (`diagnostic_start`, `needs_selected`, `diagnostic_complete`, `generate_lead`, `booking_click`) y captura limpia de parámetros UTM.
+- **Implementación Back-end (`procesar-lead.php`)**:
+  - Recepción de metadatos enriquecidos (`needs`, `primary_need`, `recommended_brand`, `score_100`, `utms`).
+  - Plantilla transaccional para el lead (`Tu diagnóstico comercial: [Alojamiento] | PYME360 Growth`) con 11 bloques editoriales y técnicos estructurados.
+  - Doble vía de envío: Resend API para entrega instantánea y `mail()` estándar como respaldo.
+- **Tests y Calidad**:
+  - Creación de suite `tests/commercial-funnel.test.cjs`.
+  - Batería completa de 29 tests (25 suites) en verde.
+  - Paridad byte a byte exacta verificada entre ficheros raíz y `public/`.

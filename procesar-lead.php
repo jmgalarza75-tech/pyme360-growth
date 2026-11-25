@@ -50,8 +50,9 @@ function clean($value): string {
 // Enviar email vía Resend API (entrega 100% garantizada en bandeja de entrada Gmail)
 function pyme360_send_resend($to, $subject, $html_body, $text_body = '') {
     $api_key = defined('RESEND_API_KEY') ? RESEND_API_KEY : (getenv('RESEND_API_KEY') ?: base64_decode('cmVfWjVjS2ptYW9fQ2NWZVRZSktKNVZYUDJ3cXh2OEpFWjRR'));
+    $from_address = defined('RESEND_FROM') ? RESEND_FROM : (getenv('RESEND_FROM') ?: 'Pyme360 Growth <onboarding@resend.dev>');
     $payload = [
-        'from' => 'Pyme360 Growth <onboarding@resend.dev>',
+        'from' => $from_address,
         'to' => is_array($to) ? $to : array_map('trim', explode(',', $to)),
         'subject' => $subject,
         'html' => $html_body,
@@ -94,6 +95,18 @@ $units         = clean($data['units']         ?? '');
 $source        = clean($data['source']        ?? 'web_publica');
 $newsletter_consent = !empty($data['newsletter_consent']);
 $privacy_consent    = !empty($data['privacy_consent']);
+$primary_need       = clean($data['primary_need']       ?? '');
+$recommended_brand  = clean($data['recommended_brand']  ?? '');
+$complementary_brand = clean($data['complementary_brand'] ?? '');
+$accommodation_type = clean($data['accommodation_type'] ?? $sector);
+$score_100_input    = isset($data['score_100']) ? (int)$data['score_100'] : null;
+$utms_input         = (isset($data['utms']) && is_array($data['utms'])) ? $data['utms'] : [];
+$needs_input        = isset($data['needs']) && is_array($data['needs']) ? implode(',', $data['needs']) : clean($data['needs'] ?? '');
+$utm_source         = clean($utms_input['utm_source'] ?? $data['utm_source'] ?? '');
+$utm_medium         = clean($utms_input['utm_medium'] ?? $data['utm_medium'] ?? '');
+$utm_campaign       = clean($utms_input['utm_campaign'] ?? $data['utm_campaign'] ?? '');
+$utm_content        = clean($utms_input['utm_content'] ?? $data['utm_content'] ?? '');
+$utm_term           = clean($utms_input['utm_term'] ?? $data['utm_term'] ?? '');
 
 // Buscar "problem" dentro de critical_errors si viene con la estructura de Supabase
 $problem_raw = $data['problem'] ?? ($data['critical_errors']['problem'] ?? '');
@@ -104,8 +117,13 @@ if ($source === 'indice_pyme360_revision_inicial') {
     $indice_context[] = 'Origen: Índice Pyme360® - revisión inicial';
     if ($website) $indice_context[] = 'Web: ' . $website;
     if ($units) $indice_context[] = 'Habitaciones/unidades: ' . $units;
+    if ($primary_need) $indice_context[] = 'Prioridad declarada: ' . $primary_need;
+    if ($recommended_brand) $indice_context[] = 'Marca recomendada: ' . $recommended_brand;
     $indice_context[] = 'Newsletter: ' . ($newsletter_consent ? 'Sí' : 'No');
     $indice_context[] = 'Privacidad: ' . ($privacy_consent ? 'Aceptada' : 'No aceptada');
+    if (!empty($utms_input['utm_source'])) {
+        $indice_context[] = 'Campaña: ' . ($utms_input['utm_campaign'] ?? '') . ' | Fuente: ' . ($utms_input['utm_source'] ?? '') . ' | Medio: ' . ($utms_input['utm_medium'] ?? '');
+    }
     $problem = trim($problem . "\n\n" . implode("\n", $indice_context));
 }
 
@@ -128,24 +146,61 @@ try {
         ]
     );
 
-    $stmt = $pdo->prepare(
-        'INSERT INTO leads
-         (name, email, phone, business_name, sector, location, objetivo, presupuesto, problem)
-         VALUES
-         (:name, :email, :phone, :business_name, :sector, :location, :objetivo, :presupuesto, :problem)'
-    );
-
-    $stmt->execute([
-        ':name'          => $name,
-        ':email'         => $email,
-        ':phone'         => $phone,
-        ':business_name' => $business_name,
-        ':sector'        => $sector,
-        ':location'      => $location,
-        ':objetivo'      => $objetivo,
-        ':presupuesto'   => $presupuesto,
-        ':problem'       => $problem,
-    ]);
+    try {
+        $stmt_ext = $pdo->prepare(
+            'INSERT INTO leads
+             (name, email, phone, business_name, sector, location, objetivo, presupuesto, problem,
+              accommodation_type, units, score_100, primary_need, selected_needs, recommended_brand, complementary_brand,
+              utm_source, utm_medium, utm_campaign, utm_content, utm_term, newsletter_consent, privacy_consent)
+             VALUES
+             (:name, :email, :phone, :business_name, :sector, :location, :objetivo, :presupuesto, :problem,
+              :accommodation_type, :units, :score_100, :primary_need, :selected_needs, :recommended_brand, :complementary_brand,
+              :utm_source, :utm_medium, :utm_campaign, :utm_content, :utm_term, :newsletter_consent, :privacy_consent)'
+        );
+        $stmt_ext->execute([
+            ':name' => $name,
+            ':email' => $email,
+            ':phone' => $phone,
+            ':business_name' => $business_name,
+            ':sector' => $sector,
+            ':location' => $location,
+            ':objetivo' => $objetivo,
+            ':presupuesto' => $presupuesto,
+            ':problem' => $problem,
+            ':accommodation_type' => $accommodation_type,
+            ':units' => $units,
+            ':score_100' => $score_100_input,
+            ':primary_need' => $primary_need,
+            ':selected_needs' => $needs_input,
+            ':recommended_brand' => $recommended_brand,
+            ':complementary_brand' => $complementary_brand,
+            ':utm_source' => $utm_source,
+            ':utm_medium' => $utm_medium,
+            ':utm_campaign' => $utm_campaign,
+            ':utm_content' => $utm_content,
+            ':utm_term' => $utm_term,
+            ':newsletter_consent' => $newsletter_consent ? 1 : 0,
+            ':privacy_consent' => $privacy_consent ? 1 : 0
+        ]);
+    } catch (PDOException $e_ext) {
+        $stmt = $pdo->prepare(
+            'INSERT INTO leads
+             (name, email, phone, business_name, sector, location, objetivo, presupuesto, problem)
+             VALUES
+             (:name, :email, :phone, :business_name, :sector, :location, :objetivo, :presupuesto, :problem)'
+        );
+        $stmt->execute([
+            ':name'          => $name,
+            ':email'         => $email,
+            ':phone'         => $phone,
+            ':business_name' => $business_name,
+            ':sector'        => $sector,
+            ':location'      => $location,
+            ':objetivo'      => $objetivo,
+            ':presupuesto'   => $presupuesto,
+            ':problem'       => $problem,
+        ]);
+    }
 
 } catch (PDOException $e) {
     error_log('[Pyme360] DB error: ' . $e->getMessage());
@@ -242,9 +297,15 @@ if (!$mail_sent) {
 }
 
 // 3. Enviar email de confirmación al lead (Multipart HTML + Texto) --------
-$subject_lead = "Hemos recibido tu solicitud | Pyme360 Growth";
 $anio = date('Y');
 $newsletter_url = "https://open.substack.com/pub/alojamente/p/newsletter-extraordinaria-airbnb?r=5sdrqo&utm_campaign=post&utm_medium=web"; // <-- AlojaMente
+
+// URL de reserva centralizada (configurable vía constante o entorno)
+$default_booking_text = "Hola Teo, he completado el diagnóstico comercial de mi alojamiento (" . $business_name . ") y quiero reservar la reunión gratuita de 20 minutos.";
+$agenda_url = defined('PYME360_AGENDA_URL') 
+    ? PYME360_AGENDA_URL 
+    : (getenv('PYME360_AGENDA_URL') ?: ('https://wa.me/34686184291?text=' . rawurlencode($default_booking_text)));
+
 $contact_sentence_text = $phone
     ? "En un plazo máximo de 48 horas laborables nos pondremos en contacto contigo en el teléfono {$phone}."
     : "En un plazo máximo de 48 horas laborables nos pondremos en contacto contigo por los datos facilitados.";
@@ -252,6 +313,256 @@ $contact_sentence_html = $phone
     ? 'En un plazo máximo de <strong>48 horas laborables</strong> nos pondremos en contacto contigo en el teléfono <strong>' . $phone . '</strong>.'
     : 'En un plazo máximo de <strong>48 horas laborables</strong> nos pondremos en contacto contigo por los datos facilitados.';
 
+if ($is_autoeval) {
+    // Cálculo seguro de puntuación 0-100 para el informe
+    if ($score_100_input !== null && $score_100_input > 0) {
+        $final_score_100 = $score_100_input;
+    } elseif ($score_str !== '') {
+        $final_score_100 = (int)round(((float)str_replace(',', '.', $score_str)) * 10);
+    } else {
+        $final_score_100 = 60;
+    }
+
+    if ($final_score_100 >= 75) {
+        $madurez_titulo = "Madurez Comercial Sólida";
+        $madurez_desc   = "Tu alojamiento cuenta con bases comerciales estables. Las principales oportunidades residen en optimizar la conversión directa y maximizar el margen neto por estancia.";
+        $badge_color    = "#16a34a";
+    } elseif ($final_score_100 >= 50) {
+        $madurez_titulo = "Oportunidad de Crecimiento";
+        $madurez_desc   = "Tienes tracción y demanda, pero existen fugas comerciales claras en captación o una excesiva dependencia de comisiones en OTAs intermediarias.";
+        $badge_color    = "#d97706";
+    } else {
+        $madurez_titulo = "Riesgo de Dependencia Comercial";
+        $madurez_desc   = "El alojamiento depende críticamente de canales de terceros o carece de sistemas directos de captación, lo que compromete margen y control del negocio.";
+        $badge_color    = "#dc2626";
+    }
+
+    // Marca y propuesta comercial adaptada
+    $rec_brand = $recommended_brand ?: 'PYME360';
+    if ($rec_brand === 'Home4Escape') {
+        $propuesta_titulo = "Home4Escape · Gestión y Comercialización Delegada";
+        $propuesta_desc   = "Servicios de gestión operativa de reservas, atención integral al huésped y optimización multicanal para liberar tu tiempo (sujeto a disponibilidad y zona de cobertura).";
+    } elseif ($rec_brand === 'FARO') {
+        $propuesta_titulo = "FARO · Organización, Procesos y Formación Especializada";
+        $propuesta_desc   = "Acompañamiento directivo, definición de procesos operativos internos y formación aplicada para profesionalizar la operativa de tu alojamiento.";
+    } else {
+        $propuesta_titulo = "PYME360 Growth · Sistema Integral de Crecimiento Directo";
+        $propuesta_desc   = "Diseño web de alta conversión para reserva directa, posicionamiento SEO Local en Google, optimización de presentación comercial y automatización de seguimiento.";
+    }
+
+    $subject_lead = "Tu diagnóstico comercial: {$business_name} | PYME360 Growth";
+
+    // Versión Texto Plano
+    $comp_text = $complementary_brand ? "\n\nSolución complementaria sugerida: {$complementary_brand}" : "";
+$body_lead_text = "Hola {$name},
+
+Aquí tienes el informe completo y personalizado de la autoevaluación comercial de tu alojamiento ({$business_name}).
+
+============================================================
+RESUMEN EJECUTIVO DEL DIAGNÓSTICO
+============================================================
+Índice de Desarrollo Comercial: {$final_score_100} / 100
+Nivel de Madurez: {$madurez_titulo}
+{$madurez_desc}
+
+============================================================
+INFORME COMPLETO DETALLADO
+============================================================
+{$problem}
+
+============================================================
+SOLUCIÓN RECOMENDADA
+============================================================
+{$propuesta_titulo}
+{$propuesta_desc}{$comp_text}
+
+============================================================
+SIGUIENTE PASO: REUNIÓN DE ASESORAMIENTO GRATUITA (20 MIN)
+============================================================
+Te invitamos a una sesión individual de 20 minutos donde revisaremos contigo tus fortalezas, tus fugas comerciales y la hoja de ruta práctica.
+
+Puedes reservar directamente tu día y hora en el siguiente enlace:
+{$agenda_url}
+
+Si lo prefieres, también puedes responder directamente a este correo o contactarnos por WhatsApp en el +34 686 18 42 91.
+
+Muchas gracias por confiar en Pyme360 Growth.
+
+Un cordial saludo,
+Teo Rubio Pérez
+PYME360 · Presencia y marketing Empresarial
+Marketing Digital | Social Media | Estrategia Digital | Captación directa para alojamientos turísticos
+Más información: https://pyme360.online/
+WhatsApp: +34 686 184 291
+
+---
+Pyme360 Growth · Canarias, España.
+Has recibido este correo porque solicitaste gratuitamente el informe comercial en pyme360.online.
+Política de privacidad: https://pyme360.online/politica-de-privacidad.html";
+
+    // Versión HTML enriquecida
+    $body_lead_html = '<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>' . htmlspecialchars($subject_lead, ENT_QUOTES, 'UTF-8') . '</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f1f5f3; font-family:-apple-system, BlinkMacSystemFont, Arial, sans-serif; color:#1f2937;">
+  <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:transparent;">
+    Informe comercial completo para ' . htmlspecialchars($business_name, ENT_QUOTES, 'UTF-8') . '. Puntuación: ' . $final_score_100 . '/100.
+  </div>
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#f1f5f3;">
+    <tr>
+      <td align="center" style="padding:28px 12px;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:660px; background-color:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.07); border:1px solid #e5e7eb;">
+          
+          <!-- Encabezado con degradado esmeralda -->
+          <tr>
+            <td style="background:linear-gradient(135deg, #062b1b 0%, #0d4a2f 100%); padding:32px 36px; text-align:left; border-bottom:4px solid #10b981;">
+              <div style="font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:#6ee7b7; margin-bottom:8px;">
+                PYME360 GROWTH · DIAGNÓSTICO COMERCIAL
+              </div>
+              <h1 style="margin:0; font-size:24px; line-height:1.3; color:#ffffff; font-weight:800;">
+                Informe comercial: ' . htmlspecialchars($business_name, ENT_QUOTES, 'UTF-8') . '
+              </h1>
+              <p style="margin:8px 0 0 0; font-size:14px; color:#d1fae5;">
+                Autoevaluación para propietarios y gestores de alojamientos turísticos independientes
+              </p>
+            </td>
+          </tr>
+
+          <!-- Puntuación y Nivel de Madurez -->
+          <tr>
+            <td style="padding:32px 36px 20px 36px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:20px;">
+                <tr>
+                  <td align="center" style="padding:10px;">
+                    <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#64748b; margin-bottom:6px;">
+                      Tu Índice de Desarrollo Comercial
+                    </div>
+                    <div style="font-size:48px; font-weight:900; line-height:1; color:' . $badge_color . '; margin-bottom:6px;">
+                      ' . $final_score_100 . '<span style="font-size:22px; color:#94a3b8; font-weight:600;">/100</span>
+                    </div>
+                    <div style="display:inline-block; background-color:' . $badge_color . '; color:#ffffff; font-size:13px; font-weight:700; padding:4px 14px; border-radius:999px; margin-bottom:12px;">
+                      ' . htmlspecialchars($madurez_titulo, ENT_QUOTES, 'UTF-8') . '
+                    </div>
+                    <p style="margin:0; font-size:14px; line-height:1.6; color:#475569; max-width:520px;">
+                      ' . htmlspecialchars($madurez_desc, ENT_QUOTES, 'UTF-8') . '
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Mensaje Personalizado -->
+          <tr>
+            <td style="padding:10px 36px 20px 36px;">
+              <p style="margin:0 0 16px 0; font-size:16px; line-height:1.65; color:#1f2937;">
+                Hola <strong>' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '</strong>,
+              </p>
+              <p style="margin:0 0 16px 0; font-size:15px; line-height:1.65; color:#374151;">
+                Muchas gracias por completar la autoevaluación comercial de <strong>' . htmlspecialchars($business_name, ENT_QUOTES, 'UTF-8') . '</strong>.
+                A continuación tienes el desglose detallado de tus resultados y la hoja de ruta recomendada:
+              </p>
+            </td>
+          </tr>
+
+          <!-- Tarjeta del Informe Técnico -->
+          <tr>
+            <td style="padding:0 36px 24px 36px;">
+              <div style="background-color:#0b1912; border:1px solid #1a3826; border-radius:12px; padding:22px; color:#e2e8f0; font-family:monospace; font-size:13px; line-height:1.6; white-space:pre-wrap; max-height:480px; overflow-y:auto;">' . htmlspecialchars($problem, ENT_QUOTES, 'UTF-8') . '</div>
+            </td>
+          </tr>
+
+          <!-- Solución Comercial Recomendada -->
+          <tr>
+            <td style="padding:0 36px 24px 36px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%); border:1px solid #a7f3d0; border-radius:14px; padding:22px;">
+                <tr>
+                  <td>
+                    <div style="font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#047857; margin-bottom:4px;">
+                      Solución recomendada para tu caso
+                    </div>
+                    <h3 style="margin:0 0 8px 0; font-size:18px; color:#064e3b; font-weight:800;">
+                      ' . htmlspecialchars($propuesta_titulo, ENT_QUOTES, 'UTF-8') . '
+                    </h3>
+                    <p style="margin:0; font-size:14px; line-height:1.6; color:#065f46;">
+                      ' . htmlspecialchars($propuesta_desc, ENT_QUOTES, 'UTF-8') . '
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Bloque CTA Reserva 20 Min -->
+          <tr>
+            <td style="padding:10px 36px 32px 36px; text-align:center;">
+              <div style="background-color:#ffffff; border:2px dashed #10b981; border-radius:14px; padding:28px 24px;">
+                <h3 style="margin:0 0 10px 0; font-size:19px; color:#062b1b; font-weight:800;">
+                  Reunión gratuita de asesoramiento (20 min)
+                </h3>
+                <p style="margin:0 auto 22px auto; font-size:14px; line-height:1.6; color:#4b5563; max-width:480px;">
+                  Analizaremos contigo tu diagnóstico, revisaremos tu página web y te mostraremos cómo aplicar estas mejoras paso a paso sin compromiso.
+                </p>
+                <a href="' . htmlspecialchars($agenda_url, ENT_QUOTES, 'UTF-8') . '" target="_blank" style="display:inline-block; background-color:#059669; color:#ffffff; text-decoration:none; font-size:16px; font-weight:800; padding:15px 32px; border-radius:10px; box-shadow:0 4px 14px rgba(5,150,105,0.35);">
+                  Reservar reunión gratuita de asesoramiento (20 min) →
+                </a>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Firma Profesional y Credenciales -->
+          <tr>
+            <td style="padding:0 36px 26px 36px;">
+              <p style="margin:0 0 10px 0; font-size:15px; line-height:1.6; color:#374151;">
+                Un cordial saludo,
+              </p>
+              <div style="font-size:13.5px; line-height:1.6; color:#374151;">
+                <p style="margin:0 0 3px 0; font-size:16px; font-weight:700; color:#111827;">Teo Rubio Pérez</p>
+                <p style="margin:0 0 3px 0; color:#1f2937;"><strong>PYME360</strong> &middot; Presencia y marketing Empresarial</p>
+                <p style="margin:0 0 3px 0; font-size:13px; color:#4b5563;">Marketing Digital | Social Media | Estrategia Digital | Captaci&oacute;n directa para alojamientos tur&iacute;sticos</p>
+                <p style="margin:0 0 3px 0;"><span style="color:#6b7280;">M&aacute;s informaci&oacute;n:</span> <a href="https://pyme360.online/" target="_blank" style="color:#16a34a; font-weight:600; text-decoration:underline;">Pyme360</a></p>
+                <p style="margin:0; color:#4b5563;"><strong>WhatsApp:</strong> <a href="https://wa.me/34686184291" style="color:#16a34a; font-weight:600; text-decoration:none;">+34 686 184 291</a></p>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Barra Negra con Logotipo Corporativo Pyme360 -->
+          <tr>
+            <td style="background-color:#000000; padding:28px 24px; text-align:center;">
+              <a href="https://pyme360.online/" target="_blank" style="text-decoration:none; display:inline-block;">
+                <img src="https://pyme360.online/assets/lgo.png" alt="PYME360 &middot; Presencia y marketing Empresarial" width="220" style="display:block; max-width:220px; height:auto; margin:0 auto; border:0;">
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#f9fafb; padding:22px 36px; border-top:1px solid #e5e7eb; text-align:center;">
+              <p style="margin:0 0 8px 0; font-size:12px; line-height:1.5; color:#6b7280;">
+                Has recibido este correo porque solicitaste tu informe gratuito en <strong>pyme360.online</strong>.
+              </p>
+              <p style="margin:0; font-size:12px; line-height:1.5; color:#9ca3af;">
+                &copy; ' . $anio . ' Pyme360 Growth &middot; España &middot; <a href="https://pyme360.online/politica-de-privacidad.html" style="color:#6b7280; text-decoration:underline;">Política de Privacidad</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>';
+
+} else {
+    // Lead estándar de formulario de contacto general
+    $subject_lead = "Hemos recibido tu solicitud | Pyme360 Growth";
+
+    $comp_text = $complementary_brand ? "\n\nSolución complementaria sugerida: {$complementary_brand}" : "";
 $body_lead_text = "Hola {$name},
 
 Muchas gracias por ponerte en contacto con nosotros.
@@ -278,24 +589,24 @@ Mientras revisamos tu solicitud, puedes suscribirte gratuitamente a nuestra news
 
 Muchas gracias por confiar en nosotros.
 
-Un saludo,
+Un cordial saludo,
 
-Teo Rubio
-Pyme360 Growth
+Teo Rubio Pérez
+PYME360 · Presencia y marketing Empresarial
+Marketing Digital | Social Media | Estrategia Digital | Captación directa para alojamientos turísticos
+Más información: https://pyme360.online/
+WhatsApp: +34 686 184 291
 
 P. D. Antes de llamarte revisaremos tu web y tu presencia digital para poder darte recomendaciones concretas desde el primer contacto.";
 
-$body_lead_html = '<!DOCTYPE html>
+    $body_lead_html = '<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hemos recibido tu solicitud | Pyme360 Growth</title>
 </head>
-
 <body style="margin:0; padding:0; background-color:#f4f6f5; font-family:Arial, Helvetica, sans-serif; color:#1f2933;">
-
-  <!-- Preheader -->
   <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:transparent;">
     Hemos recibido tu solicitud. Revisaremos tu negocio y contactaremos contigo en un plazo máximo de 48 horas laborables.
   </div>
@@ -303,48 +614,33 @@ $body_lead_html = '<!DOCTYPE html>
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#f4f6f5;">
     <tr>
       <td align="center" style="padding:28px 12px;">
-
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
                style="max-width:640px; background-color:#ffffff; border-radius:14px; overflow:hidden; box-shadow:0 6px 24px rgba(20,40,30,0.08);">
-
-          <!-- Cabecera -->
           <tr>
             <td style="background-color:#183c34; padding:30px 34px; text-align:center;">
-              
-              <!-- Sustituir por logo si está disponible -->
               <div style="font-size:27px; line-height:1.2; font-weight:700; color:#ffffff; letter-spacing:-0.5px;">
                 Pyme<span style="color:#74c69d;">360</span>
               </div>
-
               <div style="margin-top:6px; font-size:13px; line-height:1.4; color:#cce7d8; letter-spacing:1.5px; text-transform:uppercase;">
                 Growth
               </div>
-
             </td>
           </tr>
-
-          <!-- Contenido principal -->
           <tr>
             <td style="padding:38px 36px 18px 36px;">
-
               <h1 style="margin:0 0 22px 0; font-size:27px; line-height:1.25; color:#183c34; font-weight:700;">
                 Hemos recibido tu solicitud
               </h1>
-
               <p style="margin:0 0 18px 0; font-size:16px; line-height:1.65; color:#374151;">
                 Hola <strong>' . $name . '</strong>,
               </p>
-
               <p style="margin:0 0 18px 0; font-size:16px; line-height:1.65; color:#374151;">
                 Muchas gracias por ponerte en contacto con nosotros.
               </p>
-
               <p style="margin:0 0 18px 0; font-size:16px; line-height:1.65; color:#374151;">
                 Hemos recibido correctamente tu solicitud relacionada con
                 <strong>' . $business_name . '</strong> y nuestro equipo ya está revisando la información que nos has enviado.
               </p>
-
-              <!-- Confirmación de contacto -->
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
                      style="margin:26px 0; background-color:#edf7f1; border-left:5px solid #3c9d6f; border-radius:8px;">
                 <tr>
@@ -352,241 +648,96 @@ $body_lead_html = '<!DOCTYPE html>
                     <p style="margin:0 0 8px 0; font-size:16px; line-height:1.5; color:#183c34; font-weight:700;">
                       ¿Qué ocurrirá ahora?
                     </p>
-
                     <p style="margin:0; font-size:15px; line-height:1.65; color:#315447;">
                       ' . $contact_sentence_html . '
                     </p>
                   </td>
                 </tr>
               </table>
-
               <p style="margin:0 0 18px 0; font-size:16px; line-height:1.65; color:#374151;">
                 Antes de llamarte, revisaremos tu página web y tu presencia digital para que la conversación sea útil desde el primer minuto.
               </p>
-
             </td>
           </tr>
-
-          <!-- Bloque de autoridad y experiencia -->
           <tr>
             <td style="padding:12px 36px 18px 36px;">
-
               <h2 style="margin:0 0 18px 0; font-size:22px; line-height:1.3; color:#183c34; font-weight:700;">
                 ¿Quién hay detrás de Pyme360 Growth?
               </h2>
-
               <p style="margin:0 0 17px 0; font-size:16px; line-height:1.65; color:#374151;">
                 Pyme360 Growth nace de la experiencia real dentro del sector turístico y empresarial.
               </p>
-
-              <p style="margin:0 0 17px 0; font-size:16px; line-height:1.65; color:#374151;">
-                Nuestro equipo ha trabajado tanto en la dirección y gestión operativa como en la comercialización de:
-              </p>
-
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-                     style="margin:6px 0 24px 0;">
-                <tr>
-                  <td width="50%" valign="top" style="padding:5px 10px 5px 0;">
-                    <p style="margin:0; font-size:15px; line-height:1.6; color:#374151;">
-                      ✓ Hoteles y hoteles rurales
-                    </p>
-                  </td>
-                  <td width="50%" valign="top" style="padding:5px 0 5px 10px;">
-                    <p style="margin:0; font-size:15px; line-height:1.6; color:#374151;">
-                      ✓ Viviendas vacacionales
-                    </p>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="50%" valign="top" style="padding:5px 10px 5px 0;">
-                    <p style="margin:0; font-size:15px; line-height:1.6; color:#374151;">
-                      ✓ Apartamentos turísticos
-                    </p>
-                  </td>
-                  <td width="50%" valign="top" style="padding:5px 0 5px 10px;">
-                    <p style="margin:0; font-size:15px; line-height:1.6; color:#374151;">
-                      ✓ Gestión de reservas
-                    </p>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="50%" valign="top" style="padding:5px 10px 5px 0;">
-                    <p style="margin:0; font-size:15px; line-height:1.6; color:#374151;">
-                      ✓ Revenue Management
-                    </p>
-                  </td>
-                  <td width="50%" valign="top" style="padding:5px 0 5px 10px;">
-                    <p style="margin:0; font-size:15px; line-height:1.6; color:#374151;">
-                      ✓ Atención al huésped
-                    </p>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="50%" valign="top" style="padding:5px 10px 5px 0;">
-                    <p style="margin:0; font-size:15px; line-height:1.6; color:#374151;">
-                      ✓ Marketing turístico
-                    </p>
-                  </td>
-                  <td width="50%" valign="top" style="padding:5px 0 5px 10px;">
-                    <p style="margin:0; font-size:15px; line-height:1.6; color:#374151;">
-                      ✓ Automatización de procesos
-                    </p>
-                  </td>
-                </tr>
-              </table>
-
-              <p style="margin:0 0 18px 0; font-size:16px; line-height:1.65; color:#374151;">
-                Esta experiencia nos permite comprender los problemas reales del día a día: dependencia de las plataformas,
-                falta de reservas directas, tareas repetitivas, pérdida de oportunidades comerciales y dificultad para hacer seguimiento de cada cliente.
-              </p>
-
             </td>
           </tr>
-
-          <!-- Bloque destacado Pyme360 Growth -->
-          <tr>
-            <td style="padding:8px 36px 28px 36px;">
-
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-                     style="background-color:#183c34; border-radius:12px;">
-                <tr>
-                  <td style="padding:28px 26px;">
-
-                    <div style="font-size:12px; line-height:1.4; color:#89d1ab; text-transform:uppercase; letter-spacing:1.4px; font-weight:700; margin-bottom:9px;">
-                      Pyme360 Growth
-                    </div>
-
-                    <h2 style="margin:0 0 14px 0; font-size:23px; line-height:1.3; color:#ffffff; font-weight:700;">
-                      No hacemos ruido. Construimos sistemas de crecimiento.
-                    </h2>
-
-                    <p style="margin:0 0 19px 0; font-size:15px; line-height:1.7; color:#d7e9df;">
-                      No queremos añadir más publicaciones, más herramientas o más tareas a tu negocio.
-                      Diseñamos sistemas para atraer oportunidades, convertirlas en clientes y hacer seguimiento de forma ordenada.
-                    </p>
-
-                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                      <tr>
-                        <td style="padding:6px 0;">
-                          <p style="margin:0; font-size:15px; line-height:1.55; color:#ffffff;">
-                            <strong>Webs orientadas a conversión</strong><br>
-                            <span style="color:#c9ded3;">Páginas diseñadas para transformar visitas en solicitudes, reservas o ventas.</span>
-                          </p>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td style="padding:10px 0 6px 0;">
-                          <p style="margin:0; font-size:15px; line-height:1.55; color:#ffffff;">
-                            <strong>Google Local</strong><br>
-                            <span style="color:#c9ded3;">Mejoramos la visibilidad del negocio cuando un cliente busca servicios en su zona.</span>
-                          </p>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td style="padding:10px 0 6px 0;">
-                          <p style="margin:0; font-size:15px; line-height:1.55; color:#ffffff;">
-                            <strong>CRM y automatización</strong><br>
-                            <span style="color:#c9ded3;">Organizamos los contactos y automatizamos el seguimiento para reducir oportunidades perdidas.</span>
-                          </p>
-                        </td>
-                      </tr>
-                    </table>
-
-                  </td>
-                </tr>
-              </table>
-
-            </td>
-          </tr>
-
-          <!-- Newsletter -->
           <tr>
             <td style="padding:4px 36px 30px 36px;">
-
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
                      style="background-color:#f3f7f5; border:1px solid #dce9e2; border-radius:10px;">
                 <tr>
                   <td style="padding:24px 24px; text-align:center;">
-
                     <h2 style="margin:0 0 11px 0; font-size:20px; line-height:1.35; color:#183c34;">
                       Mientras revisamos tu solicitud
                     </h2>
-
                     <p style="margin:0 0 19px 0; font-size:15px; line-height:1.65; color:#4b5563;">
                       Puedes suscribirte gratuitamente a nuestra newsletter, donde compartimos estrategias sobre
                       reservas directas, revenue, inteligencia artificial, automatización, marketing y gestión turística.
                     </p>
-
                     <a href="' . $newsletter_url . '"
                        target="_blank"
                        style="display:inline-block; background-color:#3c9d6f; color:#ffffff; text-decoration:none; font-size:15px; font-weight:700; padding:13px 24px; border-radius:7px;">
                       Suscribirme a la newsletter
                     </a>
-
                   </td>
                 </tr>
               </table>
-
             </td>
           </tr>
-
-          <!-- Cierre y firma -->
           <tr>
             <td style="padding:4px 36px 36px 36px;">
-
               <p style="margin:0 0 18px 0; font-size:16px; line-height:1.65; color:#374151;">
                 Muchas gracias por confiar en nosotros.
               </p>
-
-              <p style="margin:0 0 24px 0; font-size:16px; line-height:1.65; color:#374151;">
-                Hablamos muy pronto.
+              <p style="margin:0 0 10px 0; font-size:15px; line-height:1.6; color:#374151;">
+                Un cordial saludo,
               </p>
-
-              <p style="margin:0; font-size:16px; line-height:1.55; color:#183c34;">
-                Un saludo,<br>
-                <strong>Teo Rubio</strong><br>
-                <span style="font-size:14px; color:#637067;">Pyme360 Growth</span>
-              </p>
-
-              <p style="margin:24px 0 0 0; padding-top:20px; border-top:1px solid #e5e7eb; font-size:14px; line-height:1.6; color:#6b7280;">
-                <strong>P. D.</strong> Antes de llamarte revisaremos tu web y tu presencia digital para aprovechar al máximo la conversación y poder darte recomendaciones concretas desde el primer contacto.
-              </p>
-
+              <div style="font-size:13.5px; line-height:1.6; color:#374151;">
+                <p style="margin:0 0 3px 0; font-size:16px; font-weight:700; color:#111827;">Teo Rubio Pérez</p>
+                <p style="margin:0 0 3px 0; color:#1f2937;"><strong>PYME360</strong> &middot; Presencia y marketing Empresarial</p>
+                <p style="margin:0 0 3px 0; font-size:13px; color:#4b5563;">Marketing Digital | Social Media | Estrategia Digital | Captaci&oacute;n directa para alojamientos tur&iacute;sticos</p>
+                <p style="margin:0 0 3px 0;"><span style="color:#6b7280;">M&aacute;s informaci&oacute;n:</span> <a href="https://pyme360.online/" target="_blank" style="color:#16a34a; font-weight:600; text-decoration:underline;">Pyme360</a></p>
+                <p style="margin:0; color:#4b5563;"><strong>WhatsApp:</strong> <a href="https://wa.me/34686184291" style="color:#16a34a; font-weight:600; text-decoration:none;">+34 686 184 291</a></p>
+              </div>
             </td>
           </tr>
-
-          <!-- Pie -->
+          <!-- Barra Negra con Logotipo Corporativo Pyme360 -->
+          <tr>
+            <td style="background-color:#000000; padding:28px 24px; text-align:center;">
+              <a href="https://pyme360.online/" target="_blank" style="text-decoration:none; display:inline-block;">
+                <img src="https://pyme360.online/assets/lgo.png" alt="PYME360 &middot; Presencia y marketing Empresarial" width="220" style="display:block; max-width:220px; height:auto; margin:0 auto; border:0;">
+              </a>
+            </td>
+          </tr>
           <tr>
             <td style="background-color:#eef3f0; padding:20px 28px; text-align:center;">
-
               <p style="margin:0 0 7px 0; font-size:12px; line-height:1.5; color:#718078;">
                 Este correo se ha enviado automáticamente porque has solicitado información a través de nuestra web.
               </p>
-
               <p style="margin:0; font-size:12px; line-height:1.5; color:#718078;">
                 &copy; ' . $anio . ' Pyme360 Growth &middot; Canarias
               </p>
-
             </td>
           </tr>
-
         </table>
-
       </td>
     </tr>
   </table>
-
 </body>
 </html>';
+}
 
 $boundary = md5(uniqid(time()));
 
-$headers_lead  = "From: =?UTF-8?B?" . base64_encode("Teo · Pyme360 Growth") . "?= <" . SMTP_FROM . ">\r\n";
+$headers_lead  = "From: =?UTF-8?B?" . base64_encode("Teo Rubio Pérez · Pyme360 Growth") . "?= <" . SMTP_FROM . ">\r\n";
 $headers_lead .= "Reply-To: " . SMTP_FROM . "\r\n";
 $headers_lead .= "MIME-Version: 1.0\r\n";
 $headers_lead .= "Content-Type: multipart/alternative; boundary=\"$boundary\"\r\n";
@@ -604,6 +755,10 @@ $multipart_lead .= $body_lead_html . "\r\n\r\n";
 
 $multipart_lead .= "--$boundary--\r\n";
 
+// Intentar envío por Resend para entrega garantizada
+pyme360_send_resend($email, $subject_lead, $body_lead_html, $body_lead_text);
+
+// Envío secundario mediante mail()
 $mail_lead_sent = mail($email, $subject_lead, $multipart_lead, $headers_lead);
 
 if (!$mail_lead_sent) {

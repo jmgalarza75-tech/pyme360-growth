@@ -7251,10 +7251,10 @@ body.indice-page .site-footer {
   margin: 0;
 }
 
-/* Escala de Respuesta (1 al 10) */
+/* Escala de Respuesta (1 al 10 + N/A) */
 .quiz-rating-scale {
   display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-columns: repeat(10, minmax(0, 1fr)) minmax(46px, 1.15fr);
   gap: 6px;
   margin: 14px 0 10px 0;
 }
@@ -7288,6 +7288,28 @@ body.indice-page .site-footer {
   border-color: #102f25 !important;
   box-shadow: 0 4px 12px rgba(16, 47, 37, 0.25);
   transform: translateY(-2px);
+}
+
+.scale-btn-na {
+  background: #f8fafc;
+  color: #64748b;
+  border-color: #cbd5e1;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.scale-btn-na:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #334155;
+}
+
+.scale-btn-na.is-selected {
+  background: #475569 !important;
+  color: #ffffff !important;
+  border-color: #334155 !important;
+  box-shadow: 0 4px 12px rgba(71, 85, 105, 0.25);
 }
 
 .scale-legend-bar {
@@ -7633,13 +7655,17 @@ body.indice-page .site-footer {
 
 @media (max-width: 520px) {
   .quiz-rating-scale {
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 8px !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 6px !important;
   }
   .scale-btn {
-    height: 46px !important;
-    font-size: 16px !important;
+    height: 44px !important;
+    font-size: 15px !important;
     font-weight: 800 !important;
+  }
+  .scale-btn-na {
+    grid-column: span 2;
+    font-size: 13px !important;
   }
   .scale-legend-bar {
     font-size: 10px !important;
@@ -9892,4 +9918,104 @@ body:not(.indice-page) .faq-accordion-content a:hover {
   .contact-form-container {
     padding: 24px 20px;
   }
+}
+
+/* ==========================================================================
+   Pyme360 PMV Rural: Pantalla de Necesidades y Diagnóstico Comercial Inteligente
+   ========================================================================== */
+.quiz-needs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 640px) {
+  .quiz-needs-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+.quiz-need-card {
+  display: flex;
+  align-items: stretch;
+  cursor: pointer;
+  position: relative;
+  border-radius: 10px;
+  border: 1px solid rgba(19, 78, 53, 0.20);
+  background: #ffffff;
+  padding: 13px 15px;
+  transition: all 0.2s ease;
+  user-select: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.quiz-need-card:hover {
+  border-color: #16a34a;
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+.quiz-need-card.is-selected {
+  border-color: #134e35;
+  background: #ecfdf5;
+  box-shadow: 0 0 0 2px #134e35;
+}
+.quiz-need-card input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  margin: 3px 0 0 0;
+  accent-color: #134e35;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.need-card-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+  width: 100%;
+}
+.need-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #e2e8f0;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.quiz-need-card.is-selected .need-letter {
+  background: #134e35;
+  color: #ffffff;
+}
+.need-text {
+  font-size: 14px;
+  line-height: 1.45;
+  color: #1e293b;
+  font-weight: 500;
+}
+.quiz-primary-priority-wrap {
+  animation: fadeInPriority 0.3s ease-out;
+}
+@keyframes fadeInPriority {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.quiz-report-invite-box {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.quiz-report-invite-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16,185,129,0.18);
+}
+.quiz-solution-recommendation {
+  animation: fadeInRecommendation 0.4s ease-out;
+}
+@keyframes fadeInRecommendation {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
