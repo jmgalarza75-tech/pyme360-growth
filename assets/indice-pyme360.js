@@ -960,7 +960,6 @@ if (leakGallery && galleryPrev && galleryNext) {
 
       if (targetStep === 8) {
         calculateAndRenderResults();
-        pyme360LanzarConfeti();
       }
 
       goToStep(targetStep);
@@ -1366,7 +1365,6 @@ if (leakGallery && galleryPrev && galleryNext) {
         if (submitBtn) {
           submitBtn.textContent = "Informe enviado a tu email ✓";
         }
-        pyme360LanzarConfeti();
       } catch (err) {
         console.error("Error al enviar autoevaluacion lead:", err);
         if (statusMsg) {
@@ -1406,7 +1404,6 @@ if (leakGallery && galleryPrev && galleryNext) {
     };
     calculateAndRenderResults();
     goToStep(8);
-    setTimeout(pyme360LanzarConfeti, 150);
   }
 
   if (typeof window !== "undefined") {
@@ -1432,7 +1429,6 @@ if (leakGallery && galleryPrev && galleryNext) {
       };
       calculateAndRenderResults();
       goToStep(8);
-      setTimeout(pyme360LanzarConfeti, 150);
     };
     window.pyme360GetBrandRecommendation = pyme360GetBrandRecommendation;
   }
