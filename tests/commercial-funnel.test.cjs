@@ -138,18 +138,28 @@ test("Commercial Funnel - Tracking and Analytics Events", () => {
   assert.match(js, /utm_source/, "Must capture utm_source");
   assert.match(js, /utm_campaign/, "Must capture utm_campaign");
 
-  // Meta Pixel (Dataset ID: 1508603327820296)
+  // Meta Pixel (Dataset ID: 1508603327820296) - Estrictas reglas de privacidad
   assert.match(js, /1508603327820296/, "Meta Pixel ID 1508603327820296 must be present");
   assert.match(js, /fbq\("init", META_PIXEL_ID\)/, "Must initialize Meta Pixel with ID");
   assert.match(js, /fbq\("track", "PageView"\)/, "Must track PageView on load");
-  assert.match(js, /fbq\("track", "Lead",/, "Must track Lead event on completed report request");
-  assert.match(js, /fbq\("track", "Schedule",/, "Must track Schedule event on booking click");
-  assert.match(js, /fbq\("track", "Contact",/, "Must track Contact event on WhatsApp/advisory click");
-  assert.match(js, /fbq\("track", "ViewContent",/, "Must track ViewContent on diagnostic score view");
-  assert.match(js, /test_event_code/, "Must support Meta Test Events parameter");
+  assert.match(js, /fbq\("track", "Lead",\s*{\s*content_name:\s*"Informe Diagnóstico Comercial 7P"\s*}\)/, "Must track Lead event without value/currency");
+  assert.match(js, /fbq\("track", "ViewContent",\s*{\s*content_name:\s*"Resultado Diagnóstico Comercial"\s*}\)/, "Must track ViewContent without value/currency");
+  assert.doesNotMatch(js, /fbq\("track",\s*"Schedule"/, "Must NOT emit Schedule event on booking click");
+  assert.doesNotMatch(js, /currency:\s*"EUR"/, "Must NOT send currency: EUR to Meta Pixel");
+  assert.doesNotMatch(js, /value:\s*\(params && params\.score_100\)/, "Must NOT send score as monetary value to Meta Pixel");
+  assert.doesNotMatch(js, /sp\.has\("test_event_code"\)\s*\|\|\s*sp\.get\("test"\)\s*===\s*"pixel"/, "Cookie consent must NOT be bypassed by test URL params");
+  assert.doesNotMatch(js, /window\.pyme360TestMetaPixel/, "Production JS must NOT expose synthetic console triggers that contaminate production pixel metrics");
+  assert.doesNotMatch(js, /isTestEnv|payload\.is_test/, "Production JS must NOT alter payload with visitor-controlled test flags");
+  assert.match(js, /leadReportSent\s*=\s*true/, "Must deduplicate lead event to fire only once per request");
 });
 
-test("Commercial Funnel - Backend Lead Processing & Email Delivery", () => {
+test("Commercial Funnel - Backend Lead Processing & Lead Integrity", () => {
+  // Garantizar que NINGUNA solicitud se descarta por parámetros de prueba controlados por el visitante
+  assert.doesNotMatch(php, /\$is_test/, "Production endpoint must NOT contain is_test bypass");
+  assert.doesNotMatch(php, /test_mode/, "Production endpoint must NOT contain test_mode bypass");
+  assert.doesNotMatch(php, /\$_GET\['test'\]/, "Production endpoint must NOT contain $_GET['test'] bypass");
+  assert.doesNotMatch(php, /strpos\([^)]*test/i, "Production endpoint must NOT filter or discard emails containing 'test'");
+
   assert.match(php, /\$primary_need\s*=\s*clean\(\$data\['primary_need'\]/, "Must parse primary_need");
   assert.match(php, /\$recommended_brand\s*=\s*clean\(\$data\['recommended_brand'\]/, "Must parse recommended_brand");
   assert.match(php, /\$accommodation_type/, "Must capture accommodation_type");

@@ -32,6 +32,27 @@ if (!file_exists($config_file)) {
 }
 require_once $config_file;
 
+// Comprobación de seguridad estricta para banderas de prueba:
+// DISABLE_DATABASE y DISABLE_EMAIL_SENDING SOLO pueden activarse en localhost o con entorno local explícito
+$has_disabled_db    = defined('DISABLE_DATABASE') && DISABLE_DATABASE;
+$has_disabled_email = defined('DISABLE_EMAIL_SENDING') && DISABLE_EMAIL_SENDING;
+
+if ($has_disabled_db || $has_disabled_email) {
+    $server_host = $_SERVER['HTTP_HOST'] ?? ($_SERVER['SERVER_NAME'] ?? '');
+    $is_cli = (php_sapi_name() === 'cli' || empty($server_host));
+    $is_localhost = $is_cli || in_array($server_host, ['localhost', '127.0.0.1', 'localhost:8000', '127.0.0.1:8000'], true)
+                    || (strpos($server_host, 'localhost:') === 0)
+                    || (strpos($server_host, '127.0.0.1:') === 0);
+    $is_explicit_local_env = (defined('PYME360_ENV') && PYME360_ENV === 'local') || (getenv('PYME360_ENV') === 'local');
+
+    if (!$is_localhost && !$is_explicit_local_env) {
+        http_response_code(500);
+        error_log('[Pyme360 Security Alert] DISABLE_DATABASE or DISABLE_EMAIL_SENDING attempted outside localhost or explicit local environment.');
+        echo json_encode(['ok' => false, 'error' => 'Invalid server configuration']);
+        exit;
+    }
+}
+
 // Leer y decodificar el cuerpo JSON
 $raw  = file_get_contents('php://input');
 $data = json_decode($raw, true);
@@ -49,6 +70,13 @@ function clean($value): string {
 
 // Enviar email vía Resend API (entrega 100% garantizada en bandeja de entrada Gmail)
 function pyme360_send_resend($to, $subject, $html_body, $text_body = '') {
+    if (defined('DISABLE_EMAIL_SENDING') && DISABLE_EMAIL_SENDING) {
+        error_log('[Pyme360 Local Test] Resend email delivery disabled in local config.');
+        return true;
+    }
+    if (defined('TEST_MAILBOX') && TEST_MAILBOX) {
+        $to = TEST_MAILBOX;
+    }
     $api_key = defined('RESEND_API_KEY') ? RESEND_API_KEY : (getenv('RESEND_API_KEY') ?: base64_decode('cmVfWjVjS2ptYW9fQ2NWZVRZSktKNVZYUDJ3cXh2OEpFWjRR'));
     $from_address = defined('RESEND_FROM') ? RESEND_FROM : (getenv('RESEND_FROM') ?: 'Pyme360 Growth <onboarding@resend.dev>');
     $payload = [
@@ -135,6 +163,9 @@ if (!$name || !$email || !$business_name || ($source === 'indice_pyme360_revisio
 }
 
 // 1. Guardar en MySQL -------------------------------------------------
+if (defined('DISABLE_DATABASE') && DISABLE_DATABASE) {
+    error_log('[Pyme360 Local Test] Database write disabled in local config.');
+} else {
 try {
     $pdo = new PDO(
         'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4',
@@ -207,6 +238,7 @@ try {
     http_response_code(500);
     echo json_encode(['ok' => false, 'error' => 'Database error']);
     exit;
+}
 }
 
 // 2. Enviar email de aviso con el INFORME COMPLETO --------------------
@@ -288,8 +320,16 @@ $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 pyme360_send_resend('jmgalarza75@gmail.com', $subject, $body_admin_html, $body);
 
 // Envío por mail() estándar como respaldo secundario
-$mail_sent = mail(NOTIFY_TO, $subject, $body, $headers, "-f " . SMTP_FROM);
-mail('jmgalarza75@gmail.com', $subject, $body, $headers, "-f " . SMTP_FROM);
+if (defined('DISABLE_EMAIL_SENDING') && DISABLE_EMAIL_SENDING) {
+    error_log('[Pyme360 Local Test] Admin notification mail() disabled in config.');
+    $mail_sent = true;
+} else {
+    $admin_notify_to = (defined('TEST_MAILBOX') && TEST_MAILBOX) ? TEST_MAILBOX : NOTIFY_TO;
+    $mail_sent = mail($admin_notify_to, $subject, $body, $headers, "-f " . SMTP_FROM);
+    if (!defined('TEST_MAILBOX') || !TEST_MAILBOX) {
+        mail('jmgalarza75@gmail.com', $subject, $body, $headers, "-f " . SMTP_FROM);
+    }
+}
 
 if (!$mail_sent) {
     // El lead ya está en BD, solo fallamos silenciosamente en el email
@@ -759,7 +799,12 @@ $multipart_lead .= "--$boundary--\r\n";
 pyme360_send_resend($email, $subject_lead, $body_lead_html, $body_lead_text);
 
 // Envío secundario mediante mail()
-$mail_lead_sent = mail($email, $subject_lead, $multipart_lead, $headers_lead);
+if (defined('DISABLE_EMAIL_SENDING') && DISABLE_EMAIL_SENDING) {
+    error_log('[Pyme360 Local Test] Lead confirmation mail() disabled in local config.');
+    $mail_lead_sent = true;
+} else {
+    $mail_lead_sent = mail($email, $subject_lead, $multipart_lead, $headers_lead);
+}
 
 if (!$mail_lead_sent) {
     error_log('[Pyme360] HTML mail() failed to lead: ' . $email);

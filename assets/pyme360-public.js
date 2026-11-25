@@ -548,16 +548,11 @@ function pyme360Track(eventName, parameters = {}) {
   }
 
   // 2. Meta Pixel (Dataset ID: 1508603327820296)
+  // Sin importes ficticios (sin value ni currency) y sin PII
   if (typeof window.fbq === "function") {
     if (eventName === "generate_lead") {
       window.fbq("track", "Lead", {
-        content_name: parameters.form_name || "Formulario General",
-        currency: "EUR"
-      });
-    } else if (eventName === "contact_click") {
-      window.fbq("track", "Contact", {
-        content_name: parameters.contact_type || "WhatsApp",
-        content_category: "Lead Contact"
+        content_name: parameters.form_name || "Formulario General"
       });
     }
   }
@@ -743,7 +738,22 @@ if (leadForm) {
 /* ==========================================================================
    Gestión de consentimiento de Cookies y Carga diferida de Analytics y Meta Pixel
    ========================================================================== */
-var META_PIXEL_ID = "1508603327820296";
+var META_PIXEL_ID = (function() {
+  if (typeof window !== "undefined") {
+    var host = window.location ? window.location.hostname : "";
+    // Todo override está estrictamente confinado dentro de localhost / 127.0.0.1
+    if (host === "localhost" || host === "127.0.0.1") {
+      if (window.META_PIXEL_ID && /^\d+$/.test(window.META_PIXEL_ID)) {
+        return window.META_PIXEL_ID;
+      }
+      var qaId = new URLSearchParams(window.location.search).get("qa_pixel_id");
+      if (qaId && /^\d+$/.test(qaId)) {
+        return qaId;
+      }
+    }
+  }
+  return "1508603327820296";
+})();
 
 function pyme360LoadAnalytics() {
   if (typeof window === "undefined" || window._pyme360AnalyticsLoaded) return;
@@ -803,16 +813,7 @@ function pyme360InitCookieConsent() {
     }
   } catch (e) {}
 
-  // Activar inmediatamente si viene con parámetros de prueba de Meta Ads
-  try {
-    if (window.location && window.location.search) {
-      var sp = new URLSearchParams(window.location.search);
-      if (sp.has("test_event_code") || sp.get("test") === "pixel" || sp.get("meta_test") === "1") {
-        pyme360LoadAnalytics();
-        return;
-      }
-    }
-  } catch (e) {}
+
 
   if (consent === "accepted") {
     pyme360LoadAnalytics();
@@ -875,3 +876,4 @@ if (typeof document !== "undefined" && typeof document.addEventListener === "fun
     pyme360InitCookieConsent();
   }
 }
+

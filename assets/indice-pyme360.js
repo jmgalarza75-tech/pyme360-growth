@@ -673,7 +673,7 @@ if (leakGallery && galleryPrev && galleryNext) {
     return { brand, complementaryBrand, title, text, nextStep };
   }
 
-  // Disparar evento analítico en GA4 y Meta Pixel (sin PII)
+  // Disparar evento analítico en GA4 y Meta Pixel (respetando privacidad y sin PII ni datos sensibles)
   function trackAnalyticsEvent(eventName, params) {
     // 1. Google Analytics 4
     try {
@@ -683,33 +683,23 @@ if (leakGallery && galleryPrev && galleryNext) {
     } catch (e) {}
 
     // 2. Meta Pixel (Dataset ID: 1508603327820296)
+    // Reglas estrictas:
+    // - Lead: se dispara tras confirmación de envío de solicitud y sin importes.
+    // - ViewContent: al visualizar el resultado del diagnóstico.
+    // - PageView: gestionado en la carga inicial tras el consentimiento.
+    // - NO se dispara Schedule al hacer clic (solo cuando una plataforma confirme reserva).
+    // - NO se envían value ni currency: la puntuación no es un importe monetario.
+    // - NO se envían respuestas del cuestionario ni datos personales (PII) a Meta.
     try {
       if (typeof window !== "undefined" && typeof window.fbq === "function") {
         if (eventName === "generate_lead") {
           window.fbq("track", "Lead", {
-            content_name: "Informe Diagnóstico Comercial 7P",
-            value: (params && params.score_100) ? params.score_100 : undefined,
-            currency: "EUR"
-          });
-        } else if (eventName === "booking_click") {
-          window.fbq("track", "Schedule", {
-            content_name: "Reunión Asesoramiento 20 min",
-            value: (params && params.score_100) ? params.score_100 : undefined,
-            currency: "EUR"
-          });
-          window.fbq("track", "Contact", {
-            content_name: "WhatsApp Asesoramiento 20 min"
+            content_name: "Informe Diagnóstico Comercial 7P"
           });
         } else if (eventName === "diagnostic_complete") {
           window.fbq("track", "ViewContent", {
-            content_name: "Resultado Diagnóstico Comercial",
-            value: (params && params.score_100) ? params.score_100 : undefined,
-            currency: "EUR"
+            content_name: "Resultado Diagnóstico Comercial"
           });
-        } else if (eventName === "diagnostic_start") {
-          window.fbq("trackCustom", "DiagnosticStart", params || {});
-        } else if (eventName === "needs_selected") {
-          window.fbq("trackCustom", "NeedsSelected", params || {});
         }
       }
     } catch (e) {}
@@ -1174,8 +1164,13 @@ if (leakGallery && galleryPrev && galleryNext) {
   // ==========================================================================
   const emailForm = app.querySelector("#quiz-email-form");
   if (emailForm) {
+    let leadReportSent = false;
     emailForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+      if (leadReportSent) {
+        console.warn("La solicitud de informe ya ha sido registrada previamente en esta sesión.");
+        return;
+      }
 
       const submitBtn = emailForm.querySelector("#report-submit-btn");
       const statusMsg = emailForm.querySelector("#report-status-msg");
@@ -1354,11 +1349,14 @@ if (leakGallery && galleryPrev && galleryNext) {
         const fullPayload = pyme360BuildIndiceLeadPayload(payload);
         await pyme360SubmitIndiceLead(fullPayload);
 
-        trackAnalyticsEvent("generate_lead", {
-          score_100: globalScore100,
-          primary_need: state.primaryNeed,
-          recommended_brand: rec.brand
-        });
+        // Disparar Lead SOLO cuando la solicitud se haya enviado correctamente al backend y una sola vez
+        if (!leadReportSent) {
+          leadReportSent = true;
+          trackAnalyticsEvent("generate_lead", {
+            primary_need: state.primaryNeed,
+            recommended_brand: rec.brand
+          });
+        }
 
         if (statusMsg) {
           statusMsg.textContent = "¡Informe generado con éxito! Hemos enviado una copia personalizada a tu email (" + emailVal + "). También puedes reservar tu sesión de asesoramiento de 20 minutos a continuación.";
@@ -1628,7 +1626,22 @@ if (leakGallery && galleryPrev && galleryNext) {
 /* ==========================================================================
    Gestión de consentimiento de Cookies y Carga diferida de Analytics y Meta Pixel
    ========================================================================== */
-var META_PIXEL_ID = "1508603327820296";
+var META_PIXEL_ID = (function() {
+  if (typeof window !== "undefined") {
+    var host = window.location ? window.location.hostname : "";
+    // Todo override está estrictamente confinado dentro de localhost / 127.0.0.1
+    if (host === "localhost" || host === "127.0.0.1") {
+      if (window.META_PIXEL_ID && /^\d+$/.test(window.META_PIXEL_ID)) {
+        return window.META_PIXEL_ID;
+      }
+      var qaId = new URLSearchParams(window.location.search).get("qa_pixel_id");
+      if (qaId && /^\d+$/.test(qaId)) {
+        return qaId;
+      }
+    }
+  }
+  return "1508603327820296";
+})();
 
 function pyme360LoadAnalytics() {
   if (typeof window === "undefined" || window._pyme360AnalyticsLoaded) return;
@@ -1688,16 +1701,7 @@ function pyme360InitCookieConsent() {
     }
   } catch (e) {}
 
-  // Activar inmediatamente si viene con parámetros de prueba de Meta Ads
-  try {
-    if (window.location && window.location.search) {
-      var sp = new URLSearchParams(window.location.search);
-      if (sp.has("test_event_code") || sp.get("test") === "pixel" || sp.get("meta_test") === "1") {
-        pyme360LoadAnalytics();
-        return;
-      }
-    }
-  } catch (e) {}
+
 
   if (consent === "accepted") {
     pyme360LoadAnalytics();
@@ -1760,3 +1764,4 @@ if (typeof document !== "undefined" && typeof document.addEventListener === "fun
     pyme360InitCookieConsent();
   }
 }
+
