@@ -797,13 +797,16 @@ $multipart_lead .= $body_lead_html . "\r\n\r\n";
 
 $multipart_lead .= "--$boundary--\r\n";
 
-// Intentar envío por Resend para entrega garantizada
-pyme360_send_resend($email, $subject_lead, $body_lead_html, $body_lead_text);
+// Usar Resend como vía principal y mail() como respaldo si Resend falla.
+$email_sending_disabled = defined('DISABLE_EMAIL_SENDING') && DISABLE_EMAIL_SENDING;
+$resend_lead_sent = !$email_sending_disabled
+    && pyme360_send_resend($email, $subject_lead, $body_lead_html, $body_lead_text);
 
-// Envío secundario mediante mail()
-if (defined('DISABLE_EMAIL_SENDING') && DISABLE_EMAIL_SENDING) {
-    error_log('[Pyme360 Local Test] Lead confirmation mail() disabled in local config.');
+if ($resend_lead_sent) {
     $mail_lead_sent = true;
+} elseif ($email_sending_disabled) {
+    error_log('[Pyme360 Local Test] Lead confirmation mail() disabled in local config.');
+    $mail_lead_sent = false;
 } else {
     $mail_lead_sent = mail($email, $subject_lead, $multipart_lead, $headers_lead);
 }
@@ -814,4 +817,4 @@ if (!$mail_lead_sent) {
 
 // 4. Respuesta exitosa -----------------------------------------------
 http_response_code(201);
-echo json_encode(['ok' => true]);
+echo json_encode(['ok' => true, 'email_sent' => $mail_lead_sent]);

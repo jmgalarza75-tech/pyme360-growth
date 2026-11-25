@@ -58,9 +58,11 @@ async function pyme360SubmitIndiceLead(payload) {
     body: JSON.stringify(payload)
   });
 
+  const result = await response.json().catch(() => null);
   if (!response.ok && response.status !== 201) {
-    throw new Error(await response.text());
+    throw new Error(result?.error || `Error del servidor (${response.status})`);
   }
+  return result;
 }
 
 function prefillLeadFormFromUrl() {
@@ -1350,7 +1352,7 @@ if (leakGallery && galleryPrev && galleryNext) {
 
       try {
         const fullPayload = pyme360BuildIndiceLeadPayload(payload);
-        await pyme360SubmitIndiceLead(fullPayload);
+        const submitResult = await pyme360SubmitIndiceLead(fullPayload);
 
         // Disparar Lead SOLO cuando la solicitud se haya enviado correctamente al backend y una sola vez
         if (!leadReportSent) {
@@ -1361,13 +1363,25 @@ if (leakGallery && galleryPrev && galleryNext) {
           });
         }
 
+        if (submitResult && submitResult.email_sent === false) {
+          if (statusMsg) {
+            statusMsg.textContent = "Tu solicitud se ha procesado, pero no se pudo confirmar el envío del informe por correo. Revisa la carpeta de spam o promociones y, si no aparece, escríbenos a info@pyme360.online.";
+            statusMsg.classList.add("is-error");
+            statusMsg.style.display = "block";
+          }
+          if (submitBtn) {
+            submitBtn.textContent = "Correo no confirmado";
+          }
+          return;
+        }
+
         if (statusMsg) {
-          statusMsg.textContent = "¡Informe generado con éxito! Hemos enviado una copia personalizada a tu email (" + emailVal + "). También puedes reservar tu sesión de asesoramiento de 20 minutos a continuación.";
+          statusMsg.textContent = "Solicitud recibida. El servidor ha aceptado el envío del informe a " + emailVal + ". Revisa también spam o promociones. Puedes reservar tu sesión de asesoramiento de 20 minutos a continuación.";
           statusMsg.classList.add("is-success");
           statusMsg.style.display = "block";
         }
         if (submitBtn) {
-          submitBtn.textContent = "Informe enviado a tu email ✓";
+          submitBtn.textContent = "Solicitud recibida ✓";
         }
       } catch (err) {
         console.error("Error al enviar autoevaluacion lead:", err);
