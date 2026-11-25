@@ -1638,6 +1638,8 @@ var META_PIXEL_ID = (function() {
       if (qaId && /^\d+$/.test(qaId)) {
         return qaId;
       }
+      // Dataset exclusivo de QA para desarrollo y pruebas locales
+      return "2378358353015122";
     }
   }
   return "1508603327820296";

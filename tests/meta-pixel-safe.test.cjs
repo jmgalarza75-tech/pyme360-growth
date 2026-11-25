@@ -56,6 +56,7 @@ test("Meta Pixel - QA Dataset ID Isolation", () => {
       const sp = new URLSearchParams(mockWindow.location.search);
       const qaId = sp.get("qa_pixel_id");
       if (qaId && /^\d+$/.test(qaId)) return qaId;
+      return "2378358353015122";
     }
     return "1508603327820296";
   }
@@ -67,24 +68,25 @@ test("Meta Pixel - QA Dataset ID Isolation", () => {
     "Production host must ignore all overrides"
   );
 
-  // En localhost con window.META_PIXEL_ID: adopta el ID de QA
+  // En localhost con window.META_PIXEL_ID: adopta el ID de QA especificado
   assert.equal(
     resolvePixelId({ META_PIXEL_ID: "888888888", location: { hostname: "localhost", search: "" } }),
     "888888888",
     "Localhost allows window.META_PIXEL_ID"
   );
 
-  // En localhost con ?qa_pixel_id=: adopta el dataset de QA
+  // En localhost con ?qa_pixel_id=: adopta el dataset indicado
   assert.equal(
     resolvePixelId({ location: { hostname: "localhost", search: "?qa_pixel_id=999999999" } }),
     "999999999",
     "Localhost allows qa_pixel_id query param"
   );
 
-  // En localhost sin parámetro ni override: usa producción por defecto
+  // En localhost sin parámetro ni override: usa por defecto el Dataset oficial de QA (2378358353015122)
   assert.equal(
     resolvePixelId({ location: { hostname: "localhost", search: "" } }),
-    "1508603327820296"
+    "2378358353015122",
+    "Localhost defaults to QA Dataset 2378358353015122"
   );
 });
 
