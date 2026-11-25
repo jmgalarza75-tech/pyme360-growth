@@ -28,6 +28,7 @@ function pyme360NormalizeWebsite(value) {
 function pyme360BuildIndiceLeadPayload(values) {
   const business = String(values.business || "").trim();
   const location = String(values.location || "").trim() || "Sin especificar";
+  const score100 = Number(values.score_100);
 
   return {
     name: String(values.name || "").trim(),
@@ -39,6 +40,9 @@ function pyme360BuildIndiceLeadPayload(values) {
     website: pyme360NormalizeWebsite(values.web || values.website || ""),
     units: String(values.units || "").trim(),
     problem: String(values.problem || "").trim(),
+    score_100: Number.isFinite(score100) && score100 >= 0 && score100 <= 100
+      ? Math.round(score100)
+      : null,
     source: "indice_pyme360_revision_inicial",
     newsletter_consent: values.newsletter === "yes" || values.newsletter === true,
     privacy_consent: values.privacy === "yes" || values.privacy === true

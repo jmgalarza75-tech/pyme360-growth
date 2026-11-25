@@ -245,7 +245,9 @@ try {
 $is_autoeval = (strpos($problem, 'AUTOEVALUACIÓN COMERCIAL 7P') !== false) || ($source === 'indice_pyme360_revision_inicial');
 
 $score_str = '';
-if (preg_match('/(?:RESULTADO|PUNTUACIÓN) GLOBAL:\s*([0-9.,]+)\s*\/\s*10/i', $problem, $matches)) {
+if (preg_match('/RESULTADO GLOBAL:\s*[0-9.,]+\s*\/\s*100\s*\(\s*([0-9]+(?:[.,][0-9]+)?)\s*\/\s*10(?![0-9])/i', $problem, $matches)) {
+    $score_str = $matches[1];
+} elseif (preg_match('/(?:RESULTADO|PUNTUACIÓN) GLOBAL:\s*([0-9.,]+)\s*\/\s*10(?![0-9])/i', $problem, $matches)) {
     $score_str = $matches[1];
 }
 
@@ -355,7 +357,7 @@ $contact_sentence_html = $phone
 
 if ($is_autoeval) {
     // Cálculo seguro de puntuación 0-100 para el informe
-    if ($score_100_input !== null && $score_100_input > 0) {
+    if ($score_100_input !== null && $score_100_input > 0 && $score_100_input <= 100) {
         $final_score_100 = $score_100_input;
     } elseif ($score_str !== '') {
         $final_score_100 = (int)round(((float)str_replace(',', '.', $score_str)) * 10);
