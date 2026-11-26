@@ -128,7 +128,7 @@ El revenue management lo presta Home4Escape, no Pyme360.
 
 **¿Quieres revisar tus precios, temporadas y rentabilidad? [Contacta con Home4Escape](https://www.home4escape.com/contactar/?utm_source=pyme360&utm_medium=referral&utm_campaign=revenue_content&utm_content=o2-21-booking-airbnb-turismo-rural), el equipo especializado en estrategia comercial y revenue management para alojamientos.**
 
-Si antes quieres una primera revisión de tu web, tu presencia local y el recorrido hacia la reserva directa, puedes solicitar la [mini-revisión comercial de Pyme360](/alojamientos-rurales/#diagnostico). Es un recorrido distinto y no sustituye el servicio de revenue management de Home4Escape.
+Si antes quieres una primera revisión de tu web, tu presencia local y el recorrido hacia la reserva directa, puedes solicitar la [mini-revisión comercial de Pyme360](https://pyme360.online/alojamientos-rurales/). Es un recorrido distinto y no sustituye el servicio de revenue management de Home4Escape.
 
 ## Preguntas frecuentes
 

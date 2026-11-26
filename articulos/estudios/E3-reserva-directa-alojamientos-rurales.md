@@ -3,7 +3,7 @@
 **Estado:** piloto hecho (5 alojamientos del norte de Tenerife, 9/11/2026). Falta el resto de España, la comparación de precio web/OTA y los datos del INE de Canarias. **No publicar con porcentajes** hasta completar la muestra.
 **Palabra clave (hipótesis):** reserva directa casa rural · secundarias: motor de reservas casa rural, web casa rural sin comisiones.
 **Firma:** Equipo Pyme360 (en JSON-LD, `author` = organización `https://pyme360.online/#empresa`, no `Person`).
-**Enlace interno / CTA:** `/alojamientos-rurales/#diagnostico`
+**Enlace interno / CTA:** `https://pyme360.online/alojamientos-rurales/`
 **Datos por alojamiento:** `estudios/interno/E3-anexo.md` (NO PUBLICAR).
 
 ---
@@ -109,7 +109,7 @@ Ninguna de estas mejoras garantiza más reservas directas; reducen las friccione
 
 **¿De dónde salen los datos de ocupación?** De la Encuesta de Ocupación en Alojamientos de Turismo Rural del INE.
 
-¿Quieres saber cómo está tu web frente a estos alojamientos? Pide el diagnóstico gratuito para alojamientos rurales de Pyme360: https://pyme360.online/alojamientos-rurales/#diagnostico
+¿Quieres saber cómo está tu web frente a estos alojamientos? Pide el diagnóstico gratuito para alojamientos rurales de Pyme360: https://pyme360.onlinehttps://pyme360.online/alojamientos-rurales/
 
 *Nota de enlace:* si el artículo final habla de precios o rentabilidad, añadir el enlace a Home4Escape según la regla de revenue del plan editorial.
 

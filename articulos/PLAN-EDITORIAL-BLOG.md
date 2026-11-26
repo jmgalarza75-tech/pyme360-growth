@@ -5,7 +5,7 @@
 **Decisión de producción:** los 12 artículos se crean ya, no mes a mes. La columna «Bloque» solo indica el orden de prioridad.
 **Contenido:** se redacta en **NotebookLM**, en el cuaderno https://notebooklm.google.com/notebook/02b925f2-2553-40f0-a1b3-9e41666d0f92. Antigravity toma de ahí el texto de cada artículo (ver `checklist.md` §15.2).
 **Firma (decisión de José, 2026-11-10):** los artículos del blog los firma **Theo Rubio** (ficha de autor y schema `Person`). Los estudios propios E1–E4 los firma **Equipo Pyme360** (schema `author` = organización `#empresa`). José no firma ningún artículo.
-**Última actualización:** 2026-11-09.
+**Última actualización:** 2026-11-26.
 
 ---
 
@@ -22,15 +22,15 @@ Ningún artículo pasa a «Maquetado en local» sin estar «Revisado».
 | # | Bloque | Línea | Título | Slug (`/blog/<slug>/`) | Palabra clave (hipótesis) | Intención | Enlace interno | Estado |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | P01 | 1 | Pymes | Por qué tu web en Tenerife tiene visitas pero no genera contactos | `web-visitas-sin-contactos-tenerife` | web no genera contactos Tenerife | Comercial / local | `/#diagnostico` | Maquetado en local |
-| R01 | 1 | Rural | La falacia del 85% de ocupación: el coste real de tu casa rural | `la-falacia-del-85-por-ciento-ocupacion` | rentabilidad casa rural | Informativa | `/alojamientos-rurales/` + Home4Escape | Maquetado en local |
+| R01 | 1 | Rural | La falacia del 85% de ocupación: el coste real de tu casa rural | `la-falacia-del-85-por-ciento-ocupacion` | rentabilidad casa rural | Informativa | `/alojamientos-rurales/` + formulario Home4Escape | Maquetado en local |
 | P02 | 2 | Pymes | SEO local en Canarias: cómo dominar Google Maps frente a tu competencia | `seo-local-canarias-google-maps` | seo local canarias | Local / comercial | `/#diagnostico` | Maquetado en local |
 | R02 | 2 | Rural | Tus huéspedes no son tuyos: el riesgo de depender solo de Booking | `tus-huespedes-no-son-tuyos` | venta directa hotel rural | Informativa | `/alojamientos-rurales/` | Maquetado en local |
 | P03 | 3 | Pymes | Errores en Google Ads que están quemando el presupuesto de tu pyme | `errores-google-ads-pymes` | google ads pymes tenerife | Informativa / comercial | `/precios.html` | Maquetado en local |
 | R03 | 3 | Rural | La fricción invisible: por qué abandonan reservas en tu web móvil | `friccion-invisible-reservas-web-movil` | motor de reservas casa rural | Comercial | `/alojamientos-rurales/` | Maquetado en local |
 | P04 | 4 | Pymes | Marketing GEO: cómo aparecer en las respuestas de IA (ChatGPT, Gemini) | `geo-aparecer-en-respuestas-ia` | posicionamiento en inteligencia artificial | Informativa | `/#diagnostico` | Maquetado en local |
-| R04 | 4 | Rural | La trampa de bajar precios en temporada baja en tu alojamiento rural | `trampa-bajar-precios-temporada-baja` | temporada baja casa rural | Informativa / comercial | `/alojamientos-rurales/` + Home4Escape | Maquetado en local |
+| R04 | 4 | Rural | La trampa de bajar precios en temporada baja en tu alojamiento rural | `trampa-bajar-precios-temporada-baja` | temporada baja casa rural | Informativa / comercial | `/alojamientos-rurales/` + formulario Home4Escape | Maquetado en local |
 | P05 | 5 | Pymes | El valor de las reseñas en Google para negocios locales en Tenerife | `resenas-google-negocios-tenerife` | mejorar reseñas google | Informativa | `/#diagnostico` | Maquetado en local |
-| R05 | 5 | Rural | Radiografía de rentabilidad: control de costes para hoteles rurales e independientes | `control-costes-hotel-rural` | control de costes hotel rural | Informativa | `/alojamientos-rurales/` + Home4Escape | Maquetado en local |
+| R05 | 5 | Rural | Radiografía de rentabilidad: control de costes para hoteles rurales e independientes | `control-costes-hotel-rural` | control de costes hotel rural | Informativa | `/alojamientos-rurales/` + formulario Home4Escape | Maquetado en local |
 | P06 | 6 | Pymes | Fidelización local: estrategias rentables más allá de captar clientes | `fidelizacion-clientes-pymes-canarias` | fidelización clientes pymes | Informativa | `/#diagnostico` | Pendiente |
 | P07 | 6 | Pymes | Cuánto debería invertir una pyme canaria en marketing en 2027 | `presupuesto-marketing-pyme-canaria-2027` | presupuesto marketing digital pymes | Comercial | `/precios.html` | Pendiente |
 
@@ -102,9 +102,10 @@ Mientras no existan estas páginas, los artículos enlazan a `/precios.html` o `
 ## Decisiones pendientes de José antes de redactar
 
 1. **Revenue management — resuelto (2026-11-09).** El revenue management se ofrece a través de Home4Escape (https://www.home4escape.com/), no como servicio de Pyme360. En consecuencia:
-   - **Solo los artículos que tratan revenue management enlazan a Home4Escape:** R01, R04 y R05. El resto no lo menciona.
-   - En esos tres, un único enlace natural en el pasaje que habla de precios, rentabilidad o revenue. Ejemplo de redacción: «Si quieres trabajar la estrategia de precios y rentabilidad de tu alojamiento, lo hacemos a través de [Home4Escape](https://www.home4escape.com/)». Sin presentar el revenue como servicio de Pyme360.
-   - El CTA principal de los artículos rurales sigue siendo la autoevaluación de `/alojamientos-rurales/#diagnostico`. El enlace a Home4Escape es secundario.
+   - **Solo los artículos que tratan revenue management enlazan a Home4Escape:** R01, R04 y R05. El resto no lo menciona salvo que una decisión posterior amplíe esta lista.
+   - En esos tres, el enlace editorial y el CTA final usan el formulario oficial `https://www.home4escape.com/contactar/` con UTM `utm_source=pyme360`, `utm_medium=referral`, `utm_campaign=revenue_content` y un `utm_content` específico por artículo. Sin presentar el revenue como servicio de Pyme360.
+   - El CTA de Home4Escape usa este copy: «¿Quieres revisar tus precios, temporadas y rentabilidad? Contacta con Home4Escape, el equipo especializado en estrategia comercial y revenue management para alojamientos.»
+   - El CTA de Home4Escape es el principal cuando el artículo trata precios, rentabilidad o revenue; la autoevaluación de `https://pyme360.online/alojamientos-rurales/` queda como alternativa secundaria para revisar la comercialización digital del alojamiento.
    - Fuera de estos artículos (y de la sección «Casos y proyectos» de la Home, donde aparece como proyecto propio) sigue vigente la regla de no mencionar Home4Escape (H4E) en el texto público de Pyme360.
 2. **Primera ola — resuelto (2026-11-09).** Mandan las 12 entradas de esta tabla. De la versión de NotebookLM se incorporan a la segunda ola la radiografía de la pyme canaria (O2-10), email marketing (O2-11) y el plan semestral (O2-12). NotebookLM debe alinear su lista con este plan.
 3. **Autor — resuelto (2026-11-10).** Theo Rubio firma los artículos; los estudios, Equipo Pyme360.
@@ -150,7 +151,7 @@ Chocan con la regla de no prometer resultados del brief de precios y alojamiento
 3. H2 en forma de pregunta y bloque final de 3 preguntas frecuentes.
 4. Sin cifras sin fuente primaria (tabla de arriba).
 5. 1–2 enlaces internos a la página indicada y CTA final al diagnóstico.
-6. No mencionar H4E (Home4Escape), FARO ni IA como herramienta interna de Pyme360. Excepción: R01, R04 y R05 enlazan a Home4Escape para el revenue management (decisión 1). Hablar de buscadores con IA como tema sí está permitido (P04).
+6. No mencionar H4E (Home4Escape), FARO ni IA como herramienta interna de Pyme360. Excepción: R01, R04 y R05 enlazan al formulario de Home4Escape para el revenue management (decisión 1). Hablar de buscadores con IA como tema sí está permitido (P04).
 7. Extensión orientativa: 900–1.500 palabras.
 8. No usar «pequeños alojamientos» ni «alojamientos pequeños».
 
@@ -182,6 +183,7 @@ Si la línea de pymes genera un pico de diagnósticos, confirmar que hay capacid
 - 2026-11-09: añadidos los 4 estudios propios (E1–E4) con su archivo en `articulos/estudios/`; E4 publicable, E1 y E3 en piloto, E2 en protocolo.
 - 2026-11-09: decidido mantener las 12 entradas de la primera ola; añadidos a la segunda ola O2-10 (radiografía pyme canaria), O2-11 (email marketing) y O2-12 (plan semestral).
 - 2026-11-09: añadidas la segunda ola (9 artículos más sectores y localidades) y las 5 páginas de servicio, a partir del plan consolidado de NotebookLM. 
+- 2026-11-26: R01, R04 y R05 pasan a usar el formulario oficial de Home4Escape con CTA principal, UTM por artículo y diagnóstico rural de Pyme360 como alternativa secundaria.
 - 2026-11-09: los artículos que tratan revenue management (R01, R04, R05) enlazan a Home4Escape; el resto no lo menciona.
 - 2026-11-09: añadido el enlace al cuaderno de NotebookLM; resuelta la decisión de revenue management (se ofrece vía Home4Escape, fuera del texto de Pyme360).
 - 2026-11-09: sustituida la primera versión del plan por el programa de 12 entradas; los 12 artículos se crean de inmediato y el contenido se redacta en NotebookLM.

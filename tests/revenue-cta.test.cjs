@@ -24,7 +24,7 @@ for (const [slug, contentId] of Object.entries(revenueArticles)) {
   assert.ok(html.includes(trackedForm), `${slug} must link to the tracked Home4Escape contact form`);
   assert.match(html, new RegExp(approvedCopy), `${slug} must contain the approved CTA question`);
   assert.match(html, new RegExp(approvedSupport), `${slug} must explain the Home4Escape service boundary`);
-  assert.match(html, /\/alojamientos-rurales\/#diagnostico/, `${slug} must retain the Pyme360 diagnostic CTA`);
+  assert.match(html, /https:\/\/pyme360\.online\/alojamientos-rurales\//, `${slug} must retain the Pyme360 rural review CTA`);
   assert.doesNotMatch(html, /"serviceType"\s*:\s*"?revenue management/i, `${slug} must not mark revenue as a Pyme360 service`);
 }
 

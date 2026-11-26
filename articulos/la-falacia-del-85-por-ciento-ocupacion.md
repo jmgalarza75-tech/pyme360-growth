@@ -107,4 +107,4 @@ Detectar exactamente en qué eslabón de la cadena se está escapando el margen 
 > 
 > En 5 minutos y respondiendo a 14 preguntas sobre tu gestión real, obtendrás en pantalla tu puntuación global y la identificación nítida de tus dos prioridades críticas de mejora.
 > 
-> 👉 **[Realizar la Autoevaluación Comercial Gratuita](https://pyme360.online/alojamientos-rurales/#diagnostico)**
+> 👉 **[Realizar la Autoevaluación Comercial Gratuita](https://pyme360.onlinehttps://pyme360.online/alojamientos-rurales/)**

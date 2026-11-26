@@ -13,7 +13,7 @@ Serie editorial de alto prestigio y autoridad técnica dirigida a propietarios y
 3. **El problema se explica, pero la solución requiere análisis:**
    Explicamos el mecanismo por el cual el propietario pierde dinero o margen, cuánto le cuesta ignorarlo y por qué ocurre. La solución personalizada requiere diagnosticar el caso concreto mediante la autoevaluación o la mini-revisión.
 4. **Puente natural de conversión:**
-   Cada ensayo culmina en una invitación directa a realizar la **Autoevaluación Comercial Gratuita de las 7 P** (`/alojamientos-rurales/#diagnostico`).
+   Cada ensayo culmina en una invitación directa a realizar la **Autoevaluación Comercial Gratuita de las 7 P** (`https://pyme360.online/alojamientos-rurales/`).
 
 ---
 
