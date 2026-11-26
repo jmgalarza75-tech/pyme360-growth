@@ -7,7 +7,7 @@ const pages = [
   {
     file: path.join(root, "index.html"),
     url: "https://pyme360.online/",
-    title: "Marketing digital para pymes en Tenerife | Pyme360"
+    title: "Marketing digital y captación para pymes | Pyme360"
   },
   {
     file: path.join(root, "precios.html"),
@@ -17,7 +17,7 @@ const pages = [
   {
     file: path.join(root, "public", "index.html"),
     url: "https://pyme360.online/",
-    title: "Marketing digital para pymes en Tenerife | Pyme360"
+    title: "Marketing digital y captación para pymes | Pyme360"
   },
   {
     file: path.join(root, "public", "precios.html"),
