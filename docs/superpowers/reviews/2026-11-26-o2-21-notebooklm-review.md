@@ -3,7 +3,7 @@
 **Fecha:** 2026-11-26
 **Cuaderno:** `Validación de Mercados y Estrategias de Precios`
 **Fuente revisada:** `articulos/borradores/2026-11-26-o2-21-booking-airbnb-turismo-rural.md`
-**Resultado:** revisión completada; maquetación local realizada después de las comprobaciones oficiales adicionales; pendiente de aprobación editorial y publicación.
+**Resultado:** revisión completada; maquetación, aprobación editorial y publicación realizadas.
 
 ## Dictamen
 
@@ -25,10 +25,10 @@ NotebookLM considera correcto el enfoque neutral: no declara ganador entre Booki
 
 - La Agencia Tributaria confirma que el tratamiento fiscal de los alojamientos turísticos depende, entre otros factores, de los servicios prestados; por eso el artículo no publica un tipo o régimen universal. [Tributación del alquiler de apartamentos turísticos](https://sede.agenciatributaria.gob.es/Sede/vivienda-otros-inmuebles/tributacion-arrendador-viviendas-otros-inmuebles/tributacion-alquiler-apartamentos-turisticos.html).
 - La AEPD recuerda que todo tratamiento de datos necesita una base que lo legitime; el artículo mantiene la referencia al RGPD y no presenta la relación con huéspedes como automática. [Bases de legitimación del tratamiento](https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/5-bases-legitimadoras-del-tratamiento/FAQ-0214-cuales-son-las-bases-de-legitimacion-para-el-tratamiento-de-datos).
-- La maquetación local conserva el aviso de verificación profesional y no implica publicación, commit, push ni despliegue.
+- La maquetación conserva el aviso de verificación profesional. El lote aprobado se publicó mediante `origin/main`; las cuatro URLs se verificaron con HTTP 200 y CTA activo.
 
 ## Pendientes que se mantienen
 
 - Verificar fiscalidad, IGIC/IVA, tasas y cualquier mención normativa para el caso concreto antes de publicar.
 - Verificar protección de datos y términos contractuales de cada plataforma antes de afirmar qué datos puede gestionar el alojamiento.
-- Obtener la aprobación editorial de José antes de publicar. El CTA principal sigue siendo Home4Escape y el secundario, Pyme360.
+- Mantener la revisión periódica de las condiciones de las plataformas y del aviso fiscal/RGPD si el contenido se modifica. El CTA principal sigue siendo Home4Escape y el secundario, Pyme360.

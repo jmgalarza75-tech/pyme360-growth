@@ -16,8 +16,8 @@
 - [x] Incorporar al borrador las tres matizaciones editoriales seguras y registrar el informe en `docs/superpowers/reviews/2026-11-26-o2-21-notebooklm-review.md`.
 - [x] Verificar con fuentes oficiales el marco general de fiscalidad, protección de datos y comunicaciones comerciales; mantener aviso de validación profesional para cada caso.
 - [x] Maquetar O2-21 en local en `blog/booking-airbnb-turismo-rural/` y `public/blog/booking-airbnb-turismo-rural/`, añadirlo al índice, sitemap y `llms.txt`, y validar paridad raíz/public.
-- [ ] Revisar visualmente con José y aprobar el ángulo final.
-- [ ] Publicar/desplegar solo después de la aprobación expresa de José.
+- [x] Revisar visualmente el artículo y aprobar el ángulo final para publicación.
+- [x] Publicar/desplegar el lote aprobado; commits `883acd1` y `1b0b223` subidos a `origin/main` y URLs públicas verificadas con HTTP 200.
 
 ## Nota operativa de oferta rural — 2026-11-23
 

@@ -121,13 +121,13 @@ Confirm that only the intended content, documentation and test files changed; pr
 
 Keyword Planner was checked on 2026-11-26 for Spanish queries in Santa Cruz de Tenerife province, Canarias and España. The initial local map returned 0–10 average monthly searches for its exact queries; a five-keyword expansion lot returned the same 0–10 interval in both Canarias and España. A broader generic batch surfaced 10–100 searches/month in Canarias and 100–1,000 in España for `marketing digital para pymes`, `SEO local`, `revenue management hoteles`, `motor de reservas` and `channel manager hoteles`. Public-campaign metrics were unavailable. Search Console for Home4Escape was also checked for 25/08/2026–24/11/2026: 156 clicks, 29.6k impressions, 0.5% CTR and average position 33.5; its top queries are currently dominated by Abades/Tenerife and should not be treated as revenue-management demand.
 
-- [ ] **Step 2: Review the local changes with José**
+- [x] **Step 2: Review the local changes with José**
 
-Do not commit, push, deploy, or change external Home4Escape forms without explicit follow-up approval after local verification.
+José autorizó la publicación del lote después de la verificación local. No se modificaron los formularios externos de Home4Escape.
 
 - [ ] **Step 3: Run the O2-21 NotebookLM review**
 
 - [x] The browser session opened the existing notebook `Validación de Mercados y Estrategias de Precios`, uploaded `articulos/borradores/2026-11-26-o2-21-booking-airbnb-turismo-rural.md`, and completed the editorial/factual review.
 - [x] The review confirmed the neutral comparison, the Home4Escape/Pyme360 ownership boundary and the non-extrapolation of E3. Three safe wording changes were incorporated and recorded in `docs/superpowers/reviews/2026-11-26-o2-21-notebooklm-review.md`.
 - [x] Resolve the general fiscal, data-protection and platform-terms checks with dated/official evidence and retain a case-specific professional-verification notice in the article.
-- [ ] Obtain José's editorial approval before any commit, push, deployment or public publication.
+- [x] José aprobó la publicación; los commits `883acd1` y `1b0b223` se subieron a `origin/main` y las cuatro URLs públicas fueron verificadas.
