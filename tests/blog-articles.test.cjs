@@ -14,7 +14,8 @@ const editorialSlugs = [
   "geo-aparecer-en-respuestas-ia",
   "trampa-bajar-precios-temporada-baja",
   "resenas-google-negocios-tenerife",
-  "control-costes-hotel-rural"
+  "control-costes-hotel-rural",
+  "booking-airbnb-turismo-rural"
 ];
 
 const studySlugs = [
@@ -61,5 +62,5 @@ for (const slug of allSlugs) {
   }
 }
 
-console.log("All 12 blog entries (10 articles + 2 studies) passed validation test suite!");
+console.log("All 13 blog entries (11 articles + 2 studies) passed validation test suite!");
 
