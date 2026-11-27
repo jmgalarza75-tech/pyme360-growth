@@ -9754,6 +9754,91 @@ body:not(.indice-page) .faq-accordion-content a:hover {
   }
 }
 
+/* Filtro de Categorías del Blog */
+.blog-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 0 auto 36px auto;
+  max-width: 900px;
+}
+.blog-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+.blog-filter-btn:hover {
+  background: rgba(47, 191, 113, 0.15);
+  border-color: rgba(47, 191, 113, 0.35);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+.blog-filter-btn.is-active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-color: #34d399;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+}
+.blog-filter-btn .filter-count {
+  font-size: 12px;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* Bloque de Contacto Intermedio en Artículos */
+.article-contact-inline {
+  margin: 36px 0;
+  padding: 24px 28px;
+  background: rgba(15, 40, 30, 0.65);
+  border: 1px solid rgba(47, 191, 113, 0.25);
+  border-left: 4px solid var(--accent, #10b981);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.article-contact-inline h4 {
+  color: #ffffff;
+  font-size: 17px;
+  margin: 0 0 6px 0;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+}
+.article-contact-inline p {
+  color: #cbd5e1;
+  font-size: 14.5px;
+  line-height: 1.5;
+  margin: 0;
+}
+.article-contact-inline .button {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media (max-width: 680px) {
+  .article-contact-inline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+  }
+  .article-contact-inline .button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 
 /* ==========================================================================
    Página de Contacto y Módulo LOPD/RGPD
