@@ -15,7 +15,17 @@ const editorialSlugs = [
   "trampa-bajar-precios-temporada-baja",
   "resenas-google-negocios-tenerife",
   "control-costes-hotel-rural",
-  "booking-airbnb-turismo-rural"
+  "booking-airbnb-turismo-rural",
+  "perfil-google-business-optimizado",
+  "mas-llamadas-google-maps",
+  "reservas-directas-sin-booking",
+  "precio-minimo-rentable-casa-rural",
+  "google-ads-o-meta-ads",
+  "ficha-google-suspendida",
+  "google-vacation-rentals-alojamientos",
+  "email-marketing-negocios-locales",
+  "abrir-casa-rural-visibilidad-digital",
+  "motor-reservas-channel-manager"
 ];
 
 const studySlugs = [
@@ -45,6 +55,9 @@ for (const slug of allSlugs) {
   // Canonical matches slug
   assert.match(rootHtml, new RegExp(`<link rel="canonical" href="https:\\/\\/pyme360\\.online\\/blog\\/${slug}\\/">`));
 
+  // Every article has a featured image reference
+  assert.match(rootHtml, /\/assets\/blog\/[a-z0-9-]+\.(?:jpg|webp)/);
+
   // Author verification (Theo Rubio for editorial articles, Equipo Pyme360 for research studies)
   if (editorialSlugs.includes(slug)) {
     assert.match(rootHtml, /Theo Rubio/);
@@ -62,5 +75,5 @@ for (const slug of allSlugs) {
   }
 }
 
-console.log("All 13 blog entries (11 articles + 2 studies) passed validation test suite!");
+console.log("All 23 blog entries (21 articles + 2 studies) passed validation test suite!");
 

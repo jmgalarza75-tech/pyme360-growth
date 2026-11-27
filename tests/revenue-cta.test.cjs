@@ -10,7 +10,8 @@ const approvedSupport = "el equipo especializado en estrategia comercial y reven
 const revenueArticles = {
   "la-falacia-del-85-por-ciento-ocupacion": "r01",
   "trampa-bajar-precios-temporada-baja": "r04",
-  "control-costes-hotel-rural": "r05"
+  "control-costes-hotel-rural": "r05",
+  "precio-minimo-rentable-casa-rural": "o3-04-precio-minimo-rentable-casa-rural"
 };
 
 for (const [slug, contentId] of Object.entries(revenueArticles)) {
@@ -28,4 +29,4 @@ for (const [slug, contentId] of Object.entries(revenueArticles)) {
   assert.doesNotMatch(html, /"serviceType"\s*:\s*"?revenue management/i, `${slug} must not mark revenue as a Pyme360 service`);
 }
 
-console.log("Revenue CTA contract passed for R01, R04 and R05");
+console.log("Revenue CTA contract passed for R01, R04, R05 and O3-04");

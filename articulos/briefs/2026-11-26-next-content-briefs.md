@@ -71,3 +71,18 @@ Estos briefs preparan producción. Ningún artículo nuevo se maqueta ni se publ
 - **CTA principal:** cuando el texto trate precios, canales o rentabilidad, enlazar al formulario oficial de Home4Escape con UTM `utm_content=o2-21-booking-airbnb-turismo-rural` y aclarar que el revenue management lo presta Home4Escape, no Pyme360.
 - **CTA secundario:** mini-revisión rural en `https://pyme360.online/alojamientos-rurales/`.
 - **Regla de publicación:** el borrador queda en Markdown hasta completar fuentes, revisión NotebookLM y aprobación editorial de José; después se decidirá si se maqueta.
+
+## 8. Lote editorial creado el 2026-11-27
+
+Estos diez contenidos se han producido en formato Markdown, maquetado HTML raíz/public y con imagen destacada propia en JPG/WebP. Los CTA rurales apuntan a `https://pyme360.online/alojamientos-rurales/`; el contenido de precio mínimo deriva a Home4Escape y mantiene el aviso: «El revenue management lo presta Home4Escape, no Pyme360».
+
+1. **Cómo optimizar tu Perfil de Empresa en Google paso a paso** — `/perfil-google-business-optimizado/` — CTA diagnóstico Pyme360.
+2. **Cómo conseguir más llamadas desde Google Maps** — `/mas-llamadas-google-maps/` — CTA diagnóstico Pyme360.
+3. **Reservas directas sin depender solo de Booking** — `/reservas-directas-sin-booking/` — CTA revisión de alojamientos.
+4. **Cómo calcular el precio mínimo rentable de una casa rural** — `/precio-minimo-rentable-casa-rural/` — CTA Home4Escape con UTM propia y revisión rural secundaria.
+5. **Google Ads o Meta Ads: dónde invertir el primer euro** — `/google-ads-o-meta-ads/` — CTA diagnóstico Pyme360.
+6. **Ficha de Google suspendida: causas y pasos para recuperarla** — `/ficha-google-suspendida/` — CTA diagnóstico Pyme360.
+7. **Google Vacation Rentals: cómo puede aparecer tu alojamiento** — `/google-vacation-rentals-alojamientos/` — CTA revisión de alojamientos.
+8. **Email marketing para negocios locales: seguimiento sin hacer spam** — `/email-marketing-negocios-locales/` — CTA diagnóstico Pyme360.
+9. **Cómo abrir una casa rural y conseguir visibilidad desde el primer día** — `/abrir-casa-rural-visibilidad-digital/` — CTA revisión de alojamientos.
+10. **Motor de reservas o channel manager: qué necesita realmente tu alojamiento** — `/motor-reservas-channel-manager/` — CTA revisión de alojamientos.
