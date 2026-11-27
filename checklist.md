@@ -16,7 +16,7 @@
 - [x] Aplicar CTA rural a `https://pyme360.online/alojamientos-rurales/`.
 - [x] Aplicar CTA de revenue a Home4Escape y aclarar que el servicio lo presta Home4Escape, no Pyme360.
 - [x] Validar estructura, JSON-LD, paridad raíz/public, imágenes y contratos de CTA en local.
-- [ ] Publicar en `origin/main` y verificar las diez URLs públicas con HTTP 200.
+- [x] Publicar en `origin/main` y verificar las diez URLs públicas con HTTP 200; commit `11c69d9` y comprobación live completada el 2026-11-27.
 
 ## Nota operativa de contenido SEO — 2026-11-26
 
